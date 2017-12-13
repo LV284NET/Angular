@@ -1,8 +1,13 @@
-<div *ngIf="done">{{factorial}}</div>
-<div class="form-group">
-    <label>Введите число</label>
-    <input class="form-control" type="number" name="factorial" [(ngModel)]="num" />
-</div>
-<div class="form-group">
-    <button class="btn btn-default" (click)="submit(num)">Отправить</button>
-</div>
+<h3>Sign In</h3>
+<form (submit)="onSubmit()">
+    <label>Login:</label>
+    <br>
+    <input [(ngModel)]="login" type="text" name="login" placeholder="email@some.com">
+    <br>
+    <label>Password:</label>
+    <br>
+    <input [(ngModel)]="password" type="password" name="password">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
