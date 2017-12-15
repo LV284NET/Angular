@@ -1,13 +1,17 @@
 <h3>Sign In</h3>
 <form (submit)="onSubmit()">
-    <label>Login:</label>
+    <label>Email:</label>
     <br>
-    <input [(ngModel)]="login" type="text" name="login" placeholder="email@some.com">
+    <input [(ngModel)]="Email" type="text" name="Email" placeholder="email@some.com">
     <br>
     <label>Password:</label>
     <br>
-    <input [(ngModel)]="password" type="password" name="password">
+    <input [(ngModel)]="Password" type="password" name="Password">
     <br>
     <br>
     <input type="submit" value="Submit">
+
+    <h1>{{user.FirstName}} </h1>
+    <h1>{{user.LastName}} </h1>
 </form>
+
