@@ -21,7 +21,6 @@ export class AppComponent {
   public errorMessage: string;
   
   public onSubmit() {
-    alert("onSubmit");
     this.authorezeService.authorize(this.Email, this.Password)
       .subscribe(
       response => {
