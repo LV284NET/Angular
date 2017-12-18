@@ -8,9 +8,6 @@ import {User} from "./user";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(
-    private authorezeService: AuthorizationService
-  ) { }
 
   user : User;
 
@@ -20,6 +17,10 @@ export class AppComponent {
   public greeting: string;
   public errorMessage: string;
   
+  constructor(private authorezeService: AuthorizationService) {
+    this.user = new User("", "", "");
+   }
+
   public onSubmit() {
     this.authorezeService.authorize(this.Email, this.Password)
       .subscribe(
