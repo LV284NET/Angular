@@ -12,6 +12,11 @@
     <input type="submit" value="Submit" class="form-control">
   </div>
 
- <h1 *ngIf="user.FirstName" class="text-center">{{user.FirstName}} </h1>
+  <div *ngIf="errorMessage!='';else userInfo">
+    <h1 class="text-center">{{errorMessage}}</h1>
+  </div>
+<ng-template #userInfo>
+  <h1 class="text-center">{{user.FirstName}} </h1>
   <h1 class="text-center">{{user.LastName}} </h1> 
+</ng-template>
 </form>

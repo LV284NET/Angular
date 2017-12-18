@@ -26,11 +26,11 @@ export class AppComponent {
       .subscribe(
       response => {
         this.user = new User(response.Email, response.FirstName, response.LastName);
-        this.greeting = response;
+        this.errorMessage = "";
       },
       error => {
-        this.errorMessage = error;
+        this.errorMessage = "Authorization failed!";
       }
-      )
+      );
   }
 }
