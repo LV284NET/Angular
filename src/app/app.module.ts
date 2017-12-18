@@ -5,10 +5,12 @@ import { AuthorizationService } from './Services/AuthorizationService';
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { Http, HttpModule } from '@angular/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
