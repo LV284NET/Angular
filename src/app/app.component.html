@@ -12,6 +12,6 @@
     <input type="submit" value="Submit" class="form-control">
   </div>
 
-  <h1 class="text-center">{{user.FirstName}} </h1>
-  <h1 class="text-center">{{user.LastName}} </h1>
+ <h1 *ngIf="user.FirstName" class="text-center">{{user.FirstName}} </h1>
+  <h1 class="text-center">{{user.LastName}} </h1> 
 </form>
