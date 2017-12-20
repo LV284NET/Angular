@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
+declare var jquery: any;
+declare var $: any;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  @Input() Email: string;
+  @Input() Email : string;
   @Input() Password: string;
   @Input() FirstName: string;
   @Input() LastName: string;
@@ -20,9 +23,12 @@ export class RegisterComponent implements OnInit {
   errorMessage = "";
 
 
-  constructor(private router: Router, private authorezeService: AuthorizationService) { }
+  constructor(private router: Router, private authorezeService: AuthorizationService) { 
+    
+  }
 
   ngOnInit() {
+    this.Email = localStorage.getItem("userAuth");
   }
 
   register() : void {
@@ -30,5 +36,14 @@ export class RegisterComponent implements OnInit {
     .subscribe(response => {
       this.router.navigateByUrl("/main");
     })
+  }
+
+  rememberMe(event) : void {
+    if(event.target.checked && this.Email){
+      localStorage.setItem("userAuth", this.Email);
+    }
+    else{
+      localStorage.removeItem("userAuth");
+    }
   }
 }
