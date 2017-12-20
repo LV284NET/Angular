@@ -1,0 +1,31 @@
+<div class="col-sm-6 col-sm-offset-3">
+  <h3>Sign In</h3>
+  <form (submit)="register()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input [(ngModel)]="Email" type="text" name="Email" placeholder="email@some.com" class="form-control" id="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input [(ngModel)]="Password" type="password" name="Password" class="form-control" id="password">
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input [(ngModel)]="FirstName" type="text" name="FirstName" class="form-control" id="firstName">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input [(ngModel)]="LastName" type="text" name="LastName" class="form-control" id="lastName">
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-4 col-sm-offset-4">
+        <input type="submit" value="Register" class="form-control btn btn-primary">
+      </div>
+    </div>
+    <div *ngIf="errorMessage!=''">      
+      <div class="alert alert-danger">
+         <p>{{errorMessage}}</p>
+      </div>  
+    </div>
+  </form>
+</div>

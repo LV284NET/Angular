@@ -26,4 +26,15 @@ export class AuthorizationService {
             })
             .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
             }
+
+    public register(email: string, password: string, firstName: string, lastName : string){
+        var headers = new Headers();
+        var content = JSON.stringify({Email: email, Password: password, FirstName: firstName, LastName: lastName});
+        headers.append('Content-Type', 'application/json');
+        return this._http.post(this.baseUrl, content, {headers:headers})
+        .map((res:Response) => {
+            return res.json();
+        })
+        .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
+        }
     }
