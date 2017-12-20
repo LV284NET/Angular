@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthorizationService } from '../Services/AuthorizationService';
 import { error } from 'util';
 import {User} from "../user";
+import { errorHandler } from '@angular/platform-browser/src/browser';
 
 @Component({
   selector: 'login-root',
@@ -30,14 +31,15 @@ export class LoginComponent {
         this.errorMessage = "";
       },
       error => {
-        if (error.StatusMessage = 404) {
+        if (error == 404) {
           this.errorMessage = "Email and password doesn't mutch";
         }
-        
+
         else {
-          this.errorMessage = "Authorization failed!";
+          this.errorMessage = error.statusText;
         }
       }
       );
+      //"Authorization failed!"
   }
 }
