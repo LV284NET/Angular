@@ -19,18 +19,24 @@ export class LoginComponent {
   public errorMessage: string;
   
   constructor(private authorezeService: AuthorizationService) {
-    this.user = new User("", "", "");
+    this.user = new User("", "", "", "");
    }
 
   public onSubmit() {
     this.authorezeService.authorize(this.Email, this.Password)
       .subscribe(
       response => {
-        this.user = new User(response.Email, response.FirstName, response.LastName);
+        this.user = new User(response.Email, response.FirstName, response.LastName, response.Guid);
         this.errorMessage = "";
       },
       error => {
-        this.errorMessage = "Authorization failed!";
+        if (error.StatusMessage = 404) {
+          this.errorMessage = "Email and password doesn't mutch";
+        }
+        
+        else {
+          this.errorMessage = "Authorization failed!";
+        }
       }
       );
   }

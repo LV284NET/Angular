@@ -4,6 +4,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { User } from '../user'
+import { error } from 'util';
 
 declare var jquery: any;
 declare var $: any;
@@ -20,11 +22,12 @@ export class RegisterComponent implements OnInit {
   @Input() FirstName: string;
   @Input() LastName: string;
 
+  user : User;
   errorMessage = "";
 
 
   constructor(private router: Router, private authorezeService: AuthorizationService) { 
-    
+    this.user = new User("", "", "", "");
   }
 
   ngOnInit() {
@@ -33,9 +36,20 @@ export class RegisterComponent implements OnInit {
 
   register() : void {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName)
-    .subscribe(response => {
+    .subscribe(
+      response => {
+      this.user.Guid = response.Guid
       this.router.navigateByUrl("/main");
-    })
+    },
+    error => {
+      if (error.StatusMessage = 400) {
+        this.errorMessage = "There is a user with the same e-mail!";
+      }
+      else {
+        this.errorMessage = "Registration failed!";
+      }
+    }
+  );
   }
 
   rememberMe(event) : void {
