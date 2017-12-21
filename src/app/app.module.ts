@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AuthorizationService } from './Services/AuthorizationService';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { Http, HttpModule } from '@angular/http';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -10,6 +10,9 @@ import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from './app-routing.module';
+//import { CookieService } from 'angular2-cookie/services/cookies.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,10 +26,12 @@ import {AppRoutingModule} from './app-routing.module';
     FormsModule,
     HttpModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    ReactiveFormsModule
   ],
   providers: [
-    AuthorizationService
+    AuthorizationService,
+    //CookieService
   ],
   bootstrap: [AppComponent]
 })

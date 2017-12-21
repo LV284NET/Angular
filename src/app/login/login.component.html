@@ -9,6 +9,10 @@
       <label for="password">Password:</label>
       <input [(ngModel)]="Password" type="password" name="Password" class="form-control" id="password">
     </div>
+    <div class="checkbox">
+        <label>
+          <input type="checkbox" (change)="rememberMe($event)" [checked]="false" id="rememberMe"> Remember me</label>
+      </div>
     <div class="row">
       <div class="form-group col-sm-4 col-sm-offset-4">
         <input type="submit" value="Submit" class="form-control btn btn-primary">
@@ -17,6 +21,7 @@
     <div *ngIf="errorMessage!='';else userInfo">
       <h1 class="text-center">{{errorMessage}}</h1>
     </div>
+   
     <ng-template #userInfo>
       <h1 class="text-center">{{user.FirstName}} </h1>
       <h1 class="text-center">{{user.LastName}} </h1>

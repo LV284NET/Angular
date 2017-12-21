@@ -3,13 +3,15 @@ import { AuthorizationService } from '../Services/AuthorizationService';
 import { error } from 'util';
 import {User} from "../user";
 import { errorHandler } from '@angular/platform-browser/src/browser';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'login-root',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   user : User;
 
@@ -18,11 +20,24 @@ export class LoginComponent {
 
   public greeting: string;
   public errorMessage: string;
-  
+
   constructor(private authorezeService: AuthorizationService) {
     this.user = new User("", "", "", "");
-   }
-
+  }
+  
+  ngOnInit(): void {
+    this.Email = localStorage.getItem("userAuth");
+  }
+   
+  rememberMe(event) : void {
+    if(event.target.checked && this.Email){
+      localStorage.setItem("userAuth", this.Email);
+    }
+    else{
+      localStorage.removeItem("userAuth");
+    }
+  }
+  
   public onSubmit() {
     this.authorezeService.authorize(this.Email, this.Password)
       .subscribe(
@@ -32,14 +47,13 @@ export class LoginComponent {
       },
       error => {
         if (error == 404) {
-          this.errorMessage = "Email and password doesn't mutch";
+          this.errorMessage = "Email and password doesn't match";
         }
 
         else {
           this.errorMessage = error.statusText;
         }
       }
-      );
-      //"Authorization failed!"
+      );    
   }
 }
