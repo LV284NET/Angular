@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   user : User;
 
@@ -25,6 +25,9 @@ export class LoginComponent {
 
    }
 
+  ngOnInit(): void {
+    this.Email = localStorage.getItem("userAuth");
+  }
    
   rememberMe(event) : void {
     if(event.target.checked && this.Email){
@@ -45,8 +48,6 @@ export class LoginComponent {
       error => {
         this.errorMessage = "Authorization failed!";
       }
-      );
-
-      
+      );    
   }
 }

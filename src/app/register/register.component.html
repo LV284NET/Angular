@@ -9,7 +9,7 @@
       <input [(ngModel)] = "Email" type="text" name="Email" placeholder="email@some.com" class="form-control" id="email" formControlName="email" required>
     </div>
     <div class="alert alert-danger" *ngIf="email.invalid && email.touched && email.dirty">
-      <p>Wrong format</p>
+      <p>Wrong format of email</p>
     </div>
     <div class="form-group" [ngClass]="{
         'has-error': password.invalid && password.dirty, 

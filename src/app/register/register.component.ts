@@ -46,15 +46,6 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  rememberMe(event) : void {
-    if(event.target.checked && this.Email){
-      localStorage.setItem("userAuth", this.Email);
-    }
-    else{
-      localStorage.removeItem("userAuth");
-    }
-  }
-
   createFormControls() {
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
