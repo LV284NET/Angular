@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthorizationService } from '../Services/AuthorizationService';
 import { error } from 'util';
 import {User} from "../user";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'login-root',
@@ -17,11 +19,22 @@ export class LoginComponent {
 
   public greeting: string;
   public errorMessage: string;
-  
+
   constructor(private authorezeService: AuthorizationService) {
     this.user = new User("", "", "");
+
    }
 
+   
+  rememberMe(event) : void {
+    if(event.target.checked && this.Email){
+      localStorage.setItem("userAuth", this.Email);
+    }
+    else{
+      localStorage.removeItem("userAuth");
+    }
+  }
+  
   public onSubmit() {
     this.authorezeService.authorize(this.Email, this.Password)
       .subscribe(
@@ -33,5 +46,7 @@ export class LoginComponent {
         this.errorMessage = "Authorization failed!";
       }
       );
+
+      
   }
 }
