@@ -10,7 +10,7 @@ import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from './app-routing.module';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+//import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
   ],
   providers: [
     AuthorizationService,
-    CookieService
+    //CookieService
   ],
   bootstrap: [AppComponent]
 })

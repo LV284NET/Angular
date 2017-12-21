@@ -8,8 +8,6 @@ import { NgModule,Pipe } from '@angular/core';
 import {ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-// declare var jquery: any;
-// declare var $: any;
 
 @Component({
   selector: 'app-register',
@@ -77,6 +75,5 @@ export class RegisterComponent implements OnInit {
       email: this.email,
       password: this.password,
     });
-    
   }
 }
