@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PlacesService } from '../Services/places-service.service';
+import { Place } from '../place';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  places: Place[] = [];
+
+  constructor(private placesService: PlacesService) { }
 
   ngOnInit() {
+    this.placesService.getPlaces().subscribe(response => {
+      response.forEach(element => {
+        this.places.push(new Place(element.Name, element.CityName, element.Description));
+      });
+    });
   }
 
 }

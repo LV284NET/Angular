@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       response => {
       this.user.Guid = response.Guid
-      this.router.navigateByUrl("/main");
+      this.router.navigateByUrl("/login");
     },
     error => {
       if (error.StatusMessage = 400) {

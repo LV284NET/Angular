@@ -1,0 +1,8 @@
+<h1 class="text-center">Most popular places</h1>
+<div class="container">
+  <div class="col-sm-4" *ngFor="let place of places" id="tile">
+    <h3>Name: {{place.name}}</h3>
+    <h3>City name: {{place.cityName}}</h3>
+    <p>{{place.description}}</p>
+  </div>
+</div>

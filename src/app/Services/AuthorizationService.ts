@@ -26,7 +26,7 @@ export class AuthorizationService {
                 return res.json();
             })
             .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
-            }
+    }
 
     public register(email: string, password: string, firstName: string, lastName : string){
         var headers = new Headers();

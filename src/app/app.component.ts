@@ -11,39 +11,4 @@ import {User} from "./user";
 })
 export class AppComponent {
   constructor(){}
-  //constructor(private _cookieService:CookieService){}
-
-  ngOnInit() {
-    //this._cookieService.put('test', 'test');
-    console.log("Set Test Cookie as Test");
-  }
-
-  getCookie(key: string){
-    //return this._cookieService.get(key);
-  }
-
-  // user : User;
-
-  // @Input() Email: string;
-  // @Input() Password: string;
-
-  // public greeting: string;
-  // public errorMessage: string;
-  
-  // constructor(private authorezeService: AuthorizationService) {
-  //   this.user = new User("", "", "");
-  //  }
-
-  // public onSubmit() {
-  //   this.authorezeService.authorize(this.Email, this.Password)
-  //     .subscribe(
-  //     response => {
-  //       this.user = new User(response.Email, response.FirstName, response.LastName);
-  //       this.errorMessage = "";
-  //     },
-  //     error => {
-  //       this.errorMessage = "Authorization failed!";
-  //     }
-  //     );
-  // }
 }
