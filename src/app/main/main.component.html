@@ -6,7 +6,7 @@
     <p>{{place.description}}</p>
     <div clas="container">
       <div class="col-sm-12">
-        <img class="img-responsive" [src]="imageToShow">
+        <img class="img-responsive" [src]="imageToShow[this.places.indexOf(place)]">
       </div>
     </div>
   </div>

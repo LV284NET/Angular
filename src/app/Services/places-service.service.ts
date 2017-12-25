@@ -34,15 +34,4 @@ export class PlacesService {
       })
       .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
   }
-
-  // createImageFromBlob(image: Blob): any {
-  //   let reader = new FileReader();
-  //   reader.addEventListener("load", () => {
-  //      return reader.result;
-  //   });
-
-  //   if (image) {
-  //      reader.readAsDataURL(image);
-  //   }
-  //  }
 }
