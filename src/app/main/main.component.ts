@@ -11,7 +11,7 @@ import { element } from 'protractor';
 export class MainComponent implements OnInit {
 
   places: Place[] = [];
-  imageToShow: any[] = [];
+  imagesToShow: any[] = [];
   isImageLoading: boolean;
   
   constructor(private placesService: PlacesService) { }
@@ -29,7 +29,7 @@ export class MainComponent implements OnInit {
   getImageFromService(PlaceId: number) {
     this.isImageLoading = true;
     this.placesService.getImage(PlaceId).subscribe(data => {
-      this.createImageFromBlob(data);
+      this.createImageFromBlob(data, PlaceId);
       this.isImageLoading = false;
     }, error => {
       this.isImageLoading = false;
@@ -37,10 +37,10 @@ export class MainComponent implements OnInit {
     });
   }
 
-  createImageFromBlob(image: Blob): any {
+  createImageFromBlob(image: Blob, PlaceId: number): any {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
-      this.imageToShow.push(reader.result);
+      this.imagesToShow[PlaceId] = reader.result;
     }, false);
 
     if (image) {
