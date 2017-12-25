@@ -24,24 +24,25 @@ export class PlacesService {
       .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
   }
 
-  public getImage(PlaceId: number): any {
-    let params = new HttpParams();
-    params = params.append("placeId", PlaceId.toString());
-    return this._http.get("http://localhost:51455/GetImage?placeId=10", { responseType: ResponseContentType.Blob })
+  public getImage(PlaceId: number): Observable<File>{
+    //let params = new HttpParams();
+    let searchLine = "placeId=" + PlaceId.toString();
+    return this._http.get("http://localhost:51455/GetImage", 
+                      { search: searchLine , responseType: ResponseContentType.Blob })
       .map((res:Response) => {
         return res.blob();
       })
       .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
   }
 
-  createImageFromBlob(image: Blob): any {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-       return reader.result;
-    });
+  // createImageFromBlob(image: Blob): any {
+  //   let reader = new FileReader();
+  //   reader.addEventListener("load", () => {
+  //      return reader.result;
+  //   });
 
-    if (image) {
-       reader.readAsDataURL(image);
-    }
-}
+  //   if (image) {
+  //      reader.readAsDataURL(image);
+  //   }
+  //  }
 }

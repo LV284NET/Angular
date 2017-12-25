@@ -11,7 +11,9 @@ import { element } from 'protractor';
 export class MainComponent implements OnInit {
 
   places: Place[] = [];
-
+  imageToShow: any;
+  isImageLoading: boolean;
+  
   constructor(private placesService: PlacesService) { }
 
   ngOnInit() {
@@ -19,11 +21,30 @@ export class MainComponent implements OnInit {
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId, 
           element.Name, element.CityName, element.Description, 
-          this.placesService.getImage(element.PlaceId).
-          subscribe(data=> {this.placesService.createImageFromBlob(data)})));
+          this.getImageFromService(element.PlaceId)));
       });
-      this.places.forEach(element=> this.placesService.getImage(element.placeId).
-      subscribe(data=> {element.picture = this.placesService.createImageFromBlob(data)}))
     });
+  }
+
+  getImageFromService(PlaceId: number) {
+    this.isImageLoading = true;
+    this.placesService.getImage(PlaceId).subscribe(data => {
+      this.createImageFromBlob(data);
+      this.isImageLoading = false;
+    }, error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+  }
+
+  createImageFromBlob(image: Blob): any {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+       reader.readAsDataURL(image);
+    }
   }
 }

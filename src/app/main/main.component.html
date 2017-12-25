@@ -4,6 +4,10 @@
     <h3>Name: {{place.name}}</h3>
     <h3>City name: {{place.cityName}}</h3>
     <p>{{place.description}}</p>
-    <p>{{place.picture}}</p>
+    <div clas="container">
+      <div class="col-sm-12">
+        <img class="img-responsive" [src]="imageToShow">
+      </div>
+    </div>
   </div>
 </div>
