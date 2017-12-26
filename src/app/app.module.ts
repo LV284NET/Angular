@@ -13,6 +13,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { PlacesService } from './Services/places-service.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { PlacesService } from './Services/places-service.service';
     MainComponent,
     RegisterComponent,
     LoginComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { PlacesService } from './Services/places-service.service';
   providers: [
     AuthorizationService,
     PlacesService,
+  
   ],
   bootstrap: [AppComponent]
 })
