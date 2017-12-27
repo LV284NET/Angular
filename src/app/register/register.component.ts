@@ -17,12 +17,11 @@ import { User } from '../user';
 })
 export class RegisterComponent implements OnInit {
 
-  user: User;
-
   @Input() Email : string;
   @Input() Password: string;
   @Input() FirstName: string;
   @Input() LastName: string;
+  
 
   myform: FormGroup;
   firstName: FormControl;
@@ -33,7 +32,6 @@ export class RegisterComponent implements OnInit {
   errorMessage: string;
 
   constructor(private router: Router, private authorezeService: AuthorizationService) { 
-    this.user = new User("", "", "", "");
   }
   ngOnInit() {
     this.createFormControls();
@@ -45,8 +43,13 @@ export class RegisterComponent implements OnInit {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName)
     .subscribe(
       response => {
-      this.user.Guid = response.Guid
-      this.router.navigateByUrl("/login");
+        if(response) {
+          this.router.navigateByUrl("/main");
+        }
+        else {
+          this.errorMessage = "Register error!"
+        }
+      
     },
     error => {
       if (error.StatusMessage = 400) {

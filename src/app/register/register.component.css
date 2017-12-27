@@ -1,3 +1,6 @@
 input:disabled{
     background-color: rgb(56, 133, 201)
 }
+.help-block {
+    color: rgb(221, 71, 71);
+}

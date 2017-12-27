@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   public errorMessage: string;
 
   constructor(private router: Router, private authorezeService: AuthorizationService) {
-    this.user = new User("", "", "", "");
+    //this.user = new User("", "", "");
   }
   
   ngOnInit(): void {
@@ -43,9 +43,14 @@ export class LoginComponent implements OnInit {
     this.authorezeService.authorize(this.Email, this.Password)
       .subscribe(
       response => {
-        this.user = new User(response.Email, response.FirstName, response.LastName, response.Guid);
-        this.errorMessage = "";
-        this.router.navigateByUrl("/main");
+        if(response) {
+          this.user = new User(response.Email, response.FirstName, response.LastName);
+          this.errorMessage = "";
+          this.router.navigateByUrl("/main");
+        } else {
+          this.errorMessage = "No such user!";
+        }
+        
       },
       error => {
         if (error == 404) {

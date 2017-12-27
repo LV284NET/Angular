@@ -8,8 +8,8 @@
       <label for="email">Email:</label>
       <input [(ngModel)] = "Email" type="text" name="Email" placeholder="email@some.com" class="form-control" id="email" formControlName="email" required>
     </div>
-    <div class="alert alert-danger" *ngIf="email.invalid && email.touched && email.dirty">
-      <p>Wrong format of email</p>
+    <div *ngIf="email.invalid && email.touched && email.dirty">
+      <p class="help-block">Wrong format of email!</p>
     </div>
     <div class="form-group" [ngClass]="{
         'has-error': password.invalid && password.dirty, 
@@ -18,8 +18,8 @@
       <label for="password">Password:</label>
       <input [(ngModel)] = "Password" type="password" name="Password" class="form-control" id="password" formControlName="password" required>
     </div>
-    <div class="alert alert-danger" *ngIf="password.invalid && password.dirty && password.touched">
-      <p>Password must be greater than 8 characters</p>
+    <div *ngIf="password.invalid && password.dirty && password.touched">
+      <p class="help-block">Password must be greater than 8 characters</p>
     </div>
     <div class="form-group" [ngClass]="{
         'has-error': firstName.invalid && firstName.dirty, 
@@ -28,8 +28,8 @@
       <label for="firstName">First Name:</label>
       <input [(ngModel)] = "FirstName" type="text" name="FirstName" class="form-control" id="firstName" formControlName="firstName" required>
     </div>
-    <div class="alert alert-danger" *ngIf="firstName.invalid && firstName.dirty && firstName.touched">
-      <p>First name is required</p>
+    <div *ngIf="firstName.invalid && firstName.dirty && firstName.touched">
+      <p class="help-block">First name is required</p>
     </div>
     <div class="form-group" [ngClass]="{
         'has-error': lastName.invalid && lastName.dirty, 
@@ -38,8 +38,8 @@
       <label for="lastName">Last Name:</label>
       <input [(ngModel)] = "LastName" type="text" name="LastName" class="form-control" id="lastName" formControlName="lastName" required>
     </div>
-    <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.dirty && lastName.touched">
-      <p>Last name is required</p>
+    <div *ngIf="lastName.invalid && lastName.dirty && lastName.touched">
+      <p class="help-block">Last name is required</p>
     </div>   
     <div class="row">
       <div class="form-group col-sm-4 col-sm-offset-4">
@@ -47,4 +47,7 @@
       </div>
     </div>
   </form>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    <p>{{errorMessage}}</p>
+  </div>
 </div>
