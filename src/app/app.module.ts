@@ -12,8 +12,6 @@ import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from './app-routing.module';
 import { PlacesService } from './Services/places-service.service';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

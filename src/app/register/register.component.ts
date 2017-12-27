@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
   @Input() FirstName: string;
   @Input() LastName: string;
   
-
   myform: FormGroup;
   firstName: FormControl;
   lastName: FormControl;
@@ -37,7 +36,6 @@ export class RegisterComponent implements OnInit {
     this.createFormControls();
     this.createForm();
   }
-
   //Should be fixed
   register() : void {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName)
@@ -48,8 +46,7 @@ export class RegisterComponent implements OnInit {
         }
         else {
           this.errorMessage = "Register error!"
-        }
-      
+        }     
     },
     error => {
       if (error.StatusMessage = 400) {
@@ -61,18 +58,17 @@ export class RegisterComponent implements OnInit {
     }
   );
   }
-
   createFormControls() {
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
     this.email = new FormControl('', [
       Validators.required,
-      Validators.pattern("[^ @]+@[^ @]+")
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
     ]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
-      
+      Validators.pattern('((?=.*[A-Z]).{8,20})'),
+      Validators.minLength(8)
     ]);
   }
   createForm() {
