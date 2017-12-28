@@ -23,14 +23,4 @@ export class PlacesService {
       })
       .catch((error: any) => Observable.throw(error.json().error || "Server error"));
   }
-
-  public getImage(PlaceId: number): Observable<File> {
-     let searchLine = "placeId=" + PlaceId.toString();
-    return this._http.get("http://localhost:51455/GetImage",
-      { search: searchLine, responseType: ResponseContentType.Blob })
-      .map((res: Response) => {
-        return res.blob();
-      })
-      .catch((error: any) => Observable.throw(error.json().error || "Server error"));
-  }
 }
