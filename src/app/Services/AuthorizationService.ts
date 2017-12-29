@@ -11,8 +11,8 @@ export class AuthorizationService {
 
     public token: string;
 
-    private _urlForAuthorization: string = "http://localhost:51455/api/user/GetUser";
-    private _urlForRegistration: string = "http://localhost:51455/api/user/AddUser";
+    private _urlForAuthorization: string = "http://localhost:51455/Token";
+    private _urlForRegistration: string = "http://localhost:51455/api/Account/Register";
 
     constructor(private _http: Http) {
          var currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -20,14 +20,14 @@ export class AuthorizationService {
             this.token = currentUser.token;
     }
   
-    public authorize(mail: string, password: string) 
+    public authorize(email: string, password: string) : Observable<boolean>
     {
         var headers = new Headers();
-        var cont = JSON.stringify({ Email: mail, Password: password});
-        headers.append('Content-Type', 'application/json');
+        var cont = { username: email, password: password, grant_type: "password"};
+        headers.append('Content-Type', 'x-www-forn-urlencoded');
         return this._http.post(this._urlForAuthorization, cont, {headers:headers})
             .map((res:Response) => {
-                let token = res.json().token;
+                let token = res.json().access_token;
                 if(token) {
                     this.token = token;
                     let user = res.json();
@@ -43,23 +43,19 @@ export class AuthorizationService {
             .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
     }
 
-    public register(email: string, password: string, firstName: string, lastName : string): Observable<boolean>{
+    public register(email: string, password: string, firstName: string, lastName : string): Observable<any>{
         var headers = new Headers();
-        var content = JSON.stringify({Email: email, Password: password, FirstName: firstName, LastName: lastName});
+        var content = JSON.stringify({
+            Email: email, 
+            Password: password, 
+            ConfirmPassword: password, 
+            FirstName: firstName, 
+            LastName: lastName
+        });
         headers.append('Content-Type', 'application/json');
         return this._http.post(this._urlForRegistration, content, {headers:headers})
         .map((res:Response) => {
-            let token = res.json().token;
-            if(token) {
-                this.token = token;
-                localStorage.setItem("currentUser", JSON.stringify({user: {
-                    email: email, 
-                    firstName: firstName,
-                    lastName: lastName
-                }, token: token}));
-                return true;
-            }
-            return false;
+            return this.authorize(email, password);
         })
         .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
         }
