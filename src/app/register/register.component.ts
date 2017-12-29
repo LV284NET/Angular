@@ -59,16 +59,22 @@ export class RegisterComponent implements OnInit {
   );
   }
   createFormControls() {
-    this.firstName = new FormControl('', Validators.required);
-    this.lastName = new FormControl('', Validators.required);
+    this.firstName = new FormControl('', [
+      Validators.required,
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
+      
+    ]);
+    this.lastName = new FormControl('', [
+     Validators.required,
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
+    ]);
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
     ]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.pattern('((?=.*[A-Z]).{8,20})'),
-      Validators.minLength(8)
+      Validators.pattern('((?=.*[A-Z]).{8,20})')    
     ]);
   }
   createForm() {
