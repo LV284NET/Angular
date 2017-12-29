@@ -63,6 +63,7 @@ export class AuthorizationService {
         })
         .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
         }
+        
         logout(): void {
             this.token = null;
             localStorage.removeItem("currentUser");
