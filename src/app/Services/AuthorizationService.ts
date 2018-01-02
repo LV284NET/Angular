@@ -20,7 +20,7 @@ export class AuthorizationService {
             this.token = currentUser.token;
     }
   
-    public authorize(email: string, password: string) : Observable<boolean>
+    public authorize(email: string, password: string) : Observable<any>
     {
         var headers = new Headers();
         var cont = { username: email, password: password, grant_type: "password"};
@@ -43,7 +43,7 @@ export class AuthorizationService {
             .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
     }
 
-    public register(email: string, password: string, firstName: string, lastName : string): Observable<any>{
+    public register(email: string, password: string, firstName: string, lastName : string, confirmPassword: string): Observable<any>{
         var headers = new Headers();
         var content = JSON.stringify({
             Email: email, 
