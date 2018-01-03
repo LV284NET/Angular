@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
     this.createFormControls();
     this.createForm();
   }
-  //Should be fixed
   register() : void {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
     .subscribe(
