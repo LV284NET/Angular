@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'cities-list', component: CitiesComponent },
-  { path: 'city', component: CityComponent }
+  { path: 'city/:id', component: CityComponent }
 ];
 
 @NgModule({

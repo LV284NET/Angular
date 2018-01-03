@@ -24,7 +24,12 @@ export class CityComponent implements OnInit {
 
 
   constructor(private placeService:PlacesService, 
-               private cityService:CityService) { }
+               private cityService:CityService,
+               private route: ActivatedRoute,
+               private location: Location) {
+
+    this.city = new City(0,"","","");
+                }
 
   ngOnInit() {
     this.cityService.getCity(this.cityID)
