@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from './app-routing.module';
 import { PlacesService } from './Services/places-service.service';
+import { PlaceListComponent } from './place-list/place-list.component';
+import { PlaceComponent } from './place/place.component';
 
 
 
@@ -20,7 +22,9 @@ import { PlacesService } from './Services/places-service.service';
     NavbarComponent,
     MainComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PlaceListComponent,
+    PlaceComponent
     
   ],
   imports: [

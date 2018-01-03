@@ -4,14 +4,14 @@ import { Place } from '../place';
 import { element } from 'protractor';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-place-list',
+  templateUrl: './place-list.component.html',
+  styleUrls: ['./place-list.component.css']
 })
-export class MainComponent implements OnInit {
+export class PlaceListComponent implements OnInit {
 
   places: Place[] = [];
-  
+
   constructor(private placesService: PlacesService) { }
 
   ngOnInit() {
@@ -23,4 +23,5 @@ export class MainComponent implements OnInit {
       });
     });
   }
+
 }
