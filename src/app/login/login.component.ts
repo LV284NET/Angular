@@ -1,7 +1,7 @@
 import {Component, OnInit, Input } from '@angular/core';
 import { AuthorizationService } from '../Services/AuthorizationService';
 import { error } from 'util';
-import {User} from "../user";
+import { User } from "../user";
 import { errorHandler } from '@angular/platform-browser/src/browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

@@ -10,7 +10,9 @@ import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from './app-routing.module';
-import { PlacesService } from './Services/places-service.service';
+import { PlacesService } from './Services/places.service';
+import { CityComponent } from './city/city.component';
+import { CityService } from './Services/city.service';
 
 
 
@@ -20,7 +22,8 @@ import { PlacesService } from './Services/places-service.service';
     NavbarComponent,
     MainComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CityComponent
     
   ],
   imports: [
@@ -34,6 +37,7 @@ import { PlacesService } from './Services/places-service.service';
   providers: [
     AuthorizationService,
     PlacesService,
+    CityService,
   
   ],
   bootstrap: [AppComponent]

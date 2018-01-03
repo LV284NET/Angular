@@ -1,0 +1,28 @@
+.scrollable {
+    height:150px;
+    overflow-y: scroll;
+  }
+
+  .image{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+ img{
+     height: 200px;
+     background-color: aliceblue;
+}
+
+.center-cropped {
+    object-fit: none; 
+    object-position: center; 
+    height: 100%;
+    width: 100%;
+  }
+
+  .object-fit_fill { object-fit: fill }
+.object-fit_contain { object-fit: contain }
+.object-fit_cover { object-fit: cover }
+.object-fit_none { object-fit: none }
+.object-fit_scale-down { object-fit: scale-down }
+

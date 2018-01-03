@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PlacesService } from '../Services/places-service.service';
+import { PlacesService } from '../Services/places.service';
 import { Place } from '../place';
-import { element } from 'protractor';
+
 
 @Component({
   selector: 'app-main',
@@ -11,8 +11,7 @@ import { element } from 'protractor';
 export class MainComponent implements OnInit {
 
   places: Place[] = [];
-  imagesToShow: any[] = [];
-  isImageLoading: boolean;
+
   
   constructor(private placesService: PlacesService) { }
 
