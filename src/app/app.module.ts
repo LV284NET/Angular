@@ -10,7 +10,7 @@ import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from './app-routing.module';
-import { PlacesService } from './Services/places-service.service';
+import { PlacesService } from './Services/places.service';
 
 @NgModule({
   declarations: [

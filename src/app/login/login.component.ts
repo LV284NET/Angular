@@ -43,8 +43,9 @@ export class LoginComponent implements OnInit {
     this.authorezeService.authorize(this.Email, this.Password)
       .subscribe(
       response => {
-        if(response) {
-          this.user = new User(response.Email, response.FirstName, response.LastName);
+        if(response == true) {
+          let user = localStorage.getItem("currentUser")["user"]; 
+          this.user = new User(user.email, user.firstName, user.lastName);
           this.errorMessage = "";
           this.router.navigateByUrl("/main");
         } else {
