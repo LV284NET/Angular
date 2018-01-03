@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { PlacesService } from '../Services/places-service.service';
+import { Place } from '../place';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-place',
@@ -7,9 +12,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaceComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  place: Place;
+
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private placesService: PlacesService,
+
+  ) { 
+    this.place = new Place(0, "", "", "", "");
   }
 
+  ngOnInit() {
+    this.getPlace();
+  }
+
+  getPlace(): any {
+    
+    const id = +this.route.snapshot.paramMap.get('id')
+
+    this.placesService.getPlace(id)
+      .subscribe(response => {
+        this.place = new Place (response.PlaceId, response.Name, 
+          response.CityName, response.Description, response.PicturePlace) 
+      })
+  }
 }

@@ -23,4 +23,16 @@ export class PlacesService {
       })
       .catch((error: any) => Observable.throw(error.json().error || "Server error"));
   }
-}
+
+  public getPlace(PlaceId: number): any {
+    let searchLine = "placeId=" + PlaceId.toString();
+   return this._http.get("http://localhost:51455/GetPlace",
+     { params: searchLine })
+     .map((res: Response) => {
+       return res.json();
+     })
+     .catch((error: any) => Observable.throw(error.json().error || "Server error"));
+ }
+}  
+
+
