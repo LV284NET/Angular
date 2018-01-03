@@ -25,48 +25,19 @@
         </div>
 
         <div class="row card-group well">
-                <div class="col-md-3 card text-white bg-secondary  ">
-                        <img class="img-responsive img-thumbnail card-img-top object-fit_contain" [src]="places[1].picture">
-                        <div class="card-block">
-                                <h4 class="card-title">{{places[1].name}}</h4>
-                                <p class="card-text">{{places[1].description}}</p>
-                                <a href="#" class="btn btn-primary">Details</a>
-                                <br>
-                        </div>
-                </div>
-
-                <div class="col-md-3 card text-white bg-secondary  ">
-                        <img class="img-responsive img-thumbnail card-img-top object-fit_contain" [src]="places[2].picture">
-                        <div class="card-block">
-                                <h4 class="card-title">{{places[2].name}}</h4>
-                                <p class="card-text">{{places[2].description}}</p>
-                                <a href="#" class="btn btn-primary">Details</a>
-                        </div>
-                </div>
-
-                <div class="col-md-3 card text-white bg-secondary  ">
-                        <img class="img-responsive img-thumbnail card-img-top object-fit_contain" [src]="places[3].picture">
-                        <div class="card-block">
-                                <h4 class="card-title">{{places[3].name}}</h4>
-                                <p class="card-text">{{places[3].description}}</p>
-                                <a href="#" class="btn btn-primary">Details</a>
-                        </div>
-                </div>
-
-                <div class="col-md-3 card text-white bg-secondary  ">
-                        <img class="img-responsive img-thumbnail card-img-top object-fit_contain" [src]="places[4].picture">
-                        <div class="card-block">
-                                <h4 class="card-title">{{places[4].name}}</h4>
-                                <p class="card-text">{{places[4].description}}</p>
-                                <a href="#" class="btn btn-primary">Details</a>
-                        </div>
+                <div *ngFor="let place of places" class="col-md-3 card text-white bg-secondary ">
+                     <img class="img-responsive img-thumbnail card-img-top object-fit_contain" [src]="place.picture">
+                     <h4 class="card-title">{{place.name}}</h4>
+                     <p class="card-text">{{place.description}}</p>
+                     <a href="#" class="btn btn-primary">Details</a>
                 </div>
         
-        <a href="#" class="btn btn-primary pull-right">Show More</a>
+        <a href="#" class="btn btn-primary pull-right down">Show More</a>
         </div>
         <hr>
 
-        <a href="#" class="btn-lg btn-primary pull-left">Not interested</a>
+        <a href="#" class="btn-lg btn-primary pull-left pull-down">Not interested</a>
+        <br><br>
 
 </div>
 
