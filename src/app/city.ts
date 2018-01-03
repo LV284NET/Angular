@@ -3,7 +3,7 @@ export class City {
     name: string;
     description: string;
     picture: any;
-    constructor(cityID: number, name: string, cityName: string, description: string, picture: any){
+    constructor(cityID: number, name: string, description: string, picture: any){
         this.cityID=cityID;
         this.name = name;
         this.description = description;
