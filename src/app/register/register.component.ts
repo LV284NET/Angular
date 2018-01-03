@@ -9,6 +9,7 @@ import {ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, Fo
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { User } from '../user';
+//import { CustomValidators } from '../register/custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -21,12 +22,14 @@ export class RegisterComponent implements OnInit {
   @Input() Password: string;
   @Input() FirstName: string;
   @Input() LastName: string;
+  @Input() ConfirmPassword: string;
   
   myform: FormGroup;
   firstName: FormControl;
   lastName: FormControl;
   email: FormControl;
   password: FormControl;
+  confirmPassword: FormControl;
 
   errorMessage: string;
 
@@ -37,8 +40,8 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
   //Should be fixed
-  register() {
-    this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName)
+  register() : void {
+    this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
     .subscribe(
       response => {
         if(response) {
@@ -76,6 +79,14 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.pattern('((?=.*[A-Z]).{8,20})')    
     ]);
+    this.confirmPassword = new FormControl('', [
+      Validators.required,
+      Validators.pattern('((?=.*[A-Z]).{8,20})'),
+    ])
+  }
+   passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('confirmPassword').value
+       ? null : {'mismatch': true};
   }
   createForm() {
     this.myform = new FormGroup({
@@ -83,6 +94,7 @@ export class RegisterComponent implements OnInit {
       lastName: this.lastName,
       email: this.email,
       password: this.password,
-    });
+      confirmPassword: this.confirmPassword,
+    }, this.passwordMatchValidator);
   }
 }

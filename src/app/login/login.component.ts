@@ -40,9 +40,7 @@ export class LoginComponent implements OnInit {
   } 
   
   public onSubmit() {
-    this.authorezeService.authorize(this.Email, this.Password)
-      .subscribe(
-      response => {
+    this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
         if(response == true) {
           let user = localStorage.getItem("currentUser")["user"]; 
           this.user = new User(user.email, user.firstName, user.lastName);
@@ -52,8 +50,7 @@ export class LoginComponent implements OnInit {
           this.errorMessage = "No such user!";
         }
         
-      },
-      error => {
+      }, error => {
         if (error == 404) {
           this.errorMessage = "Email and password doesn't match";
         }
