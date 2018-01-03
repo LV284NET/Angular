@@ -22,6 +22,6 @@ export class MainComponent implements OnInit {
           element.Name, element.CityName, element.Description, 
           element.PicturePlace));
       });
-    });
+    })
   }
 }
