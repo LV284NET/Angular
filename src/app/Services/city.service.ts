@@ -9,26 +9,32 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class CityService {
 
-  private _urlForGetingCityInfo: string = "http://localhost:51455/GetCityByID";
-  private _urlForGetingCitiesInfo: string = "http://localhost:51455/GetCities";
+  constructor(private _http: Http) { }
 
-  constructor(private _hhtp: Http) { }
-
-  public getCity(cityID: number): any
+  public getCityById(cityId: number): any
   {
-    var headers = new Headers();
-    var cont = JSON.stringify({cityID: cityID});
-    headers.append('Content-type','application/json');
+    let searchLine = "id=" + cityId.toString();
 
-    return this._hhtp.post(this._urlForGetingCityInfo, cont, {headers:headers})
-      .map((res: Response) => {
-        return res.json();
-      })
-      .catch((error:any) => Observable.throw(error.json || "Server error"))
+    return this._http.get("http://localhost:51455/api/GetCity", {params: searchLine})
+    .map((res: Response) => {
+      return res.json();
+    })
+    .catch((error: any) => Observable.throw(error.json().error || "Server error"));
+  }
+
+  public getCityByName(cityName: string): any
+  {
+    let searchLine = "cityName=" + cityName;
+
+    return this._http.get("http://localhost:51455/GetCityForCityByName", {params: searchLine})
+    .map((res: Response) => {
+      return res.json();
+    })
+    .catch((error: any) => Observable.throw(error.json().error || "Server error"));
   }
 
   public getCities():any {
-    return this._hhtp.get(this._urlForGetingCitiesInfo)
+    return this._http.get("http://localhost:51455/api/GetCities")
     .map((res:Response) => {
       return res.json();
     })

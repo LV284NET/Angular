@@ -23,4 +23,28 @@ export class PlacesService {
       })
       .catch((error: any) => Observable.throw(error.json().error || "Server error"));
   }
+
+  public getPlacesForCityPageById(cityId: number):any {
+
+    let searchLine = "cityId=" + cityId.toString();
+
+    return this._http.get("http://localhost:51455/api/Place/GetTopPlacesByCityId", {params: searchLine})
+    .map((res: Response) => {
+      return res.json();
+    })
+    .catch((error: any) => Observable.throw(error.json().error || "Server error"));
+
+  }
+
+  public getPlacesForCityPageByName(cityName: string):any {
+
+    let searchLine = "cityName=" + cityName;
+
+    return this._http.get("http://localhost:51455/GetPlacesForCityByName", {params: searchLine})
+    .map((res: Response) => {
+      return res.json();
+    })
+    .catch((error: any) => Observable.throw(error.json().error || "Server error"));
+
+  }
 }

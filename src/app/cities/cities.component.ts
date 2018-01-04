@@ -15,14 +15,18 @@ export class CitiesComponent implements OnInit {
   constructor(private cityService:CityService) { }
 
   ngOnInit() {
+    this.getCities();
+  }
+
+  getCities(): void{
 
     this.cityService.getCities().subscribe(response => {
       response.forEach(element => {
-        this.cities.push(new City(element.CityID, 
-          element.Name, element.Description, element.PictureCity))
-        
+        this.cities.push(new City(element.Id, 
+          element.Name, element.Description, element.PicturePath))
       });
     })
+
   }
 
 }

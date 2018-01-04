@@ -1,12 +1,13 @@
 import { CityService } from './../Services/city.service';
 import { Place } from './../place';
 import { City } from './../city';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { PlacesService } from '../Services/places.service';
+import { Location } from '@angular/common';
 
 
 
@@ -20,29 +21,49 @@ export class CityComponent implements OnInit {
 
   city: City;
   places: Place[] = [];
-  cityID: number;
 
 
   constructor(private placeService:PlacesService, 
                private cityService:CityService,
                private route: ActivatedRoute,
-               private location: Location) {
-
-    this.city = new City(0,"","","");
-                }
+               private location: Location
+              ) {}
 
   ngOnInit() {
-    this.cityService.getCity(this.cityID)
-                    .subscribe(city => this.city =city);
 
-    this.placeService.getPlaces().subscribe(response => {
-      response.forEach(element => {
-        this.places.push(new Place(element.PlaceId, 
-          element.Name, element.CityName, element.Description, 
-          element.PicturePlace));
-      });
-    });
+    this.getCity();
+    this.getPlaces();
 
+  }
+
+  getCity(){
+
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    this.cityService.getCityById(id)
+        .subscribe(response => {
+          this.city = new City (response.Id, response.Name, 
+            response.Description, response.PicturePath)
+        });
+  }
+
+  getPlaces(){
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    this.placeService.getPlacesForCityPageById(id)
+        .subscribe(response => {
+          response.forEach(element => {
+            this.places.push(new Place(element.PlaceId, 
+              element.Name, this.city.name, element.Description, 
+              element.PicturePlace));
+          });
+        });
+
+
+  }
+
+  goBack(): void{
+    this.location.back();
   }
 
 }

@@ -1,22 +1,14 @@
 <h1 class="text-center">City</h1>
 
-<div class="container">
+<div *ngIf="city" class="container">
       <div class="row">
           <div class="col-md-3">
-            <img class="img-responsive img-thumbnail" [src]="places[0].picture">
+            <img class="img-responsive img-thumbnail" [src]="city.picture">
             </div>
 
           <div class="col-8 scrollable">  
-            <h2><b>City Name</b></h2>
-            <p>Lviv (Ukrainian: Львів [lʲʋiu̯] (About this sound listen); Polish: Lwów[2] [lvuf] (About this sound listen); Russian: Львов; German: Lemberg; see also other names) is the largest city in western Ukraine and the seventh-largest city in the country overall, with a population of around 728,350 as of 2016. Lviv is one of the main cultural centres of Ukraine.
-
-                    Named in honor of Leo, the eldest son of Daniel, King of Ruthenia, it was the capital of the Kingdom of Galicia–Volhynia (also called Kingdom of Rus')[3] from 1272 to 1349, when it was conquered by King Casimir III the Great who then became known as the King of Poland and Rus'. From 1434, it was the regional capital of the Ruthenian Voivodeship in the Kingdom of Poland. In 1772, after the First Partition of Poland, the city became the capital of the Habsburg Kingdom of Galicia and Lodomeria. In 1918, for a short time, it was the capital of the West Ukrainian People's Republic. Between the wars, the city was known again as Lwów and was the centre of the Lwów Voivodeship in the Second Polish Republic.
-                    
-                    After the German-Soviet invasion of Poland in 1939, Lviv became part of the Soviet Union (Joseph Stalin's "gift" to the Ukrainian Soviet Socialist Republic) and in 1944–46 there was a population exchange between Poland and Soviet Ukraine. In 1991, it became part of the independent nation of Ukraine.
-                    
-                    Administratively, Lviv serves as the administrative center of Lviv Oblast and has the status of city of oblast significance.
-                    
-                    Lviv was the centre of the historical region of Galicia. The historical heart of the city, with its old buildings and cobblestone streets, survived Soviet and German occupations during World War II largely unscathed. The city has many industries and institutions of higher education such as Lviv University and Lviv Polytechnic. Lviv is also the home of many cultural institutions, including a philharmonic orchestra and the Lviv Theatre of Opera and Ballet. The historic city centre is on the UNESCO World Heritage List.</p>
+            <h2><b>{{city.name}}</b></h2>
+            <p> {{city.description}}</p>
             </div>     
         </div><hr>
 
@@ -28,15 +20,16 @@
                 <div *ngFor="let place of places" class="col-md-3 card text-white bg-secondary ">
                      <img class="img-responsive img-thumbnail card-img-top object-fit_contain" [src]="place.picture">
                      <h4 class="card-title">{{place.name}}</h4>
-                     <p class="card-text">{{place.description}}</p>
-                     <a href="#" class="btn btn-primary">Details</a>
+                     <button class="btn btn-primary"  routerLink="/place/{{place.placeId}}">Details</button>
+                     <p></p>
                 </div>
         
-        <a href="#" class="btn btn-primary pull-right down">Show More</a>
+                <button class="btn btn-primary pull-right down"  routerLink="/place-list">Show More</button>
+                
         </div>
         <hr>
 
-        <a href="#" class="btn-lg btn-primary pull-left pull-down">Not interested</a>
+        <button class="btn-lg btn-primary pull-left pull-down"  (click)="goBack()">Not interested</button>
         <br><br>
 
 </div>
