@@ -26,7 +26,7 @@ export class PlacesService {
 
   public getPlace(PlaceId: number): any {
     let searchLine = "placeId=" + PlaceId.toString();
-   return this._http.get("http://localhost:51455/GetPlace",
+   return this._http.get("http://localhost:51455/api/Place/GetPlaceById",
      { params: searchLine })
      .map((res: Response) => {
        return res.json();
