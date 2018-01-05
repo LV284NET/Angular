@@ -16,21 +16,35 @@ export class PlacesService {
 
   constructor(private _http: Http) { }
 
-  public getPlaces(): any {
-    return this._http.get("http://localhost:51455/GetPlaces")
+  public getPlaces(cityId: number): any {
+    let searchLine = "cityId=" + cityId.toString();
+    return this._http.get("http://localhost:51455/api/Place/GetPlacesByCityId", 
+    { params: searchLine })
       .map((res: Response) => {
         return res.json();
       })
       .catch((error: any) => Observable.throw(error.json().error || "Server error"));
   }
 
-  public getImage(PlaceId: number): Observable<File> {
-     let searchLine = "placeId=" + PlaceId.toString();
-    return this._http.get("http://localhost:51455/GetImage",
-      { search: searchLine, responseType: ResponseContentType.Blob })
-      .map((res: Response) => {
-        return res.blob();
-      })
-      .catch((error: any) => Observable.throw(error.json().error || "Server error"));
+  public getPlace(placeId: number): any {
+    let searchLine = "placeId=" + placeId.toString();
+   return this._http.get("http://localhost:51455/api/Place/GetPlaceById",
+     { params: searchLine })
+     .map((res: Response) => {
+       return res.json();
+     })
+     .catch((error: any) => Observable.throw(error.json().error || "Server error"));
+ }
+
+ public getPlacesForCityPageById(cityId: number):any {
+
+  let searchLine = "cityId=" + cityId.toString();
+
+  return this._http.get("http://localhost:51455/api/Place/GetTopPlacesByCityId", {params: searchLine})
+  .map((res: Response) => {
+    return res.json();
+  })
+  .catch((error: any) => Observable.throw(error.json().error || "Server error"));
+
   }
-}
+}  

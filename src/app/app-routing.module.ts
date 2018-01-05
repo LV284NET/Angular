@@ -6,11 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
-<<<<<<< HEAD
-=======
 import { PlaceListComponent } from './place-list/place-list.component';
 import { PlaceComponent } from './place/place.component';
->>>>>>> Backup-for-merge
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
