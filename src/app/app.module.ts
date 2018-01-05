@@ -11,6 +11,18 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from './app-routing.module';
 import { PlacesService } from './Services/places.service';
+<<<<<<< HEAD
+=======
+import { PlaceListComponent } from './place-list/place-list.component';
+import { PlaceComponent } from './place/place.component';
+import { CityService } from './Services/city.service';
+import { CitiesComponent } from './cities/cities.component';
+import { CityComponent } from './city/city.component';
+
+
+
+
+>>>>>>> Backup-for-merge
 
 @NgModule({
   declarations: [
@@ -18,7 +30,11 @@ import { PlacesService } from './Services/places.service';
     NavbarComponent,
     MainComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PlaceListComponent,
+    PlaceComponent,
+    CityComponent,
+    CitiesComponent
     
   ],
   imports: [
@@ -32,7 +48,8 @@ import { PlacesService } from './Services/places.service';
   providers: [
     AuthorizationService,
     PlacesService,
-  
+    CityService
+
   ],
   bootstrap: [AppComponent]
 })

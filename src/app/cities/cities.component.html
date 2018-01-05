@@ -1,0 +1,30 @@
+<h1 class="text-center">Cities</h1>
+
+<div class="container">
+  <div *ngFor="let city of cities" id="tile">
+
+    <div class="row">
+      <section class="col-lg-12">
+
+        <section class="col-lg-4">
+          <img class="img-responsive" [src]="city.picture">
+        </section>
+
+        <section class="col-lg-8">
+          <div class="row">
+          <h3>{{city.name}}</h3>
+          <span></span>
+          <button class="btn btn-primary"  routerLink="/city/{{city.cityID}}">Show more</button>     
+          </div>
+          
+          <article>
+            <p></p>
+            <p>{{city.description}}</p>
+          </article>
+        </section>
+
+      </section>
+    </div>
+    <hr/>
+  </div>
+</div>

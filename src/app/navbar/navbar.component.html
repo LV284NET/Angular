@@ -6,6 +6,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span> 
         </button>
+<<<<<<< HEAD
         <a [routerLink]="['/main']" 
           >
             <img class="logo" alt="Brand" src="../assets/img/logo.png">
@@ -15,6 +16,19 @@
         <ul *ngIf="authService.token == null;else registered" class="nav navbar-nav navbar-right">
           <li><a [routerLink]="['/register']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+=======
+        <a [routerLink]="['/main']">
+            <img class="logo" alt="Brand" src="/assets/logo.png">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a routerLink="/cities-list"><span class="glyphicon glyphicon-eye-open"></span> Cities</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+>>>>>>> Backup-for-merge
         </ul>
         <ng-template #registered>
           <ul class="nav navbar-nav navbar-right">
