@@ -1,0 +1,37 @@
+<h1 class="text-center">City</h1>
+
+<div *ngIf="city" class="container">
+      <div class="row">
+          <div class="col-md-3">
+            <img class="img-responsive img-thumbnail" [src]="city.picture">
+            </div>
+
+          <div class="col-8 scrollable">  
+            <h2><b>{{city.name}}</b></h2>
+            <p> {{city.description}}</p>
+            </div>     
+        </div><hr>
+
+        <div>
+            <h3>Attractive Places</h3><br>
+        </div>
+
+        <div class="row card-group well">
+                <div *ngFor="let place of places" class="col-md-3 card text-white bg-secondary ">
+                     <img class="img-responsive img-thumbnail card-img-top object-fit_contain" [src]="place.picture">
+                     <h4 class="card-title">{{place.name}}</h4>
+                     <button class="btn btn-primary"  routerLink="/place/{{place.placeId}}">Details</button>
+                     <p></p>
+                </div>
+        
+                <button class="btn btn-primary pull-right down"  routerLink="/place-list">Show More</button>
+                
+        </div>
+        <hr>
+
+        <button class="btn-lg btn-primary pull-left pull-down"  (click)="goBack()">Not interested</button>
+        <br><br>
+
+</div>
+
+
