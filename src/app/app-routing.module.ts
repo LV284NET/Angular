@@ -15,8 +15,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'cities-list', component: CitiesComponent },
-  { path: 'city/:id', component: CityComponent },
-  { path: ':cityID/place-list', component: PlaceListComponent },
+  { path: 'city/:id', component: CityComponent},
+    // children: [
+    //   {path: 'place-list', component: PlaceListComponent},
+    //   {path: 'place/:id', component: PlaceComponent},
+    // ]},
+  { path: 'city/:id/place-list', component: PlaceListComponent },
   { path: 'place/:id', component: PlaceComponent }
 ];
 

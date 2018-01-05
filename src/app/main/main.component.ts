@@ -15,12 +15,12 @@ export class MainComponent implements OnInit {
   constructor(private placesService: PlacesService) { }
 
   ngOnInit() {
-    this.placesService.getPlaces().subscribe(response => {
-      response.forEach(element => {
-        this.places.push(new Place(element.PlaceId, 
-          element.Name, element.CityName, element.Description, 
-          element.PicturePlace));
-      });
-    });
+    // this.placesService.getPlaces().subscribe(response => {
+    //   response.forEach(element => {
+    //     this.places.push(new Place(element.PlaceId, 
+    //       element.Name, element.CityName, element.Description, 
+    //       element.PicturePlace));
+    //   });
+    // });
   }
 }

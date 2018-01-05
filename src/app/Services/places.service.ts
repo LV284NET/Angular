@@ -18,7 +18,8 @@ export class PlacesService {
 
   public getPlaces(cityId: number): any {
     let searchLine = "cityId=" + cityId.toString();
-    return this._http.get("http://localhost:51455/api/Place/GetPlacesByCityId")
+    return this._http.get("http://localhost:51455/api/Place/GetPlacesByCityId", 
+    { params: searchLine })
       .map((res: Response) => {
         return res.json();
       })
