@@ -54,7 +54,7 @@ export class CityComponent implements OnInit {
         .subscribe(response => {
           response.forEach(element => {
             this.places.push(new Place(element.PlaceId, 
-              element.Name, this.city.name, element.Description, 
+              element.Name, element.CityName, element.Description, 
               element.PicturePlace));
           });
         });
