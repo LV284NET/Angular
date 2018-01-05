@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlacesService } from '../Services/places-service.service';
+import { PlacesService } from '../Services/places.service';
 import { Place } from '../place';
 import { element } from 'protractor';
 
