@@ -13,6 +13,7 @@ import { element } from 'protractor';
 export class PlaceListComponent implements OnInit {
 
   places: Place[] = [];
+  cityID: number;
 
   constructor(private placesService: PlacesService,
     private route: ActivatedRoute,
@@ -28,6 +29,7 @@ export class PlaceListComponent implements OnInit {
 
   getPlaceList(){
     const cityId = +this.route.snapshot.paramMap.get('cityId')
+    this.cityID=cityId;
 
     this.placesService.getPlaces(cityId).subscribe(response => {
       response.forEach(element => {

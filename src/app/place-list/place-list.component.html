@@ -1,4 +1,4 @@
-<h1 class="text-center">Places of {{places[0].cityName}}</h1>
+<h1 class="text-center">Places of <a style="text-decoration: none" routerLink="/city/{{cityID}}">{{places[0].cityName}}</a></h1>
 <div class="container">
   <div *ngFor="let place of places" id="tile">
     <div class="row">
@@ -8,8 +8,8 @@
         </section>
         <section class="col-lg-8">
           <div class="row">
-          <h3>{{place.name}}</h3>
-          <a class="btn btn-primary" routerLink="/place/{{place.placeId}}">
+          <h3><a routerLink="/city/{{cityID}}/place/{{place.placeId}}">{{place.name}}</a></h3>
+          <a class="btn btn-primary" routerLink="/city/{{cityID}}/place/{{place.placeId}}">
             <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
             font-weight:bold">
               Check out!

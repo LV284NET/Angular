@@ -38,4 +38,8 @@ export class PlaceComponent implements OnInit {
           response.CityName, response.Description, response.PicturePlace) 
       })
   }
+
+  goBack(): void{
+    this.location.back();
+  }
 }
