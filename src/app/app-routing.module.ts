@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'cities-list', component: CitiesComponent },
   { path: 'city/:id', component: CityComponent },
-  { path: 'place-list', component: PlaceListComponent },
+  { path: ':cityID/place-list', component: PlaceListComponent },
   { path: 'place/:id', component: PlaceComponent }
 ];
 

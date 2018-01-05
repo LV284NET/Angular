@@ -16,16 +16,17 @@ export class PlacesService {
 
   constructor(private _http: Http) { }
 
-  public getPlaces(): any {
-    return this._http.get("http://localhost:51455/GetPlaces")
+  public getPlaces(cityId: number): any {
+    let searchLine = "cityId=" + cityId.toString();
+    return this._http.get("http://localhost:51455/api/Place/GetPlacesByCityId")
       .map((res: Response) => {
         return res.json();
       })
       .catch((error: any) => Observable.throw(error.json().error || "Server error"));
   }
 
-  public getPlace(PlaceId: number): any {
-    let searchLine = "placeId=" + PlaceId.toString();
+  public getPlace(placeId: number): any {
+    let searchLine = "placeId=" + placeId.toString();
    return this._http.get("http://localhost:51455/api/Place/GetPlaceById",
      { params: searchLine })
      .map((res: Response) => {
