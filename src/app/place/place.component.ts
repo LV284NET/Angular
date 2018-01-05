@@ -30,7 +30,7 @@ export class PlaceComponent implements OnInit {
 
   getPlace(): any {
     
-    const placeId = +this.route.snapshot.paramMap.get('id')
+    const placeId = +this.route.snapshot.paramMap.get('placeId')
 
     this.placesService.getPlace(placeId)
       .subscribe(response => {

@@ -27,7 +27,7 @@ export class PlaceListComponent implements OnInit {
   }
 
   getPlaceList(){
-    const cityId = +this.route.snapshot.paramMap.get('id')
+    const cityId = +this.route.snapshot.paramMap.get('cityId')
 
     this.placesService.getPlaces(cityId).subscribe(response => {
       response.forEach(element => {
