@@ -8,8 +8,8 @@
       <label for="email">Email:</label>
       <input [(ngModel)] = "Email" type="text" name="Email" placeholder="email@some.com" class="form-control" id="email" formControlName="email" required>
     </div>
-    <div class="alert alert-danger" *ngIf="email.invalid && email.touched && email.dirty">
-      <p>Wrong format of email</p>
+    <div *ngIf="email.invalid && email.touched && email.dirty">
+      <p class="help-block">Wrong format of email!</p>
     </div>
     <div class="form-group" [ngClass]="{
         'has-error': password.invalid && password.dirty, 
@@ -18,9 +18,21 @@
       <label for="password">Password:</label>
       <input [(ngModel)] = "Password" type="password" name="Password" class="form-control" id="password" formControlName="password" required>
     </div>
-    <div class="alert alert-danger" *ngIf="password.invalid && password.dirty && password.touched">
-      <p>Password must be greater than 8 characters</p>
-    </div>
+    <div *ngIf="password.invalid && password.dirty && password.touched">
+      <p class="help-block">Password must have a large letter and at least 8 characters </p>
+     </div>
+     <div class="form-group" [ngClass]="{
+      'has-error': confirmPassword.invalid && confirmPassword.dirty, 
+      'has-success': confirmPassword.valid && confirmPassword.dirty 
+    }">
+       <label for="confirmPassword">Confirm Password:</label>
+       <input [(ngModel)]="ConfirmPassword" type="password" class="form-control" id="confirmPpassword" formControlName="confirmPassword" required>
+     </div>
+     <div *ngIf="confirmPassword.invalid && confirmPassword.dirty && confirmPassword.touched">
+        <p class="help-block" *ngIf="myform.get('confirmPassword').hasError('required') && myform.get('confirmedPassword').touched">Password confirmation can not be empty</p>
+        <p class="help-block" *ngIf="myform.get('confirmPassword').hasError('passwordMismatch') && myform.get('confirmedPassword').touched">Passwords do not match</p>
+        <p class="help-block">Please re-enter your password</p>
+     </div>
     <div class="form-group" [ngClass]="{
         'has-error': firstName.invalid && firstName.dirty, 
         'has-success': firstName.valid && firstName.dirty 
@@ -28,8 +40,8 @@
       <label for="firstName">First Name:</label>
       <input [(ngModel)] = "FirstName" type="text" name="FirstName" class="form-control" id="firstName" formControlName="firstName" required>
     </div>
-    <div class="alert alert-danger" *ngIf="firstName.invalid && firstName.dirty && firstName.touched">
-      <p>First name is required</p>
+    <div *ngIf="firstName.invalid && firstName.dirty && firstName.touched">
+      <p class="help-block">You can not use numbers and symbols</p>
     </div>
     <div class="form-group" [ngClass]="{
         'has-error': lastName.invalid && lastName.dirty, 
@@ -38,8 +50,8 @@
       <label for="lastName">Last Name:</label>
       <input [(ngModel)] = "LastName" type="text" name="LastName" class="form-control" id="lastName" formControlName="lastName" required>
     </div>
-    <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.dirty && lastName.touched">
-      <p>Last name is required</p>
+    <div *ngIf="lastName.invalid && lastName.dirty && lastName.touched">
+      <p class="help-block">You can not use numbers and symbols</p>
     </div>   
     <div class="row">
       <div class="form-group col-sm-4 col-sm-offset-4">
@@ -47,4 +59,7 @@
       </div>
     </div>
   </form>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    <p>{{errorMessage}}</p>
+  </div>
 </div>

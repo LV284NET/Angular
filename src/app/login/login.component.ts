@@ -14,8 +14,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  user : User;
-
   @Input() Email: string;
   @Input() Password: string;
 
@@ -23,7 +21,6 @@ export class LoginComponent implements OnInit {
   public errorMessage: string;
 
   constructor(private router: Router, private authorezeService: AuthorizationService) {
-    this.user = new User("", "", "", "");
   }
   
   ngOnInit(): void {
@@ -40,14 +37,17 @@ export class LoginComponent implements OnInit {
   } 
   
   public onSubmit() {
-    this.authorezeService.authorize(this.Email, this.Password)
-      .subscribe(
-      response => {
-        this.user = new User(response.Email, response.FirstName, response.LastName, response.Guid);
-        this.errorMessage = "";
-        this.router.navigateByUrl("/main");
-      },
-      error => {
+    this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
+        if(response == true) {
+          let user = localStorage.getItem("currentUser")["username"]; 
+          //this.user = new User(user.email, user.firstName, user.lastName);
+          this.errorMessage = "";
+          this.router.navigateByUrl("/main");
+        } else {
+          this.errorMessage = "No such user!";
+        }
+        
+      }, error => {
         if (error == 404) {
           this.errorMessage = "Email and password doesn't match";
         }

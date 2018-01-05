@@ -17,36 +17,37 @@ import { User } from '../user';
 })
 export class RegisterComponent implements OnInit {
 
-  user: User;
-
   @Input() Email : string;
   @Input() Password: string;
   @Input() FirstName: string;
   @Input() LastName: string;
-
+  @Input() ConfirmPassword: string;
+  
   myform: FormGroup;
   firstName: FormControl;
   lastName: FormControl;
   email: FormControl;
   password: FormControl;
+  confirmPassword: FormControl;
 
   errorMessage: string;
 
   constructor(private router: Router, private authorezeService: AuthorizationService) { 
-    this.user = new User("", "", "", "");
   }
   ngOnInit() {
     this.createFormControls();
     this.createForm();
   }
-
-  //Should be fixed
   register() : void {
-    this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName)
+    this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
     .subscribe(
       response => {
-      this.user.Guid = response.Guid
-      this.router.navigateByUrl("/login");
+        if(response) {
+          this.router.navigateByUrl("/main");
+        }
+        else {
+          this.errorMessage = "Register error!"
+        }     
     },
     error => {
       if (error.StatusMessage = 400) {
@@ -58,19 +59,32 @@ export class RegisterComponent implements OnInit {
     }
   );
   }
-
   createFormControls() {
-    this.firstName = new FormControl('', Validators.required);
-    this.lastName = new FormControl('', Validators.required);
+    this.firstName = new FormControl('', [
+      Validators.required,
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
+      
+    ]);
+    this.lastName = new FormControl('', [
+     Validators.required,
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
+    ]);
     this.email = new FormControl('', [
       Validators.required,
-      Validators.pattern("[^ @]+@[^ @]+")
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$")
     ]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
-      
+      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')    
     ]);
+    this.confirmPassword = new FormControl('', [
+      Validators.required,
+      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})'),
+    ])
+  }
+   passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('confirmPassword').value
+       ? null : {'mismatch': true};
   }
   createForm() {
     this.myform = new FormGroup({
@@ -78,6 +92,7 @@ export class RegisterComponent implements OnInit {
       lastName: this.lastName,
       email: this.email,
       password: this.password,
-    });
+      confirmPassword: this.confirmPassword,
+    }, this.passwordMatchValidator);
   }
 }

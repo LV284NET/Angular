@@ -1,41 +1,63 @@
 import { Observable } from "rxjs/Observable";
-import { Inject } from "@angular/core";
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { Body } from "@angular/http/src/body";
-import { error } from "selenium-webdriver";
+import { Injectable } from "@angular/core";
 
-@Inject("authorizationService")
+@Injectable()
 export class AuthorizationService {
 
-    private _urlForAuthorization: string = "http://localhost:51455/api/user/GetUser";
-    private _urlForRegistration: string = "http://localhost:51455/api/user/AddUser";
+    public token: string;
+
+    private _urlForAuthorization: string = "http://localhost:51455/Token";
+    private _urlForRegistration: string = "http://localhost:51455/api/Account/Register";
 
     constructor(private _http: Http) {
+         var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+         if(currentUser)
+            this.token = currentUser.token;
     }
-
-    
-    public authorize(mail: string, password: string) 
+  
+    public authorize(email: string, password: string) : Observable<any>
     {
         var headers = new Headers();
-        var cont = JSON.stringify({ Email: mail, Password: password});
-        headers.append('Content-Type', 'application/json');
-        return this._http.post(this._urlForAuthorization, cont, {headers:headers})
+        var content = "grant_type=password&username=" + email + "&password=" + password + "&scope=" + email;
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this._http.post(this._urlForAuthorization, content, {headers: headers})
             .map((res:Response) => {
-                return res.json();
+                let token = res.json().access_token;
+                if(token) {
+                    this.token = token;
+                    let userName = res.json().userName;
+                    localStorage.setItem("currentUser", JSON.stringify({username: userName, token: token}));
+                    return true;
+                }
+                return false;
             })
             .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
     }
 
-    public register(email: string, password: string, firstName: string, lastName : string){
+    public register(email: string, password: string, firstName: string, lastName : string, confirmPassword: string): Observable<any>{
         var headers = new Headers();
-        var content = JSON.stringify({Email: email, Password: password, FirstName: firstName, LastName: lastName});
-        headers.append('Content-Type', 'application/json');
+        // var content = JSON.stringify({
+        //     Email: email, 
+        //     Password: password, 
+        //     ConfirmPassword: confirmPassword, 
+        //     FirstName: firstName, 
+        //     LastName: lastName
+        // });
+        var content = "Email=" + email + "&Password=" + password + "&ConfirmPassword=" + confirmPassword 
+            + "&FirstName=" + firstName + "&LastName=" + lastName;  
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http.post(this._urlForRegistration, content, {headers:headers})
         .map((res:Response) => {
-            return res.json();
+            return this.authorize(email, password);
         })
         .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
+        }
+        
+        logout(): void {
+            this.token = null;
+            localStorage.removeItem("currentUser");
         }
     }
