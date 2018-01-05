@@ -2,16 +2,17 @@
 
 <div *ngIf="city" class="container">
       <div class="row">
-          <div class="col-md-3">
+       <section class="col-md-12">
+          <section class="col-md-4">
             <img class="img-responsive img-thumbnail" [src]="city.picture">
-            </div>
+            </section>
 
-          <div class="col-8 scrollable">  
+          <section class="col-md-8 scrollable">  
             <h2><b>{{city.name}}</b></h2>
             <p> {{city.description}}</p>
-            </div>     
-        </div><hr>
-
+            </section>    
+        </section>
+    </div><hr>
         <div>
             <h3>Attractive Places</h3><br>
         </div>

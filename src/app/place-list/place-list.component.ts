@@ -22,6 +22,11 @@ export class PlaceListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getPlaceList();
+    
+  }
+
+  getPlaceList(){
     const cityId = +this.route.snapshot.paramMap.get('id')
 
     this.placesService.getPlaces(cityId).subscribe(response => {
