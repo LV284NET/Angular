@@ -9,17 +9,13 @@
         <section class="col-lg-8">
           <div class="row">
           <h3><a routerLink="/city/{{cityID}}/place/{{place.placeId}}">{{place.name}}</a></h3>
-          <a class="btn btn-primary" routerLink="/city/{{cityID}}/place/{{place.placeId}}">
-            <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
-            font-weight:bold">
-              Check out!
-            </span>
-          </a>
         </div>
           <article>
             <p></p>
             <p>{{place.description}}</p>
           </article>
+          <span></span>
+          <button class="btn btn-primary pull-right pull-down"  routerLink="/city/{{cityID}}/place/{{place.placeId}}">Check out!</button>   
         </section>
       </section>
     </div>
