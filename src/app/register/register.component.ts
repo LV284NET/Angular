@@ -9,7 +9,6 @@ import {ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, Fo
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { User } from '../user';
-//import { CustomValidators } from '../register/custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -72,15 +71,15 @@ export class RegisterComponent implements OnInit {
     ]);
     this.email = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$")
     ]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.pattern('((?=.*[A-Z]).{8,20})')    
+      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')    
     ]);
     this.confirmPassword = new FormControl('', [
       Validators.required,
-      Validators.pattern('((?=.*[A-Z]).{8,20})'),
+      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})'),
     ])
   }
    passwordMatchValidator(g: FormGroup) {
