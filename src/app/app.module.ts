@@ -10,9 +10,14 @@ import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRoutingModule} from './app-routing.module';
-import { PlacesService } from './Services/places-service.service';
+import { PlacesService } from './Services/places.service';
 import { PlaceListComponent } from './place-list/place-list.component';
 import { PlaceComponent } from './place/place.component';
+import { CityService } from './Services/city.service';
+import { CitiesComponent } from './cities/cities.component';
+import { CityComponent } from './city/city.component';
+
+
 
 
 
@@ -24,7 +29,9 @@ import { PlaceComponent } from './place/place.component';
     RegisterComponent,
     LoginComponent,
     PlaceListComponent,
-    PlaceComponent
+    PlaceComponent,
+    CityComponent,
+    CitiesComponent
     
   ],
   imports: [
@@ -38,7 +45,8 @@ import { PlaceComponent } from './place/place.component';
   providers: [
     AuthorizationService,
     PlacesService,
-  
+    CityService
+
   ],
   bootstrap: [AppComponent]
 })

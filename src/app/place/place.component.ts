@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { PlacesService } from '../Services/places-service.service';
+import { PlacesService } from '../Services/places.service';
 import { Place } from '../place';
 import { element } from 'protractor';
 
