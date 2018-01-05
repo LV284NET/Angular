@@ -8,17 +8,11 @@
     overflow:hidden;
     padding-bottom:100%;
 }
- img{
+ .places-images{
      height: 200px;
      background-color: aliceblue;
 }
 
-.center-cropped {
-    object-fit: none; 
-    object-position: center; 
-    height: 100%;
-    width: 100%;
-  }
 
 .object-fit_contain { object-fit: contain }
 

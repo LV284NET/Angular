@@ -38,7 +38,7 @@ export class CityComponent implements OnInit {
 
   getCity(){
 
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('cityId');
 
     this.cityService.getCityById(id)
         .subscribe(response => {
@@ -48,7 +48,7 @@ export class CityComponent implements OnInit {
   }
 
   getPlaces(){
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('cityId');
 
     this.placeService.getPlacesForCityPageById(id)
         .subscribe(response => {
