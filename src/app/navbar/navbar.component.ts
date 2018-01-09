@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  isRegistered: boolean;
+  //isRegistered: boolean;
 
   constructor(public authService: AuthorizationService, private router: Router ) {
    }
 
   ngOnInit() {   
-    this.isRegistered = this.authService.token != null ? true : false;
+    //this.isRegistered = this.authService.token != null ? true : false;
   }
 
   logout() {

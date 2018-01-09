@@ -17,14 +17,16 @@ export class LoginComponent implements OnInit {
   @Input() Email: string;
   @Input() Password: string;
 
-  public greeting: string;
   public errorMessage: string;
+
+  isRemembered: boolean;
 
   constructor(private router: Router, private authorezeService: AuthorizationService) {
   }
   
   ngOnInit(): void {
     this.Email = localStorage.getItem("userAuth");
+    this.isRemembered = this.Email ? true : false;
   }
    
   rememberMe(event) : void {
