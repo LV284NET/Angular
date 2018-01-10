@@ -19,11 +19,11 @@
       </ul>
       <ul *ngIf="authService.token == null;else registered" class="nav navbar-nav navbar-right">
         <li>
-          <a [routerLink]="['/register']">
+          <a (click)="signUp()">
             <span class="glyphicon glyphicon-user"></span> Sign Up</a>
         </li>
         <li>
-          <a [routerLink]="['/login']">
+          <a (click)="signIn()">
             <span class="glyphicon glyphicon-log-in"></span> Sign In</a>
         </li>
       </ul>

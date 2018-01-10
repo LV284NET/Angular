@@ -1,6 +1,9 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { AuthorizationService } from "../Services/AuthorizationService";
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { RegisterComponent } from '../register/register.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navbar',
@@ -9,17 +12,24 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  //isRegistered: boolean;
-
-  constructor(public authService: AuthorizationService, private router: Router ) {
-   }
-
-  ngOnInit() {   
-    //this.isRegistered = this.authService.token != null ? true : false;
+  constructor(public authService: AuthorizationService, private router: Router, public dialog: MatDialog) {
   }
 
+  ngOnInit() {   
+  }
+
+  signUp() {
+    let dialogRef = this.dialog.open(RegisterComponent, {
+      width: "500px"
+    });
+  }
+
+  signIn() {
+    let dialogRef = this.dialog.open(LoginComponent, {
+      width: "500px"
+    });
+  }
   logout() {
     this.authService.logout();
-    //location.reload();
   }
 }
