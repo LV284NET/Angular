@@ -9,6 +9,7 @@ import {ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, Fo
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { User } from '../user';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -32,12 +33,14 @@ export class RegisterComponent implements OnInit {
 
   errorMessage: string;
 
-  constructor(private router: Router, private authorezeService: AuthorizationService) { 
-  }
+  constructor(private router: Router, private authorezeService: AuthorizationService,
+    private dialogRef: MatDialogRef<RegisterComponent>) { }
   ngOnInit() {
     this.createFormControls();
     this.createForm();
   }
+
+  
   
   register() : void {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
@@ -59,6 +62,9 @@ export class RegisterComponent implements OnInit {
       }
     }
   );
+  }
+  closeDialog(){
+    this.dialogRef.close();
   }
   createFormControls() {
     this.firstName = new FormControl('', [

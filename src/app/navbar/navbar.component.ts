@@ -17,11 +17,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {   
   }
+  public registerDialogRef: MatDialog
+  public loginDialogRef: MatDialog
 
   signUp() {
     let dialogRef = this.dialog.open(RegisterComponent, {
       width: "500px"
     });
+
   }
 
   signIn() {
@@ -32,4 +35,10 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+   loginClose(){
+    this.loginDialogRef.closeAll();
+   }
+   registerClose(){
+     this.registerDialogRef.c
+   }
 }

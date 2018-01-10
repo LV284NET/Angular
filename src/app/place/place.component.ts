@@ -12,7 +12,6 @@ import { element } from 'protractor';
 })
 export class PlaceComponent implements OnInit {
 
-
   place: Place;
 
   constructor(
@@ -38,7 +37,7 @@ export class PlaceComponent implements OnInit {
           response.CityName, response.Description, response.PicturePlace) 
       })
   }
-
+  
   goBack(): void{
     this.location.back();
   }

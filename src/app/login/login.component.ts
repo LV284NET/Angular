@@ -17,41 +17,47 @@ export class LoginComponent implements OnInit {
 
   isRemembered: boolean;
 
-  constructor(private router: Router, private authorezeService: AuthorizationService){}
-    //  public dialogRef: MatDialogRef<LoginComponent>){}
-  
+
+  constructor(private router: Router,
+    private authorezeService: AuthorizationService,
+    private dialogRef: MatDialogRef<LoginComponent>) { }
+
+
   ngOnInit(): void {
     this.Email = localStorage.getItem("userAuth");
     this.isRemembered = this.Email ? true : false;
   }
-   
-  rememberMe(event) : void {
-    if(event.target.checked && this.Email){
+  closeDialog(){
+    this.dialogRef.close();
+  }
+  rememberMe(event): void {
+    if (event.target.checked && this.Email) {
       localStorage.setItem("userAuth", this.Email);
     }
-    else{
+    else {
       localStorage.removeItem("userAuth");
     }
-  } 
-  
+  }
+
+
   public onSubmit() {
     this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
-        if(response == true) {
-          let user = localStorage.getItem("currentUser")["username"]; 
-          this.errorMessage = "";
-        } else {
-          this.errorMessage = "No such user!";
-        }
-        
-      }, error => {
-        if (error == 404) {
-          this.errorMessage = "Email and password doesn't match";
-        }
-
-        else {
-          this.errorMessage = error.statusText;
-        }     
+      if (response == true) {
+        let user = localStorage.getItem("currentUser")["username"];
+        this.errorMessage = "";
+      } else {
+        this.errorMessage = "No such user!";
       }
-      );   
+
+    }, error => {
+      if (error == 404) {
+        this.errorMessage = "Email and password doesn't match";
+      }
+
+      else {
+        this.errorMessage = error.statusText;
+      }
+    }
+    );
   }
 }

@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
 import { PlacesService } from '../Services/places.service';
 import { Location } from '@angular/common';
 
-
-
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
@@ -21,7 +19,6 @@ export class CityComponent implements OnInit {
 
   city: City;
   places: Place[] = [];
-
 
   constructor(private placeService:PlacesService, 
                private cityService:CityService,
@@ -58,8 +55,6 @@ export class CityComponent implements OnInit {
               element.PicturePlace));
           });
         });
-
-
   }
 
 }
