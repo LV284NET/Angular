@@ -21,9 +21,9 @@
 
         <div class="row card-group well">
                 <div *ngFor="let place of places" class="col-md-3 card text-white bg-secondary ">
-                     <img class="img-responsive img-thumbnail card-img-top object-fit_contain" [src]="place.picture">
-                     <h4 class="card-title">{{place.name}}</h4>
-                     <button class="btn btn-primary"  routerLink="place/{{place.placeId}}">Details</button>
+                     <img class="img-responsive img-thumbnail card-img-top object-fit_contain" routerLink="place/{{place.placeId}}" [src]="place.picture">
+                     <h4 class="card-title text-center"><a routerLink="place/{{place.placeId}}">{{place.name}}</a></h4>
+                     
                      <p></p>
                 </div>
         
