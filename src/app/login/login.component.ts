@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
       if (response == true) {
         let user = localStorage.getItem("currentUser")["username"];
         this.errorMessage = "";
+        this.dialogRef.close();
       } else {
         this.errorMessage = "No such user!";
       }

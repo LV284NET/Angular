@@ -33,21 +33,19 @@ export class RegisterComponent implements OnInit {
 
   errorMessage: string;
 
-  constructor(private router: Router, private authorezeService: AuthorizationService,
+  constructor(private authorezeService: AuthorizationService,
     private dialogRef: MatDialogRef<RegisterComponent>) { }
   ngOnInit() {
     this.createFormControls();
     this.createForm();
   }
 
-  
-  
   register() : void {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
     .subscribe(
       response => {
         if(response) {
-          this.router.navigateByUrl("/main");
+          this.dialogRef.close();
         }
         else {
           this.errorMessage = "Register error!"
