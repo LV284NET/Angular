@@ -39,6 +39,6 @@ export class NavbarComponent implements OnInit {
     this.loginDialogRef.closeAll();
    }
    registerClose(){
-     this.registerDialogRef.c
+     this.registerDialogRef.closeAll();
    }
 }
