@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PlacesService } from '../Services/places.service';
-import { Place } from '../place';
+// import { PlacesService } from '../Services/places.service';
+import { CityService } from './../Services/city.service';
+//import { Place } from '../place';
+import { City } from './../city';
 import { element } from 'protractor';
 
 @Component({
@@ -10,16 +12,16 @@ import { element } from 'protractor';
 })
 export class MainComponent implements OnInit {
 
-  places: Place[] = [];
+  cities: City[] = [];
   
-  constructor(private placesService: PlacesService) { }
+  constructor(private cityService: CityService) { }
 
   ngOnInit() {
-    this.placesService.getPlaces(1).subscribe(response => {
+    this.cityService.getCities().subscribe(response => {
       response.forEach(element => {
-        this.places.push(new Place(element.PlaceId, 
-          element.Name, element.CityName, element.Description, 
-          element.PicturePlace));
+        this.cities.push(new City(element.Id, 
+          element.Name, element.Description, 
+          element.PicturePath));
       });
     });
   }

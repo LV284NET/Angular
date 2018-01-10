@@ -2,6 +2,12 @@
     height: 32px;
     margin: 9px; 
 }
+<<<<<<< HEAD
 a:hover {
   cursor: pointer;  
+=======
+
+.navbar{
+    margin-bottom: 0px;
+>>>>>>> Main-page
 }
