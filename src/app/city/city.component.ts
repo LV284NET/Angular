@@ -62,8 +62,4 @@ export class CityComponent implements OnInit {
 
   }
 
-  goBack(): void{
-    this.location.back();
-  }
-
 }
