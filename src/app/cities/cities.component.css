@@ -1,0 +1,10 @@
+.object-fit_contain { 
+    align-content: center;
+    width: 100%;
+    max-width: 800px;
+    min-height: 250px;
+    max-height: 500px;
+    object-fit: contain ;
+    object-position: center;
+    background-color: aliceblue;
+}

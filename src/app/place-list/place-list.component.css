@@ -1,2 +1,50 @@
 .no-decoration
 { text-decoration: none !important}
+
+.object-fit_contain { 
+    width: 100%;
+    max-width: 800px;
+    min-height: 250px;
+    max-height: 300px;
+    object-fit: contain ;
+    object-position: center;
+    background-color: aliceblue;
+}
+
+@media only screen and (max-width: 1200px) {
+.object-fit_contain { 
+    width: 100%;
+    max-width: 800px;
+    min-height: 200px;
+    max-height: 250px;
+    object-fit: contain ;
+    object-position: center;
+    background-color: aliceblue;
+}
+
+@media only screen and (max-width: 990px) {
+    .object-fit_contain { 
+        width: 100%;
+        min-width: 200px;
+        max-width: 800px;
+        min-height: 150px;
+        max-height: 200px;
+        object-fit: contain ;
+        object-position: center;
+        background-color: aliceblue;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .object-fit_contain { 
+        width: 100%;
+        max-width: 760px;
+        min-height: 300px;
+        max-height: 450px;
+        object-fit: contain ;
+        object-position: center;
+        background-color: aliceblue;
+    }
+}
+
+}
