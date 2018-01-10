@@ -1,9 +1,12 @@
-<div class="jumbotron" style="background-image: url('../assets/img/picture_for_main.jpg');
+<!-- <div style="background-image: url('../assets/img/maxresdefault.jpg');
+                              background-position: center;
                               background-repeat: no-repeat;
-                              background-size: 100%;
+                              background-size: cover;
                               width:100%;
-                              height:400px">
-  <div class="text-center">
+                              height:100%;
+                              position:fixed;
+                              opacity: 0.1"> -->
+  <!-- <div class="text-center">
   <form class="col-lg-4 col-lg-offset-4 ">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search">
@@ -15,32 +18,39 @@
       </div>
     </form>
   </div>
+</div> -->
+
+<div>
+  <img class="img-responsive" src='../assets/img/maxresdefault-hd.jpg'
+        style="width:100%">
+  <br/>
 </div>
 
 <div class="container">
 
-  <h2>Nice Cities</h2>
+  <h3 class="text-center">Nice Cities</h3>
 
   <div *ngFor="let city of cities" id="tile">
     <div class="row">
       <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
         <section class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <img  [src]="city.picture" class="img-responsive ">
+          <img [src]="city.picture" class="img-responsive ">
         </section>
 
         <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
           <div class="row">
-          <h3><a routerLink="/city/{{city.cityID}}">{{city.name}}</a></h3>  
+            <h3>
+              <a routerLink="/city/{{city.cityID}}">{{city.name}}</a>
+            </h3>
           </div>
-          
           <article>
             <p></p>
             <p style='text-align:justify'>{{city.description}}</p>
           </article>
-          
+
           <span></span>
-          <button class="btn btn-primary pull-right pull-down"  routerLink="/city/{{city.cityID}}">Show more</button>   
+          <button class="btn btn-primary pull-right pull-down" routerLink="/city/{{city.cityID}}">Show more</button>
         </section>
 
       </section>
