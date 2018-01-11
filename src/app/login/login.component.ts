@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
     private authorezeService: AuthorizationService,
+    private confirmEmail: AuthorizationService,
     private dialogRef: MatDialogRef<LoginComponent>) { }
 
 
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.Email = localStorage.getItem("userAuth");
     this.isRemembered = this.Email ? true : false;
   }
-  closeDialog(){
+  closeDialog() {
     this.dialogRef.close();
   }
   rememberMe(event): void {
@@ -41,24 +42,32 @@ export class LoginComponent implements OnInit {
 
 
   public onSubmit() {
-    this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
+    this.confirmEmail.confirmUserEmail(this.Email).subscribe(response => {
       if (response == true) {
-        let user = localStorage.getItem("currentUser")["username"];
-        this.errorMessage = "";
-        this.dialogRef.close();
-      } else {
-        this.errorMessage = "No such user!";
-      }
+        this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
+          if (response == true) {
+            let user = localStorage.getItem("currentUser")["username"];
+            //this.user = new User(user.email, user.firstName, user.lastName);
+            this.errorMessage = "";
+            this.router.navigateByUrl("/main");
+          } else {
+            this.errorMessage = "No such user!";
+          }
+        }, error => {
+          if (error == 404) {
+            this.errorMessage = "Email and password doesn't match";
+          }
+          else {
+            this.errorMessage = error.statusText;
+          }
+        }
 
-    }, error => {
-      if (error == 404) {
-        this.errorMessage = "Email and password doesn't match";
+        );
       }
-
       else {
-        this.errorMessage = error.statusText;
+        this.errorMessage = "Email is not confirmed";
       }
-    }
-    );
+    })
+
   }
 }
