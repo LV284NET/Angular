@@ -1,4 +1,4 @@
-<button (click)="closeDialog()" class="close">&times;</button>
+<a class="close btn" (click)="closeDialog()" role="button" >&times;</a>
 <h3>Sign Up</h3>
 <form novalidate [formGroup]="myform" (submit)="register()">
   <div class="form-group" [ngClass]="{
