@@ -19,23 +19,23 @@ export class PlaceListComponent implements OnInit {
   constructor(private placesService: PlacesService,
     private route: ActivatedRoute,
     private location: Location,
-) { 
+  ) {
 
   }
 
   ngOnInit() {
-    this.getPlaceList();    
+    this.getPlaceList();
   }
 
-  getPlaceList(){
+  getPlaceList() {
     const cityId = + this.route.snapshot.paramMap.get('cityId');
-    this.cityID=cityId;
+    this.cityID = cityId;
 
     this.placesService.getPlaces(cityId).subscribe(response => {
       response.forEach(element => {
-        this.places.push(new Place(element.PlaceId, 
-          element.Name, element.CityName, element.Description, 
-          element.PicturePlace)), this.cityName=element.CityName
+        this.places.push(new Place(element.PlaceId,
+          element.Name, element.CityName, element.Description,
+          element.PicturePlace)), this.cityName = element.CityName
       });
     });
   }

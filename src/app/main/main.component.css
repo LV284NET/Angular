@@ -4,3 +4,13 @@ h3 {
 h1 {
     margin-bottom: 100px;
 }
+
+.search-bar-background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;
+    height:100%;
+    padding:0 0 25%;                           
+    position: relative;
+}
