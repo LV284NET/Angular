@@ -1,6 +1,7 @@
+import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { NgModule } from '@angular/core';
+import { NgModule, ApplicationRef, ErrorHandler } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AuthorizationService } from './Services/AuthorizationService';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -17,8 +18,9 @@ import { PlaceComponent } from './place/place.component';
 import { CityService } from './Services/city.service';
 import { CitiesComponent } from './cities/cities.component';
 import { CityComponent } from './city/city.component';
-import { MatDialog, MatDialogRef, MatDialogModule, MatNativeDateModule } from '@angular/material';
-import '../polyfills';
+import { MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { ErrorHandlingService } from './Services/error-handling.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,11 +46,13 @@ import '../polyfills';
     AppRoutingModule, 
     ReactiveFormsModule,
     MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthorizationService,
     PlacesService,
-    CityService
+    CityService,
+    ErrorHandlingService
   ],
   bootstrap: [AppComponent]
 })

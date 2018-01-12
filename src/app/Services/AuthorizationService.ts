@@ -2,6 +2,7 @@ import { Observable } from "rxjs/Observable";
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { Injectable } from "@angular/core";
 
 @Injectable()
@@ -34,18 +35,12 @@ export class AuthorizationService {
                 }
                 return false;
             })
-            .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
+            .catch((error:any)=>Observable.throw(error)); 
     }
 
-    public register(email: string, password: string, firstName: string, lastName : string, confirmPassword: string): Observable<any>{
+    public register(email: string, password: string, firstName: string, lastName : string, 
+        confirmPassword: string): Observable<any> {
         var headers = new Headers();
-        // var content = JSON.stringify({
-        //     Email: email, 
-        //     Password: password, 
-        //     ConfirmPassword: confirmPassword, 
-        //     FirstName: firstName, 
-        //     LastName: lastName
-        // });
         var content = "Email=" + email + "&Password=" + password + "&ConfirmPassword=" + confirmPassword 
             + "&FirstName=" + firstName + "&LastName=" + lastName;  
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -53,9 +48,9 @@ export class AuthorizationService {
         .map((res:Response) => {
             return this.authorize(email, password);
         })
-        .catch((error:any)=>Observable.throw(error.json().error || "Server error"));
+        .catch((error:any)=>Observable.throw(error));
         }
-        
+
         logout(): void {
             this.token = null;
             localStorage.removeItem("currentUser");

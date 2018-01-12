@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { AuthorizationService } from '../Services/AuthorizationService';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ErrorHandlingService } from '../Services/error-handling.service';
 
 @Component({
   selector: 'login-root',
@@ -17,10 +18,9 @@ export class LoginComponent implements OnInit {
 
   isRemembered: boolean;
 
-
   constructor(private router: Router,
-    private authorezeService: AuthorizationService,
-    private dialogRef: MatDialogRef<LoginComponent>) { }
+    private authorezeService: AuthorizationService, private errorService: ErrorHandlingService,
+    private dialogRef: MatDialogRef<LoginComponent>, private snackBar: MatSnackBar) { }
 
 
   ngOnInit(): void {
@@ -39,25 +39,23 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   public onSubmit() {
     this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
-      if (response == true) {
-        let user = localStorage.getItem("currentUser")["username"];
-        this.errorMessage = "";
-        this.dialogRef.close();
-      } else {
-        this.errorMessage = "No such user!";
-      }
-
+      let user = localStorage.getItem("currentUser")["username"];
+      this.errorMessage = "You are signed in!";
+      this.dialogRef.close();
+      this.snackBar.open(this.errorMessage, "Got it", {
+        duration: 2000
+      });
     }, error => {
-      if (error == 404) {
-        this.errorMessage = "Email and password doesn't match";
-      }
-
-      else {
-        this.errorMessage = error.statusText;
-      }
+      this.errorService.handleError(error);
+      // if (error == 404) {
+      //   this.errorMessage = "Email and password doesn't match";
+      // }
+      // else {
+      //   this.errorMessage = error.statusText;
+      // }
+      // this.snackBar.open(this.errorMessage, "Got it");
     }
     );
   }

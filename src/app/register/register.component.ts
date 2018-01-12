@@ -9,7 +9,9 @@ import {ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, Fo
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { User } from '../user';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import 'rxjs/add/Observable/throw';
+import { ErrorHandlingService } from '../Services/error-handling.service';
 
 @Component({
   selector: 'app-register',
@@ -33,8 +35,8 @@ export class RegisterComponent implements OnInit {
 
   errorMessage: string;
 
-  constructor(private authorezeService: AuthorizationService,
-    private dialogRef: MatDialogRef<RegisterComponent>) { }
+  constructor(private authorezeService: AuthorizationService, private errorService: ErrorHandlingService,
+    private dialogRef: MatDialogRef<RegisterComponent>, private snackBar: MatSnackBar) { }
   ngOnInit() {
     this.createFormControls();
     this.createForm();
@@ -45,19 +47,31 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       response => {
         if(response) {
+          this.snackBar.open("You are registered!", "Got it", {
+            duration: 2000
+          });
           this.dialogRef.close();
         }
         else {
           this.errorMessage = "Register error!"
+          this.snackBar.open(this.errorMessage, "Got it");
         }     
     },
     error => {
-      if (error.StatusMessage = 400) {
-        this.errorMessage = "There is a user with the same e-mail!";
-      }
-      else {
-        this.errorMessage = "Registration failed!";
-      }
+      this.errorService.handleError(error);
+      // switch(error.status){
+      //   case 0: this.errorMessage = 
+      // }
+      // if(error.status == 500) {
+      //   this.errorMessage = "Server is not available now! Please try later";
+      // }
+      // else if (error.status == 400) {
+      //   this.errorMessage = "There is a user with the same e-mail!";
+      // }
+      // else 
+      // else {
+      //   this.errorMessage = "Registration failed!";
+      // }
     }
   );
   }
