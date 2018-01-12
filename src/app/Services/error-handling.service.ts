@@ -12,7 +12,7 @@ export class ErrorHandlingService{
   }
 
   handleError(error: any): void {
-    this.errorMessage = error._body;
+    this.errorMessage = error._body.substring(1, error._body.length - 1);
     this.snackBar.open(this.errorMessage, "Got it");
   }
 } 
