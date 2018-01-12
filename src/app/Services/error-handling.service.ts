@@ -11,12 +11,8 @@ export class ErrorHandlingService{
   constructor(private snackBar: MatSnackBar) { 
   }
 
-  handleError(error: Response): void {
-    switch(error.status){
-      case 0: this.errorMessage = "Server is not available now! Please try later"; break;
-      case 400: break;
-      case 500: break;
-    }
+  handleError(error: any): void {
+    this.errorMessage = error._body;
     this.snackBar.open(this.errorMessage, "Got it");
   }
 } 
