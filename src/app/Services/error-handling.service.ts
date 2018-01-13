@@ -12,7 +12,13 @@ export class ErrorHandlingService{
   }
 
   handleError(error: any): void {
-    this.errorMessage = error._body.substring(1, error._body.length - 1);
+    if(error.status == 400 && error._body.includes("invalid_grant")) {
+      this.errorMessage = JSON.parse(error._body).error_description;
+    } else {
+      this.errorMessage = error._body;
+      this.errorMessage = this.errorMessage.substring(1, this.errorMessage.length - 1);
+    }
+    
     this.snackBar.open(this.errorMessage, "Got it");
   }
 } 

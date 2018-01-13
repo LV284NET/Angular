@@ -34,7 +34,7 @@ export class AuthorizationService {
 
     public authorize(email: string, password: string): Observable<any> {
         var headers = new Headers();
-        var content = "grant_type=password&username=" + email + "&password=" + password + "&scope=" + email;
+        var content = "grant_type=password&username=" + email + "&password=" + password;
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http.post(this._urlForAuthorization, content, { headers: headers })
             .map((res: Response) => {
