@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { AuthorizationService } from '../Services/AuthorizationService';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ErrorHandlingService } from '../Services/error-handling.service';
+import { error } from 'util';
 
 @Component({
   selector: 'login-root',
@@ -17,11 +19,9 @@ export class LoginComponent implements OnInit {
 
   isRemembered: boolean;
 
-
   constructor(private router: Router,
-    private authorezeService: AuthorizationService,
-    private confirmEmail: AuthorizationService,
-    private dialogRef: MatDialogRef<LoginComponent>) { }
+    private authorezeService: AuthorizationService, private errorService: ErrorHandlingService,
+    private dialogRef: MatDialogRef<LoginComponent>, private snackBar: MatSnackBar) { }
 
 
   ngOnInit(): void {
@@ -40,35 +40,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   public onSubmit() {
-    this.confirmEmail.confirmUserEmail(this.Email).subscribe(response => {
-      if (response == true) {
-        this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
-          if (response == true) {
-            let user = localStorage.getItem("currentUser")["username"];
-            //this.user = new User(user.email, user.firstName, user.lastName);
-            this.errorMessage = "";
-            this.router.navigateByUrl("/main");
-            this.closeDialog();
-          } else {
-            this.errorMessage = "No such user!";
-          }
-        }, error => {
-          if (error == 404) {
-            this.errorMessage = "Email and password doesn't match";
-          }
-          else {
-            this.errorMessage = error.statusText;
-          }
-        }
+    this.authorezeService.confirmUserEmail(this.Email).subscribe(response => {
+      this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
+        let user = localStorage.getItem("currentUser")["username"];
+        this.dialogRef.close();
+        this.snackBar.open("You are logged in", "Got it", {
+          duration: 2000
+        });
+      }, error => {
+        this.errorService.handleError(error);
+      }
 
-        );
-      }
-      else {
-        this.errorMessage = "Email is not confirmed";
-      }
+      );
+    }, error => {
+      this.errorService.handleError(error);
     })
-
-  }
+  };
 }
