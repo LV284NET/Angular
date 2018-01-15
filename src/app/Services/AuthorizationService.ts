@@ -9,6 +9,8 @@ import { Injectable } from "@angular/core";
 export class AuthorizationService {
 
     public token: string;
+    public mailUser: string;
+    
 
     private _urlForAuthorization: string = "http://localhost:51455/Token";
     private _urlForRegistration: string = "http://localhost:51455/api/Account/Register";
@@ -16,8 +18,11 @@ export class AuthorizationService {
 
     constructor(private _http: Http) {
         var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        if (currentUser)
+        if (currentUser) {
             this.token = currentUser.token;
+            this.mailUser = currentUser.firstName;
+        }
+            
     }
 
     public confirmUserEmail(email: string): Observable<boolean> {
@@ -42,7 +47,9 @@ export class AuthorizationService {
                 if (token) {
                     this.token = token;
                     let userName = res.json().userName;
-                    localStorage.setItem("currentUser", JSON.stringify({ username: userName, token: token }));
+                    let mailUser = res.json().firstName;   
+                    localStorage.setItem("currentUser", JSON.stringify({ username: userName, firstName: mailUser, token: token }));
+                    this.mailUser = mailUser;
                     return true;
                 }
                 return false;
