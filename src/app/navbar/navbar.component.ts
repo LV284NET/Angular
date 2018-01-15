@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   }
   public registerDialogRef: MatDialog
   public loginDialogRef: MatDialog
+  public userName: string;
 
   signUp() {
     let dialogRef = this.dialog.open(RegisterComponent, {
@@ -29,9 +30,11 @@ export class NavbarComponent implements OnInit {
   }
 
   signIn() {
+    
     let dialogRef = this.dialog.open(LoginComponent, {
       width: "500px"
     });
+    this.userName =JSON.parse(localStorage.getItem("currentUser")).firstName
   }
   logout() {
     this.authService.logout();
@@ -39,10 +42,6 @@ export class NavbarComponent implements OnInit {
       duration: 2000
     });
   }
-   loginClose(){
-    this.loginDialogRef.closeAll();
-   }
-   registerClose(){
-     this.registerDialogRef.closeAll();
-   }
+
+
 }
