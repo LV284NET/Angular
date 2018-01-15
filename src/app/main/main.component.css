@@ -52,3 +52,8 @@ h1 {
 .carousel-control.right {
   background-image: none;
 }
+
+.block {
+  position: relative;
+  top: -20px;
+}

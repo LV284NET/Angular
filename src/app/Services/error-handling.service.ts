@@ -4,7 +4,7 @@ import{ NgModule } from "@angular/core";
 import { Response } from '@angular/http/src/static_response';
 
 @Injectable()
-export class ErrorHandlingService{
+export class ErrorHandlingService {
   
   private errorMessage: string;
 
