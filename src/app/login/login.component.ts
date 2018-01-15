@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
             //this.user = new User(user.email, user.firstName, user.lastName);
             this.errorMessage = "";
             this.router.navigateByUrl("/main");
+            this.closeDialog();
           } else {
             this.errorMessage = "No such user!";
           }
