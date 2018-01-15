@@ -5,6 +5,12 @@
     border-radius: 0px;
 }
 
+/*For fixed navbar*/
 body {
     margin-top: 70px;
+}
+
+#button-div {
+    position: relative;
+    top: 5px;
 }
