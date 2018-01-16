@@ -18,33 +18,39 @@ export class PlacesService {
 
   public getPlaces(cityId: number): any {
     let searchLine = "cityId=" + cityId.toString();
-    return this._http.get("http://localhost:51455/api/Place/GetPlacesByCityId", 
-    { params: searchLine })
+    return this._http
+      .get("http://localhost:51455/api/Place/GetPlacesByCityId",
+      { params: searchLine })
       .map((res: Response) => {
         return res.json();
       })
-      .catch((error: any) => Observable.throw(error.json().error || "Server error"));
+      .catch((error: any) => Observable
+        .throw(error.json().error || "Server error"));
   }
 
   public getPlace(placeId: number): any {
     let searchLine = "placeId=" + placeId.toString();
-   return this._http.get("http://localhost:51455/api/Place/GetPlaceById",
-     { params: searchLine })
-     .map((res: Response) => {
-       return res.json();
-     })
-     .catch((error: any) => Observable.throw(error.json().error || "Server error"));
- }
+    return this._http
+      .get("http://localhost:51455/api/Place/GetPlaceById",
+      { params: searchLine })
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error: any) => Observable
+        .throw(error.json().error || "Server error"));
+  }
 
- public getPlacesForCityPageById(cityId: number):any {
+  public getPlacesForCityPageById(cityId: number): any {
 
-  let searchLine = "cityId=" + cityId.toString();
+    let searchLine = "cityId=" + cityId.toString();
 
-  return this._http.get("http://localhost:51455/api/Place/GetTopPlacesByCityId", {params: searchLine})
-  .map((res: Response) => {
-    return res.json();
-  })
-  .catch((error: any) => Observable.throw(error.json().error || "Server error"));
-
+    return this._http
+      .get("http://localhost:51455/api/Place/GetTopPlacesByCityId",
+      { params: searchLine })
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error: any) => Observable
+        .throw(error.json().error || "Server error"));
   }
 }  
