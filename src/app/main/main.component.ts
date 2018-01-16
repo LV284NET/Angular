@@ -13,6 +13,8 @@ import { element } from 'protractor';
 export class MainComponent implements OnInit {
 
   cities: City[] = [];
+  imageURL: string [] = [];
+  names: string [] = [];
   
   constructor(private cityService: CityService) { }
 
@@ -22,6 +24,8 @@ export class MainComponent implements OnInit {
         this.cities.push(new City(element.Id, 
           element.Name, element.Description, 
           element.PicturePath));
+        this.imageURL.push(element.PicturePath);
+        this.names.push(element.Name)
       });
     });
   }

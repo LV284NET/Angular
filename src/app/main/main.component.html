@@ -42,23 +42,23 @@
         <div class="carousel-inner">
 
           <div class="item active">
-           <img src="assets/img/img1.jpg" alt="Lviv">
-                <div class="carousel-caption">
-                    <h3>Lviv</h3>
-                </div>
-          </div>
-
-          <div class="item">
-            <img src="assets/img/img2.jpg" alt="Donetsk">
+           <img [src]="imageURL[0] || '' " alt="names[0]">
             <div class="carousel-caption">
-              <h3>Donetsk</h3>
+              <h3>{{names[0]}}</h3>
             </div>
           </div>
 
           <div class="item">
-            <img src="assets/img/img3.jpg" alt="Odesa">
+            <img [src]="imageURL[1] || '' " alt="names[1]">
             <div class="carousel-caption">
-              <h3>Odesa</h3>
+              <h3>{{names[1]}}</h3>
+            </div>
+          </div>
+
+          <div class="item">
+            <img [src]="imageURL[2] || '' " alt="names[2]">
+            <div class="carousel-caption">
+              <h3>{{names[2]}}</h3>
             </div>
           </div>
 
@@ -73,6 +73,7 @@
         </a>
       </div>
 </div>
+
 
 <div class="container">
 
