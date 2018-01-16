@@ -5,6 +5,16 @@
     border-radius: 0px;
 }
 
+/*For fixed navbar*/
 body {
     margin-top: 70px;
+}
+
+p {
+    text-align: justify;
+}
+
+#button-div {
+    position: relative;
+    top: 5px;
 }

@@ -1,23 +1,37 @@
-<h1 class="text-center"> Places of <a style="text-decoration: none" routerLink="/city/{{cityID}}">{{cityName}}</a></h1>
+<h1 class="text-center"> Places of
+  <a routerLink="/city/{{cityID}}">{{cityName}}</a>
+</h1>
 <div class="container">
   <div *ngFor="let place of places" id="tile">
     <div class="row">
+
       <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
         <section class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <img class="img-responsive img-thumbnail object-fit_contain" [src]="place.picture">
+          <img class="img-responsive img-thumbnail object-fit_contain" 
+                [src]="place.picture">
         </section>
+
         <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+
           <div class="row">
-          <h3><a routerLink="/city/{{cityID}}/place/{{place.placeId}}">{{place.name}}</a></h3>
-        </div>
+            <h3>
+              <a routerLink="/city/{{cityID}}/place/{{place.placeId}}">{{place.name}}</a>
+            </h3>
+          </div>
+
           <article>
             <p></p>
-            <p style="text-align: justify">{{place.description}}</p>
+            <p>{{place.description}}</p>
           </article>
-          <span></span>
-          <button class="btn btn-primary pull-right pull-down"  
-          routerLink="/city/{{cityID}}/place/{{place.placeId}}">Show More</button>   
+
+          <button class="btn btn-primary pull-right pull-down" 
+                  routerLink="/city/{{cityID}}/place/{{place.placeId}}">
+            Show More
+          </button>
+          
         </section>
+
       </section>
     </div>
     <hr/>

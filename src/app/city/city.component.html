@@ -1,40 +1,41 @@
 <h1 class="text-center">City</h1>
 
 <div *ngIf="city" class="container">
-      <div class="row">
-       <section class="col-md-12">
-          <section class="col-md-4">
-            <img class="img-responsive img-thumbnail" [src]="city.picture">
-            </section>
+  <div class="row">
+    <section class="col-md-12">
+      <section class="col-md-4">
+        <img class="img-responsive img-thumbnail" [src]="city.picture">
+      </section>
 
-            <div class="container-fluid col-md-8 " >
-          <section>  
-            <h2><b>{{city.name}}</b></h2>
-            <p> {{city.description}} 
-        </section>  
-        </div>  
+      <div class="container-fluid col-md-8 ">
+        <section>
+          <h2>
+            <b>{{city.name}}</b>
+          </h2>
+          <p> {{city.description}}
         </section>
-    </div><hr>
-        <div>
-            <h3>Attractive Places</h3><br>
-        </div>
+      </div>
+    </section>
+  </div>
+  
+  <hr><div>
+    <h3>Attractive Places</h3><br>
+  </div>
 
-        <div class="row card-group well">
-                <div *ngFor="let place of places" class="col-md-3 card text-white bg-secondary ">
-                     <img class="img-responsive img-thumbnail card-img-top object-fit_contain" routerLink="place/{{place.placeId}}" [src]="place.picture">
-                     <h4 class="card-title text-center"><a routerLink="place/{{place.placeId}}">{{place.name}}</a></h4>
-                     
-                     <p></p>
-                </div>
-        
-                <button class="btn btn-primary pull-right down"  routerLink="place-list">Show More</button>
-                
-        </div>
-        <hr>
+  <div class="row round2">
 
-        <button class="btn-lg btn-primary pull-left pull-down"  routerLink="/cities-list">Back</button>
-        <br><br>
+    <div *ngFor="let place of places" class="col-md-3 text-white bg-secondary ">
+      <img class="img-responsive img-thumbnail object-fit_contain" routerLink="place/{{place.placeId}}" [src]="place.picture">
+      <h5 class= "text-center" >
+        <a routerLink="place/{{place.placeId}}">{{place.name}}</a>
+      </h5>
+    </div>
+
+    <div id="button-div">
+        <button class="btn btn-primary pull-left down" routerLink="/cities-list">Back</button>
+      <button class="btn btn-primary pull-right down" routerLink="place-list">Show More</button>
+    </div>
+
+  </div>
 
 </div>
-
-
