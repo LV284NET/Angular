@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
   public onSubmit() {
     this.authorezeService.confirmUserEmail(this.Email).subscribe(response => {
       this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
-        let user = localStorage.getItem("currentUser")["username"];
         this.dialogRef.close();
         this.snackBar.open("You are logged in", "Got it", {
           duration: 2000

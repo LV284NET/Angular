@@ -93,3 +93,8 @@ h1 {
   position: relative;
   top: -20px;
 }
+
+.carousel-image {
+  position: relative;
+  top: -30%;
+}
