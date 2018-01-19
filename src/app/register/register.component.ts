@@ -62,24 +62,26 @@ export class RegisterComponent implements OnInit {
   createFormControls() {
     this.firstName = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є-]{2,40}$")
 
     ]);
     this.lastName = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є-]{2,40}$")
     ]);
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$")
+
     ]);
     this.password = new FormControl('', [
       Validators.required,
       Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')
+
     ]);
     this.confirmPassword = new FormControl('', [
       Validators.required,
-      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})'),
+      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')
     ])
   }
   passwordMatchValidator(g: FormGroup) {

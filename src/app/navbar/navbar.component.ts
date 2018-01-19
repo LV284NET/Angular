@@ -23,18 +23,21 @@ export class NavbarComponent implements OnInit {
   public userName: string;
 
   signUp() {
+    let dialog = this.dialog.closeAll()
     let dialogRef = this.dialog.open(RegisterComponent, {
       width: "500px"
+      
     });
-
   }
 
   signIn() {
-
+    let dialog = this.dialog.closeAll()
     let dialogRef = this.dialog.open(LoginComponent, {
       width: "500px"
+
     });
   }
+
   logout() {
     this.authService.logout();
     this.snackBar.open("You logged out", "Got it", {
