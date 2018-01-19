@@ -46,11 +46,20 @@ export class MainComponent implements OnInit {
           this.searchService.searchCitiesAndPlaces(this.inputLine)
             .subscribe(response => {
               response.forEach(element => {
-                this.searchResult.push(new SearchItem(
-                  element.CityId || 0,
-                  element.PlaceId || 0,
-                  element.Name,
-                  element.Type));
+                if(element.Type == "City") {
+                  this.searchResult.push(new SearchItem(
+                    element.Id,
+                    null,
+                    element.Name,
+                    element.Type));
+                } else {
+                  this.searchResult.push(new SearchItem(
+                    element.CityId,
+                    element.Id,
+                    element.Name,
+                    element.Type));
+                }
+                
               });
             });
         }

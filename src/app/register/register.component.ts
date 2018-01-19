@@ -4,8 +4,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { NgModule,Pipe } from '@angular/core';
-import {ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import { NgModule, Pipe } from '@angular/core';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { User } from '../user';
@@ -20,12 +20,12 @@ import { ErrorHandlingService } from '../Services/error-handling.service';
 })
 export class RegisterComponent implements OnInit {
 
-  @Input() Email : string;
+  @Input() Email: string;
   @Input() Password: string;
   @Input() FirstName: string;
   @Input() LastName: string;
   @Input() ConfirmPassword: string;
-  
+
   myform: FormGroup;
   firstName: FormControl;
   lastName: FormControl;
@@ -42,50 +42,31 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
-  register() : void {
+  register(): void {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
-    .subscribe(
+      .subscribe(
       response => {
-        if(response) {
-          this.snackBar.open("You are registered!", "Got it", {
-            duration: 2000
-          });
-          this.dialogRef.close();
-        }
-        else {
-          this.errorMessage = "Register error!"
-          this.snackBar.open(this.errorMessage, "Got it");
-        }     
-    },
-    error => {
-      this.errorService.handleError(error);
-      // switch(error.status){
-      //   case 0: this.errorMessage = 
-      // }
-      // if(error.status == 500) {
-      //   this.errorMessage = "Server is not available now! Please try later";
-      // }
-      // else if (error.status == 400) {
-      //   this.errorMessage = "There is a user with the same e-mail!";
-      // }
-      // else 
-      // else {
-      //   this.errorMessage = "Registration failed!";
-      // }
-    }
-  );
+        this.snackBar.open("You are registered! Check your email", "Got it", {
+          duration: 2000
+        });
+        this.dialogRef.close();
+      },
+      error => {
+        this.errorService.handleError(error);
+      }
+      );
   }
-  closeDialog(){
+  closeDialog() {
     this.dialogRef.close();
   }
   createFormControls() {
     this.firstName = new FormControl('', [
       Validators.required,
       Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
-      
+
     ]);
     this.lastName = new FormControl('', [
-     Validators.required,
+      Validators.required,
       Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
     ]);
     this.email = new FormControl('', [
@@ -94,16 +75,16 @@ export class RegisterComponent implements OnInit {
     ]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')    
+      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')
     ]);
     this.confirmPassword = new FormControl('', [
       Validators.required,
       Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})'),
     ])
   }
-   passwordMatchValidator(g: FormGroup) {
+  passwordMatchValidator(g: FormGroup) {
     return g.get('password').value === g.get('confirmPassword').value
-       ? null : {'mismatch': true};
+      ? null : { 'mismatch': true };
   }
   createForm() {
     this.myform = new FormGroup({
