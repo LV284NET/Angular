@@ -9,7 +9,7 @@ import { Injectable } from "@angular/core";
 export class AuthorizationService {
 
     public token: string;
-    public mailUser: string;
+    public FirstName: string;
     
 
     private _urlForAuthorization: string = "http://localhost:51455/Token";
@@ -20,7 +20,7 @@ export class AuthorizationService {
         var currentUser = JSON.parse(localStorage.getItem("currentUser"));
         if (currentUser) {
             this.token = currentUser.token;
-            this.mailUser = currentUser.firstName;
+            this.FirstName = currentUser.firstName;
         }
             
     }
@@ -47,9 +47,9 @@ export class AuthorizationService {
                 if (token) {
                     this.token = token;
                     let userName = res.json().userName;
-                    let mailUser = res.json().firstName;   
-                    localStorage.setItem("currentUser", JSON.stringify({ username: userName, firstName: mailUser, token: token }));
-                    this.mailUser = mailUser;
+                    let firstName = res.json().firstName;   
+                    localStorage.setItem("currentUser", JSON.stringify({ username: userName, firstName: firstName, token: token }));
+                    this.FirstName = firstName;
                     return true;
                 }
                 return false;
