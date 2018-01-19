@@ -76,28 +76,26 @@
 
 <div class="container">
   <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
     <form class="form">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="Search city or place" 
-                aria-label="Number" 
-                matInput [formControl]="formInput" 
-                [matAutocomplete]="auto">
+        <input type="text" placeholder="Search city or place" aria-label="Number" matInput [formControl]="formInput" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-            <!-- [value]="item.name" -->
-          <mat-option *ngFor="let item of searchResult">
-            <div *ngIf="item.type == 'city'">
-                <a routerLink="/city/{{item.cityId}}" class="search-option">{{item.name}}</a>
-            </div>
-            <div *ngIf="item.type == 'place'">
-                <a routerLink="/city/{{item.cityId}}/place/{{item.placeId}}" class="search-option">{{item.name}}</a>
-            </div>
+          <mat-option *ngFor="let item of searchResult" [value]="item.name">
+
+            <a *ngIf="item.type == 'City'" routerLink="/city/{{item.cityId}}" class="search-option">{{item.name}}
+            </a>
+
+            <a *ngIf="item.type == 'Place'" routerLink="/city/{{item.cityId}}/place/{{item.placeId}}" class="search-option">{{item.name}}
+            </a>
+
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </form>
   </div>
+  </div>
 </div>
-
 
 <div class="container">
 
@@ -105,13 +103,13 @@
 
   <div *ngFor="let city of cities" id="tile">
     <div class="row">
-      <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <section class="col-xs-12">
 
-        <section class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <section class="col-xs-12 col-sm-4">
           <img [src]="city.picture" class="img-responsive ">
         </section>
 
-        <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+        <section class="col-xs-12 col-sm-8">
 
           <div class="row">
             <h3>

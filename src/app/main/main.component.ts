@@ -21,6 +21,7 @@ export class MainComponent implements OnInit {
   names: string[] = [];
   searchResult: SearchItem[] = [];
   formInput: FormControl = new FormControl();
+  inputLine: string;
 
   constructor(private cityService: CityService,
     private searchService: SearchCitiesAndPlacesService) { }
@@ -37,18 +38,25 @@ export class MainComponent implements OnInit {
     });
 
     this.formInput.valueChanges
-      .debounceTime(400)
+      .debounceTime(1000)
       .subscribe(input => {
-        this.searchResult.length = 0;
-        this.searchService.searchCitiesAndPlaces(input).subscribe(response => {
-          response.forEach(element => {
-            this.searchResult.push(new SearchItem(
-              element.Id,
-              0,
-              element.Name,
-              'city'));
-          });
-        });
+        this.inputLine = input.toString();
+        if (this.inputLine != null && this.inputLine != "") {
+          this.searchResult.length = 0;
+          this.searchService.searchCitiesAndPlaces(this.inputLine)
+            .subscribe(response => {
+              response.forEach(element => {
+                this.searchResult.push(new SearchItem(
+                  element.CityId || 0,
+                  element.PlaceId || 0,
+                  element.Name,
+                  element.Type));
+              });
+            });
+        }
+        else {
+          this.searchResult.length = 0;
+        }
       })
   }
 }

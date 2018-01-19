@@ -9,14 +9,12 @@ export class SearchCitiesAndPlacesService {
 
   constructor(private http : Http) {
 
-    //this.url = 'http://localhost:51455/api/.....SearchCitiesAndPlaces'
-    this.url = 'http://localhost:51455/api/GetCities';
-   }
+    this.url = 'http://localhost:51455/api/Search/GetSuggestions'
+    }
 
-  public searchCitiesAndPlaces(input){
-    //let searchLine = "input=" + input;
-    //return this.http.get(this.url, {params: searchLine})
-    return this.http.get(this.url)
+  public searchCitiesAndPlaces(input: string){
+    let searchLine = "searchWord=" + input;
+    return this.http.get(this.url, {params: searchLine})
     .map((res: Response) => {
       return res.json();
     })
