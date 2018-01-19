@@ -93,3 +93,23 @@ h1 {
   position: relative;
   top: -20px;
 }
+
+.carousel-img {
+  position:relative; 
+  top: -30%;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.search-option {
+  display:block; 
+  text-decoration: none;
+}

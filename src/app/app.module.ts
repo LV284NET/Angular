@@ -20,6 +20,8 @@ import { CitiesComponent } from './cities/cities.component';
 import { CityComponent } from './city/city.component';
 import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -46,13 +48,15 @@ import { ErrorHandlingService } from './Services/error-handling.service';
     AppRoutingModule, 
     ReactiveFormsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatInputModule,
   ],
   providers: [
     AuthorizationService,
     PlacesService,
     CityService,
-    ErrorHandlingService
+    ErrorHandlingService,
   ],
   bootstrap: [AppComponent]
 })

@@ -33,8 +33,12 @@ export class PlaceComponent implements OnInit {
 
     this.placesService.getPlace(placeId)
       .subscribe(response => {
-        this.place = new Place (response.PlaceId, response.Name, 
-          response.CityName, response.Description, response.PicturePlace) 
+        this.place = new Place (
+          response.PlaceId, 
+          response.Name, 
+          response.CityName, 
+          response.Description, 
+          response.PicturePlace) 
       })
   }
   
