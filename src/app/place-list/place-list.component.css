@@ -41,14 +41,13 @@ a {
 
 @media only screen and (max-width: 768px) {
     .object-fit_contain { 
-        width: 100%;
-        max-width: 760px;
-        min-height: 300px;
-        max-height: 450px;
-        object-fit: contain ;
-        object-position: center;
-        background-color: aliceblue;
+            width: 100%;
+            max-width: 760px;
+            min-height: 300px;
+            max-height: 450px;
+            object-fit: contain ;
+            object-position: center;
+            background-color: aliceblue;
+        }
     }
-}
-
 }

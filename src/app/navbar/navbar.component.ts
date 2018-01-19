@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { AuthorizationService } from "../Services/AuthorizationService";
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 
@@ -11,16 +11,15 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  
   constructor(public authService: AuthorizationService, private router: Router, public dialog: MatDialog,
     private snackBar: MatSnackBar) {
   }
 
-  ngOnInit() {
+  ngOnInit() {      
   }
   public registerDialogRef: MatDialog
   public loginDialogRef: MatDialog
-  public userName: string;
 
   signUp() {
     let dialogRef = this.dialog.open(RegisterComponent, {
@@ -30,7 +29,6 @@ export class NavbarComponent implements OnInit {
   }
 
   signIn() {
-
     let dialogRef = this.dialog.open(LoginComponent, {
       width: "500px"
     });
@@ -41,4 +39,10 @@ export class NavbarComponent implements OnInit {
       duration: 2000
     });
   }
+   loginClose(){
+    this.loginDialogRef.closeAll();
+   }
+   registerClose(){
+     this.registerDialogRef.closeAll();
+   }
 }

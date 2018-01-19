@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { PlacesService } from '../Services/places.service';
 import { Place } from '../place';
 import { element } from 'protractor';
+import {MatIcon} from '@angular/material';
+import { FavoriteService } from '../Services/favorite.service';
 
 @Component({
   selector: 'app-place-list',
@@ -19,8 +21,8 @@ export class PlaceListComponent implements OnInit {
   constructor(private placesService: PlacesService,
     private route: ActivatedRoute,
     private location: Location,
-  ) {
-  }
+    public favoritePlace: FavoriteService
+  )   {  }
 
   ngOnInit() {
     this.getPlaceList();

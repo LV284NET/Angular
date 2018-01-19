@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'cities-list', component: CitiesComponent },
   { path: 'city/:cityId', component: CityComponent},
   { path: 'city/:cityId/place-list', component: PlaceListComponent },
-  { path: 'city/:cityId/place/:placeId', component: PlaceComponent }
+  { path: 'city/:cityId/place/:placeId', component: PlaceComponent },
 ];
 
 @NgModule({

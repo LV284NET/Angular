@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { PlacesService } from '../Services/places.service';
 import { Place } from '../place';
 import { element } from 'protractor';
+import { FavoriteService } from '../Services/favorite.service';
 
 @Component({
   selector: 'app-place',
@@ -18,7 +19,7 @@ export class PlaceComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private placesService: PlacesService,
-
+    public favoritePlace: FavoriteService
   ) { 
     this.place = new Place(0, "", "", "", "");
   }

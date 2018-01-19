@@ -9,7 +9,7 @@
 
         <section class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <img class="img-responsive img-thumbnail object-fit_contain" 
-                [src]="place.picture">
+                [src]="place.picture"/>
         </section>
 
         <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
@@ -17,6 +17,7 @@
           <div class="row">
             <h3>
               <a routerLink="/city/{{cityID}}/place/{{place.placeId}}">{{place.name}}</a>
+              
             </h3>
           </div>
 
@@ -26,12 +27,13 @@
           </article>
 
           <button class="btn btn-primary pull-right pull-down" 
-                  routerLink="/city/{{cityID}}/place/{{place.placeId}}">
-            Show More
-          </button>
-          
+          routerLink="/city/{{cityID}}/place/{{place.placeId}}">
+          Show More
+        </button>
+        <a (click)="this.favoritePlace.AddFavoritePlace(place.placeId)">
+          <i class="material-icons pull-left pull-down">favorite_border</i>
+        </a>
         </section>
-
       </section>
     </div>
     <hr/>

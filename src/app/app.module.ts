@@ -20,6 +20,7 @@ import { CitiesComponent } from './cities/cities.component';
 import { CityComponent } from './city/city.component';
 import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
+import { FavoriteService } from './Services/favorite.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ErrorHandlingService } from './Services/error-handling.service';
     AuthorizationService,
     PlacesService,
     CityService,
-    ErrorHandlingService
+    ErrorHandlingService,
+    FavoriteService
   ],
   bootstrap: [AppComponent]
 })

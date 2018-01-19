@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { PlacesService } from '../Services/places.service';
 import { Location } from '@angular/common';
+import { FavoriteService } from '../Services/favorite.service';
 
 @Component({
   selector: 'app-city',
@@ -23,18 +24,16 @@ export class CityComponent implements OnInit {
   constructor(private placeService:PlacesService, 
                private cityService:CityService,
                private route: ActivatedRoute,
-               private location: Location
+               private location: Location,
+               public favoritePlace: FavoriteService
               ) {}
 
   ngOnInit() {
-
     this.getCity();
     this.getPlaces();
-
   }
-
+  
   getCity(){
-
     const id = +this.route.snapshot.paramMap.get('cityId');
 
     this.cityService.getCityById(id)
