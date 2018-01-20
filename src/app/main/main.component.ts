@@ -49,7 +49,7 @@ export class MainComponent implements OnInit {
                 if(element.Type == "City") {
                   this.searchResult.push(new SearchItem(
                     element.Id,
-                    null,
+                    null,                    
                     element.Name,
                     element.Type));
                 } else {
