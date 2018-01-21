@@ -1,5 +1,11 @@
 # EasyTravel
 
+## Description 
+*Angular part of the project.*
+The main idea is to provide a service for managing trips around Ukraine in one place, 
+so users can discover new cities and places, add them to favorites, buy tickets, 
+book hotels etc.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
 
 ## Development server
