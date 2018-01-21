@@ -34,8 +34,8 @@ export class ProfileComponent implements OnInit {
             this.user = new User 
             (
             response.Email,
-            response.firstName,
-            response.lastName
+            response.FirstName,
+            response.LastName
             ) 
       })
   }

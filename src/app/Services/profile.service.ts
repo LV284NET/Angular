@@ -13,9 +13,9 @@ export class ProfileService {
 
   public getUserByEmail(): any
   {
-    let searchLine = "Email=" + localStorage.getItem("userAuth").toString();
+    let searchLine = "email=" + localStorage.getItem("userAuth").toString();
 
-    return this._http.get("http://localhost:51455/api/User/GetUserInfo", {params: searchLine})
+    return this._http.get("http://localhost:51455/api/Profile/GetUserInfo", {params: searchLine})
     .map((res: Response) => 
     {
       return res.json();
