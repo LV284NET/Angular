@@ -21,7 +21,8 @@ import { CityComponent } from './city/city.component';
 import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
-
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './Services/profile.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
     PlaceComponent,
     CityComponent,
     CitiesComponent,
+    ProfileComponent,
   ],
   entryComponents: [
     LoginComponent,
@@ -57,6 +59,7 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
     PlacesService,
     CityService,
     ErrorHandlingService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

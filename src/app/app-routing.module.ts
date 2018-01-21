@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
 import { PlaceListComponent } from './place-list/place-list.component';
 import { PlaceComponent } from './place/place.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'cities-list', component: CitiesComponent },
   { path: 'city/:cityId', component: CityComponent},
   { path: 'city/:cityId/place-list', component: PlaceListComponent },
-  { path: 'city/:cityId/place/:placeId', component: PlaceComponent }
+  { path: 'city/:cityId/place/:placeId', component: PlaceComponent },
+  { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({

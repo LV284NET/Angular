@@ -46,11 +46,7 @@ export class RegisterComponent implements OnInit {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
       .subscribe(
       response => {
-<<<<<<< HEAD
-        this.snackBar.open("You are registered! Check your email", "Got it", {
-=======
         this.snackBar.open("You are registered!", "Got it", {
->>>>>>> 1be37fcacdc9302891474b0b1bd54fae63f7ef58
           duration: 2000
         });
         this.dialogRef.close();
@@ -66,20 +62,12 @@ export class RegisterComponent implements OnInit {
   createFormControls() {
     this.firstName = new FormControl('', [
       Validators.required,
-<<<<<<< HEAD
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
-=======
       Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є-]{2,40}$")
->>>>>>> 1be37fcacdc9302891474b0b1bd54fae63f7ef58
 
     ]);
     this.lastName = new FormControl('', [
       Validators.required,
-<<<<<<< HEAD
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
-=======
       Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є-]{2,40}$")
->>>>>>> 1be37fcacdc9302891474b0b1bd54fae63f7ef58
     ]);
     this.email = new FormControl('', [
       Validators.required,
@@ -89,10 +77,6 @@ export class RegisterComponent implements OnInit {
     this.password = new FormControl('', [
       Validators.required,
       Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')
-<<<<<<< HEAD
-=======
-
->>>>>>> 1be37fcacdc9302891474b0b1bd54fae63f7ef58
     ]);
     this.confirmPassword = new FormControl('', [
       Validators.required,
