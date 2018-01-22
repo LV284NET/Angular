@@ -46,11 +46,7 @@ export class RegisterComponent implements OnInit {
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
       .subscribe(
       response => {
-<<<<<<< HEAD
         this.snackBar.open("You are registered! Check your email", "Got it", {
-=======
-        this.snackBar.open("You are registered!", "Got it", {
->>>>>>> ProfilePage
           duration: 2000
         });
         this.dialogRef.close();

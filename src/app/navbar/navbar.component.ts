@@ -32,22 +32,10 @@ export class NavbarComponent implements OnInit {
   }
 
   signIn() {
-<<<<<<< HEAD
-    let dialog = this.dialog.closeAll();
-    let dialogRef = this.dialog.open(LoginComponent, {
-      width: "500px"
-    });
-  }
-  suggestions() {
-    let dialog = this.dialog.closeAll()
-    let dialogRef = this.dialog.open(FeedbackComponent, {
-      width: "500px"
-=======
     this.authService.UserId;
     let dialog = this.dialog.closeAll();
     let dialogRef = this.dialog.open(LoginComponent, {
       width: "500px"
->>>>>>> ProfilePage
     });
   }
 
@@ -59,11 +47,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  profile() {
-=======
   profile(){
->>>>>>> ProfilePage
       let userId=JSON.parse(localStorage.getItem("currentUser")).id;
       this.router.navigateByUrl("/"+userId);
   }
