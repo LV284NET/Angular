@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "https": "ng serve -o --ssl 1 --ssl-key \"app\\ssl\\server.key\" --ssl-cert \"app\\ssl\\server.crt\"",
+    "https": "ng serve -o --ssl 1 --ssl-key \"\\ssl\\server.key\" --ssl-cert \"\\ssl\\server.crt\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
