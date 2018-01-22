@@ -15,7 +15,7 @@ export class CityService {
   {
     let searchLine = "id=" + cityId.toString();
 
-    return this._http.get("http://localhost:51455/api/GetCity", {params: searchLine})
+    return this._http.get("https://localhost:44317/api/GetCity", {params: searchLine})
     .map((res: Response) => {
       return res.json();
     })
@@ -26,7 +26,7 @@ export class CityService {
   {
     let searchLine = "cityName=" + cityName;
 
-    return this._http.get("http://localhost:51455/GetCityForCityByName", {params: searchLine})
+    return this._http.get("https://localhost:44317/GetCityForCityByName", {params: searchLine})
     .map((res: Response) => {
       return res.json();
     })
@@ -34,7 +34,7 @@ export class CityService {
   }
 
   public getCities():any {
-    return this._http.get("http://localhost:51455/api/GetCities")
+    return this._http.get("https://localhost:44317/api/GetCities")
     .map((res:Response) => {
       return res.json();
     })
