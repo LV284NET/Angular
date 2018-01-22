@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "https": "ng serve -o --ssl 1 --ssl-key \"C:\\Studying\\EasyTravel\\Angular\\ssl\\server.key\" --ssl-cert \"C:\\Studying\\EasyTravel\\Angular\\ssl\\server.crt\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -25,6 +26,7 @@
     "@angular/router": "^5.0.0",
     "angular2-cookie": "^1.2.6",
     "bootstrap": "^3.3.7",
+    "browser-sync": "^2.23.5",
     "core-js": "^2.4.1",
     "hammerjs": "^2.0.8",
     "jquery": "^3.2.1",

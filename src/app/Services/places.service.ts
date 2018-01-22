@@ -19,7 +19,7 @@ export class PlacesService {
   public getPlaces(cityId: number): any {
     let searchLine = "cityId=" + cityId.toString();
     return this._http
-      .get("http://localhost:51455/api/Place/GetPlacesByCityId",
+      .get("https://localhost:44317/api/Place/GetPlacesByCityId",
       { params: searchLine })
       .map((res: Response) => {
         return res.json();
@@ -31,7 +31,7 @@ export class PlacesService {
   public getPlace(placeId: number): any {
     let searchLine = "placeId=" + placeId.toString();
     return this._http
-      .get("http://localhost:51455/api/Place/GetPlaceById",
+      .get("https://localhost:44317/api/Place/GetPlaceById",
       { params: searchLine })
       .map((res: Response) => {
         return res.json();
@@ -45,7 +45,7 @@ export class PlacesService {
     let searchLine = "cityId=" + cityId.toString();
 
     return this._http
-      .get("http://localhost:51455/api/Place/GetTopPlacesByCityId",
+      .get("https://localhost:44317/api/Place/GetTopPlacesByCityId",
       { params: searchLine })
       .map((res: Response) => {
         return res.json();

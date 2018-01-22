@@ -9,7 +9,7 @@ export class SearchCitiesAndPlacesService {
 
   constructor(private http : Http) {
 
-    this.url = 'http://localhost:51455/api/Search/GetSuggestions'
+    this.url = 'https://localhost:44317/api/Search/GetSuggestions'
     }
 
   public searchCitiesAndPlaces(input: string){
