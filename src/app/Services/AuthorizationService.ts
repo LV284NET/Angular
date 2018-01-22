@@ -47,8 +47,9 @@ export class AuthorizationService {
                 if (token) {
                     this.token = token;
                     let userName = res.json().userName;
-                    let firstName = res.json().firstName;   
-                    localStorage.setItem("currentUser", JSON.stringify({ username: userName, firstName: firstName, token: token }));
+                    let firstName = res.json().firstName;
+                    let userId = res.json().Id;   
+                    localStorage.setItem("currentUser", JSON.stringify({ id:userId, username: userName, firstName: firstName, token: token }));
                     this.FirstName = firstName;
                     return true;
                 }
