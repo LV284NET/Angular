@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProfileService } from '../Services/profile.service';
 import { User } from '../user';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile',
@@ -17,18 +20,26 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private ProfileService: ProfileService,
-
+    private SnackBar: MatSnackBar,
+    private router: Router
   ) { 
     this.user = new User("", "", "");
   }
 
   ngOnInit() {
-    this.getInfo();
+    if (localStorage.getItem("currentUser") != null)
+      this.getInfo();
+    else
+    {
+      this.router.navigateByUrl("/main");
+      //this.SnackBar.open("Not permitted", "Got It");
+    }
   }
 
   getInfo(): any 
-  {    
-    this.ProfileService.getUserByEmail()
+  {
+    const userId = +this.route.snapshot.paramMap.get('Id')    
+    this.ProfileService.getUserByEmail(userId)
       .subscribe(response => 
         {
             this.user = new User 

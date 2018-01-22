@@ -11,9 +11,9 @@ export class ProfileService {
 
   constructor(private _http: Http) { }
 
-  public getUserByEmail(): any
+  public getUserByEmail(userId: number): any
   {
-    let searchLine = "email=" + localStorage.getItem("userAuth").toString();
+    let searchLine = "id=" + userId.toString();
 
     return this._http.get("http://localhost:51455/api/Profile/GetUserInfo", {params: searchLine})
     .map((res: Response) => 

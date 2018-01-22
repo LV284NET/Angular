@@ -29,7 +29,7 @@
       <ng-template #registered>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a routerLink="/profile">
+            <a (click)="profile()">
               <span class="glyphicon glyphicon-home"></span> Hello, {{authService.FirstName}} !</a>
           </li>
           <li>
