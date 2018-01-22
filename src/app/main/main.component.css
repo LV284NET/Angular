@@ -94,7 +94,20 @@ h1 {
   top: -20px;
 }
 
-.carousel-image {
-  position: relative;
+.carousel-img {
+  position:relative; 
   top: -30%;
+}
+
+.form {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.search-option {
+  display:block; 
+  text-decoration: none;
 }

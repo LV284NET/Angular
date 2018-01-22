@@ -21,6 +21,8 @@ import { CityComponent } from './city/city.component';
 import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
 import { FavoriteService } from './Services/favorite.service';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { FavoriteService } from './Services/favorite.service';
     AppRoutingModule, 
     ReactiveFormsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatInputModule,
   ],
   providers: [
     AuthorizationService,
