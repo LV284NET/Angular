@@ -12,9 +12,9 @@ export class AuthorizationService {
     public FirstName: string;
     
 
-    private _urlForAuthorization: string = "http://localhost:51455/Token";
-    private _urlForRegistration: string = "http://localhost:51455/api/Account/Register";
-    private _urlForConfirmEmail: string = "http://localhost:51455/api/Account/Confirm";
+    private _urlForAuthorization: string = "https://localhost:44317/Token";
+    private _urlForRegistration: string = "https://localhost:44317/api/Account/Register";
+    private _urlForConfirmEmail: string = "https://localhost:44317/api/Account/Confirm";
 
     constructor(private _http: Http) {
         var currentUser = JSON.parse(localStorage.getItem("currentUser"));

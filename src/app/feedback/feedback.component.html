@@ -1,0 +1,45 @@
+<a class="close btn" (click)="closeDialog()" role="button" >&times;</a>
+<h3>Suggestion</h3>
+<form novalidate [formGroup]="myform" (submit)="suggestion()">
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input [(ngModel)]="Email" type="text" name="Email" placeholder="email@some.com" class="form-control" id="email" formControlName="email"
+      required>
+  </div>
+  <div *ngIf="email.invalid && email.touched && email.dirty">
+    <p class="help-block">Wrong format of email!</p>
+  </div>
+  <div class="form-group" [ngClass]="{
+        'has-error': firstName.invalid && firstName.dirty, 
+        'has-success': firstName.valid && firstName.dirty 
+      }">
+    <label for="firstName">First Name:</label>
+    <input [(ngModel)]="FirstName" type="text" name="FirstName" class="form-control" id="firstName" formControlName="firstName"
+      required>
+  </div>
+  <div *ngIf="firstName.invalid && firstName.dirty && firstName.touched">
+    <p class="help-block">You can not use numbers and symbols</p>
+  </div>
+  <div class="form-group" [ngClass]="{
+        'has-error': lastName.invalid && lastName.dirty, 
+        'has-success': lastName.valid && lastName.dirty 
+      }">
+    <label for="lastName">Last Name:</label>
+    <input [(ngModel)]="LastName" type="text" name="LastName" class="form-control" id="lastName" formControlName="lastName" required>
+  </div>
+  <div *ngIf="lastName.invalid && lastName.dirty && lastName.touched">
+    <p class="help-block">You can not use numbers and symbols</p>
+  </div>
+  <div class="form-group" [ngClass]="{
+        'has-error': lastName.invalid && lastName.dirty, 
+        'has-success': lastName.valid && lastName.dirty 
+      }">
+    <label for="lastName">Your suggestions:</label>
+    <textarea id="message" class="input" name="message" rows="5" cols="60"></textarea>
+    </div>
+  <div class="row">
+    <div class="form-group col-sm-4 col-sm-offset-4">
+      <input type="submit" value="Send email" class="form-control btn btn-primary" [disabled]="!myform.valid">
+    </div>
+  </div>
+</form>
