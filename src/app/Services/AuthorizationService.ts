@@ -10,6 +10,7 @@ export class AuthorizationService {
 
     public token: string;
     public FirstName: string;
+    public UserId: any;
     
 
     private _urlForAuthorization: string = "https://localhost:44317/Token";
@@ -21,6 +22,7 @@ export class AuthorizationService {
         if (currentUser) {
             this.token = currentUser.token;
             this.FirstName = currentUser.firstName;
+            this.UserId = currentUser.Id;
         }
             
     }
@@ -48,8 +50,10 @@ export class AuthorizationService {
                     this.token = token;
                     let userName = res.json().userName;
                     let firstName = res.json().firstName;   
-                    localStorage.setItem("currentUser", JSON.stringify({ username: userName, firstName: firstName, token: token }));
+                    let Id = res.json().Id;
+                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, token: token }));
                     this.FirstName = firstName;
+                    this.UserId = Id; 
                     return true;
                 }
                 return false;

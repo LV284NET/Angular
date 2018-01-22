@@ -22,8 +22,13 @@ import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
 import { FavoriteService } from './Services/favorite.service';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+<<<<<<< HEAD
 import { FeedbackComponent } from './feedback/feedback.component';
 
+=======
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './Services/profile.service';
+>>>>>>> ProfilePage
 
 @NgModule({
   declarations: [
@@ -36,7 +41,11 @@ import { FeedbackComponent } from './feedback/feedback.component';
     PlaceComponent,
     CityComponent,
     CitiesComponent,
+<<<<<<< HEAD
     FeedbackComponent
+=======
+    ProfileComponent,
+>>>>>>> ProfilePage
   ],
   entryComponents: [
     LoginComponent,
@@ -61,7 +70,11 @@ import { FeedbackComponent } from './feedback/feedback.component';
     PlacesService,
     CityService,
     ErrorHandlingService,
+<<<<<<< HEAD
     FavoriteService
+=======
+    ProfileService
+>>>>>>> ProfilePage
   ],
   bootstrap: [AppComponent]
 })
