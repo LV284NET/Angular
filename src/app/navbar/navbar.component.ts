@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
+import { FeedbackComponent } from '../feedback/feedback.component';
 
 @Component({
   selector: 'app-navbar',
@@ -35,6 +36,12 @@ export class NavbarComponent implements OnInit {
     let dialogRef = this.dialog.open(LoginComponent, {
       width: "500px"
 
+    });
+  }
+  suggestions() {
+    let dialog = this.dialog.closeAll()
+    let dialogRef = this.dialog.open(FeedbackComponent, {
+      width: "500px"
     });
   }
 

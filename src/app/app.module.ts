@@ -21,6 +21,7 @@ import { CityComponent } from './city/city.component';
 import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 @NgModule({
@@ -34,10 +35,12 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
     PlaceComponent,
     CityComponent,
     CitiesComponent,
+    FeedbackComponent
   ],
   entryComponents: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
