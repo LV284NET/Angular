@@ -15,7 +15,7 @@ export class ProfileService {
   {
     let searchLine = "id=" + userId.toString();
 
-    return this._http.get("http://localhost:51455/api/Profile/GetUserInfo", {params: searchLine})
+    return this._http.get("https://localhost:44317/api/Profile/GetUserInfo", {params: searchLine})
     .map((res: Response) => 
     {
       return res.json();
