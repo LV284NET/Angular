@@ -39,6 +39,10 @@ a {
     }
 }
 
+.material-icons{
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 768px) {
     .object-fit_contain { 
             width: 100%;

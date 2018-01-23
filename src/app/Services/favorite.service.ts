@@ -5,6 +5,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from '@angular/material';
+import { errorHandler } from "@angular/platform-browser/src/browser";
+import { ErrorHandlingService } from './error-handling.service';
 
 @Injectable()
 export class FavoriteService {
@@ -12,20 +14,13 @@ export class FavoriteService {
     private _urlForAddFavoritePlace: string = "https://localhost:44317/api/Place/AddFavoritePlace";
 
     constructor(private _http: Http,
+        private errorService: ErrorHandlingService,
         private SnackBar: MatSnackBar) {
         }
         
-    private ShowMessage(response: any){
-        if (response.status == 400)
-        {
-            this.SnackBar.open("You already add this place to favourite", "Got It");            
-        }
-    }
-
-
     public AddPlace(placeId: number): any
     {
-        this.AddFavoritePlace(placeId).subscribe(response=>this.ShowMessage(response));
+        this.AddFavoritePlace(placeId).subscribe(response=>{}, error=>{this.errorService.handleError(error)});
     }    
 
     public AddFavoritePlace(placeId:  number): any

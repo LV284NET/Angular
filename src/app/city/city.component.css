@@ -11,6 +11,9 @@ button{
     border-radius: 8px;
     background-color: whitesmoke;
 }
+.material-icons{
+    cursor: pointer;
+}
 
 .object-fit_contain { 
     margin: 10px 0px;
