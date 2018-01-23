@@ -1,6 +1,6 @@
 <a class="close btn" (click)="closeDialog()" role="button" >&times;</a>
 <h3>Suggestion</h3>
-<form novalidate [formGroup]="myform" (submit)="suggestion()">
+<form ngNoForm novalidate [formGroup]="myform" (submit)="suggestion()" action="https://formspree.io/bogdankulch244@gmail.com" target="_blank" method="POST" #form>
   <div class="form-group">
     <label for="email">Email:</label>
     <input [(ngModel)]="Email" type="text" name="Email" placeholder="email@some.com" class="form-control" id="email" formControlName="email"

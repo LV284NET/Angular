@@ -28,14 +28,6 @@ import { Action } from 'rxjs/scheduler/Action';
         this.createFormControls();
         this.createForm();
       }
-    
-   suggestion() {
-    
-    this.snackBar.open("Your offer has been sent", "Got it", {
-        duration: 2000
-      });
-    this.dialogRef.close();
-   }
    createFormControls() {
     this.firstName = new FormControl('', [
         Validators.required,
