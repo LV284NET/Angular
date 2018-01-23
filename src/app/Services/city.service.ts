@@ -33,12 +33,14 @@ export class CityService {
     .catch((error: any) => Observable.throw(error.json().error || "Server error"));
   }
 
-  public getCities():any {
-    return this._http.get("https://localhost:44317/api/GetCities")
+  public getCities(pageNumber: number):any {
+    let searchLine = "page=" + pageNumber;
+
+    return this._http.get("https://localhost:44317/api/GetCities" , {params: searchLine})
     .map((res:Response) => {
       return res.json();
     })
-    .catch((error:any) => Observable.throw(error.json().error || "Server error"))
+    .catch((error:any) => Observable.throw(error))
   }
 }
  

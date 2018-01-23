@@ -25,6 +25,7 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ProfileService } from './Services/profile.service';
     CitiesComponent,
     FeedbackComponent,
     ProfileComponent,
+    PaginatorComponent,
   ],
   entryComponents: [
     LoginComponent,

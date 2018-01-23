@@ -15,9 +15,11 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'cities-list', component: CitiesComponent },
+  { path: 'cities-list', redirectTo: 'cities-list/page=1', pathMatch: 'full' },
+  { path: 'cities-list/page=:pageNumber', component: CitiesComponent },
   { path: 'city/:cityId', component: CityComponent},
-  { path: 'city/:cityId/place-list', component: PlaceListComponent },
+  { path: 'city/:cityId/place-list', redirectTo: 'city/:cityId/place-list/page=1', pathMatch: 'full' },
+  { path: 'city/:cityId/place-list/page=:pageNumber', component: PlaceListComponent },
   { path: 'city/:cityId/place/:placeId', component: PlaceComponent },
   { path: ':Id', component: ProfileComponent }
 ];
