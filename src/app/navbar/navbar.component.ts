@@ -23,6 +23,14 @@ export class NavbarComponent implements OnInit {
   public loginDialogRef: MatDialog;
   public userName: string;
 
+  suggestions(){
+    let dialog = this.dialog.closeAll()
+    let dialogRef = this.dialog.open(FeedbackComponent, {
+      width: "500px"
+      
+    });
+  }
+
   signUp() {
     let dialog = this.dialog.closeAll()
     let dialogRef = this.dialog.open(RegisterComponent, {
