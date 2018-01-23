@@ -28,8 +28,8 @@
       <img class="img-responsive img-thumbnail object-fit_contain" routerLink="place/{{place.placeId}}" [src]="place.picture">
       <h5 class= "text-center" >
         <a routerLink="place/{{place.placeId}}">{{place.name}}</a>
-        <a (click)="this.favoritePlace.AddFavoritePlace(place.placeId)">
-          <i class="material-icons pull-left pull-down">favorite_border</i>
+        <a (click)="this.favoritePlace.AddPlace(place.placeId)">
+          <i class="material-icons pull-left pull-down">favorite</i>
         </a >
       </h5>
     </div>
