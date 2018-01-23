@@ -7,3 +7,7 @@
     object-position: center;
     background-color: aliceblue;
 }
+
+.material-icons{
+    cursor: pointer;
+}
