@@ -31,18 +31,20 @@ export class FavoriteService {
         
     public AddPlace(placeId: number): any
     {
-        this.AddFavoritePlace(placeId).subscribe(response=>{}, 
-                                                 error=>{this.errorService.handleError(error)});
-        this.favouritesPlaces.push(placeId);
+        this.AddFavoritePlace(placeId).subscribe(
+            response=>{        
+            this.favouritesPlaces.push(placeId)},                                      
+            error=>{
+            this.errorService.handleError(error)});
     }    
 
     public DeletePlace(placeId: number): any
     {
         this.DeleteFavoritePlace(placeId).subscribe(
-            response=>
-                {this.favouritesPlaces.splice(this.favouritesPlaces.indexOf(placeId), 1)}, 
-            error=>{this.errorService.handleError(error)});
-            this.favouritesPlaces.splice(this.favouritesPlaces.indexOf(placeId), 1);
+            response=>{
+            this.favouritesPlaces.splice(this.favouritesPlaces.indexOf(placeId), 1)}, 
+            error=>{
+            this.errorService.handleError(error)});
     }
 
     public AddFavoritePlace(placeId: number): any
@@ -52,7 +54,7 @@ export class FavoriteService {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http.post(this._urlForAddFavoritePlace, content, { headers: headers })
             .map((res: Response) => {
-                   return res.json();
+                   return res;
                 })
             .catch((error: any) => Observable.throw(error));
     }
@@ -64,7 +66,7 @@ export class FavoriteService {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http.post(this._urlForDeleteFavoritePlace, content, {headers: headers} )
             .map((res: Response) => {
-                   return res.json();
+                   return res;
                 })
             .catch((error: any) => Observable.throw(error));
     }
