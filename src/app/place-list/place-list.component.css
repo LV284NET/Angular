@@ -2,6 +2,10 @@ a {
     text-decoration: none;
 }
 
+.material-icons{
+    cursor: pointer;
+}
+
 .no-decoration
 { text-decoration: none !important}
 
@@ -37,10 +41,6 @@ a {
         object-position: center;
         background-color: aliceblue;
     }
-}
-
-.material-icons{
-    cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {

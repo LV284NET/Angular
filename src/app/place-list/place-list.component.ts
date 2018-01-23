@@ -1,4 +1,3 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PlacesService } from '../Services/places.service';
@@ -6,6 +5,8 @@ import { Place } from '../place';
 import { element } from 'protractor';
 import {MatIcon} from '@angular/material';
 import { FavoriteService } from '../Services/favorite.service';
+import { AuthorizationService } from "../Services/AuthorizationService";
+import { Component, OnInit, Input, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-place-list',
@@ -21,11 +22,17 @@ export class PlaceListComponent implements OnInit {
   constructor(private placesService: PlacesService,
     private route: ActivatedRoute,
     private location: Location,
-    public favoritePlace: FavoriteService
+    public favoritePlace: FavoriteService,
+    public authService: AuthorizationService
   )   {  }
 
   ngOnInit() {
     this.getPlaceList();
+  }
+
+  private checkExist(placeId: number): boolean
+  {
+    return this.favoritePlace.favouritesPlaces.some(x => x === placeId);
   }
 
   getPlaceList() {
