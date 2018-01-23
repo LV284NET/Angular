@@ -22,6 +22,7 @@ import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { WINDOW_PROVIDERS } from "./Services/window.service";
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     PlacesService,
     CityService,
     ErrorHandlingService,
+    WINDOW_PROVIDERS,
   ],
   bootstrap: [AppComponent]
 })
