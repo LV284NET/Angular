@@ -1,6 +1,6 @@
 <a class="close btn" (click)="closeDialog()" role="button" >&times;</a>
 <h3>Suggestion</h3>
-<form ngNoForm novalidate [formGroup]="myform" (submit)="suggestion()" action="https://formspree.io/bogdankulch244@gmail.com" target="_blank" method="POST" #form>
+<form ngNoForm novalidate [formGroup]="myform" (submit)="suggestion()" action="https://formspree.io/easytravelsystem284@gmail.com" target="_blank" method="POST" #form>
   <div class="form-group">
     <label for="email">Email:</label>
     <input [(ngModel)]="Email" type="text" name="Email" placeholder="email@some.com" class="form-control" id="email" formControlName="email"
@@ -35,7 +35,7 @@
         'has-success': lastName.valid && lastName.dirty 
       }">
     <label for="lastName">Your suggestions:</label>
-    <textarea id="message" class="input" name="message" rows="5" cols="60"></textarea>
+    <textarea id="message" class="input" name="message" autoGrow class="form-control text-comment"></textarea>
     </div>
   <div class="row">
     <div class="form-group col-sm-4 col-sm-offset-4">
