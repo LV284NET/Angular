@@ -1,11 +1,37 @@
-.logo{
+#logo-link {
+    height: 50px;
+    /* margin: 9px;
+    border-radius: 10px; */
+}
+
+#fixed-link {
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    z-index: 9999;
+}
+
+#logo-navbar{
     height: 32px;
     margin: 9px; 
 }
+
+#logo-link-background{
+    background-color: black;
+    display: inline;
+    z-index: 9999;
+}
+
+.place-for-logo{
+    margin-left: 50px;
+}
+
 a:hover {
   cursor: pointer;  
 }
+
 .navbar{
     margin-bottom: 0px;
     border-radius: 0px;
+    /* padding-left: 50px; */
 }

@@ -25,6 +25,8 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
+import { WINDOW_PROVIDERS } from "./Services/window.service";
+
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { ProfileService } from './Services/profile.service';
     CityService,
     ErrorHandlingService,
     FavoriteService,
-    ProfileService
+    ProfileService,
+    WINDOW_PROVIDERS,
   ],
   bootstrap: [AppComponent]
 })
