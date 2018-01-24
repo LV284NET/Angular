@@ -27,6 +27,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
  
 
@@ -43,12 +44,14 @@ import { WINDOW_PROVIDERS } from "./Services/window.service";
     CitiesComponent,
     FeedbackComponent,
     ProfileComponent,
+    ChangePasswordComponent,
     PaginationComponent
   ],
   entryComponents: [
     LoginComponent,
     RegisterComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
