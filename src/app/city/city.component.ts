@@ -1,7 +1,6 @@
 import { CityService } from './../Services/city.service';
 import { Place } from './../place';
 import { City } from './../city';
-import { Component, OnInit, Input } from '@angular/core';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +8,9 @@ import { Router } from '@angular/router';
 import { PlacesService } from '../Services/places.service';
 import { Location } from '@angular/common';
 import { FavoriteService } from '../Services/favorite.service';
+import { AuthorizationService } from "../Services/AuthorizationService";
+import { Component, OnInit, Input, Inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-city',
@@ -25,12 +27,20 @@ export class CityComponent implements OnInit {
                private cityService:CityService,
                private route: ActivatedRoute,
                private location: Location,
-               public favoritePlace: FavoriteService
-              ) {}
+               public favoritePlace: FavoriteService,
+               public authService: AuthorizationService
+              ) {
+              }
 
   ngOnInit() {
     this.getCity();
     this.getPlaces();
+    this.favoritePlace.getFavoritePlaces();
+  }
+
+  private checkExist(placeId: number): boolean
+  {
+    return this.favoritePlace.favoritesPlaces.some(x => x === placeId);
   }
   
   getCity(){

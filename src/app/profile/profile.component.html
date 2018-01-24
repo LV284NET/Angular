@@ -16,10 +16,24 @@
     </div>
   
     <hr/>
-  
+
+    <ul *ngIf="favoritePlaces.length != 0">
     <div class="row">
       <div class="col-xs-12">
         <h4>Favorite places</h4>
       </div>
-    </div>    
+
+      <div *ngFor="let place of favoritePlaces" class="col-md-3 text-white bg-secondary ">
+        <img class="img-responsive img-thumbnail object-fit_contain" routerLink="place/{{place.placeId}}" [src]="place.picture">
+        <h5 class= "text-center" >
+          <a routerLink="place/{{place.placeId}}">{{place.name}}</a>
+          <ul *ngIf="checkUserProfile()">
+            <a (click)="removeFavoritePlace(place.placeId)">          
+              <i class="material-icons pull-right down">delete</i>   
+            </a >
+          </ul>
+        </h5>
+      </div>  
+    </div>
+    </ul>    
 </div>

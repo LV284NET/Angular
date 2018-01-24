@@ -14,11 +14,19 @@
           <br>
           <p>{{place.description}}</p>
         </article>
-        <a (click)="this.favoritePlace.AddPlace(place.placeId)">
-          <i class="material-icons pull-left pull-down">favorite_border</i>
-        </a >
+        <ul *ngIf="authService.token != null">
+            <ul *ngIf="checkExist(place.placeId) == true;else notExist">
+                <a (click)="this.favoritePlace.DeletePlace(place.placeId)">          
+                  <i class="material-icons pull-right down">star</i>   
+                </a >
+            </ul>
+            <ng-template #notExist>
+                <a (click)="this.favoritePlace.AddPlace(place.placeId)">          
+                    <i class="material-icons pull-right down">star_border</i>   
+                  </a >
+            </ng-template>
+        </ul>
       </section>
-
     </section>
   </div>
 
