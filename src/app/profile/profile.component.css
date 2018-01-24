@@ -10,6 +10,11 @@
     }
 }
 
+a:hover {
+    cursor: pointer;  
+  }
+  
+
 .round2 {
     border: 2px solid rgb(235, 234, 234);
     border-radius: 8px;

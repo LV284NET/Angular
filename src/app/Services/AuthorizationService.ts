@@ -16,6 +16,7 @@ export class AuthorizationService {
     private _urlForAuthorization: string = "https://localhost:44317/Token";
     private _urlForRegistration: string = "https://localhost:44317/api/Account/Register";
     private _urlForConfirmEmail: string = "https://localhost:44317/api/Account/Confirm";
+    private _urlForChangePassword : string = "https://localhost:44317/api/Account/ChangePassword";
 
     constructor(private _http: Http) {
         var currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -25,6 +26,21 @@ export class AuthorizationService {
             this.UserId = currentUser.Id;
         }
             
+    }
+
+    public changePassword(oldPassword: string, newPassword: string, newPasswordConfirm: string): Observable<boolean> {
+        var headers = new Headers();
+        var content = "Id="+JSON.parse(localStorage.getItem("currentUser")).id +
+        "&OldPassword=" + oldPassword + 
+        "&NewPassword=" + newPassword + 
+        "&ConfirmPassword=" + newPasswordConfirm;
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        //headers.append('Authorization', 'Bearer ' + this.token);
+        return this._http.post(this._urlForChangePassword, content, { headers: headers })
+            .map((res: Response) => {
+                return true;
+            })
+            .catch((error: any) => Observable.throw(error));
     }
 
     public confirmUserEmail(email: string): Observable<boolean> {

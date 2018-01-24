@@ -26,6 +26,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -41,11 +42,13 @@ import { WINDOW_PROVIDERS } from "./Services/window.service";
     CitiesComponent,
     FeedbackComponent,
     ProfileComponent,
+    ChangePasswordComponent,
   ],
   entryComponents: [
     LoginComponent,
     RegisterComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
