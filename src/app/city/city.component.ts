@@ -35,7 +35,8 @@ export class CityComponent implements OnInit {
   ngOnInit() {
     this.getCity();
     this.getPlaces();
-    this.favoritePlace.getFavoritePlaces();
+    if (localStorage.getItem("currentUser") != null)
+      this.favoritePlace.getFavoritePlaces();
   }
 
   private checkExist(placeId: number): boolean

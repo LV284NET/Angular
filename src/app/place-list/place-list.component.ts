@@ -29,6 +29,9 @@ export class PlaceListComponent implements OnInit {
 
   ngOnInit() {
     this.getPlaceList();
+    if (this.authService.token != null)
+      this.favoritePlace.getFavoritePlaces();
+
   }
 
   private checkExist(placeId: number): boolean

@@ -21,9 +21,10 @@ export class FavoriteService {
     constructor(private _http: Http,
         private errorService: ErrorHandlingService,
         private SnackBar: MatSnackBar) {
-            this.getFavoritePlaces().subscribe(response => {
-                response.forEach(element => {
-                  this.favoritesPlaces.push(element.PlaceId);
+            if (localStorage.getItem("currentUser") != null)
+                this.getFavoritePlaces().subscribe(response => {
+                    response.forEach(element => {
+                      this.favoritesPlaces.push(element.PlaceId);
                 })
         })
     }

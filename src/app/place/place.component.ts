@@ -28,8 +28,9 @@ export class PlaceComponent implements OnInit {
 
   ngOnInit() {
     this.getPlace();
-    this.favoritePlace.getFavoritePlaces();
-  }
+    if (this.authService.token != null)
+       this.favoritePlace.getFavoritePlaces();
+ }
 
   private checkExist(placeId: number): boolean
   {
