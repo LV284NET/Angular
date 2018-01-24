@@ -26,6 +26,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { WINDOW_PROVIDERS } from "./Services/window.service";
     CitiesComponent,
     FeedbackComponent,
     ProfileComponent,
+    SpinnerComponent,
   ],
   entryComponents: [
     LoginComponent,
