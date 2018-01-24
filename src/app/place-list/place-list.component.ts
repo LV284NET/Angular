@@ -17,6 +17,11 @@ export class PlaceListComponent implements OnInit {
   places: Place[] = [];
   cityID: number;
   cityName: string;
+  loading = false;
+  total = 0;
+  page = 1;
+  perPage = 3;
+
 
   constructor(private placesService: PlacesService,
     private route: ActivatedRoute,
@@ -26,13 +31,14 @@ export class PlaceListComponent implements OnInit {
 
   ngOnInit() {
     this.getPlaceList();
+    this.getCount();
   }
 
   getPlaceList() {
      this.cityID = + this.route.snapshot.paramMap.get('cityId');
-     const pageNumber = +this.route.snapshot.paramMap.get('pageNumber');
+     this.places=[];
 
-    this.placesService.getPlaces(this.cityID, pageNumber).subscribe(response => {
+    this.placesService.getPlaces(this.cityID, this.page).subscribe(response => {
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
           element.Name, element.CityName, element.Description,
@@ -40,5 +46,31 @@ export class PlaceListComponent implements OnInit {
         this.cityName = element.CityName
       });
     });
+  }
+
+  getCount(){
+    this.loading=true;
+
+    this.placesService.getPlacesCount(this.cityID).subscribe(response => { 
+      this.total = response
+    });
+
+    this.loading=false;
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getPlaceList();
+
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getPlaceList();
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getPlaceList();
   }
 }

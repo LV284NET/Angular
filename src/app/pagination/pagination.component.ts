@@ -1,18 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
-
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-paginator',
-  templateUrl: './paginator.component.html',
-  styleUrls: ['./paginator.component.css']
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.css']
 })
-export class PaginatorComponent implements OnInit {
-
-  @Input() page:number;
-  @Input() count:number;
-  @Input() perPage:number;
-  @Input() pagesToShow:number;
-  @Input() loading:boolean;
+export class PaginationComponent {
+  @Input() page: number;
+  @Input() count: number;
+  @Input() perPage: number;
+  @Input() loading: boolean;
+  @Input() pagesToShow: number;
 
   @Output() goPrev = new EventEmitter<boolean>();
   @Output() goNext = new EventEmitter<boolean>();
@@ -20,8 +18,16 @@ export class PaginatorComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    this.perPage=3;
+  getMin(): number {
+    return ((this.perPage * this.page) - this.perPage) + 1;
+  }
+
+  getMax(): number {
+    let max = this.perPage * this.page;
+    if (max > this.count) {
+      max = this.count;
+    }
+    return max;
   }
 
   onPage(n: number): void {

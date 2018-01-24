@@ -1,0 +1,17 @@
+<nav class="text-center">
+<div class="pagination " *ngIf="count > 0">
+	<ul class="numbers">
+		<button class="btn btn-primary" (click)="onPrev()" [disabled]="page === 1 || loading" [ngClass]="{ 'disabled': page === 1 || loading }">&lt; Previous</button>
+		
+    <button
+      class="btn btn-primary"
+			*ngFor="let pageNum of getPages()"
+      (click)="onPage(pageNum)"
+			[ngClass]="{'active': pageNum === page, 'disabled': loading}">{{ pageNum }}</button>
+
+		<button class="btn btn-primary" (click)="onNext(true)" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }">Next &gt;</button>
+  </ul>
+</div>
+</nav>
+
+

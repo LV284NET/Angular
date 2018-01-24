@@ -16,16 +16,23 @@ import { Component, OnInit } from '@angular/core';
 export class CitiesComponent implements OnInit {
 
   cities: City[] = [];
+  loading = false;
+  total = 0;
+  page = 1;
+  perPage = 3;
 
   constructor(private cityService:CityService,
-              private route: ActivatedRoute,) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getCities();
+    this.getCount();
   }
 
   getCities(): void{
-    const pageNumber = +this.route.snapshot.paramMap.get('pageNumber');
+    this.loading=true;
+    const pageNumber = this.page;
+    this.cities = [];
 
     this.cityService.getCities(pageNumber).subscribe(response => {
       response.forEach(element => {
@@ -33,7 +40,34 @@ export class CitiesComponent implements OnInit {
           element.Name, element.Description, element.PicturePath))
       });
     })
+    this.loading=false;
+  }
 
+  getCount(){
+    this.loading=true;
+
+    this.cityService.getCitiesCount().subscribe(response => { 
+      this.total = response
+    });
+
+    this.loading=false;
+}
+
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getCities();
+
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getCities();
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getCities();
   }
 
 }

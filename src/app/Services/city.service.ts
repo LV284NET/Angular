@@ -42,5 +42,13 @@ export class CityService {
     })
     .catch((error:any) => Observable.throw(error))
   }
+
+  public getCitiesCount():any {
+    return this._http.get("https://localhost:44317/api/GetCountCity")
+    .map((res: Response) => {
+      return res.json();
+    })
+    .catch((error:any) => Observable.throw(error))
+  }
 }
  
