@@ -16,7 +16,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   animations: [
     trigger('navBarState', [
       state('hidden', style({
-        top: '-70px'
+        top: '-51px'
       })),
       state('shown',   style({
         top: '0'
@@ -85,7 +85,7 @@ export class NavbarComponent implements OnInit {
       let userId=JSON.parse(localStorage.getItem("currentUser")).id;
       this.router.navigateByUrl("/"+userId);
   }
-  
+
   @HostListener("window:scroll", [])
   onWindowScroll() {
     this.currentPosition = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
