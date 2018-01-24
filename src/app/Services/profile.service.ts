@@ -9,15 +9,29 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ProfileService {
 
+  private _urlForGetFavoritePlaces: string = "https://localhost:44317/api/Profile/GetFavoritePlaces";
+  private _urlForGetUserInfo: string = "https://localhost:44317/api/Profile/GetUserInfo";
+
   constructor(private _http: Http) { }
 
   public getUserByEmail(userId: number): any
   {
     let searchLine = "id=" + userId.toString();
 
-    return this._http.get("https://localhost:44317/api/Profile/GetUserInfo", {params: searchLine})
+    return this._http.get(this._urlForGetUserInfo, {params: searchLine})
     .map((res: Response) => 
     {
+      return res.json();
+    })
+    .catch((error: any) => Observable.throw(error));
+  }
+
+  public getFavoritePlaces(userId: number): any
+  {
+    let searchLine = "id=" + userId;
+
+    return this._http.get(this._urlForGetFavoritePlaces, {params: searchLine})
+    .map((res: Response) => {
       return res.json();
     })
     .catch((error: any) => Observable.throw(error));

@@ -24,7 +24,8 @@ export class PlaceListComponent implements OnInit {
     private location: Location,
     public favoritePlace: FavoriteService,
     public authService: AuthorizationService
-  )   {  }
+  )   {  
+  }
 
   ngOnInit() {
     this.getPlaceList();
@@ -32,7 +33,7 @@ export class PlaceListComponent implements OnInit {
 
   private checkExist(placeId: number): boolean
   {
-    return this.favoritePlace.favouritesPlaces.some(x => x === placeId);
+    return this.favoritePlace.favoritesPlaces.some(x => x === placeId);
   }
 
   getPlaceList() {

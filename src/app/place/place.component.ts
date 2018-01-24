@@ -28,11 +28,12 @@ export class PlaceComponent implements OnInit {
 
   ngOnInit() {
     this.getPlace();
+    this.favoritePlace.getFavoritePlaces();
   }
 
   private checkExist(placeId: number): boolean
   {
-    return this.favoritePlace.favouritesPlaces.some(x => x === placeId);
+    return this.favoritePlace.favoritesPlaces.some(x => x === placeId);
   }
   getPlace(): any {
     

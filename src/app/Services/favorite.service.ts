@@ -8,23 +8,22 @@ import { MatSnackBar } from '@angular/material';
 import { errorHandler } from "@angular/platform-browser/src/browser";
 import { ErrorHandlingService } from './error-handling.service';
 import { forEach } from "@angular/router/src/utils/collection";
-//import { RequestOptions } from "@angular/http/src/base_request_options";
 
 @Injectable()
 export class FavoriteService {
 
     private _urlForAddFavoritePlace: string = "https://localhost:44317/api/Place/AddFavoritePlace";
     private _urlForDeleteFavoritePlace: string = "https://localhost:44317/api/Place/DeleteFavoritePlace";
-    private _urlForGetFavoritePlaces: string = "https://localhost:44317/api/Profile/GetFavouritePlaces";
+    private _urlForGetFavoritePlaces: string = "https://localhost:44317/api/Profile/GetFavoritePlaces";
 
-    public favouritesPlaces: number[] = [];
+    public favoritesPlaces: number[] = [];
 
     constructor(private _http: Http,
         private errorService: ErrorHandlingService,
         private SnackBar: MatSnackBar) {
-            this.getFavouritePlaces().subscribe(response => {
+            this.getFavoritePlaces().subscribe(response => {
                 response.forEach(element => {
-                  this.favouritesPlaces.push(element.PlaceId);
+                  this.favoritesPlaces.push(element.PlaceId);
                 })
         })
     }
@@ -33,7 +32,7 @@ export class FavoriteService {
     {
         this.AddFavoritePlace(placeId).subscribe(
             response=>{        
-            this.favouritesPlaces.push(placeId)},                                      
+            this.favoritesPlaces.push(placeId)},                                      
             error=>{
             this.errorService.handleError(error)});
     }    
@@ -42,7 +41,7 @@ export class FavoriteService {
     {
         this.DeleteFavoritePlace(placeId).subscribe(
             response=>{
-            this.favouritesPlaces.splice(this.favouritesPlaces.indexOf(placeId), 1)}, 
+            this.favoritesPlaces.splice(this.favoritesPlaces.indexOf(placeId), 1)}, 
             error=>{
             this.errorService.handleError(error)});
     }
@@ -71,7 +70,7 @@ export class FavoriteService {
             .catch((error: any) => Observable.throw(error));
     }
 
-    public getFavouritePlaces(): any
+    public getFavoritePlaces(): any
     {
       let searchLine = "id=" + JSON.parse(localStorage.getItem("currentUser")).id;
   

@@ -9,3 +9,45 @@
         background-color: aliceblue;
     }
 }
+
+.round2 {
+    border: 2px solid rgb(235, 234, 234);
+    border-radius: 8px;
+    background-color: whitesmoke;
+}
+
+.material-icons{
+    cursor: pointer;
+}
+
+.object-fit_contain { 
+    margin: 10px 0px;
+    min-height: 200px;
+    max-height: 200px;
+    object-fit: contain ;
+    object-position: center;
+    background-color: aliceblue;
+}
+
+@media only screen and (max-width: 1200px) {
+    .object-fit_contain { 
+
+        width: 100%;
+        min-height: 170px;
+        max-height: 170px;
+        object-fit: contain ;
+        object-position: center;
+        background-color: aliceblue;
+    }
+} 
+
+    @media only screen and (max-width: 990px) {
+        .object-fit_contain { 
+            width: 100%;
+            min-height: 200px;
+            max-height: 600px;
+            object-fit: contain ;
+            object-position: center;
+            background-color: aliceblue;
+        }
+    }
