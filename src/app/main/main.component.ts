@@ -1,3 +1,4 @@
+import { Constants } from './../constants';
 import { Component, OnInit } from '@angular/core';
 import { CityService } from './../Services/city.service';
 import { City } from './../city';
@@ -7,6 +8,7 @@ import { SearchCitiesAndPlacesService } from './../Services/search-cities-and-pl
 import { SearchItem } from './../search-item'
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'app-main',
@@ -27,7 +29,7 @@ export class MainComponent implements OnInit {
     private searchService: SearchCitiesAndPlacesService) { }
 
   ngOnInit() {
-    this.cityService.getCities(1).subscribe(response => {
+    this.cityService.getCities(1,Constants.paginationPerPage).subscribe(response => {
       response.forEach(element => {
         this.cities.push(new City(element.Id,
           element.Name, element.Description,

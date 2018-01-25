@@ -7,9 +7,6 @@ import { CityService } from './../Services/city.service';
 import { City } from './../city';
 import { Component, OnInit } from '@angular/core';
 
-
-
-
 @Component({
   selector: 'app-cities',
   templateUrl: './cities.component.html',
@@ -21,15 +18,13 @@ export class CitiesComponent implements OnInit {
   loading = false;
   total = 0;
   page = 1;
-  perPage;
+  pageSize;
   pagesToShow;
-
-  
 
   constructor(private cityService:CityService,
               private route: ActivatedRoute) 
   {
-    this.perPage = Constants.paginationPerPage;
+    this.pageSize = Constants.paginationPerPage;
     this.pagesToShow = Constants.paginationPagesToShow;
   }
 
@@ -40,10 +35,9 @@ export class CitiesComponent implements OnInit {
 
   getCities(): void{
     this.loading=true;
-    const pageNumber = this.page;
     this.cities = [];
 
-    this.cityService.getCities(pageNumber).subscribe(response => {
+    this.cityService.getCities(this.page, this.pageSize).subscribe(response => {
       response.forEach(element => {
         this.cities.push(new City(element.Id, 
           element.Name, element.Description, element.PicturePath))

@@ -16,10 +16,11 @@ export class PlacesService {
 
   constructor(private _http: Http) { }
 
-  public getPlaces(cityId: number, pageNumber:number): any {
+  public getPlaces(cityId: number, pageNumber:number, pageSize:number): any {
 
     let searchLine = "cityId=" + cityId.toString();
     searchLine += "&page=" + pageNumber.toString();
+    searchLine += "&pageSize=" + pageSize.toString();
 
     return this._http
       .get("https://localhost:44317/api/Place/GetPlacesPageByCityId",

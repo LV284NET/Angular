@@ -22,7 +22,7 @@ export class PlaceListComponent implements OnInit {
   loading = false;
   total = 0;
   page = 1;
-  perPage;
+  pageSize;
   pagesToShow;
 
   constructor(private placesService: PlacesService,
@@ -31,7 +31,7 @@ export class PlaceListComponent implements OnInit {
     public favoritePlace: FavoriteService,
     public authService: AuthorizationService)   
   {  
-    this.perPage = Constants.paginationPerPage;
+    this.pageSize = Constants.paginationPerPage;
     this.pagesToShow = Constants.paginationPagesToShow;
   }
 
@@ -51,10 +51,9 @@ export class PlaceListComponent implements OnInit {
   getPlaceList() {
     this.loading=true;
      this.cityID = + this.route.snapshot.paramMap.get('cityId');
-     const pageNumber = this.page;
     this.places = [];
 
-    this.placesService.getPlaces(this.cityID,pageNumber).subscribe(response => {
+    this.placesService.getPlaces(this.cityID,this.page,this.pageSize).subscribe(response => {
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
           element.Name, element.CityName, element.Description,
