@@ -1,17 +1,27 @@
-<nav class="text-center">
-<div class="pagination " *ngIf="count > 0">
-	<ul class="numbers">
-		<button class="btn btn-primary" (click)="onPrev()" [disabled]="page === 1 || loading" [ngClass]="{ 'disabled': page === 1 || loading }">&lt; Previous</button>
+
+<div class="container " *ngIf="count > 0">
+	<div class="row" align="center">
+
+		<button 
+		class="btn btn-primary glyphicon glyphicon-chevron-left" 
+		(click)="onPrev()" 
+		[disabled]="page === 1 || loading" 
+		[ngClass]="{ 'disabled': page === 1 || loading }"></button>
 		
     <button
       class="btn btn-primary"
 			*ngFor="let pageNum of getPages()"
       (click)="onPage(pageNum)"
-			[ngClass]="{'active': pageNum === page, 'disabled': loading}">{{ pageNum }}</button>
+			[ngClass]="{'active': pageNum === page, 'disabled': loading}">
+			{{ pageNum }}</button>
 
-		<button class="btn btn-primary" (click)="onNext(true)" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }">Next &gt;</button>
-  </ul>
+		<button 
+		class="btn btn-primary glyphicon glyphicon-chevron-right" 
+		(click)="onNext(true)" 
+		[disabled]="lastPage() || loading" 
+		[ngClass]="{ 'disabled': lastPage() || loading }"></button>
+
+  </div>
 </div>
-</nav>
 
 
