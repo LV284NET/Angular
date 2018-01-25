@@ -33,8 +33,9 @@ export class CityService {
     .catch((error: any) => Observable.throw(error.json().error || "Server error"));
   }
 
-  public getCities(pageNumber: number):any {
+  public getCities(pageNumber: number, pageSize:number):any {
     let searchLine = "page=" + pageNumber;
+    searchLine += "&pageSize=" + pageSize.toString();
 
     return this._http.get("https://localhost:44317/api/GetCities" , {params: searchLine})
     .map((res:Response) => {
