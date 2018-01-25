@@ -26,6 +26,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
+import { DisqusModule } from 'ngx-disqus';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { WINDOW_PROVIDERS } from "./Services/window.service";
     MatSnackBarModule,
     MatAutocompleteModule,
     MatInputModule,
+    DisqusModule.forRoot('ngx')
   ],
   providers: [
     AuthorizationService,
