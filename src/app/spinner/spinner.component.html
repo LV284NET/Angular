@@ -1,7 +1,11 @@
-<div *ngIf="isShown">
+<!-- <div [@navigationEvent]="this.state">
   <img *ngIf="loadingImage" [src]="loadingImage"/>
   <ng-content></ng-content>
+</div> -->
+
+<!-- *ngIf="isShown" -->
+
+<div>
+  <img [src]="loadingImage"/>
+  <ng-content></ng-content>
 </div>
-
-
-<!-- <mat-spinner mode="indeterminate"></mat-spinner> -->

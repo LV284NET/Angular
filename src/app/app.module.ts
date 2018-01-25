@@ -27,6 +27,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
 import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService} from './Services/spinner.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+
 
 
 @NgModule({
@@ -47,7 +51,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
   entryComponents: [
     LoginComponent,
     RegisterComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,10 @@ import { SpinnerComponent } from './spinner/spinner.component';
     FavoriteService,
     ProfileService,
     WINDOW_PROVIDERS,
+    SpinnerService,
+    SpinnerComponent,
+    // MatDialog,
+    MatDialogRef,
   ],
   bootstrap: [AppComponent]
 })

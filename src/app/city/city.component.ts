@@ -10,6 +10,8 @@ import { Location } from '@angular/common';
 import { FavoriteService } from '../Services/favorite.service';
 import { AuthorizationService } from "../Services/AuthorizationService";
 import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { SpinnerComponent } from '../spinner/spinner.component'
 
 
 @Component({
@@ -22,13 +24,15 @@ export class CityComponent implements OnInit {
 
   city: City;
   places: Place[] = [];
+  private dialogRef: any;
 
   constructor(private placeService:PlacesService, 
                private cityService:CityService,
                private route: ActivatedRoute,
                private location: Location,
                public favoritePlace: FavoriteService,
-               public authService: AuthorizationService
+               public authService: AuthorizationService,
+               public dialog: MatDialog
               ) {
               }
 
@@ -55,6 +59,7 @@ export class CityComponent implements OnInit {
   }
 
   getPlaces(){
+    this.showSpinner();
     const id = +this.route.snapshot.paramMap.get('cityId');
 
     this.placeService.getPlacesForCityPageById(id)
@@ -65,6 +70,13 @@ export class CityComponent implements OnInit {
               element.PicturePlace));
           });
         });
+  }
+
+  private showSpinner() {
+    let dialog = this.dialog.closeAll()
+    this.dialogRef = this.dialog.open(SpinnerComponent, {
+      width: "500px"        
+    });
   }
 
 }

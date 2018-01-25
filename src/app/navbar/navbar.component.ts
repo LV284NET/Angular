@@ -28,11 +28,10 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class NavbarComponent implements OnInit {
 
-  public state: string = 'shown';
-
   private previousPosition: number = 0;
   private currentPosition: number = 0;
 
+  public state: string = 'shown';
 
   constructor(
     public authService: AuthorizationService, 
