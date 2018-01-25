@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProfileService } from '../Services/profile.service';
 import { User } from '../user';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { Place } from '../place';
 import { FavoriteService } from "../Services/favorite.service";
-
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
     private ProfileService: ProfileService,
     private SnackBar: MatSnackBar,
     private router: Router,
+    public dialog: MatDialog,
     private favoriteService: FavoriteService
   ) { 
     this.user = new User("", "", "");
@@ -79,5 +80,12 @@ export class ProfileComponent implements OnInit {
       response.forEach(element => {
         this.favoritePlaces.push(new Place(element.PlaceId,element.Name, "", "", element.PicturePlace));
       })})
+  }
+
+  changePassword() {
+    let dialog = this.dialog.closeAll();
+    let dialogRef = this.dialog.open(ChangePasswordComponent, {
+      width: "500px"
+    });
   }
 }

@@ -10,7 +10,9 @@
         <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
           <h3>{{user.Email}}</h3> 
           <h3>{{user.FirstName}}</h3>
-          <h3>{{user.LastName}}</h3>  
+          <h3>{{user.LastName}}</h3>
+            <a class="pull-left down" (click)="changePassword()">
+              <i class="material-icons">security</i>  Change Password</a>
         </section>  
       </section>
     </div>

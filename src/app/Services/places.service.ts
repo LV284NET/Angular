@@ -16,11 +16,14 @@ export class PlacesService {
 
   constructor(private _http: Http) { }
 
-  public getPlaces(cityId: number): any {
+  public getPlaces(cityId: number, pageNumber:number): any {
+
     let searchLine = "cityId=" + cityId.toString();
+    searchLine += "&page=" + pageNumber.toString();
+
     return this._http
-      .get("https://localhost:44317/api/Place/GetPlacesByCityId",
-      { params: searchLine })
+      .get("https://localhost:44317/api/Place/GetPlacesPageByCityId",
+      { params: searchLine})
       .map((res: Response) => {
         return res.json();
       })
@@ -52,5 +55,19 @@ export class PlacesService {
       })
       .catch((error: any) => Observable
         .throw(error.json().error || "Server error"));
+  }
+
+  public getPlacesCount(cityId: number): any {
+
+    let searchLine = "cityId=" + cityId.toString();
+
+    return this._http
+      .get("https://localhost:44317/api/Place/GetCountPlaces",
+      { params: searchLine })
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error: any) => Observable
+        .throw(error));
   }
 }  

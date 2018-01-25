@@ -28,9 +28,12 @@ export class ProfileService {
 
   public getFavoritePlaces(userId: number): any
   {
-    let searchLine = "id=" + userId;
+    //let searchLine = "id=" + userId;
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
 
-    return this._http.get(this._urlForGetFavoritePlaces, {params: searchLine})
+    return this._http.get(this._urlForGetFavoritePlaces, {headers: headers})
     .map((res: Response) => {
       return res.json();
     })

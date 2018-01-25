@@ -1,3 +1,4 @@
+import { PaginationComponent } from './pagination/pagination.component';
 import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -26,7 +27,10 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
+import { DisqusModule } from 'ngx-disqus';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
+ 
 
 @NgModule({
   declarations: [
@@ -41,11 +45,14 @@ import { WINDOW_PROVIDERS } from "./Services/window.service";
     CitiesComponent,
     FeedbackComponent,
     ProfileComponent,
+    ChangePasswordComponent,
+    PaginationComponent
   ],
   entryComponents: [
     LoginComponent,
     RegisterComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +66,7 @@ import { WINDOW_PROVIDERS } from "./Services/window.service";
     MatSnackBarModule,
     MatAutocompleteModule,
     MatInputModule,
+    DisqusModule.forRoot('ngx')
   ],
   providers: [
     AuthorizationService,
