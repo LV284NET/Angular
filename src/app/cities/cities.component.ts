@@ -1,3 +1,4 @@
+import { Constants } from './../constants';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
@@ -5,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CityService } from './../Services/city.service';
 import { City } from './../city';
 import { Component, OnInit } from '@angular/core';
+
 
 
 
@@ -19,10 +21,17 @@ export class CitiesComponent implements OnInit {
   loading = false;
   total = 0;
   page = 1;
-  perPage = 3;
+  perPage;
+  pagesToShow;
+
+  
 
   constructor(private cityService:CityService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) 
+  {
+    this.perPage = Constants.paginationPerPage;
+    this.pagesToShow = Constants.paginationPagesToShow;
+  }
 
   ngOnInit() {
     this.getCities();

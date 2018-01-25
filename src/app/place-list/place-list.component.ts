@@ -1,4 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
+import { Constants } from './../constants';
 import { Location } from '@angular/common';
 import { PlacesService } from '../Services/places.service';
 import { Place } from '../place';
@@ -21,14 +22,17 @@ export class PlaceListComponent implements OnInit {
   loading = false;
   total = 0;
   page = 1;
-  perPage = 3;
+  perPage;
+  pagesToShow;
 
   constructor(private placesService: PlacesService,
     private route: ActivatedRoute,
     private location: Location,
     public favoritePlace: FavoriteService,
-    public authService: AuthorizationService
-  )   {  
+    public authService: AuthorizationService)   
+  {  
+    this.perPage = Constants.paginationPerPage;
+    this.pagesToShow = Constants.paginationPagesToShow;
   }
 
   ngOnInit() {
