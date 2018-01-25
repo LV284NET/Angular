@@ -4,12 +4,14 @@ export class Place {
     cityName: string;
     description: string;
     picture: any;
+    cityId: number;
 
-    constructor(placeId: number, name: string, cityName: string, description: string, picture: any){
+    constructor(placeId: number, name: string, cityName: string, description: string, picture: any, cityId?: number){
         this.placeId=placeId;
         this.name = name;
         this.cityName = cityName;
         this.description = description;
         this.picture = picture;
+        this.cityId=cityId;
     }
 }

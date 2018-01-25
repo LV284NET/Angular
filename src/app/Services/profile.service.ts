@@ -14,11 +14,13 @@ export class ProfileService {
 
   constructor(private _http: Http) { }
 
-  public getUserByEmail(userId: number): any
+  public getUser(userId: number): any
   {
+    var headers= new Headers();
     let searchLine = "id=" + userId.toString();
+    headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
 
-    return this._http.get(this._urlForGetUserInfo, {params: searchLine})
+    return this._http.get(this._urlForGetUserInfo, {params: searchLine, headers: headers})
     .map((res: Response) => 
     {
       return res.json();
@@ -28,12 +30,12 @@ export class ProfileService {
 
   public getFavoritePlaces(userId: number): any
   {
-    //let searchLine = "id=" + userId;
+    let searchLine = "id=" + userId;
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
 
-    return this._http.get(this._urlForGetFavoritePlaces, {headers: headers})
+    return this._http.get(this._urlForGetFavoritePlaces, {params: searchLine, headers: headers})
     .map((res: Response) => {
       return res.json();
     })

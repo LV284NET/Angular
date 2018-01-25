@@ -40,20 +40,13 @@ export class ProfileComponent implements OnInit {
     else
     {
       this.router.navigateByUrl("/main");
-      //this.SnackBar.open("Not permitted", "Got It");
+      this.SnackBar.open("Not permitted", "Got It");
     }
-  }
-
-  checkUserProfile(): boolean
-  {
-      const userId = +this.route.snapshot.paramMap.get('Id');    
-      return (userId == JSON.parse(localStorage.getItem("currentUser")).id);
   }
 
   getInfo(): any 
   {
-    const userId = +this.route.snapshot.paramMap.get('Id')    
-    this.ProfileService.getUserByEmail(userId)
+    this.ProfileService.getUser(JSON.parse(localStorage.getItem("currentUser")).id)
       .subscribe(response => 
         {
             this.user = new User 
@@ -74,11 +67,10 @@ export class ProfileComponent implements OnInit {
 
   getFavoritePlaces(): any
   {
-    const userId = +this.route.snapshot.paramMap.get('Id');
     
-    this.ProfileService.getFavoritePlaces(userId).subscribe(response => {
+    this.ProfileService.getFavoritePlaces(JSON.parse(localStorage.getItem("currentUser")).id).subscribe(response => {
       response.forEach(element => {
-        this.favoritePlaces.push(new Place(element.PlaceId,element.Name, "", "", element.PicturePlace));
+        this.favoritePlaces.push(new Place(element.PlaceId, element.Name, element.CityName, element.Description, element.PicturePlace, element.CityId));
       })})
   }
 

@@ -52,9 +52,10 @@ export class FavoriteService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
-
         //var content = "UserId=" + JSON.parse(localStorage.getItem("currentUser")).id + "&PlaceID="+placeId;
-        return this._http.post(this._urlForAddFavoritePlace, JSON.stringify({"PlaceId" : placeId}), { headers: headers })
+        return this._http.post(this._urlForAddFavoritePlace, 
+            JSON.stringify({"UserId": JSON.parse(localStorage.getItem("currentUser")).id, "PlaceId" : placeId}), 
+            { headers: headers })
             .map((res: Response) => {
                    return res;
                 })
@@ -66,10 +67,11 @@ export class FavoriteService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
-
-//        var content = "UserId=" + JSON.parse(localStorage.getItem("currentUser")).id + "&PlaceId="+placeId;
+//      var content = "UserId=" + JSON.parse(localStorage.getItem("currentUser")).id + "&PlaceId="+placeId;
 //        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this._http.post(this._urlForDeleteFavoritePlace, JSON.stringify({"PlaceId" : placeId}), {headers: headers} )
+        return this._http.delete(this._urlForDeleteFavoritePlace, 
+            {body: JSON.stringify({"UserId": JSON.parse(localStorage.getItem("currentUser")).id, "PlaceId" : placeId}),
+            headers: headers} )
             .map((res: Response) => {
                    return res;
                 })
@@ -78,12 +80,12 @@ export class FavoriteService {
 
     public getFavoritePlaces(): any
     {
-      //let searchLine = "id=" + JSON.parse(localStorage.getItem("currentUser")).id;
+      let searchLine = "id=" + JSON.parse(localStorage.getItem("currentUser")).id;
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
 
-      return this._http.get(this._urlForGetFavoritePlaces, {headers: headers})
+      return this._http.get(this._urlForGetFavoritePlaces, {params: searchLine, headers: headers})
       .map((res: Response) => {
         return res.json();
       })

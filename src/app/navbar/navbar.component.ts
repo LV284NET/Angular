@@ -82,8 +82,7 @@ export class NavbarComponent implements OnInit {
   }
 
   profile(){
-      let userId=JSON.parse(localStorage.getItem("currentUser")).id;
-      this.router.navigateByUrl("/"+userId);
+      this.router.navigateByUrl("/profile");
   }
 
   @HostListener("window:scroll", [])

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'city/:cityId', component: CityComponent},
   { path: 'city/:cityId/place-list', component: PlaceListComponent },
   { path: 'city/:cityId/place/:placeId', component: PlaceComponent },
-  { path: ':Id', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({
