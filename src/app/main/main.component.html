@@ -79,15 +79,15 @@
               col-md-6 col-md-offset-3">
     <form class="form">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="Search city or place" aria-label="Number" matInput [formControl]="formInput" [matAutocomplete]="auto" >
+        <input type="text" placeholder="Search city or place" aria-label="Number" matInput [formControl]="formInput" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let item of searchResult" [value]="item.name">
+          <mat-option *ngFor="let item of searchResult" [value]="item.name" (onSelectionChange)="item.goToPage()">
 
-            <a *ngIf="item.type == 'City'" routerLink="/city/{{item.cityId}}" class="search-option">{{item.name}}
-            </a>
+            <a *ngIf="item.type == 'City'" routerLink="/city/{{item.cityId}}" class="search-option" data-type="city"
+            >{{item.name}}</a>
 
-            <a *ngIf="item.type == 'Place'" routerLink="/city/{{item.cityId}}/place/{{item.placeId}}" class="search-option">{{item.name}}
-            </a>
+            <a *ngIf="item.type == 'Place'" routerLink="/city/{{item.cityId}}/place/{{item.placeId}}" 
+            class="search-option" data-type="place">{{item.name}}</a>
 
           </mat-option>
         </mat-autocomplete>

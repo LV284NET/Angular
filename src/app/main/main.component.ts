@@ -7,6 +7,8 @@ import { SearchCitiesAndPlacesService } from './../Services/search-cities-and-pl
 import { SearchItem } from './../search-item'
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
+import { MatOptionSelectionChange } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -24,7 +26,8 @@ export class MainComponent implements OnInit {
   inputLine: string;
 
   constructor(private cityService: CityService,
-    private searchService: SearchCitiesAndPlacesService) { }
+    private searchService: SearchCitiesAndPlacesService, 
+    private router: Router) { }
 
   ngOnInit() {
     this.cityService.getCities().subscribe(response => {
@@ -38,7 +41,7 @@ export class MainComponent implements OnInit {
     });
 
     this.formInput.valueChanges
-      .debounceTime(1000)
+      .debounceTime(500)
       .subscribe(input => {
         this.inputLine = input.toString();
         if (this.inputLine != null && this.inputLine != "") {
@@ -46,20 +49,21 @@ export class MainComponent implements OnInit {
           this.searchService.searchCitiesAndPlaces(this.inputLine)
             .subscribe(response => {
               response.forEach(element => {
-                if(element.Type == "City") {
+                if (element.Type == "City") {
                   this.searchResult.push(new SearchItem(
                     element.Id,
-                    null,                    
+                    null,
                     element.Name,
-                    element.Type));
+                    element.Type,
+                    this.router));
                 } else {
                   this.searchResult.push(new SearchItem(
                     element.CityId,
                     element.Id,
                     element.Name,
-                    element.Type));
+                    element.Type,
+                    this.router));
                 }
-                
               });
             });
         }
@@ -67,5 +71,6 @@ export class MainComponent implements OnInit {
           this.searchResult.length = 0;
         }
       })
+      
   }
 }

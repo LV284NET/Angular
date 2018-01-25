@@ -5,9 +5,8 @@ export class SearchItem {
     placeId: number;
     name: string;
     type: string;
-    router: Router;
 
-    constructor(cityId: number, placeId: number, name: string, type: string){
+    constructor(cityId: number, placeId: number, name: string, type: string, private router: Router){
         this.cityId = cityId;
         this.placeId = placeId;
         this.name = name;
@@ -15,20 +14,19 @@ export class SearchItem {
     }
 
     public goToPage() {
-        if(this.type == "City"){
-            this.goToPage;
+        if(this.type == "City") {
+            this.goToCityPage();
         }
-        else{
-            this.goToPlacePage;
+        else {
+            this.goToPlacePage();
         }
-
     }
 
-    private goToPlacePage(){
-        this.router.navigateByUrl('/city/{{this.cityId}}/place/{{this.placeId}}')
+    private goToPlacePage() {
+        this.router.navigateByUrl(`/city/${this.cityId}/place/${this.placeId}`)
     }
 
-    private goToCityPage(){
-        this.router.navigateByUrl('/city/{{this.cityId}}');
+    private goToCityPage() {
+        this.router.navigateByUrl(`/city/${this.cityId}`);
     }
 }
