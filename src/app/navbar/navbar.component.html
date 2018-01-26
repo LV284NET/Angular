@@ -31,10 +31,7 @@
           </li>
         </ul>
         <ul *ngIf="authService.token == null;else registered" class="nav navbar-nav navbar-right">
-          <li>
-            <a (click)="suggestions()">
-              <span class="glyphicon glyphicon-send"></span> Feedback</a>
-          </li>
+       
           <li>
             <a (click)="signUp()">
               <span class="glyphicon glyphicon-user"></span> Sign Up</a>

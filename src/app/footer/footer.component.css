@@ -1,0 +1,12 @@
+.footer {
+    margin: 5px;
+    padding: 1rem;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color:black;
+}
+a:hover {
+  cursor: pointer;  
+}
+
