@@ -6,6 +6,7 @@ import { Place } from '../place';
 import { element } from 'protractor';
 import { FavoriteService } from '../Services/favorite.service';
 import { AuthorizationService } from "../Services/AuthorizationService";
+import {OnClickEvent} from "angular-star-rating/star-rating-struct";
 
 @Component({
   selector: 'app-place',
@@ -13,10 +14,12 @@ import { AuthorizationService } from "../Services/AuthorizationService";
   styleUrls: ['./place.component.css']
 })
 export class PlaceComponent implements OnInit {
+  onClickResult:OnClickEvent;
 
   page= "/city/" +this.route.snapshot.paramMap.get('cityId') + "/place/" + this.route.snapshot.paramMap.get('placeId');
 
   place: Place;
+  placeRating: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +30,12 @@ export class PlaceComponent implements OnInit {
   ) { 
     this.place = new Place(0, "", "", "", "");
   }
+
+  onClick = ($event:OnClickEvent) => {
+    this.placeRating = $event.rating;
+    console.log('onRatingUpdated $event: ', $event);
+}
+
 
   ngOnInit() {
     this.getPlace();

@@ -30,9 +30,8 @@ import { WINDOW_PROVIDERS } from "./Services/window.service";
 import { DisqusModule } from 'ngx-disqus';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { StarRatingModule } from 'angular-star-rating';
  
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +67,8 @@ import { FooterComponent } from './footer/footer.component';
     MatSnackBarModule,
     MatAutocompleteModule,
     MatInputModule,
-    DisqusModule.forRoot('ngx')
+    DisqusModule.forRoot('ngx'),
+    StarRatingModule.forRoot()
   ],
   providers: [
     AuthorizationService,

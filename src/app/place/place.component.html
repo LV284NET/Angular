@@ -7,10 +7,23 @@
         <img class="img-responsive img-thumbnail" [src]="place.picture">
       </section>
 
+      
       <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-        <h3>{{place.name}}</h3>
-
-        <article>
+        <div class="row">
+        <section class="col-xs-6">
+            <h3>{{place.name}}
+            </h3>
+          </section>
+          <section class="col-xs-6" style="margin-top: 20px">            
+            <ul *ngIf="authService.token != null">
+                <star-rating-comp [speed]="'slow'" [starType]="'svg'" 
+                [hoverEnabled]="true"
+                (onClick)="onClick($event)" >                             
+                </star-rating-comp>
+            </ul>
+          </section>
+        </div>
+          <article>
           <br>
           <p>{{place.description}}</p>
         </article>
