@@ -29,6 +29,7 @@ import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
 import { DisqusModule } from 'ngx-disqus';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FooterComponent } from './footer/footer.component';
 
  
 
@@ -46,7 +47,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     FeedbackComponent,
     ProfileComponent,
     ChangePasswordComponent,
-    PaginationComponent
+    PaginationComponent,
+    FooterComponent
   ],
   entryComponents: [
     LoginComponent,
