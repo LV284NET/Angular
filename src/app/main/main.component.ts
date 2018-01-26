@@ -28,11 +28,11 @@ export class MainComponent implements OnInit {
   inputLine: string;
 
   constructor(private cityService: CityService,
-    private searchService: SearchCitiesAndPlacesService, 
+    private searchService: SearchCitiesAndPlacesService,
     private router: Router) { }
 
   ngOnInit() {
-    this.cityService.getCities(1,Constants.paginationPerPage).subscribe(response => {
+    this.cityService.getCities(1, Constants.paginationPerPage).subscribe(response => {
       response.forEach(element => {
         this.cities.push(new City(element.Id,
           element.Name, element.Description,
@@ -72,7 +72,6 @@ export class MainComponent implements OnInit {
         else {
           this.searchResult.length = 0;
         }
-      })
-      
+      });
   }
 }

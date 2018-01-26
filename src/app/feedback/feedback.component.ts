@@ -21,6 +21,7 @@ import { Action } from 'rxjs/scheduler/Action';
     lastName: FormControl;
     email: FormControl;
     suggestions: FormControl;
+    suggestion: any;
 
     constructor(private dialogRef: MatDialogRef<FeedbackComponent>, private snackBar: MatSnackBar) { }
 
