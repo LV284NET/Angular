@@ -9,6 +9,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 import { WINDOW } from "../Services/window.service";
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -65,7 +66,7 @@ export class NavbarComponent implements OnInit {
   }
 
   signIn() {
-    this.authService.UserId;
+     this.authService.UserId;
     let dialog = this.dialog.closeAll();
     let dialogRef = this.dialog.open(LoginComponent, {
       width: "500px"

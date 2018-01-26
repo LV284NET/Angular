@@ -12,6 +12,8 @@ import { User } from '../user';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import 'rxjs/add/Observable/throw';
 import { ErrorHandlingService } from '../Services/error-handling.service';
+import { SpinnerService } from '../Services/spinner.service';
+import { Constants } from './../constants';
 
 @Component({
   selector: 'app-register',
@@ -35,17 +37,28 @@ export class RegisterComponent implements OnInit {
 
   errorMessage: string;
 
-  constructor(private authorezeService: AuthorizationService, private errorService: ErrorHandlingService,
-    private dialogRef: MatDialogRef<RegisterComponent>, private snackBar: MatSnackBar) { }
+  constructor(
+    private authorezeService: AuthorizationService, 
+    private errorService: ErrorHandlingService,
+    private dialogRef: MatDialogRef<RegisterComponent>, 
+    private snackBar: MatSnackBar,
+    private spinnerService: SpinnerService
+  ) { }
+
   ngOnInit() {
     this.createFormControls();
     this.createForm();
   }
 
   register(): void {
+    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
       .subscribe(
       response => {
+
+        this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+
         this.snackBar.open("You are registered! Check your email", "Got it", {
           duration: 2000
         });

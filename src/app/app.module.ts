@@ -31,7 +31,8 @@ import { DisqusModule } from 'ngx-disqus';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService} from './Services/spinner.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'; 
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Constants } from './constants'
 
 @NgModule({
   declarations: [
@@ -55,7 +56,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     RegisterComponent,
     FeedbackComponent,
     ChangePasswordComponent
-    //SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,9 +80,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     ProfileService,
     WINDOW_PROVIDERS,
     SpinnerService,
-    //SpinnerComponent,
-    //MatDialog,
-    //MatDialogRef,
+    Constants
   ],
   bootstrap: [AppComponent]
 })

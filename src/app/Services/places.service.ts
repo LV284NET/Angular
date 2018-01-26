@@ -19,8 +19,8 @@ export class PlacesService {
   public getPlaces(cityId: number, pageNumber:number, pageSize:number): any {
 
     let searchLine = "cityId=" + cityId.toString();
-    searchLine += "&page=" + pageNumber.toString();
-    searchLine += "&pageSize=" + pageSize.toString();
+        searchLine += "&page=" + pageNumber.toString();
+        searchLine += "&pageSize=" + pageSize.toString();
 
     return this._http
       .get("https://localhost:44317/api/Place/GetPlacesPageByCityId",
@@ -51,9 +51,9 @@ export class PlacesService {
     return this._http
       .get("https://localhost:44317/api/Place/GetTopPlacesByCityId",
       { params: searchLine })
-      .map((res: Response) => {
-        return res.json();
-      })
+      .map((res: Response) => { 
+       return res.json();
+      })      
       .catch((error: any) => Observable
         .throw(error.json().error || "Server error"));
   }
