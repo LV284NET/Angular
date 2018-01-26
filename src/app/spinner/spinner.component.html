@@ -1,11 +1,4 @@
-<!-- <div [@navigationEvent]="this.state">
+<div *ngIf="isShown">
   <img *ngIf="loadingImage" [src]="loadingImage"/>
-  <ng-content></ng-content>
-</div> -->
-
-<!-- *ngIf="isShown" -->
-
-<div>
-  <img [src]="loadingImage"/>
-  <ng-content></ng-content>
+  <!-- <ng-content></ng-content> -->
 </div>

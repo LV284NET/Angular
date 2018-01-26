@@ -52,7 +52,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     LoginComponent,
     RegisterComponent,
     FeedbackComponent,
-    SpinnerComponent,
+    //SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,9 +76,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     ProfileService,
     WINDOW_PROVIDERS,
     SpinnerService,
-    SpinnerComponent,
-    // MatDialog,
-    MatDialogRef,
+    //SpinnerComponent,
+    //MatDialog,
+    //MatDialogRef,
   ],
   bootstrap: [AppComponent]
 })
