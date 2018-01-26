@@ -6,11 +6,11 @@ export class Constants {
     static PaginationConstants = class{
 
         //How many elements will be on One page
-        static ElementsPerPage = 3;
+        static ElementsPerPage: number = 3;
 
         //How many pages will be shown in pagination (if 3 will be shown current page
          // -1 and +1 page, if 5 current page +2 and -2)
-        static PagesToShow = 5;
+        static PagesToShow: number = 5;
     }
 
     //Constants for SpinnerComponent

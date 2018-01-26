@@ -38,7 +38,7 @@ export class MainComponent implements OnInit {
     //Show Load Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
-    this.cityService.getCities(1,Constants.ElementsPerPage).subscribe(response => {
+    this.cityService.getCities(1,Constants.PaginationConstants.ElementsPerPage).subscribe(response => {
       //Hide Load Animation
       this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
