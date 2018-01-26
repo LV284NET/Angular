@@ -29,9 +29,11 @@ import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
 import { DisqusModule } from 'ngx-disqus';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { FooterComponent } from './footer/footer.component';
-
- 
+import { FooterComponent } from './footer/footer.component'; 
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService} from './Services/spinner.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Constants } from './constants'
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { FooterComponent } from './footer/footer.component';
     ProfileComponent,
     ChangePasswordComponent,
     PaginationComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent,
   ],
   entryComponents: [
     LoginComponent,
@@ -78,6 +81,8 @@ import { FooterComponent } from './footer/footer.component';
     FavoriteService,
     ProfileService,
     WINDOW_PROVIDERS,
+    SpinnerService,
+    Constants
   ],
   bootstrap: [AppComponent]
 })

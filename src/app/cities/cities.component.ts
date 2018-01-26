@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CityService } from './../Services/city.service';
 import { City } from './../city';
 import { Component, OnInit } from '@angular/core';
+import { SpinnerService } from '../Services/spinner.service';
 
 @Component({
   selector: 'app-cities',
@@ -21,8 +22,11 @@ export class CitiesComponent implements OnInit {
   elementsPerPage;
   pagesToShow;
 
-  constructor(private cityService:CityService,
-              private route: ActivatedRoute) 
+  constructor(
+    private cityService:CityService,
+    private route: ActivatedRoute,
+    private spinnerService: SpinnerService
+  ) 
   {
     this.elementsPerPage = Constants.ElementsPerPage;
     this.pagesToShow = Constants.PagesToShow;
@@ -34,10 +38,15 @@ export class CitiesComponent implements OnInit {
   }
 
   getCities(): void{
+    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+
     this.loading=true;
     this.cities = [];
 
     this.cityService.getCities(this.currentPage, this.elementsPerPage).subscribe(response => {
+
+      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+
       response.forEach(element => {
         this.cities.push(new City(element.Id, 
           element.Name, element.Description, element.PicturePath))
@@ -47,15 +56,20 @@ export class CitiesComponent implements OnInit {
   }
 
   getCount(){
+    //Show Load Animation
+    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+
     this.loading=true;
 
-    this.cityService.getCitiesCount().subscribe(response => { 
+    this.cityService.getCitiesCount().subscribe(response => {
+      //Hide Load Animation
+      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+      
       this.countOfElements = response
     });
 
     this.loading=false;
 }
-
 
   goToPage(n: number): void {
     this.currentPage = n;

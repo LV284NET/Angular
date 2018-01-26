@@ -7,5 +7,11 @@ export class Constants{
     // -1 and +1 page, if 5 current page +2 and -2)
     public static PagesToShow=5;
 
-    //
+    //Constants for Loading Animation
+    static LoadingAnimation = class{
+
+        static AnimationUrl: string = '../assets/img/dance.gif';
+
+        static AnimationName: string = 'LoadingProcess';
+    }
 }

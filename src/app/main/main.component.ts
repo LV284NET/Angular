@@ -10,7 +10,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import { MatOptionSelectionChange } from '@angular/material';
 import { Router } from '@angular/router';
-
+import { SpinnerService } from '../Services/spinner.service';
 
 @Component({
   selector: 'app-main',
@@ -27,12 +27,21 @@ export class MainComponent implements OnInit {
   formInput: FormControl = new FormControl();
   inputLine: string;
 
-  constructor(private cityService: CityService,
-    private searchService: SearchCitiesAndPlacesService, 
-    private router: Router) { }
+  constructor(
+    private cityService: CityService,
+    private searchService: SearchCitiesAndPlacesService,
+    private router: Router,
+    private spinnerService: SpinnerService
+  ) { }
 
   ngOnInit() {
+    //Show Load Animation
+    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+
     this.cityService.getCities(1,Constants.ElementsPerPage).subscribe(response => {
+      //Hide Load Animation
+      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+
       response.forEach(element => {
         this.cities.push(new City(element.Id,
           element.Name, element.Description,
@@ -73,6 +82,5 @@ export class MainComponent implements OnInit {
           this.searchResult.length = 0;
         }
       })
-      
   }
 }

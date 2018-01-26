@@ -4,10 +4,12 @@ import { Location } from '@angular/common';
 import { PlacesService } from '../Services/places.service';
 import { Place } from '../place';
 import { element } from 'protractor';
-import {MatIcon} from '@angular/material';
+import { MatIcon } from '@angular/material';
 import { FavoriteService } from '../Services/favorite.service';
 import { AuthorizationService } from "../Services/AuthorizationService";
 import { Component, OnInit, Input, Inject } from '@angular/core';
+import { SpinnerService } from '../Services/spinner.service';
+
 
 @Component({
   selector: 'app-place-list',
@@ -29,7 +31,9 @@ export class PlaceListComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     public favoritePlace: FavoriteService,
-    public authService: AuthorizationService)   
+    public authService: AuthorizationService,
+    private spinnerService: SpinnerService
+  )   
   {  
     this.elementsPerPage = Constants.ElementsPerPage;
     this.pagesToShow = Constants.PagesToShow;
@@ -49,11 +53,17 @@ export class PlaceListComponent implements OnInit {
   }
 
   getPlaceList() {
+    //Show Load Animation
+    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+
     this.loading=true;
-     this.cityID = + this.route.snapshot.paramMap.get('cityId');
+    this.cityID = + this.route.snapshot.paramMap.get('cityId');
     this.places = [];
 
     this.placesService.getPlaces(this.cityID,this.currentPage,this.elementsPerPage).subscribe(response => {
+      //Hide Load Animation
+      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
           element.Name, element.CityName, element.Description,
@@ -65,10 +75,16 @@ export class PlaceListComponent implements OnInit {
   }
 
   getCount(){
+    //Show Load Animation
+    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+
     this.loading=true;
 
-    this.placesService.getPlacesCount(this.cityID).subscribe(response => { 
-      this.countOfElements = response
+    this.placesService.getPlacesCount(this.cityID).subscribe(response => {
+      //Hide Load Animation
+      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+
+      this.countOfElements = response;
     });
 
     this.loading=false;
