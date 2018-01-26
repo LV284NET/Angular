@@ -27,8 +27,16 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
+<<<<<<< HEAD
 import { DisqusModule } from 'ngx-disqus';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+=======
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService} from './Services/spinner.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+
+>>>>>>> loading-animation
 
  
 
@@ -45,14 +53,22 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     CitiesComponent,
     FeedbackComponent,
     ProfileComponent,
+<<<<<<< HEAD
     ChangePasswordComponent,
     PaginationComponent
+=======
+    SpinnerComponent,
+>>>>>>> loading-animation
   ],
   entryComponents: [
     LoginComponent,
     RegisterComponent,
     FeedbackComponent,
+<<<<<<< HEAD
     ChangePasswordComponent
+=======
+    //SpinnerComponent,
+>>>>>>> loading-animation
   ],
   imports: [
     BrowserModule,
@@ -76,6 +92,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     FavoriteService,
     ProfileService,
     WINDOW_PROVIDERS,
+    SpinnerService,
+    //SpinnerComponent,
+    //MatDialog,
+    //MatDialogRef,
   ],
   bootstrap: [AppComponent]
 })
