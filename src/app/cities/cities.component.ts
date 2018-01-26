@@ -28,8 +28,8 @@ export class CitiesComponent implements OnInit {
     private spinnerService: SpinnerService
   ) 
   {
-    this.elementsPerPage = Constants.ElementsPerPage;
-    this.pagesToShow = Constants.PagesToShow;
+    this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
+    this.pagesToShow = Constants.PaginationConstants.PagesToShow;
   }
 
   ngOnInit() {
@@ -38,14 +38,14 @@ export class CitiesComponent implements OnInit {
   }
 
   getCities(): void{
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     this.loading=true;
     this.cities = [];
 
     this.cityService.getCities(this.currentPage, this.elementsPerPage).subscribe(response => {
 
-      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
       response.forEach(element => {
         this.cities.push(new City(element.Id, 
@@ -57,13 +57,13 @@ export class CitiesComponent implements OnInit {
 
   getCount(){
     //Show Load Animation
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     this.loading=true;
 
     this.cityService.getCitiesCount().subscribe(response => {
       //Hide Load Animation
-      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
       
       this.countOfElements = response
     });

@@ -48,7 +48,7 @@ import { Constants } from './constants';
 })
 export class AppComponent {
 
-  public spinnerName: string = Constants.LoadingAnimation.AnimationName;
+  public spinnerName: string = Constants.SpinnerComponentConstants.AnimationName;
 
   constructor() { }
 

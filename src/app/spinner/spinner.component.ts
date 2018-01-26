@@ -11,7 +11,7 @@ import { Constants } from './../constants';
 export class SpinnerComponent implements OnInit {
 
   @Input() name: string;
-  @Input() loadingImage: string = Constants.LoadingAnimation.AnimationUrl;
+  @Input() loadingImage: string = Constants.SpinnerComponentConstants.AnimationUrl;
   @Input() isShown: boolean = false;
 
   public spinnerName: string;
@@ -22,7 +22,7 @@ export class SpinnerComponent implements OnInit {
   ngOnInit() {
     if(!this.name) throw new Error("Spinner must have a 'name' attribute.")
     this.spinnerService.Register(this);
-    this.spinnerName = Constants.LoadingAnimation.AnimationName;
+    this.spinnerName = Constants.SpinnerComponentConstants.AnimationName;
   }
 
   public Hide(): void{

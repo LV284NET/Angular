@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { Place } from '../place';
 import { FavoriteService } from "../Services/favorite.service";
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { Constants } from './../constants';
+import { SpinnerService } from '../Services/spinner.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +28,8 @@ export class ProfileComponent implements OnInit {
     private SnackBar: MatSnackBar,
     private router: Router,
     public dialog: MatDialog,
-    private favoriteService: FavoriteService
+    private favoriteService: FavoriteService,
+    private spinnerService: SpinnerService
   ) { 
     this.user = new User("", "", "");
   }
@@ -46,9 +49,15 @@ export class ProfileComponent implements OnInit {
 
   getInfo(): any 
   {
+    //Show Loading Animation
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
     this.ProfileService.getUser(JSON.parse(localStorage.getItem("currentUser")).id)
       .subscribe(response => 
         {
+            //Hide Loading Animation
+            this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
             this.user = new User 
             (
               response.Email,
@@ -67,8 +76,13 @@ export class ProfileComponent implements OnInit {
 
   getFavoritePlaces(): any
   {
-    
+    //Show Loading Animation
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
     this.ProfileService.getFavoritePlaces(JSON.parse(localStorage.getItem("currentUser")).id).subscribe(response => {
+      //Hide Loading Animation
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
       response.forEach(element => {
         this.favoritePlaces.push(new Place(element.PlaceId, element.Name, element.CityName, element.Description, element.PicturePlace, element.CityId));
       })})

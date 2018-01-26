@@ -51,13 +51,13 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
     
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
       .subscribe(
       response => {
 
-        this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+        this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
         this.snackBar.open("You are registered! Check your email", "Got it", {
           duration: 2000

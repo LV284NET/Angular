@@ -35,8 +35,8 @@ export class PlaceListComponent implements OnInit {
     private spinnerService: SpinnerService
   )   
   {  
-    this.elementsPerPage = Constants.ElementsPerPage;
-    this.pagesToShow = Constants.PagesToShow;
+    this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
+    this.pagesToShow = Constants.PaginationConstants.PagesToShow;
   }
 
   ngOnInit() {
@@ -54,7 +54,7 @@ export class PlaceListComponent implements OnInit {
 
   getPlaceList() {
     //Show Load Animation
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     this.loading=true;
     this.cityID = + this.route.snapshot.paramMap.get('cityId');
@@ -62,7 +62,7 @@ export class PlaceListComponent implements OnInit {
 
     this.placesService.getPlaces(this.cityID,this.currentPage,this.elementsPerPage).subscribe(response => {
       //Hide Load Animation
-      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
@@ -76,13 +76,13 @@ export class PlaceListComponent implements OnInit {
 
   getCount(){
     //Show Load Animation
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     this.loading=true;
 
     this.placesService.getPlacesCount(this.cityID).subscribe(response => {
       //Hide Load Animation
-      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
       this.countOfElements = response;
     });

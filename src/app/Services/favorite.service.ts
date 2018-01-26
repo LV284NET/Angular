@@ -8,13 +8,14 @@ import { MatSnackBar } from '@angular/material';
 import { errorHandler } from "@angular/platform-browser/src/browser";
 import { ErrorHandlingService } from './error-handling.service';
 import { forEach } from "@angular/router/src/utils/collection";
+import { Constants } from '../constants';
 
 @Injectable()
 export class FavoriteService {
 
-    private _urlForAddFavoritePlace: string = "https://localhost:44317/api/Place/AddFavoritePlace";
-    private _urlForDeleteFavoritePlace: string = "https://localhost:44317/api/Place/DeleteFavoritePlace";
-    private _urlForGetFavoritePlaces: string = "https://localhost:44317/api/Profile/GetFavoritePlaces";
+    private urlForAddFavoritePlace: string = Constants.FavoriteServiceConstants.UrlForAddFavoritePlace;
+    private urlForDeleteFavoritePlace: string = Constants.FavoriteServiceConstants.UrlForDeleteFavoritePlace;
+    private urlForGetFavoritePlaces: string = Constants.FavoriteServiceConstants.UrlForGetFavoritePlaces;
 
     public favoritesPlaces: number[] = [];
 
@@ -53,7 +54,7 @@ export class FavoriteService {
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
         //var content = "UserId=" + JSON.parse(localStorage.getItem("currentUser")).id + "&PlaceID="+placeId;
-        return this._http.post(this._urlForAddFavoritePlace, 
+        return this._http.post(this.urlForAddFavoritePlace, 
             JSON.stringify({"UserId": JSON.parse(localStorage.getItem("currentUser")).id, "PlaceId" : placeId}), 
             { headers: headers })
             .map((res: Response) => {
@@ -69,7 +70,7 @@ export class FavoriteService {
         headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
 //      var content = "UserId=" + JSON.parse(localStorage.getItem("currentUser")).id + "&PlaceId="+placeId;
 //        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this._http.delete(this._urlForDeleteFavoritePlace, 
+        return this._http.delete(this.urlForDeleteFavoritePlace, 
             {body: JSON.stringify({"UserId": JSON.parse(localStorage.getItem("currentUser")).id, "PlaceId" : placeId}),
             headers: headers} )
             .map((res: Response) => {
@@ -85,7 +86,7 @@ export class FavoriteService {
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
 
-      return this._http.get(this._urlForGetFavoritePlaces, {params: searchLine, headers: headers})
+      return this._http.get(this.urlForGetFavoritePlaces, {params: searchLine, headers: headers})
       .map((res: Response) => {
         return res.json();
       })
