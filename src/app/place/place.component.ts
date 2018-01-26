@@ -14,6 +14,8 @@ import { AuthorizationService } from "../Services/AuthorizationService";
 })
 export class PlaceComponent implements OnInit {
 
+  page= "/city/" +this.route.snapshot.paramMap.get('cityId') + "/place/" + this.route.snapshot.paramMap.get('placeId');
+
   place: Place;
 
   constructor(
