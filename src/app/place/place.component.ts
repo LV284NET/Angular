@@ -43,14 +43,15 @@ export class PlaceComponent implements OnInit {
   }
 
   getPlace(): any {
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    //Show Loading Animation
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     const placeId = +this.route.snapshot.paramMap.get('placeId');
 
     this.placesService.getPlace(placeId)
       .subscribe(response => {
-
-        this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+        //Hide Loading Animation
+        this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
         this.place = new Place (
           response.PlaceId, 

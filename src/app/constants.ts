@@ -1,17 +1,81 @@
-export class Constants{
+export class Constants {
 
-    //Pagination
-    //How many elements will be on One page
-    public static ElementsPerPage = 3;
-    //How many pages will be shown in pagination (if 3 will be shown current page
-    // -1 and +1 page, if 5 current page +2 and -2)
-    public static PagesToShow=5;
+    static CurrentBackEndHost: string = 'https://localhost:44317/';
 
-    //Constants for Loading Animation
-    static LoadingAnimation = class{
+    //Constants for Pagination
+    static PaginationConstants = class{
+
+        //How many elements will be on One page
+        static ElementsPerPage = 3;
+
+        //How many pages will be shown in pagination (if 3 will be shown current page
+         // -1 and +1 page, if 5 current page +2 and -2)
+        static PagesToShow = 5;
+    }
+
+    //Constants for SpinnerComponent
+    static SpinnerComponentConstants = class {
 
         static AnimationUrl: string = '../assets/img/dance.gif';
 
         static AnimationName: string = 'LoadingProcess';
     }
+
+    //Constants for AuthorizationService
+    static AuthorizationServiceConstants = class {
+
+        static UrlForAuthorization: string = Constants.CurrentBackEndHost + 'Token';
+
+        static UrlForRegistration: string = Constants.CurrentBackEndHost + 'api/Account/Register';
+
+        static UrlForConfirmEmail: string = Constants.CurrentBackEndHost + 'api/Account/Confirm';
+
+        static UrlForChangePassword: string = Constants.CurrentBackEndHost + 'api/Account/ChangePassword';
+    }
+
+    //Constants for CityService
+    static CityServiceConstants = class {
+
+        static UrlForGetCityById: string = Constants.CurrentBackEndHost + 'api/GetCity';
+
+        static UrlForGetCities: string = Constants.CurrentBackEndHost + 'api/GetCities';
+
+        static UrlForGetCitiesCount: string = Constants.CurrentBackEndHost + 'api/GetCountCity';
+    }
+
+    //Constants for FavoriteService
+    static FavoriteServiceConstants = class {
+
+        static UrlForAddFavoritePlace: string = Constants.CurrentBackEndHost + 'api/Place/AddFavoritePlace';
+
+        static UrlForDeleteFavoritePlace: string = Constants.CurrentBackEndHost + 'api/Place/DeleteFavoritePlace';
+
+        static UrlForGetFavoritePlaces: string = Constants.CurrentBackEndHost + 'api/Profile/GetFavoritePlaces';
+    }
+
+    //Constants for PlacesService
+    static PlacesServiceConstants = class{
+
+        static UrlForGetPlaces: string = Constants.CurrentBackEndHost + 'api/Place/GetPlacesPageByCityId';
+
+        static UrlForGetPlace: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceById';
+
+        static UrlForGetTopPlacesByCityId: string = Constants.CurrentBackEndHost + 'api/Place/GetTopPlacesByCityId';
+    }
+
+    //Constants for ProfileService
+    static ProfileServiceConstants = class{
+
+        static UrlForGetFavoritePlaces: string = Constants.CurrentBackEndHost + 'api/Profile/GetFavoritePlaces';
+
+        static UrlForGetUserInfo: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserInfo';
+    }
+
+    //Constants for SearchCitiesAndPlaces
+    static SearchCitiesAndPlacesServiceConstants = class{
+
+        static UrlForSearchCitiesAndPlaces: string = Constants.CurrentBackEndHost + 'api/Search/GetSuggestions';
+
+    }
+
 }

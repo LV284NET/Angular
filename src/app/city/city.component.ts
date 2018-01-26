@@ -47,14 +47,14 @@ export class CityComponent implements OnInit {
   }
 
   getCity() {
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     const id = +this.route.snapshot.paramMap.get('cityId');
 
     this.cityService.getCityById(id)
       .subscribe(response => {
 
-        this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+        this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
         this.city = new City(response.Id, response.Name,
           response.Description, response.PicturePath)
@@ -62,15 +62,15 @@ export class CityComponent implements OnInit {
   }
 
   getPlaces() {
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     const id = +this.route.snapshot.paramMap.get('cityId');
 
-    this.placeService.getPlacesForCityPageById(id)
+    this.placeService.getTopPlacesByCityId(id)
       .subscribe(response => {
         response.forEach(element => {
 
-          this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+          this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
           this.places.push(new Place(element.PlaceId,
             element.Name, element.CityName, element.Description,

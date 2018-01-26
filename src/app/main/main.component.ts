@@ -36,11 +36,11 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     //Show Load Animation
-    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     this.cityService.getCities(1,Constants.ElementsPerPage).subscribe(response => {
       //Hide Load Animation
-      this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
       response.forEach(element => {
         this.cities.push(new City(element.Id,

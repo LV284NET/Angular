@@ -87,7 +87,9 @@ export class NavbarComponent implements OnInit {
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
-    this.currentPosition = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    this.currentPosition = this.window.pageYOffset || 
+    this.document.documentElement.scrollTop || 
+    this.document.body.scrollTop || 0;
     if (this.currentPosition > this.previousPosition) {
       this.state = 'hidden';
     } else if (this.currentPosition <= this.previousPosition) {
