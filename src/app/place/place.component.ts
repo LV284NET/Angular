@@ -6,6 +6,8 @@ import { Place } from '../place';
 import { element } from 'protractor';
 import { FavoriteService } from '../Services/favorite.service';
 import { AuthorizationService } from "../Services/AuthorizationService";
+import { Constants } from './../constants';
+import { SpinnerService } from '../Services/spinner.service';
 
 @Component({
   selector: 'app-place',
@@ -23,7 +25,8 @@ export class PlaceComponent implements OnInit {
     private location: Location,
     private placesService: PlacesService,
     public favoritePlace: FavoriteService,
-    public authService: AuthorizationService
+    public authService: AuthorizationService,
+    private spinnerService: SpinnerService
   ) { 
     this.place = new Place(0, "", "", "", "");
   }
@@ -38,12 +41,17 @@ export class PlaceComponent implements OnInit {
   {
     return this.favoritePlace.favoritesPlaces.some(x => x === placeId);
   }
+
   getPlace(): any {
-    
-    const placeId = +this.route.snapshot.paramMap.get('placeId')
+    this.spinnerService.ShowSpinner(Constants.LoadingAnimation.AnimationName);
+
+    const placeId = +this.route.snapshot.paramMap.get('placeId');
 
     this.placesService.getPlace(placeId)
       .subscribe(response => {
+
+        this.spinnerService.HideSpinner(Constants.LoadingAnimation.AnimationName);
+
         this.place = new Place (
           response.PlaceId, 
           response.Name, 

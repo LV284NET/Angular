@@ -27,10 +27,11 @@
     </div>
     <hr/>
   </div>
+  <!--calling pagination component buy selector -->
   <app-pagination
-  [count]="total"
-  [page]="page"
-  [perPage]="pageSize"
+  [countOfElements]="countOfElements"
+  [currentPage]="currentPage"
+  [elementsperPage]="elementsPerPage"
   [pagesToShow]="pagesToShow"
   [loading]="loading"
   (goPage)="goToPage($event)"
