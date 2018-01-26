@@ -20,6 +20,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 
 export class CityComponent implements OnInit {
 
+  page= "/city/" +this.route.snapshot.paramMap.get('cityId');
   city: City;
   places: Place[] = [];
 
