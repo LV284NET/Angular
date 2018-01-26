@@ -1,20 +1,24 @@
-
-<div class="container " *ngIf="count > 0">
+<!-- If elements grater then 0 than show -->
+<div class="container " *ngIf="countOfElements > 0">
 	<div class="row" align="center">
-
+<!-- if current page=1 or loading make button disabled. Also calls onPrev() Method-->
 		<button 
 		class="btn btn-primary glyphicon glyphicon-chevron-left" 
 		(click)="onPrev()" 
-		[disabled]="page === 1 || loading" 
-		[ngClass]="{ 'disabled': page === 1 || loading }"></button>
+		[disabled]="currentPage === 1 || loading" 
+		[ngClass]="{ 'disabled': currentPage === 1 || loading }"></button>
 		
+		<!--create button of mass returned from getPages() if button page = current page
+		or loading disable. Also calls onPage(pageNum) Method -->
     <button
       class="btn btn-primary"
 			*ngFor="let pageNum of getPages()"
       (click)="onPage(pageNum)"
-			[ngClass]="{'active': pageNum === page, 'disabled': loading}">
+			[ngClass]="{'active': pageNum === currentPage, 'disabled': loading}">
 			{{ pageNum }}</button>
 
+			<!--if last page is current or loading make button disavle.
+				 Also calls onNext() Method-->
 		<button 
 		class="btn btn-primary glyphicon glyphicon-chevron-right" 
 		(click)="onNext(true)" 

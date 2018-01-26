@@ -16,16 +16,16 @@ export class CitiesComponent implements OnInit {
 
   cities: City[] = [];
   loading = false;
-  total = 0;
-  page = 1;
-  pageSize;
+  countOfElements = 0;
+  currentPage = 1;
+  elementsPerPage;
   pagesToShow;
 
   constructor(private cityService:CityService,
               private route: ActivatedRoute) 
   {
-    this.pageSize = Constants.paginationPerPage;
-    this.pagesToShow = Constants.paginationPagesToShow;
+    this.elementsPerPage = Constants.ElementsPerPage;
+    this.pagesToShow = Constants.PagesToShow;
   }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class CitiesComponent implements OnInit {
     this.loading=true;
     this.cities = [];
 
-    this.cityService.getCities(this.page, this.pageSize).subscribe(response => {
+    this.cityService.getCities(this.currentPage, this.elementsPerPage).subscribe(response => {
       response.forEach(element => {
         this.cities.push(new City(element.Id, 
           element.Name, element.Description, element.PicturePath))
@@ -50,7 +50,7 @@ export class CitiesComponent implements OnInit {
     this.loading=true;
 
     this.cityService.getCitiesCount().subscribe(response => { 
-      this.total = response
+      this.countOfElements = response
     });
 
     this.loading=false;
@@ -58,18 +58,18 @@ export class CitiesComponent implements OnInit {
 
 
   goToPage(n: number): void {
-    this.page = n;
+    this.currentPage = n;
     this.getCities();
 
   }
 
   onNext(): void {
-    this.page++;
+    this.currentPage++;
     this.getCities();
   }
 
   onPrev(): void {
-    this.page--;
+    this.currentPage--;
     this.getCities();
   }
 

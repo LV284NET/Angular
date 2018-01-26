@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.cityService.getCities(1,Constants.paginationPerPage).subscribe(response => {
+    this.cityService.getCities(1,Constants.ElementsPerPage).subscribe(response => {
       response.forEach(element => {
         this.cities.push(new City(element.Id,
           element.Name, element.Description,

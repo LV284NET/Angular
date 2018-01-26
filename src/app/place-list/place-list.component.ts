@@ -20,9 +20,9 @@ export class PlaceListComponent implements OnInit {
   cityID: number;
   cityName: string;
   loading = false;
-  total = 0;
-  page = 1;
-  pageSize;
+  countOfElements = 0;
+  currentPage = 1;
+  elementsPerPage;
   pagesToShow;
 
   constructor(private placesService: PlacesService,
@@ -31,8 +31,8 @@ export class PlaceListComponent implements OnInit {
     public favoritePlace: FavoriteService,
     public authService: AuthorizationService)   
   {  
-    this.pageSize = Constants.paginationPerPage;
-    this.pagesToShow = Constants.paginationPagesToShow;
+    this.elementsPerPage = Constants.ElementsPerPage;
+    this.pagesToShow = Constants.PagesToShow;
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class PlaceListComponent implements OnInit {
      this.cityID = + this.route.snapshot.paramMap.get('cityId');
     this.places = [];
 
-    this.placesService.getPlaces(this.cityID,this.page,this.pageSize).subscribe(response => {
+    this.placesService.getPlaces(this.cityID,this.currentPage,this.elementsPerPage).subscribe(response => {
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
           element.Name, element.CityName, element.Description,
@@ -68,25 +68,25 @@ export class PlaceListComponent implements OnInit {
     this.loading=true;
 
     this.placesService.getPlacesCount(this.cityID).subscribe(response => { 
-      this.total = response
+      this.countOfElements = response
     });
 
     this.loading=false;
   }
 
   goToPage(n: number): void {
-    this.page = n;
+    this.currentPage = n;
     this.getPlaceList();
 
   }
 
   onNext(): void {
-    this.page++;
+    this.currentPage++;
     this.getPlaceList();
   }
 
   onPrev(): void {
-    this.page--;
+    this.currentPage--;
     this.getPlaceList();
   }
 }
