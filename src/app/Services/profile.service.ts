@@ -5,12 +5,13 @@ import { Injectable } from '@angular/core';
 import { Response } from '@angular/http/src/static_response';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Constants } from '../constants';
 
 @Injectable()
 export class ProfileService {
 
-  private _urlForGetFavoritePlaces: string = "https://localhost:44317/api/Profile/GetFavoritePlaces";
-  private _urlForGetUserInfo: string = "https://localhost:44317/api/Profile/GetUserInfo";
+  private urlForGetFavoritePlaces: string = Constants.ProfileServiceConstants.UrlForGetFavoritePlaces;
+  private urlForGetUserInfo: string = Constants.ProfileServiceConstants.UrlForGetUserInfo;
 
   constructor(private _http: Http) { }
 
@@ -20,7 +21,7 @@ export class ProfileService {
     let searchLine = "id=" + userId.toString();
     headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
 
-    return this._http.get(this._urlForGetUserInfo, {params: searchLine, headers: headers})
+    return this._http.get(this.urlForGetUserInfo, {params: searchLine, headers: headers})
     .map((res: Response) => 
     {
       return res.json();
@@ -35,7 +36,7 @@ export class ProfileService {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
 
-    return this._http.get(this._urlForGetFavoritePlaces, {params: searchLine, headers: headers})
+    return this._http.get(this.urlForGetFavoritePlaces, {params: searchLine, headers: headers})
     .map((res: Response) => {
       return res.json();
     })

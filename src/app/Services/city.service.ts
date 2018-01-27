@@ -5,9 +5,14 @@ import { Injectable } from '@angular/core';
 import { Response } from '@angular/http/src/static_response';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Constants } from '../constants';
 
 @Injectable()
 export class CityService {
+
+  private urlForGetCityById: string = Constants.CityServiceConstants.UrlForGetCityById;
+  private urlForGetCities: string = Constants.CityServiceConstants.UrlForGetCities;
+  private urlForGetCitiesCount: string = Constants.CityServiceConstants.UrlForGetCitiesCount;
 
   constructor(private _http: Http) { }
 
@@ -15,18 +20,7 @@ export class CityService {
   {
     let searchLine = "id=" + cityId.toString();
 
-    return this._http.get("https://localhost:44317/api/GetCity", {params: searchLine})
-    .map((res: Response) => {
-      return res.json();
-    })
-    .catch((error: any) => Observable.throw(error.json().error || "Server error"));
-  }
-
-  public getCityByName(cityName: string): any
-  {
-    let searchLine = "cityName=" + cityName;
-
-    return this._http.get("https://localhost:44317/GetCityForCityByName", {params: searchLine})
+    return this._http.get(this.urlForGetCityById, {params: searchLine})
     .map((res: Response) => {
       return res.json();
     })
@@ -37,7 +31,7 @@ export class CityService {
     let searchLine = "page=" + pageNumber;
     searchLine += "&pageSize=" + pageSize.toString();
 
-    return this._http.get("https://localhost:44317/api/GetCities" , {params: searchLine})
+    return this._http.get(this.urlForGetCities, {params: searchLine})
     .map((res:Response) => {
       return res.json();
     })
@@ -45,7 +39,7 @@ export class CityService {
   }
 
   public getCitiesCount():any {
-    return this._http.get("https://localhost:44317/api/GetCountCity")
+    return this._http.get(this.urlForGetCitiesCount)
     .map((res: Response) => {
       return res.json();
     })

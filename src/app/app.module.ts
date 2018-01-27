@@ -31,7 +31,11 @@ import { DisqusModule } from 'ngx-disqus';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FooterComponent } from './footer/footer.component';
 import { StarRatingModule } from 'angular-star-rating';
- 
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService} from './Services/spinner.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Constants } from './constants'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +51,8 @@ import { StarRatingModule } from 'angular-star-rating';
     ProfileComponent,
     ChangePasswordComponent,
     PaginationComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent,
   ],
   entryComponents: [
     LoginComponent,
@@ -78,6 +83,8 @@ import { StarRatingModule } from 'angular-star-rating';
     FavoriteService,
     ProfileService,
     WINDOW_PROVIDERS,
+    SpinnerService,
+    Constants
   ],
   bootstrap: [AppComponent]
 })
