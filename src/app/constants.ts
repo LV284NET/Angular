@@ -78,4 +78,16 @@ export class Constants {
 
     }
 
+        //Constants for RatingService
+        static RatingServiceConstants = class {
+
+            static UrlForGetCityRating: string = Constants.CurrentBackEndHost + '';
+    
+            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + '';
+
+            static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + '';
+
+            static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + '';
+
+        }
 }
