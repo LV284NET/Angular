@@ -26,6 +26,7 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
+import { RatingService } from './Services/rating.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
 import { DisqusModule } from 'ngx-disqus';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -84,6 +85,7 @@ import { Constants } from './constants'
     ProfileService,
     WINDOW_PROVIDERS,
     SpinnerService,
+    RatingService,
     Constants
   ],
   bootstrap: [AppComponent]

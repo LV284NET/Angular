@@ -3,6 +3,8 @@ export class City {
     name: string;
     description: string;
     picture: any;
+    rating: number;
+    
     constructor(cityID: number, name: string, description: string, picture: any){
         this.cityID=cityID;
         this.name = name;
