@@ -30,7 +30,10 @@
             <ul *ngIf="authService.token != null">
                 <star-rating-comp [speed]="'slow'" [starType]="'svg'" 
                 [hoverEnabled]="true"
-                (onClick)="onClick($event)" >                             
+                [labelText]="'Average:3'" 
+                [labelPosition]="'bottom'"
+                [rating] = "userRating"
+                (onClick)="setPlaceRating($event)" >                             
                 </star-rating-comp>
             </ul>
           </section>

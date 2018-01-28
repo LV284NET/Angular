@@ -6,9 +6,10 @@ import { Place } from '../place';
 import { element } from 'protractor';
 import { FavoriteService } from '../Services/favorite.service';
 import { AuthorizationService } from "../Services/AuthorizationService";
-import {OnClickEvent} from "angular-star-rating/star-rating-struct";
+import { OnClickEvent } from "angular-star-rating/star-rating-struct";
 import { Constants } from './../constants';
 import { SpinnerService } from '../Services/spinner.service';
+import { RatingService } from '../Services/rating.service';
 
 @Component({
   selector: 'app-place',
@@ -21,7 +22,7 @@ export class PlaceComponent implements OnInit {
   page= "/city/" +this.route.snapshot.paramMap.get('cityId') + "/place/" + this.route.snapshot.paramMap.get('placeId');
 
   place: Place;
-  placeRating: number;
+  userRating: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,21 +30,17 @@ export class PlaceComponent implements OnInit {
     private placesService: PlacesService,
     public favoritePlace: FavoriteService,
     public authService: AuthorizationService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private ratingService: RatingService,
   ) { 
     this.place = new Place(0, "", "", "", "");
   }
-
-  onClick = ($event:OnClickEvent) => {
-    this.placeRating = $event.rating;
-    console.log('onRatingUpdated $event: ', $event);
-}
-
 
   ngOnInit() {
     this.getPlace();
     if (this.authService.token != null)
        this.favoritePlace.getFavoritePlaces();
+       this.getUserRating(this.place.placeId);
  }
 
   private checkExist(placeId: number): boolean
@@ -70,7 +67,24 @@ export class PlaceComponent implements OnInit {
           response.PicturePlace) 
       })
   }
-  
+
+  setPlaceRating = ($event:OnClickEvent) => {
+
+    this.ratingService.SetUserRatingOfPlace(this.place.placeId, $event.rating).subscribe(
+      
+      response => {this.userRating = $event.rating},
+      error => { }
+
+    )
+
+  }  
+  getUserRating(placeId): any{
+    this.ratingService.getUserRatingOfPlace(this.place.placeId).subscribe(
+      response => {return response},
+      error => {}
+    )
+  }
+
   goBack(): void{
     this.location.back();
   }

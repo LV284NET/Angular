@@ -9,6 +9,7 @@ import { errorHandler } from "@angular/platform-browser/src/browser";
 import { ErrorHandlingService } from './error-handling.service';
 import { forEach } from "@angular/router/src/utils/collection";
 import { Constants } from '../constants';
+
 @Injectable()
 export class RatingService {
 
@@ -63,7 +64,7 @@ export class RatingService {
                 .catch((error: any) => Observable.throw(error));
               }
 
-              public SerUserRatingOfPlace(placeId: number): any
+              public SetUserRatingOfPlace(placeId: number, placeRating: number): any
               {
                   var headers = new Headers();
                   headers.append('Content-Type', 'application/json');
@@ -71,7 +72,8 @@ export class RatingService {
 
                   var body = JSON.stringify(
                     {"UserId": JSON.parse(localStorage.getItem("currentUser")).id, 
-                    "PlaceId" : placeId}
+                    "PlaceId" : placeId,
+                    "PlaceRating": placeRating}
                   );
 
                   return this._http.post(this.urlForSetUserRatingofPlace, body, 
