@@ -9,10 +9,16 @@
           <img  [src]="city.picture" class="img-responsive img-thumbnail object-fit_contain">
         </section>
 
-        <section class="col-lg-8">
+        <section class="col-xs-12 col-lg-8">
           <div class="row">
-          <h3><a routerLink="/city/{{city.cityID}}">{{city.name}}</a></h3>  
-          </div>
+            <section class = "col-xs-12 col-sm-8">
+              <h3><a routerLink="/city/{{city.cityID}}">{{city.name}}</a></h3>  
+            </section>
+            <section class = "col-xs-12 col-sm-4" style="margin-top: 20px">
+              <star-rating-comp [starType]="'svg'" [showHalfStars]="true" [labelText]="city.rating" [labelPosition]="'right'" [readOnly]="true" [step]="0.5" [rating]="city.rating">
+              </star-rating-comp>
+            </section>
+            </div>
           
           <article>
             <br/>

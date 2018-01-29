@@ -70,18 +70,12 @@ export class PlaceListComponent implements OnInit {
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
           element.Name, element.CityName, element.Description,
-          element.PicturePlace, 0 , 1)), 
+          element.PicturePlace, 0 , element.PlaceRating)), 
         this.cityName = element.CityName
       });
     });
     this.loading=false;
   }
-
-  getPlaceRating(placeId): any{
-      this.ratingService.getPlacePating(placeId).subscribe(
-        response => { return  response},
-      )    
-    }
 
   getCount(){
     //Show Load Animation

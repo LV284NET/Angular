@@ -14,31 +14,19 @@ h2 {
     text-align: center;
 }
 
-.row .col-sm-4:hover .icon {
-    opacity: 1;
-  }
-
   .icon {   
     position: absolute;
     bottom: 10%;
     right: 15%;
     height: 36px;
     width: 36px;
-    opacity: 0;
+    opacity: 1;
     transition: .3s ease;
     color: #141313;
     font-size: 120px;
     z-index: 2;
   }
 
-  .col-sm-4 .icon{
-    opacity: 0;
-}
-
-  .col-xs-12 .icon{
-      opacity: 0;
-  }
-  
 .material-icons 
 {
     position: absolute; 

@@ -41,6 +41,9 @@ export class Constants {
         static UrlForGetCities: string = Constants.CurrentBackEndHost + 'api/GetCities';
 
         static UrlForGetCitiesCount: string = Constants.CurrentBackEndHost + 'api/GetCountCity';
+
+        static UrlForGetTopCities: string = Constants.CurrentBackEndHost + "api/City/GetTopCities";
+
     }
 
     //Constants for FavoriteService
@@ -85,9 +88,9 @@ export class Constants {
     
             static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + '';
 
-            static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + '';
+            static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
 
-            static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + '';
+            static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
 
         }
 }

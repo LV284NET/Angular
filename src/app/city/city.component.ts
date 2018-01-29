@@ -57,7 +57,7 @@ export class CityComponent implements OnInit {
         this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
         this.city = new City(response.Id, response.Name,
-          response.Description, response.PicturePath)
+          response.Description, response.PicturePath, response.CityRating)
       });
   }
 

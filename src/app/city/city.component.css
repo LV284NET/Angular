@@ -23,17 +23,13 @@ button{
     z-index: 1;
 }
 
-.bg-secondary:hover .icon {
-    opacity: 1;
-  }
-
   .icon {   
     position: absolute;
     bottom: 18%;
     right: 10%;
     height: 36px;
     width: 36px;
-    opacity: 0;
+    opacity: 1;
     transition: .3s ease;
     color: #141313;
     font-size: 120px;

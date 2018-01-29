@@ -55,7 +55,7 @@ export class CitiesComponent implements OnInit {
 
       response.forEach(element => {
         this.cities.push(new City(element.Id, 
-          element.Name, element.Description, element.PicturePath))
+          element.Name, element.Description, element.PicturePath, element.CityRating))
       });
     })
     this.loading=false;

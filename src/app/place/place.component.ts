@@ -39,8 +39,9 @@ export class PlaceComponent implements OnInit {
   ngOnInit() {
     this.getPlace();
     if (this.authService.token != null)
-       this.favoritePlace.getFavoritePlaces();
-       this.getUserRating(this.place.placeId);
+    {
+      this.favoritePlace.getFavoritePlaces();      
+    }
  }
 
   private checkExist(placeId: number): boolean
@@ -64,27 +65,34 @@ export class PlaceComponent implements OnInit {
           response.Name, 
           response.CityName, 
           response.Description, 
-          response.PicturePlace) 
+          response.PicturePlace,
+          0,
+        response.PlaceRating), 
+        this.getUserRatingForPlace(response.PlaceId)
       })
+  }
+
+  getUserRatingForPlace(placeId): any{
+      this.ratingService.getUserRatingOfPlace(placeId).subscribe(
+        response => {this.userRating = response},
+        error => { this.userRating = 0}
+      )      
   }
 
   setPlaceRating = ($event:OnClickEvent) => {
 
     this.ratingService.SetUserRatingOfPlace(this.place.placeId, $event.rating).subscribe(
-      
-      response => {this.userRating = $event.rating},
-      error => { }
-
-    )
-
-  }  
-  getUserRating(placeId): any{
-    this.ratingService.getUserRatingOfPlace(this.place.placeId).subscribe(
-      response => {return response},
+      response => {},
       error => {}
     )
-  }
 
+  }
+  
+  getTextForLabelRating (placeRating: number): string
+  {
+    return "Average: " + placeRating;
+  }
+  
   goBack(): void{
     this.location.back();
   }

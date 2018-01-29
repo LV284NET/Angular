@@ -25,13 +25,13 @@
           <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             
             <div class="row">
-              <section class="col-sm-8">
+              <section class="col-xs-12 col-sm-8">
                 <h3>
                   <a routerLink="/city/{{cityID}}/place/{{place.placeId}}">{{place.name}}</a>
                   
                 </h3>
               </section>
-              <section class = "col-xs-4" style="margin-top: 20px">
+              <section class = "col-xs-12 col-sm-4" style="margin-top: 20px">
                   <star-rating-comp [starType]="'svg'" [showHalfStars]="true" [labelText]="place.rating" [labelPosition]="'right'" [readOnly]="true" [step]="0.5" [rating]="place.rating">
                   </star-rating-comp>
               </section>

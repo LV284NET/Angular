@@ -13,6 +13,7 @@ export class CityService {
   private urlForGetCityById: string = Constants.CityServiceConstants.UrlForGetCityById;
   private urlForGetCities: string = Constants.CityServiceConstants.UrlForGetCities;
   private urlForGetCitiesCount: string = Constants.CityServiceConstants.UrlForGetCitiesCount;
+  private urlForGetTopCities: string = Constants.CityServiceConstants.UrlForGetTopCities;
 
   constructor(private _http: Http) { }
 
@@ -32,6 +33,15 @@ export class CityService {
     searchLine += "&pageSize=" + pageSize.toString();
 
     return this._http.get(this.urlForGetCities, {params: searchLine})
+    .map((res:Response) => {
+      return res.json();
+    })
+    .catch((error:any) => Observable.throw(error))
+  }
+
+  public getTopCities():any {
+
+    return this._http.get(this.urlForGetTopCities)
     .map((res:Response) => {
       return res.json();
     })

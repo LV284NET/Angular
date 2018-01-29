@@ -54,8 +54,8 @@ export class RatingService {
                 headers.append('Content-Type', 'application/json');
                 headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);  
 
-                let searchLine = "UserId" + JSON.parse(localStorage.getItem("currentUser")).id + 
-                "&PlaceId=" + placeId;
+                let searchLine = "userId=" + JSON.parse(localStorage.getItem("currentUser")).id + 
+                "&placeId=" + placeId;
 
                 return this._http.get(this.urlForGerUserRatingOfPlace, {params: searchLine, headers: headers})
                 .map((res: Response) => {
@@ -73,7 +73,7 @@ export class RatingService {
                   var body = JSON.stringify(
                     {"UserId": JSON.parse(localStorage.getItem("currentUser")).id, 
                     "PlaceId" : placeId,
-                    "PlaceRating": placeRating}
+                    "Rating": placeRating}
                   );
 
                   return this._http.post(this.urlForSetUserRatingofPlace, body, 
