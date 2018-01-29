@@ -10,21 +10,25 @@ import { Place } from "../place";
 import { RequestOptions } from "@angular/http/src/base_request_options";
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { ResponseContentType } from '@angular/http';
+import { Constants } from '../constants';
 
 @Injectable()
 export class PlacesService {
+
+  private urlForGetPlaces: string = Constants.PlacesServiceConstants.UrlForGetPlaces;
+  private urlForGetPlace: string = Constants.PlacesServiceConstants.UrlForGetPlace;
+  private urlForGetTopPlacesByCityId: string = Constants.PlacesServiceConstants.UrlForGetTopPlacesByCityId;
 
   constructor(private _http: Http) { }
 
   public getPlaces(cityId: number, pageNumber:number, pageSize:number): any {
 
     let searchLine = "cityId=" + cityId.toString();
-    searchLine += "&page=" + pageNumber.toString();
-    searchLine += "&pageSize=" + pageSize.toString();
+        searchLine += "&page=" + pageNumber.toString();
+        searchLine += "&pageSize=" + pageSize.toString();
 
     return this._http
-      .get("https://localhost:44317/api/Place/GetPlacesPageByCityId",
-      { params: searchLine})
+      .get(this.urlForGetPlaces, { params: searchLine})
       .map((res: Response) => {
         return res.json();
       })
@@ -35,8 +39,7 @@ export class PlacesService {
   public getPlace(placeId: number): any {
     let searchLine = "placeId=" + placeId.toString();
     return this._http
-      .get("https://localhost:44317/api/Place/GetPlaceById",
-      { params: searchLine })
+      .get(this.urlForGetPlace, { params: searchLine })
       .map((res: Response) => {
         return res.json();
       })
@@ -44,16 +47,15 @@ export class PlacesService {
         .throw(error.json().error || "Server error"));
   }
 
-  public getPlacesForCityPageById(cityId: number): any {
+  public getTopPlacesByCityId(cityId: number): any {
 
     let searchLine = "cityId=" + cityId.toString();
 
     return this._http
-      .get("https://localhost:44317/api/Place/GetTopPlacesByCityId",
-      { params: searchLine })
-      .map((res: Response) => {
-        return res.json();
-      })
+      .get(this.urlForGetTopPlacesByCityId, { params: searchLine })
+      .map((res: Response) => { 
+       return res.json();
+      })      
       .catch((error: any) => Observable
         .throw(error.json().error || "Server error"));
   }
