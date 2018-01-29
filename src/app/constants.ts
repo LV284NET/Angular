@@ -61,6 +61,8 @@ export class Constants {
         static UrlForGetPlace: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceById';
 
         static UrlForGetTopPlacesByCityId: string = Constants.CurrentBackEndHost + 'api/Place/GetTopPlacesByCityId';
+
+        static UrlForGetPlacesCount: string = Constants.CurrentBackEndHost + 'api/Place/GetCountPlaces'
     }
 
     //Constants for ProfileService

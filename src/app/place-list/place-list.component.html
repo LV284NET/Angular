@@ -1,23 +1,27 @@
 <h1 class="text-center"> Places of
   <a routerLink="/city/{{cityID}}">{{cityName}}</a>
 </h1>
-<div class="container">
-  <div *ngFor="let place of places" id="tile">
-    <div class="row">
-
-      <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-        <section class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <img class="img-responsive img-thumbnail object-fit_contain" 
-                [src]="place.picture"/>
+<div class="col-sm-2">
+  <h3>Apply filters to places:</h3>
+  <form [formGroup]="form">
+    <div *ngFor="let filter of filters.controls; let i = index">
+      <mat-checkbox [formControl]="filter" (checked)="filterMechanism.filters[i].checked">
+          {{filterMechanism.filters[i].name}}
+      </mat-checkbox>
+    </div>
+  </form>
+</div>
+<div class="col-sm-10">
+  <div class="container">
+    <div *ngFor="let place of places" id="tile">
+      <div class="row">
+        <section class="col-xs-12 col-sm-4">
+          <img class="img-responsive img-thumbnail object-fit_contain" [src]="place.picture" />
         </section>
-
-        <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-
+        <section class="col-xs-12 col-sm-8">
           <div class="row">
             <h3>
               <a routerLink="/city/{{cityID}}/place/{{place.placeId}}">{{place.name}}</a>
-              
             </h3>
           </div>
 
@@ -26,35 +30,27 @@
             <p>{{place.description}}</p>
           </article>
 
-          <button class="btn btn-primary pull-right pull-down" 
-          routerLink="/city/{{cityID}}/place/{{place.placeId}}">
-          Show More
-        </button>
-        <ul *ngIf="authService.token != null">
+          <button class="btn btn-primary pull-right pull-down" routerLink="/city/{{cityID}}/place/{{place.placeId}}">
+            Show More
+          </button>
+          <ul *ngIf="authService.token != null">
             <ul *ngIf="checkExist(place.placeId) == true;else notExist">
-                <a (click)="this.favoritePlace.DeletePlace(place.placeId)">          
-                  <i class="material-icons pull-right down">star</i>   
-                </a >
+              <a (click)="this.favoritePlace.DeletePlace(place.placeId)">
+                <i class="material-icons pull-right down">star</i>
+              </a>
             </ul>
             <ng-template #notExist>
-                <a (click)="this.favoritePlace.AddPlace(place.placeId)">          
-                    <i class="material-icons pull-right down">star_border</i>   
-                  </a >
-          </ng-template>
-        </ul>
+              <a (click)="this.favoritePlace.AddPlace(place.placeId)">
+                <i class="material-icons pull-right down">star_border</i>
+              </a>
+            </ng-template>
+          </ul>
         </section>
-      </section>
+      </div>
+      <hr/>
     </div>
-    <hr/>
   </div>
-  <app-pagination
-  [countOfElements]="countOfElements"
-  [currentPage]="currentPage"
-  [elementsperPage]="elementsPerPage"
-  [pagesToShow]="pagesToShow"
-  [loading]="loading"
-  (goPage)="goToPage($event)"
-  (goNext)="onNext()"
-  (goPrev)="onPrev()">
-  </app-pagination>
 </div>
+<app-pagination [countOfElements]="countOfElements" [currentPage]="currentPage" [elementsperPage]="elementsPerPage" [pagesToShow]="pagesToShow"
+  [loading]="loading" (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()">
+</app-pagination>

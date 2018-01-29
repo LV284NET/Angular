@@ -18,6 +18,7 @@ export class PlacesService {
   private urlForGetPlaces: string = Constants.PlacesServiceConstants.UrlForGetPlaces;
   private urlForGetPlace: string = Constants.PlacesServiceConstants.UrlForGetPlace;
   private urlForGetTopPlacesByCityId: string = Constants.PlacesServiceConstants.UrlForGetTopPlacesByCityId;
+  private urlForGetPlacesCount: string = Constants.PlacesServiceConstants.UrlForGetPlacesCount;
 
   constructor(private _http: Http) { }
 
@@ -65,7 +66,7 @@ export class PlacesService {
     let searchLine = "cityId=" + cityId.toString();
 
     return this._http
-      .get("https://localhost:44317/api/Place/GetCountPlaces",
+      .get(this.urlForGetPlacesCount,
       { params: searchLine })
       .map((res: Response) => {
         return res.json();

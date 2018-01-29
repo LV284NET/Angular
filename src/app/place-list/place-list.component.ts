@@ -4,11 +4,12 @@ import { Location } from '@angular/common';
 import { PlacesService } from '../Services/places.service';
 import { Place } from '../place';
 import { element } from 'protractor';
-import { MatIcon } from '@angular/material';
+import { MatIcon, MatCheckbox } from '@angular/material';
 import { FavoriteService } from '../Services/favorite.service';
 import { AuthorizationService } from "../Services/AuthorizationService";
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { SpinnerService } from '../Services/spinner.service';
+import { FormControl, FormArray, FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -27,16 +28,38 @@ export class PlaceListComponent implements OnInit {
   elementsPerPage;
   pagesToShow;
 
+  filterMechanism = {
+    filters: [
+      {id: 1, name: 'Monument', selected: false},
+      {id: 2, name: 'Church', selected: false},
+      {id: 3, name: 'FoodAndDrink', selected: false},
+      {id: 4, name: 'Theater', selected: false},
+      {id: 5, name: 'Museum', selected: false},
+      {id: 6, name: 'Park', selected: false},
+      {id: 7, name: 'Shop', selected: false},
+      {id: 8, name: 'Entertainment', selected: false},
+      {id: 9, name: 'Sightseeing', selected: false},
+      {id: 10, name: 'Bar', selected: false},
+    ]
+  };
+ 
+  form: FormGroup;
+
   constructor(private placesService: PlacesService,
     private route: ActivatedRoute,
     private location: Location,
     public favoritePlace: FavoriteService,
     public authService: AuthorizationService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private fb: FormBuilder
   )   
   {  
     this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
     this.pagesToShow = Constants.PaginationConstants.PagesToShow;
+
+    this.form = this.fb.group({
+      filters: this.buildFilters()
+    });
   }
 
   ngOnInit() {
@@ -104,5 +127,16 @@ export class PlaceListComponent implements OnInit {
   onPrev(): void {
     this.currentPage--;
     this.getPlaceList();
+  }
+
+  buildFilters() {
+    let arr = this.filterMechanism.filters.map(filter => {
+      return this.fb.control(filter.selected);
+    });
+    return this.fb.array(arr);
+  }
+
+  get filters() {
+    return this.form.get('filters') as FormArray;
   }
 }
