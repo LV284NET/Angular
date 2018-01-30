@@ -182,4 +182,8 @@ export class PlaceListComponent implements OnInit {
     });
     this.loading = false;
   }
+
+  checkSelectedCheckbox(event) {
+    this.filterMechanism.filters[event.source.id - 1].selected = event.checked;
+  }
 }
