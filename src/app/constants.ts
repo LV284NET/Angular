@@ -85,15 +85,15 @@ export class Constants {
     }
 
         //Constants for RatingService
-        static RatingServiceConstants = class {
-
+        static RatingServiceConstants = class {            
             static UrlForGetCityRating: string = Constants.CurrentBackEndHost + '';
-    
-            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + '';
-
+            
+            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
+            
             static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
-
+            
             static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
-
+            
+            static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
         }
 }
