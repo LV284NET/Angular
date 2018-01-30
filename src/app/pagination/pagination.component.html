@@ -9,16 +9,17 @@
 		[ngClass]="{ 'hidden': currentPage === 1 || loading }"></button>
 
 		<!-- Button for redirecting to first page -->
-		<button class="btn btn-primary"  
+		<button class="btn btn-primary"
+		style="margin-right: -5px"  
 		(click)="onFirst()" 
 		[hidden]="currentPage === 1 || loading" 
-		[ngClass]="{ 'hidden': currentPage  < 3 || loading }"> {{firstPage}} </button>
+		[ngClass]="{ 'hidden': currentPage  < 3 || loading || totalPages()===3 }"> {{firstPage}} </button>
 
 		<!-- Button to hide previous pages -->
 		<button class="btn btn-link" 
 		(click)="onPrev()" 
 		[hidden]="currentPage === 1 || loading" 
-		[ngClass]="{ 'hidden': currentPage < 4 || loading }">...</button>
+		[ngClass]="{ 'hidden': currentPage < 4 || loading || totalPages()=== 4 }">...</button>
 
 		<!--create button of mass returned from getPages() if button page = current page
 		or loading disable. Also calls onPage(pageNum) Method -->
@@ -31,14 +32,14 @@
 		<button class="btn btn-link" 
 		(click)="onNext(true)" 
 		[hidden]="lastPage() || loading" 
-		[ngClass]="{'hidden': currentPage > totalPages()-3 || loading }">...</button>
+		[ngClass]="{'hidden': currentPage > totalPages()-3 || loading || totalPages()=== 4 }">...</button>
 
-			<!-- Button for redirecting to the last page -->
-			<button class="btn btn-primary" 
-			(click)="onLast()" 
-			[hidden]="currentPage === 1 || loading" 
-			[ngClass]="{ 'hidden': currentPage > totalPages()-2 || loading }">{{totalPages()}}</button>
-	
+		<!-- Button for redirecting to the last page -->
+		<button class="btn btn-primary" 
+		style="margin-left: -5px" 
+		(click)="onLast()" 
+		[hidden]="currentPage === 1 || loading" 
+		[ngClass]="{ 'hidden': currentPage > totalPages()-2 || loading || totalPages()===3 }">{{totalPages()}}</button>
 
 		<!--if last page is current or loading make button hidden.
 				 Also calls onNext() Method-->
