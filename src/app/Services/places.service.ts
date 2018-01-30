@@ -16,20 +16,38 @@ import { Constants } from '../constants';
 export class PlacesService {
 
   private urlForGetPlaces: string = Constants.PlacesServiceConstants.UrlForGetPlaces;
+  private urlForGetFilteredPlaces: string = Constants.PlacesServiceConstants.UrlForGetFilteredPlaces;
   private urlForGetPlace: string = Constants.PlacesServiceConstants.UrlForGetPlace;
   private urlForGetTopPlacesByCityId: string = Constants.PlacesServiceConstants.UrlForGetTopPlacesByCityId;
   private urlForGetPlacesCount: string = Constants.PlacesServiceConstants.UrlForGetPlacesCount;
 
   constructor(private _http: Http) { }
 
-  public getPlaces(cityId: number, pageNumber:number, pageSize:number): any {
+  public getPlaces(cityId: number, pageNumber: number, pageSize: number): any {
 
     let searchLine = "cityId=" + cityId.toString();
-        searchLine += "&page=" + pageNumber.toString();
-        searchLine += "&pageSize=" + pageSize.toString();
+    searchLine += "&page=" + pageNumber.toString();
+    searchLine += "&pageSize=" + pageSize.toString();
 
     return this._http
-      .get(this.urlForGetPlaces, { params: searchLine})
+      .get(this.urlForGetPlaces, { params: searchLine })
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error: any) => Observable
+        .throw(error.json().error || "Server error"));
+  }
+
+  public getFilteredPlaces(checkedFilters: any[], cityId: number, pageNumber: number, pageSize: number): any {
+    let searchLine = "cityId=" + cityId.toString();
+    searchLine += "&page=" + pageNumber.toString();
+    searchLine += "&pageSize=" + pageSize.toString();
+    checkedFilters.forEach((element, index, array) => {
+      searchLine += "&filters=" + element.name;
+    });
+
+    return this._http
+      .get(this.urlForGetFilteredPlaces, { params: searchLine })
       .map((res: Response) => {
         return res.json();
       })
@@ -54,9 +72,9 @@ export class PlacesService {
 
     return this._http
       .get(this.urlForGetTopPlacesByCityId, { params: searchLine })
-      .map((res: Response) => { 
-       return res.json();
-      })      
+      .map((res: Response) => {
+        return res.json();
+      })
       .catch((error: any) => Observable
         .throw(error.json().error || "Server error"));
   }

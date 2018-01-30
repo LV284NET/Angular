@@ -30,19 +30,19 @@ export class PlaceListComponent implements OnInit {
 
   filterMechanism = {
     filters: [
-      {id: 1, name: 'Monument', selected: false},
-      {id: 2, name: 'Church', selected: false},
-      {id: 3, name: 'FoodAndDrink', selected: false},
-      {id: 4, name: 'Theater', selected: false},
-      {id: 5, name: 'Museum', selected: false},
-      {id: 6, name: 'Park', selected: false},
-      {id: 7, name: 'Shop', selected: false},
-      {id: 8, name: 'Entertainment', selected: false},
-      {id: 9, name: 'Sightseeing', selected: false},
-      {id: 10, name: 'Bar', selected: false},
+      { id: 1, name: 'Monument', selected: false },
+      { id: 2, name: 'Church', selected: false },
+      { id: 3, name: 'FoodAndDrink', selected: false },
+      { id: 4, name: 'Theater', selected: false },
+      { id: 5, name: 'Museum', selected: false },
+      { id: 6, name: 'Park', selected: false },
+      { id: 7, name: 'Shop', selected: false },
+      { id: 8, name: 'Entertainment', selected: false },
+      { id: 9, name: 'Sightseeing', selected: false },
+      { id: 10, name: 'Bar', selected: false },
     ]
   };
- 
+
   form: FormGroup;
 
   constructor(private placesService: PlacesService,
@@ -52,8 +52,7 @@ export class PlaceListComponent implements OnInit {
     public authService: AuthorizationService,
     private spinnerService: SpinnerService,
     private fb: FormBuilder
-  )   
-  {  
+  ) {
     this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
     this.pagesToShow = Constants.PaginationConstants.PagesToShow;
 
@@ -70,8 +69,7 @@ export class PlaceListComponent implements OnInit {
 
   }
 
-  private checkExist(placeId: number): boolean
-  {
+  private checkExist(placeId: number): boolean {
     return this.favoritePlace.favoritesPlaces.some(x => x === placeId);
   }
 
@@ -79,29 +77,29 @@ export class PlaceListComponent implements OnInit {
     //Show Load Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
-    this.loading=true;
+    this.loading = true;
     this.cityID = + this.route.snapshot.paramMap.get('cityId');
     this.places = [];
 
-    this.placesService.getPlaces(this.cityID,this.currentPage,this.elementsPerPage).subscribe(response => {
+    this.placesService.getPlaces(this.cityID, this.currentPage, this.elementsPerPage).subscribe(response => {
       //Hide Load Animation
       this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
           element.Name, element.CityName, element.Description,
-          element.PicturePlace)), 
-        this.cityName = element.CityName
+          element.PicturePlace)),
+          this.cityName = element.CityName
       });
     });
-    this.loading=false;
+    this.loading = false;
   }
 
-  getCount(){
+  getCount() {
     //Show Load Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
-    this.loading=true;
+    this.loading = true;
 
     this.placesService.getPlacesCount(this.cityID).subscribe(response => {
       //Hide Load Animation
@@ -110,7 +108,7 @@ export class PlaceListComponent implements OnInit {
       this.countOfElements = response;
     });
 
-    this.loading=false;
+    this.loading = false;
   }
 
   goToPage(n: number): void {
@@ -138,5 +136,29 @@ export class PlaceListComponent implements OnInit {
 
   get filters() {
     return this.form.get('filters') as FormArray;
+  }
+
+  getFilteredPlacesList() {
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
+    this.loading = true;
+    this.cityID = + this.route.snapshot.paramMap.get('cityId');
+    this.places = [];
+
+    let checkedFilters = this.filterMechanism.filters.filter((element, index, array) => {
+      return element.selected;
+    });
+
+    this.placesService.getFilteredPlaces(checkedFilters, this.cityID, this.currentPage, this.elementsPerPage).subscribe(response => {
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
+      response.forEach(element => {
+        this.places.push(new Place(element.PlaceId,
+          element.Name, element.CityName, element.Description,
+          element.PicturePlace)),
+          this.cityName = element.CityName
+      });
+    });
+    this.loading = false;
   }
 }
