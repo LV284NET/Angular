@@ -1,4 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Constants } from '../constants';
 
 @Component({
   selector: 'app-pagination',
@@ -6,6 +7,8 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent {
+  private firstPage: number = Constants.PaginationConstants.FirstPage;
+
   @Input() currentPage: number;
   @Input() countOfElements: number;
   @Input() elementsperPage: number;
@@ -15,12 +18,20 @@ export class PaginationComponent {
   @Output() goPrev = new EventEmitter<boolean>();
   @Output() goNext = new EventEmitter<boolean>();
   @Output() goPage = new EventEmitter<number>();
-
   constructor() { }
 
   //Go specific Page (calls another method insde component where pagination used)
   onPage(n: number): void {
     this.goPage.emit(n);
+  }
+
+  onFirst(firstPage: number): void {
+    this.goPage.emit(this.firstPage);
+  }
+
+  //Go to last page
+  onLast(): void {
+    this.goPage.emit(this.totalPages());
   }
 
   //Go previous Page (calls another method insde component where pagination used)
@@ -47,7 +58,7 @@ export class PaginationComponent {
   //There will be  < 1 2 3 > . If current page 5 of 10 there will be < 4 5 6 >
   getPages(): number[] {
     const countOfPages = this.totalPages();
-    const pagesToShow = this.pagesToShow || 9;
+    const pagesToShow = 3;
     const pages: number[] = [];
 
     pages.push(this.currentPage || 1);
@@ -64,7 +75,7 @@ export class PaginationComponent {
         }
       }
     }
-    
+
     pages.sort((a, b) => a - b);
     return pages;
   }

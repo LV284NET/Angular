@@ -33,7 +33,8 @@ import { FooterComponent } from './footer/footer.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService} from './Services/spinner.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Constants } from './constants'
+import { Constants } from './constants';
+import  './getFBSDK'
 
 @NgModule({
   declarations: [
