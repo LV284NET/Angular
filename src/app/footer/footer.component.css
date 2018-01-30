@@ -1,11 +1,13 @@
-.footer {
+ .footer {
     margin: 5px;
     padding: 1rem;
-    margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
+    margin-bottom: 0px;
     background-color:black;
-}
+    display: block;
+    
+} 
 a:hover {
   cursor: pointer;  
 }

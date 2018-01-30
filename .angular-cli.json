@@ -21,7 +21,8 @@
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles.css",
-        "easy-travel-theme.scss"
+        "easy-travel-theme.scss",
+        "../node_modules/angular-star-rating/assets/scss/star-rating.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",

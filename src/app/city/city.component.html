@@ -26,13 +26,13 @@
       <img class="img-responsive img-thumbnail object-fit_contain" routerLink="place/{{place.placeId}}" [src]="place.picture">
       <ul *ngIf="authService.token != null">
           <ul *ngIf="checkExist(place.placeId) == true;else notExist">
-              <a (click)="this.favoritePlace.DeletePlace(place.placeId)">          
-                <i class="material-icons pull-right down">star</i>   
+              <a class="icon pull-right" (click)="this.favoritePlace.DeletePlace(place.placeId)">          
+                <i class="material-icons pull-right down">favorite</i>   
               </a >
           </ul>
           <ng-template #notExist>
-              <a (click)="this.favoritePlace.AddPlace(place.placeId)">          
-                  <i class="material-icons pull-right down">star_border</i>   
+              <a class = "icon pull-right" (click)="this.favoritePlace.AddPlace(place.placeId)">          
+                  <i class="material-icons pull-right down">favorite_border</i>   
                 </a >
           </ng-template>
       </ul>
@@ -47,10 +47,13 @@
     </div>
 
   </div>
-
+  
 </div>
 <h2>Leave your comment!</h2>
 <div class="container">
   <disqus [identifier]="page"></disqus>
-</div>
+</div>  
+<app-footer></app-footer>
+
+
 

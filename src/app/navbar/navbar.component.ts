@@ -53,7 +53,6 @@ export class NavbarComponent implements OnInit {
     let dialog = this.dialog.closeAll()
     let dialogRef = this.dialog.open(FeedbackComponent, {
       width: "500px"
-      
     });
   }
 
@@ -61,7 +60,6 @@ export class NavbarComponent implements OnInit {
     let dialog = this.dialog.closeAll()
     let dialogRef = this.dialog.open(RegisterComponent, {
       width: "500px"
-      
     });
   }
 
