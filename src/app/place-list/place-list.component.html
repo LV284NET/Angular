@@ -2,15 +2,17 @@
   <a routerLink="/city/{{cityID}}">{{cityName}}</a>
 </h1>
 <div class="col-sm-2">
-  <h3>Apply filters to places:</h3>
-  <form [formGroup]="form">
-    <div *ngFor="let filter of filters.controls; let i = index">
-      <mat-checkbox [id]="filterMechanism.filters[i].id" [formControl]="filter" (checked)="filterMechanism.filters[i].selected==true" 
-        (change)="checkSelectedCheckbox($event);getFilteredPlacesList()">
-        {{filterMechanism.filters[i].name}}
-      </mat-checkbox>
-    </div>
-  </form>
+  <div style="position: fixed">
+    <h3>Apply filters to places:</h3>
+    <form [formGroup]="form">
+      <div *ngFor="let filter of filters.controls; let i = index">
+        <mat-checkbox [id]="filterMechanism.filters[i].id" [formControl]="filter" (checked)="filterMechanism.filters[i].selected==true"
+          (change)="checkSelectedCheckbox($event);getFilteredPlacesList()">
+          {{filterMechanism.filters[i].name}}
+        </mat-checkbox>
+      </div>
+    </form>
+  </div>
 </div>
 <div class="col-sm-10">
   <div class="container">
