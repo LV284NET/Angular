@@ -6,8 +6,10 @@ import { Place } from '../place';
 import { element } from 'protractor';
 import { FavoriteService } from '../Services/favorite.service';
 import { AuthorizationService } from "../Services/AuthorizationService";
+import { OnClickEvent } from "angular-star-rating/star-rating-struct";
 import { Constants } from './../constants';
 import { SpinnerService } from '../Services/spinner.service';
+import { RatingService } from '../Services/rating.service';
 
 @Component({
   selector: 'app-place',
@@ -15,10 +17,12 @@ import { SpinnerService } from '../Services/spinner.service';
   styleUrls: ['./place.component.css']
 })
 export class PlaceComponent implements OnInit {
+  onClickResult:OnClickEvent;
 
   page= "/city/" +this.route.snapshot.paramMap.get('cityId') + "/place/" + this.route.snapshot.paramMap.get('placeId');
 
   place: Place;
+  userRating: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +30,8 @@ export class PlaceComponent implements OnInit {
     private placesService: PlacesService,
     public favoritePlace: FavoriteService,
     public authService: AuthorizationService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private ratingService: RatingService,
   ) { 
     this.place = new Place(0, "", "", "", "");
   }
@@ -34,7 +39,9 @@ export class PlaceComponent implements OnInit {
   ngOnInit() {
     this.getPlace();
     if (this.authService.token != null)
-       this.favoritePlace.getFavoritePlaces();
+    {
+      this.favoritePlace.getFavoritePlaces();      
+    }
  }
 
   private checkExist(placeId: number): boolean
@@ -58,8 +65,32 @@ export class PlaceComponent implements OnInit {
           response.Name, 
           response.CityName, 
           response.Description, 
-          response.PicturePlace) 
+          response.PicturePlace,
+          0,
+        response.PlaceRating), 
+        this.getUserRatingForPlace(response.PlaceId)
       })
+  }
+
+  getUserRatingForPlace(placeId): any{
+      this.ratingService.getUserRatingOfPlace(placeId).subscribe(
+        response => {this.userRating = response},
+        error => { this.userRating = 0}
+      )      
+  }
+
+  setPlaceRating = ($event:OnClickEvent) => {
+
+    this.ratingService.SetUserRatingOfPlace(this.place.placeId, $event.rating).subscribe(
+      response => {},
+      error => {}
+    )
+
+  }
+  
+  getTextForLabelRating (placeRating: number): string
+  {
+    return "Average: " + placeRating;
   }
   
   goBack(): void{

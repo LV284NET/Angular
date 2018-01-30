@@ -16,7 +16,7 @@ export class Constants {
     //Constants for SpinnerComponent
     static SpinnerComponentConstants = class {
 
-        static AnimationUrl: string = '../assets/img/dance.gif';
+        static AnimationUrl: string = '../assets/img/LoadingAnimations/dance.gif';
 
         static AnimationName: string = 'LoadingProcess';
     }
@@ -41,6 +41,9 @@ export class Constants {
         static UrlForGetCities: string = Constants.CurrentBackEndHost + 'api/GetCities';
 
         static UrlForGetCitiesCount: string = Constants.CurrentBackEndHost + 'api/GetCountCity';
+
+        static UrlForGetTopCities: string = Constants.CurrentBackEndHost + "api/City/GetTopCities";
+
     }
 
     //Constants for FavoriteService
@@ -78,4 +81,16 @@ export class Constants {
 
     }
 
+        //Constants for RatingService
+        static RatingServiceConstants = class {
+
+            static UrlForGetCityRating: string = Constants.CurrentBackEndHost + '';
+    
+            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + '';
+
+            static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
+
+            static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
+
+        }
 }

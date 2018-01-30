@@ -26,10 +26,12 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
+import { RatingService } from './Services/rating.service';
 import { WINDOW_PROVIDERS } from "./Services/window.service";
 import { DisqusModule } from 'ngx-disqus';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { FooterComponent } from './footer/footer.component'; 
+import { FooterComponent } from './footer/footer.component';
+import { StarRatingModule } from 'angular-star-rating';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService} from './Services/spinner.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -71,7 +73,8 @@ import { Constants } from './constants'
     MatSnackBarModule,
     MatAutocompleteModule,
     MatInputModule,
-    DisqusModule.forRoot('ngx')
+    DisqusModule.forRoot('ngx'),
+    StarRatingModule.forRoot()
   ],
   providers: [
     AuthorizationService,
@@ -82,6 +85,7 @@ import { Constants } from './constants'
     ProfileService,
     WINDOW_PROVIDERS,
     SpinnerService,
+    RatingService,
     Constants
   ],
   bootstrap: [AppComponent]

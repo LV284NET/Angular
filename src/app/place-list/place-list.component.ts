@@ -9,7 +9,9 @@ import { FavoriteService } from '../Services/favorite.service';
 import { AuthorizationService } from "../Services/AuthorizationService";
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { SpinnerService } from '../Services/spinner.service';
-
+import { RatingService } from '../Services/rating.service';
+import { Observable } from "rxjs/Observable";
+import { NullAstVisitor } from '@angular/compiler';
 
 @Component({
   selector: 'app-place-list',
@@ -32,7 +34,8 @@ export class PlaceListComponent implements OnInit {
     private location: Location,
     public favoritePlace: FavoriteService,
     public authService: AuthorizationService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private ratingService: RatingService,
   )   
   {  
     this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
@@ -41,7 +44,7 @@ export class PlaceListComponent implements OnInit {
 
   ngOnInit() {
     this.getPlaceList();
-    this.getCount();
+       this.getCount();
     if (this.authService.token != null)
       this.favoritePlace.getFavoritePlaces();
 
@@ -67,7 +70,7 @@ export class PlaceListComponent implements OnInit {
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
           element.Name, element.CityName, element.Description,
-          element.PicturePlace)), 
+          element.PicturePlace, 0 , element.PlaceRating)), 
         this.cityName = element.CityName
       });
     });
@@ -93,7 +96,6 @@ export class PlaceListComponent implements OnInit {
   goToPage(n: number): void {
     this.currentPage = n;
     this.getPlaceList();
-
   }
 
   onNext(): void {

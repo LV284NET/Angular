@@ -7,6 +7,9 @@ import { CityService } from './../Services/city.service';
 import { City } from './../city';
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../Services/spinner.service';
+import { RatingService } from '../Services/rating.service';
+import { element } from 'protractor';
+import { error } from 'util';
 
 @Component({
   selector: 'app-cities',
@@ -25,8 +28,10 @@ export class CitiesComponent implements OnInit {
   constructor(
     private cityService:CityService,
     private route: ActivatedRoute,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private ratingService: RatingService
   ) 
+
   {
     this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
     this.pagesToShow = Constants.PaginationConstants.PagesToShow;
@@ -34,6 +39,7 @@ export class CitiesComponent implements OnInit {
 
   ngOnInit() {
     this.getCities();
+    this.getCitiesRating();
     this.getCount();
   }
 
@@ -49,10 +55,21 @@ export class CitiesComponent implements OnInit {
 
       response.forEach(element => {
         this.cities.push(new City(element.Id, 
-          element.Name, element.Description, element.PicturePath))
+          element.Name, element.Description, element.PicturePath, element.CityRating))
       });
     })
     this.loading=false;
+  }
+
+  getCitiesRating(): void{
+    this.cities.forEach( element => 
+      {
+        this.ratingService.getCityPating(element.cityID).subscribe(
+          response => {element.rating = response},
+          error => {element.rating = 0}
+        )
+      }
+    )
   }
 
   getCount(){
@@ -74,7 +91,7 @@ export class CitiesComponent implements OnInit {
   goToPage(n: number): void {
     this.currentPage = n;
     this.getCities();
-
+    this.getCitiesRating();
   }
 
   onNext(): void {
