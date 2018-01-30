@@ -62,8 +62,8 @@ export class PlaceListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPlaceList();
-    this.getCount();
+    this.getFilteredPlacesList();
+    this.getFilteredCount();
     if (this.authService.token != null)
       this.favoritePlace.getFavoritePlaces();
 
@@ -72,7 +72,7 @@ export class PlaceListComponent implements OnInit {
   private checkExist(placeId: number): boolean {
     return this.favoritePlace.favoritesPlaces.some(x => x === placeId);
   }
-
+/*
   getPlaceList() {
     //Show Load Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
@@ -93,8 +93,9 @@ export class PlaceListComponent implements OnInit {
       });
     });
     this.loading = false;
-  }
+  }*/
 
+  /*
   getCount() {
     //Show Load Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
@@ -110,21 +111,41 @@ export class PlaceListComponent implements OnInit {
 
     this.loading = false;
   }
+  */
+
+  getFilteredCount() {
+    //Show Load Animation
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
+    this.loading = true;
+
+    let checkedFilters = this.filterMechanism.filters.filter((element, index, array) => {
+      return element.selected;
+    });
+
+    this.placesService.getCountFromFilteredPlaces(this.cityID,checkedFilters).subscribe(response => {
+      //Hide Load Animation
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
+      this.countOfElements = response;
+    });
+
+    this.loading = false;
+  }
 
   goToPage(n: number): void {
     this.currentPage = n;
-    this.getPlaceList();
+    this.getFilteredPlacesList();
 
   }
 
   onNext(): void {
     this.currentPage++;
-    this.getPlaceList();
+    this.getFilteredPlacesList();
   }
 
   onPrev(): void {
     this.currentPage--;
-    this.getPlaceList();
+    this.getFilteredPlacesList();
   }
 
   buildFilters() {

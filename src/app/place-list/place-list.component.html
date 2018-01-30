@@ -5,7 +5,7 @@
   <h3>Apply filters to places:</h3>
   <form [formGroup]="form">
     <div *ngFor="let filter of filters.controls; let i = index">
-      <mat-checkbox [formControl]="filter" (checked)="filterMechanism.filters[i].checked" (change)="getFilteredPlacesList()">
+      <mat-checkbox [formControl]="filter" (checked)="filterMechanism.filters[i].selected=true" (change)="getFilteredPlacesList()">
           {{filterMechanism.filters[i].name}}
       </mat-checkbox>
     </div>
@@ -51,6 +51,14 @@
     </div>
   </div>
 </div>
-<app-pagination [countOfElements]="countOfElements" [currentPage]="currentPage" [elementsperPage]="elementsPerPage" [pagesToShow]="pagesToShow"
-  [loading]="loading" (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()">
+
+<app-pagination 
+[countOfElements]="countOfElements" 
+[currentPage]="currentPage" 
+[elementsperPage]="elementsPerPage" 
+[pagesToShow]="pagesToShow"
+[loading]="loading" 
+(goPage)="goToPage($event)" 
+(goNext)="onNext()" 
+(goPrev)="onPrev()">
 </app-pagination>

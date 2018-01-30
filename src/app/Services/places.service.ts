@@ -20,6 +20,7 @@ export class PlacesService {
   private urlForGetPlace: string = Constants.PlacesServiceConstants.UrlForGetPlace;
   private urlForGetTopPlacesByCityId: string = Constants.PlacesServiceConstants.UrlForGetTopPlacesByCityId;
   private urlForGetPlacesCount: string = Constants.PlacesServiceConstants.UrlForGetPlacesCount;
+  private urlForGetCountFromFilteredPlaces: string = Constants.PlacesServiceConstants.UrlForGetCountFromFilteredPlaces;
 
   constructor(private _http: Http) { }
 
@@ -91,5 +92,21 @@ export class PlacesService {
       })
       .catch((error: any) => Observable
         .throw(error));
+  }
+
+  public getCountFromFilteredPlaces(cityId:number, checkedFilters:any[]):any {
+    let searchLine = "cityId=" + cityId.toString();
+    checkedFilters.forEach((element, index, array) => {
+      searchLine += "&filters=" + element.name;
+    });
+
+    return this._http.get(this.urlForGetCountFromFilteredPlaces,
+        {params:searchLine})
+        .map((res: Response) => {
+          return res.json();
+        })
+        .catch((error:any)=> Observable
+        .throw(error))
+
   }
 }  
