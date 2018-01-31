@@ -15,8 +15,11 @@
               <h3><a routerLink="/city/{{city.cityID}}">{{city.name}}</a></h3>  
             </section>
             <section class = "col-xs-12 col-sm-4" style="margin-top: 20px">
-              <star-rating-comp [starType]="'svg'" [showHalfStars]="true" [labelText]="city.rating" [labelPosition]="'right'" [readOnly]="true" [step]="0.5" [rating]="city.rating">
-              </star-rating-comp>
+                <i class="material-icons pull-right down" style="color:gold">star</i>
+                <section class ="rating pull-right" style="text-align:center; font-size: 20px">
+                  <p style="font-size: 20px">{{getCityRating(city.rating)}}
+                  </p>  
+                </section>
             </section>
             </div>
           

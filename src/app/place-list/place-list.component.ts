@@ -77,6 +77,13 @@ export class PlaceListComponent implements OnInit {
     this.loading=false;
   }
 
+  getPlaceRating(placeRating: number): any{
+    if(placeRating != 0)
+    { 
+      return placeRating.toString();
+    }
+    return "";
+  }
   getCount(){
     //Show Load Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);

@@ -36,7 +36,7 @@ button{
     z-index: 2;
   }
   
-.material-icons 
+#favorite.material-icons 
 {
     position: absolute; 
     font-size: 36px;

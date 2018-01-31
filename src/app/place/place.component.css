@@ -14,6 +14,15 @@ h2 {
     text-align: center;
 }
 
+*:focus {
+    outline: none;
+}
+
+star-rating-comp{
+    cursor: pointer;
+    outline: none;
+    outline: 0;
+}
   .icon {   
     position: absolute;
     bottom: 10%;
@@ -27,7 +36,7 @@ h2 {
     z-index: 2;
   }
 
-.material-icons 
+#favorite.material-icons 
 {
     position: absolute; 
     font-size: 36px;

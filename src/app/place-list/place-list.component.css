@@ -22,7 +22,7 @@ a {
   }
 
   
-.material-icons 
+    #favorite.material-icons
 {
     position: absolute; 
     font-size: 36px;
@@ -34,6 +34,11 @@ a {
     z-index: 2;
 }
 
+
+#rating{
+    text-align: left;
+    font-size: 36px;
+}
 
 .no-decoration
 { text-decoration: none !important}

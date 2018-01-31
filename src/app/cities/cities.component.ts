@@ -72,6 +72,14 @@ export class CitiesComponent implements OnInit {
     )
   }
 
+  getCityRating(cityRating: number): any{
+    if(cityRating != 0)
+    { 
+      return cityRating.toString();
+    }
+    return "";
+  }
+
   getCount(){
     //Show Load Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
