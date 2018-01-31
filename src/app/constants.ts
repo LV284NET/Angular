@@ -66,9 +66,19 @@ export class Constants {
 
         static UrlForGetPlaces: string = Constants.CurrentBackEndHost + 'api/Place/GetPlacesPageByCityId';
 
+        static UrlForGetFilteredPlaces: string = Constants.CurrentBackEndHost + 'api/Place/GetFilteredPlacesByCityId';
+
         static UrlForGetPlace: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceById';
 
         static UrlForGetTopPlacesByCityId: string = Constants.CurrentBackEndHost + 'api/Place/GetTopPlacesByCityId';
+
+        static UrlForGetPlacesCount: string = Constants.CurrentBackEndHost + 'api/Place/GetCountPlaces';
+
+        static UrlForGetCountFromFilteredPlaces: string = Constants.CurrentBackEndHost + 'api/Place/GetCountFromFilteredPlaces';
+
+        static UrlForGetPlaceFilters: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceFilters';
+
+        
     }
 
     //Constants for ProfileService

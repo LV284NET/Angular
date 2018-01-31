@@ -3,7 +3,7 @@
 
 $easy-travel-primary: mat-palette($mat-indigo);
 $easy-travel-accent:  mat-palette($mat-amber, A200, A100, A400);
-$easy-travel-warn:    mat-palette($mat-red);
+$easy-travel-warn:    mat-palette($mat-indigo);
 
 $easy-travel-theme: mat-light-theme($easy-travel-primary, $easy-travel-accent, $easy-travel-warn);
 
