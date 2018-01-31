@@ -55,6 +55,10 @@ a {
     z-index: 1;
 }
 
+#filters {
+    position: fixed;
+}
+
 @media only screen and (max-width: 1200px) {
 .object-fit_contain { 
     position: relative;
@@ -93,5 +97,9 @@ a {
             object-position: center;
             background-color: aliceblue;
         }
+    }
+    
+    #filters {
+        position: relative;
     }
 }
