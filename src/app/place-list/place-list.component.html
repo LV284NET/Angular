@@ -1,7 +1,7 @@
 <h1 class="text-center"> Places of
   <a routerLink="/city/{{cityID}}">{{cityName}}</a>
 </h1>
-<div class="container">
+<div class="container" style="min-height:76vh">
   <div *ngFor="let place of places" id="tile">
     <div class="row">
         <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -65,4 +65,3 @@
   (goPrev)="onPrev()">
   </app-pagination>
 </div>
-<app-footer></app-footer>

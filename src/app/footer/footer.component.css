@@ -9,6 +9,11 @@
     
 } 
 a:hover {
-  cursor: pointer;  
+  cursor: pointer; 
+  text-decoration: none; 
+  color: white;
+}
+a{
+  color: rgb(74,74,74)
 }
 
