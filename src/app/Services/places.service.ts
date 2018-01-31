@@ -11,6 +11,7 @@ import { RequestOptions } from "@angular/http/src/base_request_options";
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { ResponseContentType } from '@angular/http';
 import { Constants } from '../constants';
+import { FormArray } from "@angular/forms/src/model";
 
 @Injectable()
 export class PlacesService {
@@ -21,8 +22,29 @@ export class PlacesService {
   private urlForGetTopPlacesByCityId: string = Constants.PlacesServiceConstants.UrlForGetTopPlacesByCityId;
   private urlForGetPlacesCount: string = Constants.PlacesServiceConstants.UrlForGetPlacesCount;
   private urlForGetCountFromFilteredPlaces: string = Constants.PlacesServiceConstants.UrlForGetCountFromFilteredPlaces;
+  private urlForGetPlaceFilters: string = Constants.PlacesServiceConstants.UrlForGetPlaceFilters;
 
   constructor(private _http: Http) { }
+
+
+
+  public getFilters(): any{
+    let filterMechanism = {
+      filters: [
+        { id: 1, name: 'Monument', selected: false },
+        { id: 2, name: 'Church', selected: false },
+        { id: 3, name: 'FoodAndDrink', selected: false },
+        { id: 4, name: 'Theater', selected: false },
+        { id: 5, name: 'Museum', selected: false },
+        { id: 6, name: 'Park', selected: false },
+        { id: 7, name: 'Shop', selected: false },
+        { id: 8, name: 'Entertainment', selected: false },
+        { id: 9, name: 'Sightseeing', selected: false },
+        { id: 10, name: 'Bar', selected: false },
+      ]
+    };
+    return filterMechanism.filters;
+  }
 
   public getPlaces(cityId: number, pageNumber: number, pageSize: number): any {
 
@@ -65,6 +87,18 @@ export class PlacesService {
       })
       .catch((error: any) => Observable
         .throw(error.json().error || "Server error"));
+  }
+
+  public getPlaceFilters(placeId: number): any {
+    let searchLine = "placeId=" + placeId.toString();
+
+    return this._http
+      .get(this.urlForGetPlaceFilters, { params: searchLine })
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch((error:any)=> Observable
+      .throw(error))
   }
 
   public getTopPlacesByCityId(cityId: number): any {

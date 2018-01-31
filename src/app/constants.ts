@@ -66,7 +66,11 @@ export class Constants {
 
         static UrlForGetPlacesCount: string = Constants.CurrentBackEndHost + 'api/Place/GetCountPlaces';
 
-        static UrlForGetCountFromFilteredPlaces: string = Constants.CurrentBackEndHost + 'api/Place/GetCountFromFilteredPlaces'
+        static UrlForGetCountFromFilteredPlaces: string = Constants.CurrentBackEndHost + 'api/Place/GetCountFromFilteredPlaces';
+
+        static UrlForGetPlaceFilters: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceFilters';
+
+        
     }
 
     //Constants for ProfileService

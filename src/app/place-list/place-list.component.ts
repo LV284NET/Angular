@@ -28,21 +28,7 @@ export class PlaceListComponent implements OnInit {
   elementsPerPage;
   pagesToShow;
 
-  filterMechanism = {
-    filters: [
-      { id: 1, name: 'Monument', selected: false },
-      { id: 2, name: 'Church', selected: false },
-      { id: 3, name: 'FoodAndDrink', selected: false },
-      { id: 4, name: 'Theater', selected: false },
-      { id: 5, name: 'Museum', selected: false },
-      { id: 6, name: 'Park', selected: false },
-      { id: 7, name: 'Shop', selected: false },
-      { id: 8, name: 'Entertainment', selected: false },
-      { id: 9, name: 'Sightseeing', selected: false },
-      { id: 10, name: 'Bar', selected: false },
-    ]
-  };
-
+  filterMechanism = {filters:[]} 
   form: FormGroup;
 
   constructor(private placesService: PlacesService,
@@ -55,6 +41,7 @@ export class PlaceListComponent implements OnInit {
   ) {
     this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
     this.pagesToShow = Constants.PaginationConstants.PagesToShow;
+    this.getFilters();
 
     this.form = this.fb.group({
       filters: this.buildFilters()
@@ -67,6 +54,10 @@ export class PlaceListComponent implements OnInit {
     if (this.authService.token != null)
       this.favoritePlace.getFavoritePlaces();
 
+  }
+
+  getFilters(){
+    this.filterMechanism.filters = this.placesService.getFilters()
   }
 
   private checkExist(placeId: number): boolean {
@@ -186,5 +177,6 @@ export class PlaceListComponent implements OnInit {
   checkSelectedCheckbox(event) {
     this.filterMechanism.filters[event.source.id - 1].selected = event.checked;
     this.getFilteredCount();
+    this.currentPage=1;
   }
 }
