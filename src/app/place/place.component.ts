@@ -81,17 +81,36 @@ export class PlaceComponent implements OnInit {
 
   setPlaceRating = ($event:OnClickEvent) => {
 
-    this.ratingService.SetUserRatingOfPlace(this.place.placeId, $event.rating).subscribe(
-      response => {},
-      error => {}
-    )
-
+    if (this.userRating != $event.rating)
+    {
+      this.ratingService.SetUserRatingOfPlace(this.place.placeId, $event.rating).subscribe(
+        response => {
+          this.userRating = $event.rating;
+          this.ratingService.getPlacePating(this.place.placeId).subscribe(
+            response => {this.place.rating = response}
+          )
+        },
+        error => {}
+      )
+    }
+    else{
+      this.ratingService.DeleteUserRatingOfPlace(this.place.placeId).subscribe(
+        response => { this.userRating = 0,
+          this.ratingService.getPlacePating(this.place.placeId).subscribe(          
+            response => {this.place.rating = response}
+          )}
+      )
+    }
   }
   
   getTextForLabelRating (placeRating: number): string
   {
-    return "Average: " + placeRating;
-  }
+    if (placeRating !=0)
+      return "Average: " + placeRating;
+    else
+      return "";
+
+    }
   
   goBack(): void{
     this.location.back();

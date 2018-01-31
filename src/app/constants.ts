@@ -3,14 +3,17 @@ export class Constants {
     static CurrentBackEndHost: string = 'https://localhost:4200/WebApi/';
 
     //Constants for Pagination
-    static PaginationConstants = class{
+    static PaginationConstants = class {
 
         //How many elements will be on One page
         static ElementsPerPage: number = 3;
 
         //How many pages will be shown in pagination (if 3 will be shown current page
-         // -1 and +1 page, if 5 current page +2 and -2)
+        // -1 and +1 page, if 5 current page +2 and -2)
         static PagesToShow: number = 5;
+        
+        //The first page of different lists
+        static FirstPage: number = 1;
     }
 
     //Constants for SpinnerComponent
@@ -57,7 +60,7 @@ export class Constants {
     }
 
     //Constants for PlacesService
-    static PlacesServiceConstants = class{
+    static PlacesServiceConstants = class {
 
         static UrlForGetPlaces: string = Constants.CurrentBackEndHost + 'api/Place/GetPlacesPageByCityId';
 
@@ -67,7 +70,7 @@ export class Constants {
     }
 
     //Constants for ProfileService
-    static ProfileServiceConstants = class{
+    static ProfileServiceConstants = class {
 
         static UrlForGetFavoritePlaces: string = Constants.CurrentBackEndHost + 'api/Profile/GetFavoritePlaces';
 
@@ -75,22 +78,22 @@ export class Constants {
     }
 
     //Constants for SearchCitiesAndPlaces
-    static SearchCitiesAndPlacesServiceConstants = class{
+    static SearchCitiesAndPlacesServiceConstants = class {
 
         static UrlForSearchCitiesAndPlaces: string = Constants.CurrentBackEndHost + 'api/Search/GetSuggestions';
 
     }
 
         //Constants for RatingService
-        static RatingServiceConstants = class {
-
+        static RatingServiceConstants = class {            
             static UrlForGetCityRating: string = Constants.CurrentBackEndHost + '';
-    
-            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + '';
-
+            
+            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
+            
             static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
-
+            
             static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
-
+            
+            static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
         }
 }

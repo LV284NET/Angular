@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
   isRemembered: boolean;
 
   constructor(private router: Router,
-    private authorezeService: AuthorizationService, 
+    private authorezeService: AuthorizationService,
     private errorService: ErrorHandlingService,
-    private dialogRef: MatDialogRef<LoginComponent>, 
+    private dialogRef: MatDialogRef<LoginComponent>,
     private snackBar: MatSnackBar,
     private spinnerService: SpinnerService) { }
 
@@ -68,4 +68,18 @@ export class LoginComponent implements OnInit {
       this.errorService.handleError(error);
     })
   };
+
+  public onFacebookLogin() {
+    // this.router.navigate(['./home']);
+    FB.getLoginStatus((response) => {
+      if (response.status === 'connected') {
+        this.router.navigate(['./home']);
+      }
+      else {
+        FB.login((loginResponse) => {
+          this.router.navigate(['./home']);
+        });
+      }
+    });
+  }
 }

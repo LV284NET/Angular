@@ -1,31 +1,52 @@
 <!-- If elements grater then 0 than show -->
 <div class="container " *ngIf="countOfElements > 0">
 	<div class="row" align="center">
-<!-- if current page=1 or loading make button disabled. Also calls onPrev() Method-->
-		<button 
-		class="btn btn-primary glyphicon glyphicon-chevron-left" 
+
+		<!-- if current page=1 or loading make button hidden. Also calls onPrev() Method-->
+		<button class="btn btn-primary glyphicon glyphicon-chevron-left" 
 		(click)="onPrev()" 
-		[disabled]="currentPage === 1 || loading" 
-		[ngClass]="{ 'disabled': currentPage === 1 || loading }"></button>
-		
+		[hidden]="currentPage === 1 || loading"
+		[ngClass]="{ 'hidden': currentPage === 1 || loading }"></button>
+
+		<!-- Button for redirecting to first page -->
+		<button class="btn btn-primary"
+		style="margin-right: -5px"  
+		(click)="onFirst()" 
+		[hidden]="currentPage === 1 || loading" 
+		[ngClass]="{ 'hidden': currentPage  < 3 || loading || totalPages()===3 }"> {{firstPage}} </button>
+
+		<!-- Button to hide previous pages -->
+		<button class="btn btn-link" 
+		(click)="onPrev()" 
+		[hidden]="currentPage === 1 || loading" 
+		[ngClass]="{ 'hidden': currentPage < 4 || loading || totalPages()=== 4 }">...</button>
+
 		<!--create button of mass returned from getPages() if button page = current page
 		or loading disable. Also calls onPage(pageNum) Method -->
-    <button
-      class="btn btn-primary"
-			*ngFor="let pageNum of getPages()"
-      (click)="onPage(pageNum)"
-			[ngClass]="{'active': pageNum === currentPage, 'disabled': loading}">
+		<button class="btn btn-primary" *ngFor="let pageNum of getPages()" 
+		(click)="onPage(pageNum)" 
+		[ngClass]="{'active': pageNum === currentPage, 'disabled': loading}">
 			{{ pageNum }}</button>
 
-			<!--if last page is current or loading make button disavle.
-				 Also calls onNext() Method-->
-		<button 
-		class="btn btn-primary glyphicon glyphicon-chevron-right" 
+		<!-- Button to hide next pages -->
+		<button class="btn btn-link" 
 		(click)="onNext(true)" 
-		[disabled]="lastPage() || loading" 
-		[ngClass]="{ 'disabled': lastPage() || loading }"></button>
+		[hidden]="lastPage() || loading" 
+		[ngClass]="{'hidden': currentPage > totalPages()-3 || loading || totalPages()=== 4 }">...</button>
 
-  </div>
+		<!-- Button for redirecting to the last page -->
+		<button class="btn btn-primary" 
+		style="margin-left: -5px" 
+		(click)="onLast()" 
+		[hidden]="currentPage === 1 || loading" 
+		[ngClass]="{ 'hidden': currentPage > totalPages()-2 || loading || totalPages()===3 }">{{totalPages()}}</button>
+
+		<!--if last page is current or loading make button hidden.
+				 Also calls onNext() Method-->
+		<button class="btn btn-primary glyphicon glyphicon-chevron-right" 
+		(click)="onNext(true)" 
+		[hidden]="lastPage() || loading"
+		[ngClass]="{ 'hidden': lastPage() || loading }"></button>
+
+	</div>
 </div>
-
-

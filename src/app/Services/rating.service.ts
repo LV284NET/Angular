@@ -17,10 +17,17 @@ export class RatingService {
   private urlForGetPlaceRating = Constants.RatingServiceConstants.UrlForGetPlaceRating;
   private urlForGerUserRatingOfPlace = Constants.RatingServiceConstants.UrlForGetUserRatingOfPlace;
   private urlForSetUserRatingofPlace = Constants.RatingServiceConstants.UrlForSetUserRatingOfPlace;
+  private urlForDeleteUserRatingofPlace = Constants.RatingServiceConstants.UrlForDeleteUserRatingOfPlace;
 
   constructor(private _http: Http,
     private errorService: ErrorHandlingService,
+<<<<<<< HEAD
     private SnackBar: MatSnackBar) { }
+=======
+    private SnackBar: MatSnackBar) {
+
+  }
+>>>>>>> e3174d821d42704fd3a1a9e95ae736cdc8be45ad
 
   public getCityPating(cityId: number): any {
     var headers = new Headers();
@@ -37,7 +44,11 @@ export class RatingService {
   public getPlacePating(placeId: number): any {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+<<<<<<< HEAD
     let searchLine = "PlaceId=" + placeId;
+=======
+    let searchLine = "placeId=" + placeId;
+>>>>>>> e3174d821d42704fd3a1a9e95ae736cdc8be45ad
 
     return this._http.get(this.urlForGetPlaceRating, { params: searchLine, headers: headers })
       .map((res: Response) => {
@@ -81,4 +92,27 @@ export class RatingService {
       })
       .catch((error: any) => Observable.throw(error));
   }
+<<<<<<< HEAD
+=======
+
+  public DeleteUserRatingOfPlace(placeId: number): any {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
+
+    var body = JSON.stringify(
+      {
+        "UserId": JSON.parse(localStorage.getItem("currentUser")).id,
+        "PlaceId": placeId
+      }
+    );
+
+    return this._http.delete(this.urlForSetUserRatingofPlace, { body: body,
+      headers: headers })
+      .map((res: Response) => {
+        return res;
+      })
+      .catch((error: any) => Observable.throw(error));
+  }
+>>>>>>> e3174d821d42704fd3a1a9e95ae736cdc8be45ad
 }

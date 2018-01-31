@@ -1,4 +1,4 @@
-<a class="close btn" (click)="closeDialog()" role="button" >&times;</a>
+<a class="close btn" (click)="closeDialog()" role="button">&times;</a>
 <h3>Sign In</h3>
 <form (submit)="onSubmit()">
   <div class="form-group">
@@ -18,3 +18,7 @@
       <input type="submit" value="Submit" class="form-control btn btn-primary">
     </div>
   </div>
+</form>
+<form (submit)="onFacebookLogin()">
+    <input type="submit" value="Facedook" class="form-control btn btn-primary">
+</form>
