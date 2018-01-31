@@ -1,6 +1,8 @@
 export class Constants {
 
-    static CurrentBackEndHost: string = 'https://localhost:4200/WebApi/';
+    static CurrentBackEndHost: string = 'https://localhost:44317/';
+
+    // 'https://localhost:4200/WebApi/'
 
     //Constants for Pagination
     static PaginationConstants = class {
