@@ -22,7 +22,7 @@ a {
   }
 
   
-.material-icons 
+    #favorite.material-icons
 {
     position: absolute; 
     font-size: 36px;
@@ -34,6 +34,11 @@ a {
     z-index: 2;
 }
 
+
+#rating{
+    text-align: left;
+    font-size: 36px;
+}
 
 .no-decoration
 { text-decoration: none !important}
@@ -48,6 +53,10 @@ a {
     object-position: center;
     background-color: aliceblue;
     z-index: 1;
+}
+
+#filters {
+    position: fixed;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -88,5 +97,9 @@ a {
             object-position: center;
             background-color: aliceblue;
         }
+    }
+    
+    #filters {
+        position: relative;
     }
 }

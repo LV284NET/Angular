@@ -10,6 +10,7 @@ import { OnClickEvent } from "angular-star-rating/star-rating-struct";
 import { Constants } from './../constants';
 import { SpinnerService } from '../Services/spinner.service';
 import { RatingService } from '../Services/rating.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-place',
@@ -23,6 +24,7 @@ export class PlaceComponent implements OnInit {
 
   place: Place;
   userRating: number = 0;
+  filters: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -32,12 +34,14 @@ export class PlaceComponent implements OnInit {
     public authService: AuthorizationService,
     private spinnerService: SpinnerService,
     private ratingService: RatingService,
+    private snackBar: MatSnackBar
   ) { 
     this.place = new Place(0, "", "", "", "");
   }
 
   ngOnInit() {
     this.getPlace();
+    this.getPlaceFilters();
     if (this.authService.token != null)
     {
       this.favoritePlace.getFavoritePlaces();      
@@ -67,9 +71,20 @@ export class PlaceComponent implements OnInit {
           response.Description, 
           response.PicturePlace,
           0,
-        response.PlaceRating), 
-        this.getUserRatingForPlace(response.PlaceId)
+        response.PlaceRating);
+        if (this.authService.token != null)
+        {          
+          this.getUserRatingForPlace(response.PlaceId)
+        }
       })
+  }
+
+  getPlaceRating(placeRating: number): any{
+    if(placeRating != 0 && placeRating != null)
+    { 
+      return placeRating.toString();
+    }
+    return "";
   }
 
   getUserRatingForPlace(placeId): any{
@@ -86,6 +101,7 @@ export class PlaceComponent implements OnInit {
       this.ratingService.SetUserRatingOfPlace(this.place.placeId, $event.rating).subscribe(
         response => {
           this.userRating = $event.rating;
+          this.snackBar.open("Your rating saved", "Got it", {duration: 500});
           this.ratingService.getPlacePating(this.place.placeId).subscribe(
             response => {this.place.rating = response}
           )
@@ -98,7 +114,9 @@ export class PlaceComponent implements OnInit {
         response => { this.userRating = 0,
           this.ratingService.getPlacePating(this.place.placeId).subscribe(          
             response => {this.place.rating = response}
-          )}
+          ),
+          this.snackBar.open("Your rating deleted", "Got it", {duration: 500});
+        }
       )
     }
   }
@@ -114,5 +132,19 @@ export class PlaceComponent implements OnInit {
   
   goBack(): void{
     this.location.back();
+  }
+
+  getPlaceFilters(){
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
+    const placeId = +this.route.snapshot.paramMap.get('placeId');
+    this.placesService.getPlaceFilters(placeId) .subscribe(response => {
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
+      response.forEach(element => {
+        this.filters.push(element)
+      });
+
+          })
   }
 }

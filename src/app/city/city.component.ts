@@ -61,6 +61,14 @@ export class CityComponent implements OnInit {
       });
   }
 
+  getCityRating(cityRating: number): any{
+    if(cityRating != 0)
+    { 
+      return cityRating.toString();
+    }
+    return "";
+  }
+  
   getPlaces() {
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
