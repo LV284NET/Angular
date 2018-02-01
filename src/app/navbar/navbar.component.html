@@ -22,12 +22,12 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-left hidden-lg hidden-md ">
           <li>
-            <a routerLink="/cities-list">Cities</a>
+            <a routerLink="/cities-list/page/1">Cities</a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-left hidden-xs hidden-sm place-for-logo">
           <li>
-            <a routerLink="/cities-list">Cities</a>
+            <a routerLink="/cities-list/page/1">Cities</a>
           </li>
         </ul>
         <ul *ngIf="authService.token == null;else registered" class="nav navbar-nav navbar-right">
