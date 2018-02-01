@@ -115,11 +115,8 @@ export class PlaceListComponent implements OnInit {
 
   goToPage(n: number): void {
     this.currentPage = n;
-    this.router.navigate(['/cities-list'],
-    { queryParams: 
-      {pageSize: this.elementsPerPage
-      , pageNumber: this.currentPage} });
     const cityID = + this.route.snapshot.paramMap.get('cityId');
+
     this.router.navigate(['/city/'+ cityID +'/place-list'],  
     { queryParams: 
       {pageSize: this.elementsPerPage
@@ -131,14 +128,20 @@ export class PlaceListComponent implements OnInit {
   onNext(): void {
     this.currentPage++;
     const cityID = + this.route.snapshot.paramMap.get('cityId');
-    this.router.navigate(['/city/'+ cityID +'/place-list/page/'+this.currentPage]);
+    this.router.navigate(['/city/'+ cityID +'/place-list'],  
+    { queryParams: 
+      {pageSize: this.elementsPerPage
+      , pageNumber: this.currentPage} });
     this.getFilteredPlacesList();
   }
 
   onPrev(): void {
     this.currentPage--;
     const cityID = + this.route.snapshot.paramMap.get('cityId');
-    this.router.navigate(['/city/'+ cityID +'/place-list/page/'+this.currentPage]);
+    this.router.navigate(['/city/'+ cityID +'/place-list'],  
+    { queryParams: 
+      {pageSize: this.elementsPerPage
+      , pageNumber: this.currentPage} });
     this.getFilteredPlacesList();
   }
 

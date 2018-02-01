@@ -28,7 +28,8 @@
         </ul>
         <ul class="nav navbar-nav navbar-left hidden-xs hidden-sm place-for-logo">
           <li>
-            <a routerLink="/cities-list">Cities</a>
+            <a routerLink="/cities-list" 
+            [queryParams] = "{pageSize:3, pageNumber:1}">Cities</a>
           </li>
         </ul>
         <ul *ngIf="authService.token == null;else registered" class="nav navbar-nav navbar-right">
