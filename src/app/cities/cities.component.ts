@@ -28,6 +28,7 @@ export class CitiesComponent implements OnInit {
   constructor(
     private cityService:CityService,
     private route: ActivatedRoute,
+    private router: Router,
     private spinnerService: SpinnerService,
     private ratingService: RatingService
   ) 
@@ -38,9 +39,15 @@ export class CitiesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getPageFromUrl();
     this.getCities();
     this.getCitiesRating();
     this.getCount();
+  }
+
+  getPageFromUrl(){
+    const pageNumber = +this.route.snapshot.paramMap.get('pageNumber');
+    this.currentPage = pageNumber;
   }
 
   getCities(): void{
@@ -98,17 +105,20 @@ export class CitiesComponent implements OnInit {
 
   goToPage(n: number): void {
     this.currentPage = n;
+    this.router.navigate(['/cities-list/page/'+this.currentPage]);
     this.getCities();
     this.getCitiesRating();
   }
 
   onNext(): void {
     this.currentPage++;
+    this.router.navigate(['/cities-list/page/'+this.currentPage]);
     this.getCities();
   }
 
   onPrev(): void {
     this.currentPage--;
+    this.router.navigate(['/cities-list/page/'+this.currentPage]);
     this.getCities();
   }
 
