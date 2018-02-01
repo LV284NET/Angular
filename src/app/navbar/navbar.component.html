@@ -31,30 +31,41 @@
           </li>
         </ul>
         <ul *ngIf="authService.token == null;else registered" class="nav navbar-nav navbar-right">
-
-          <li>
-            <a (click)="signUp()">
-              <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-          </li>
-          <li>
-            <a (click)="signIn()">
-              <span class="glyphicon glyphicon-log-in"></span> Sign In</a>
-          </li>
+          
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a (click)="signUp()">
+                    <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a (click)="signIn()">
+                    <span class="glyphicon glyphicon-log-in"></span> Sign In</a>
+                </li>
+              </ul>
+            </li>
+          
         </ul>
         <ng-template #registered>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-home"></span> Hello, {{authService.FirstName}} !
-                <span class="caret"></span>
+                Hi, {{authService.FirstName}} !
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a routerLink="/profile">Your profile</a>
+                  <a routerLink="/profile">
+                    <span class="glyphicon glyphicon-home"></span> Your profile</a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a routerLink="/main" (click)="logout()">Log Out</a>
+                  <a routerLink="/main" (click)="logout()"> 
+                    <span class="glyphicon glyphicon-log-out"></span> Log Out</a>
                 </li>
               </ul>
             </li>
