@@ -15,9 +15,9 @@ const routes: Routes = [
   { path: 'main', component: MainComponent, data: { animation: 'main' }  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'cities-list/page/:pageNumber', component: CitiesComponent,   data: { animation: 'cities-list/page/:pageNumber' }},
+  { path: 'cities-list', component: CitiesComponent,   data: { animation: 'cities-list' }},
   { path: 'city/:cityId', component: CityComponent, data: { animation: 'city/:cityId' }},
-  { path: 'city/:cityId/place-list/page/:pageNumber', component: PlaceListComponent, data: { animation: 'city/:cityId/place-list/page/:pageNumber' } },
+  { path: 'city/:cityId/place-list', component: PlaceListComponent, data: { animation: 'city/:cityId/place-list' } },
   { path: 'city/:cityId/place/:placeId', component: PlaceComponent, data: { animation: 'city/:cityId/place/:placeId' } },
   { path: 'profile', component: ProfileComponent, data: { animation: 'profile' } }
 ];

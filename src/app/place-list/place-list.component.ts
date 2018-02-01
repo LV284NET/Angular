@@ -28,7 +28,7 @@ export class PlaceListComponent implements OnInit {
   loading = false;
   countOfElements = 0;
   currentPage = 1;
-  elementsPerPage;
+  elementsPerPage = 3;
   pagesToShow;
 
   filterMechanism = {filters:[]} 
@@ -57,6 +57,7 @@ export class PlaceListComponent implements OnInit {
 
   ngOnInit() {
     this.getPageFromUrl();
+    this.getPageSizeFromUrl();
     this.getFilteredPlacesList();
     this.getFilteredCount();
     if (this.authService.token != null)
@@ -65,8 +66,15 @@ export class PlaceListComponent implements OnInit {
   }
 
   getPageFromUrl(){
-    const pageNumber = +this.route.snapshot.paramMap.get('pageNumber');
-    this.currentPage = pageNumber;
+    this.route.queryParams.subscribe(params =>{
+      this.currentPage = +params['pageNumber']
+    });
+  }
+
+  getPageSizeFromUrl(){
+    this.route.queryParams.subscribe(params =>{
+      this.elementsPerPage = +params['pageSize']
+    });
   }
 
   getFilters(){
@@ -107,8 +115,15 @@ export class PlaceListComponent implements OnInit {
 
   goToPage(n: number): void {
     this.currentPage = n;
+    this.router.navigate(['/cities-list'],
+    { queryParams: 
+      {pageSize: this.elementsPerPage
+      , pageNumber: this.currentPage} });
     const cityID = + this.route.snapshot.paramMap.get('cityId');
-    this.router.navigate(['/city/'+ cityID +'/place-list/page/'+this.currentPage]);
+    this.router.navigate(['/city/'+ cityID +'/place-list'],  
+    { queryParams: 
+      {pageSize: this.elementsPerPage
+      , pageNumber: this.currentPage} });
     this.getFilteredPlacesList();
 
   }
