@@ -19,10 +19,10 @@ import { PlaceComponent } from './place/place.component';
 import { CityService } from './Services/city.service';
 import { CitiesComponent } from './cities/cities.component';
 import { CityComponent } from './city/city.component';
-import { MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { MatDialogModule, MatSnackBarModule, MatCheckbox } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
 import { FavoriteService } from './Services/favorite.service';
-import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { MatAutocompleteModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
@@ -76,7 +76,8 @@ import { FooterService } from './Services/footer.service';
     MatAutocompleteModule,
     MatInputModule,
     DisqusModule.forRoot('ngx'),
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    MatCheckboxModule,
   ],
   providers: [
     AuthorizationService,

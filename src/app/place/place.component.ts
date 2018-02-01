@@ -24,6 +24,7 @@ export class PlaceComponent implements OnInit {
 
   place: Place;
   userRating: number = 0;
+  filters: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -40,6 +41,7 @@ export class PlaceComponent implements OnInit {
 
   ngOnInit() {
     this.getPlace();
+    this.getPlaceFilters();
     if (this.authService.token != null)
     {
       this.favoritePlace.getFavoritePlaces();      
@@ -130,5 +132,19 @@ export class PlaceComponent implements OnInit {
   
   goBack(): void{
     this.location.back();
+  }
+
+  getPlaceFilters(){
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
+    const placeId = +this.route.snapshot.paramMap.get('placeId');
+    this.placesService.getPlaceFilters(placeId) .subscribe(response => {
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
+      response.forEach(element => {
+        this.filters.push(element)
+      });
+
+          })
   }
 }

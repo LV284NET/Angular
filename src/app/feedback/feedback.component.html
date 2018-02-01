@@ -1,7 +1,10 @@
 <a class="close btn" (click)="closeDialog()" role="button" >&times;</a>
 <h3>Suggestion</h3>
 <form ngNoForm novalidate [formGroup]="myform" (submit)="suggestion()" action="https://formspree.io/easytravelsystem284@gmail.com" target="_blank" method="POST" #form>
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{
+    'has-error': email.invalid && email.dirty, 
+    'has-success': email.valid && email.dirty
+  }">
     <label for="email">Email:</label>
     <input [(ngModel)]="Email" type="text" name="Email" placeholder="email@some.com" class="form-control" id="email" formControlName="email"
       required>

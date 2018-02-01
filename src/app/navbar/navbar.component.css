@@ -34,3 +34,6 @@ a:hover {
     border-radius: 0px;
     /* padding-left: 50px; */
 }
+.glyphicon {
+    font-size: 1.5vw;
+}
