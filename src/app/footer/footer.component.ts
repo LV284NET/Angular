@@ -8,8 +8,8 @@ import { FeedbackComponent } from '../feedback/feedback.component';
 import { DOCUMENT } from "@angular/platform-browser";
 import { WINDOW } from "../Services/window.service";
 import { trigger, state, style, animate, transition } from '@angular/animations';
-
-
+import { SpinnerService } from '../Services/spinner.service';
+import { FooterService } from '../Services/footer.service';
 
 @Component({
   selector: 'app-footer',
@@ -19,20 +19,20 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class FooterComponent implements OnInit {
 
-  public state: string = 'shown';
+  @Input() visible: boolean = false;
+  @Input() name: string;
 
-  private previousPosition: number = 0;
-  private currentPosition: number = 0;
-  constructor(
-    public authService: AuthorizationService, 
+  constructor( 
     private router: Router, 
     public dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(WINDOW) private window: Window
+    public spinnerService: SpinnerService,
+    private footerService: FooterService
+   
   ) { }
 
   ngOnInit() {
+    this.footerService.Register(this);
+    this.name = "footer";
   }
   suggestions(){
     let dialog = this.dialog.closeAll()

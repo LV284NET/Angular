@@ -7,6 +7,11 @@
     z-index: 9999
 }
 
+.footerS{
+    min-height:90vh;
+}
+
+
 @media only screen and (min-width: 1440px) {
     #spinner{
         position: fixed;

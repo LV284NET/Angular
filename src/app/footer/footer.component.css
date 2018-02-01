@@ -8,12 +8,14 @@
     display: block;
     
 } 
+.colorF{
+  color:rgb(180, 180, 180)
+}
+
 a:hover {
   cursor: pointer; 
   text-decoration: none; 
   color: white;
 }
-a{
-  color: rgb(74,74,74)
-}
+
 
