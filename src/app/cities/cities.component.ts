@@ -38,23 +38,40 @@ export class CitiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPageFromUrl();
     this.getPageSizeFromUrl();
+    this.getCount();
+    this.getPageFromUrl();
     this.getCities();
     this.getCitiesRating();
-    this.getCount();
+
   }
 
   getPageFromUrl(){
+    let page;
+
     this.route.queryParams.subscribe(params =>{
-      this.currentPage = +params['pageNumber']
+      page = +params['pageNumber']
     });
+
+    if(page > 0 )
+      {this.currentPage= page;}
+
+    else
+      {this.changeRoutes();}
   }
 
   getPageSizeFromUrl(){
+    let pageSize;
+
     this.route.queryParams.subscribe(params =>{
-      this.elementsPerPage = +params['pageSize']
+      pageSize = +params['pageSize']
     });
+
+    if(pageSize > 0)
+      {this.elementsPerPage= pageSize;}
+    
+    else
+      {this.changeRoutes();}
   }
 
   getCities(): void{
@@ -110,32 +127,32 @@ export class CitiesComponent implements OnInit {
     this.loading=false;
 }
 
-  goToPage(n: number): void {
-    this.currentPage = n;
-    this.router.navigate(['/cities-list'],
+changeRoutes(){
+  this.router.navigate(['/cities-list'],
     { queryParams: 
       {pageSize: this.elementsPerPage
       , pageNumber: this.currentPage} });
+}
+
+  goToPage(n: number): void {
+    this.currentPage = n;
+    this.changeRoutes();
     this.getCities();
     this.getCitiesRating();
   }
 
   onNext(): void {
     this.currentPage++;
-    this.router.navigate(['/cities-list'],
-    { queryParams: 
-      {pageSize: this.elementsPerPage
-      , pageNumber: this.currentPage} });
+    this.changeRoutes();
     this.getCities();
+    this.getCitiesRating();
   }
 
   onPrev(): void {
     this.currentPage--;
-    this.router.navigate(['/cities-list'],
-    { queryParams: 
-      {pageSize: this.elementsPerPage
-      , pageNumber: this.currentPage} });
+    this.changeRoutes();
     this.getCities();
+    this.getCitiesRating();
   }
 
 }

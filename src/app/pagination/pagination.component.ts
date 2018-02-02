@@ -54,6 +54,12 @@ export class PaginationComponent {
     return this.elementsperPage * this.currentPage > this.countOfElements;
   }
 
+  PageMover(){
+    if(this.currentPage > this.totalPages()){
+      this.currentPage= this.totalPages()+1;
+    }
+  }
+
   //Get mass of pages which will be shown in Pagination if pagesToShow = 3
   //There will be  < 1 2 3 > . If current page 5 of 10 there will be < 4 5 6 >
   getPages(): number[] {
@@ -61,6 +67,7 @@ export class PaginationComponent {
     const pagesToShow = 3;
     const pages: number[] = [];
 
+    this.PageMover();
     pages.push(this.currentPage || 1);
 
     for (let i = 0; i < (pagesToShow - 1); i++) {
