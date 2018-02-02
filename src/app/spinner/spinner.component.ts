@@ -25,11 +25,11 @@ export class SpinnerComponent implements OnInit {
     this.spinnerName = Constants.SpinnerComponentConstants.AnimationName;
   }
 
-  public Hide(): void{
-    this.spinnerService.HideSpinner(this.spinnerName);   
-  }
+  // public Hide(): void{
+  //   this.spinnerService.HideSpinner(this.spinnerName);   
+  // }
 
-  public Show(): void{
-    this.spinnerService.ShowSpinner(this.spinnerName);
-  }
+  // public Show(): void{
+  //   this.spinnerService.ShowSpinner(this.spinnerName);
+  // }
 }
