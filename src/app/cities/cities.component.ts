@@ -30,7 +30,7 @@ export class CitiesComponent implements OnInit {
     private route: ActivatedRoute,
     private spinnerService: SpinnerService,
     private ratingService: RatingService
-  ) 
+) 
 
   {
     this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;

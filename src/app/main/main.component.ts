@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
     private cityService: CityService,
     private searchService: SearchCitiesAndPlacesService,
     private router: Router,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
   ) { }
 
   ngOnInit() {

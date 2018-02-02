@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ErrorHandlingService } from '../Services/error-handling.service';
 import { error } from 'util';
-
 import { SpinnerService } from '../Services/spinner.service';
+import { TokenExpiredService } from '../Services/token-expired.service';
 import { Constants } from './../constants';
 
 @Component({
@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
     private errorService: ErrorHandlingService,
     private dialogRef: MatDialogRef<LoginComponent>,
     private snackBar: MatSnackBar,
-    private spinnerService: SpinnerService) { }
+    private spinnerService: SpinnerService,
+    private tokenService: TokenExpiredService) { }
 
 
   ngOnInit(): void {
@@ -56,6 +57,7 @@ export class LoginComponent implements OnInit {
 
       this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
         this.dialogRef.close();
+        this.tokenService.checkToken();
         this.snackBar.open("You are logged in", "Got it", {
           duration: 2000
         });

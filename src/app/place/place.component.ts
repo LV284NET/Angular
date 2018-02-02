@@ -34,7 +34,7 @@ export class PlaceComponent implements OnInit {
     public authService: AuthorizationService,
     private spinnerService: SpinnerService,
     private ratingService: RatingService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) { 
     this.place = new Place(0, "", "", "", "");
   }

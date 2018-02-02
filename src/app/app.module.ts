@@ -38,7 +38,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Constants } from './constants';
 import  './getFBSDK'
 import { FooterService } from './Services/footer.service';
+import { TokenExpiredService } from './Services/token-expired.service';
+
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     NavbarComponent,
@@ -60,8 +63,7 @@ import { FooterService } from './Services/footer.service';
   entryComponents: [
     LoginComponent,
     RegisterComponent,
-    FeedbackComponent,
-    ChangePasswordComponent
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
@@ -90,8 +92,9 @@ import { FooterService } from './Services/footer.service';
     SpinnerService,
     RatingService,
     Constants,
-    FooterService
-  ],
-  bootstrap: [AppComponent]
+    FooterService,
+    TokenExpiredService
+  ]
 })
-export class AppModule { }
+export class AppModule {
+}
