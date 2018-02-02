@@ -41,7 +41,6 @@ export class CitiesComponent implements OnInit {
     this.getPageFromUrl();
     this.getPageSizeFromUrl();
     this.getCities();
-    this.getCitiesRating();
     this.getCount();
   }
 
@@ -75,17 +74,6 @@ export class CitiesComponent implements OnInit {
     this.loading=false;
   }
 
-  getCitiesRating(): void{
-    this.cities.forEach( element => 
-      {
-        this.ratingService.getCityPating(element.cityID).subscribe(
-          response => {element.rating = response},
-          error => {element.rating = 0}
-        )
-      }
-    )
-  }
-
   getCityRating(cityRating: number): any{
     if(cityRating != 0)
     { 
@@ -117,8 +105,7 @@ export class CitiesComponent implements OnInit {
       {pageSize: this.elementsPerPage
       , pageNumber: this.currentPage} });
     this.getCities();
-    this.getCitiesRating();
-  }
+}
 
   onNext(): void {
     this.currentPage++;

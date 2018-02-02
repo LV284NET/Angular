@@ -33,7 +33,7 @@ export class Constants {
 
         static UrlForRegistration: string = Constants.CurrentBackEndHost + 'api/Account/Register';
 
-        static UrlForConfirmEmail: string = Constants.CurrentBackEndHost + 'api/Account/Confirm';
+        static UrlForConfirmEmail: string = Constants.CurrentBackEndHost + 'api/Account/ConfirmUser';
 
         static UrlForChangePassword: string = Constants.CurrentBackEndHost + 'api/Account/ChangePassword';
     }
@@ -41,11 +41,11 @@ export class Constants {
     //Constants for CityService
     static CityServiceConstants = class {
 
-        static UrlForGetCityById: string = Constants.CurrentBackEndHost + 'api/GetCity';
+        static UrlForGetCityById: string = Constants.CurrentBackEndHost + 'api/City/GetCity';
 
-        static UrlForGetCities: string = Constants.CurrentBackEndHost + 'api/GetCities';
+        static UrlForGetCities: string = Constants.CurrentBackEndHost + 'api/City/GetCities';
 
-        static UrlForGetCitiesCount: string = Constants.CurrentBackEndHost + 'api/GetCountCity';
+        static UrlForGetCitiesCount: string = Constants.CurrentBackEndHost + 'api/City/GetCountCity';
 
         static UrlForGetTopCities: string = Constants.CurrentBackEndHost + "api/City/GetTopCities";
 
@@ -54,9 +54,9 @@ export class Constants {
     //Constants for FavoriteService
     static FavoriteServiceConstants = class {
 
-        static UrlForAddFavoritePlace: string = Constants.CurrentBackEndHost + 'api/Place/AddFavoritePlace';
+        static UrlForAddFavoritePlace: string = Constants.CurrentBackEndHost + 'api/Place/AddUserFavoritePlace';
 
-        static UrlForDeleteFavoritePlace: string = Constants.CurrentBackEndHost + 'api/Place/DeleteFavoritePlace';
+        static UrlForDeleteFavoritePlace: string = Constants.CurrentBackEndHost + 'api/Place/DeleteUserFavoritePlace';
 
         static UrlForGetFavoritePlaces: string = Constants.CurrentBackEndHost + 'api/Profile/GetFavoritePlaces';
     }
@@ -98,8 +98,6 @@ export class Constants {
 
         //Constants for RatingService
         static RatingServiceConstants = class {            
-            static UrlForGetCityRating: string = Constants.CurrentBackEndHost + '';
-            
             static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
             
             static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';

@@ -55,12 +55,14 @@ import  './getFBSDK';
     ProfileComponent,
     ChangePasswordComponent,
     PaginationComponent,
-    SpinnerComponent   
+    SpinnerComponent,
+    FooterComponent   
   ],
   entryComponents: [
     LoginComponent,
     RegisterComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

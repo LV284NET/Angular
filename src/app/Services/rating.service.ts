@@ -13,7 +13,6 @@ import { Constants } from '../constants';
 @Injectable()
 export class RatingService {
 
-  private urlForGetCityRating = Constants.RatingServiceConstants.UrlForGetCityRating;
   private urlForGetPlaceRating = Constants.RatingServiceConstants.UrlForGetPlaceRating;
   private urlForGerUserRatingOfPlace = Constants.RatingServiceConstants.UrlForGetUserRatingOfPlace;
   private urlForSetUserRatingofPlace = Constants.RatingServiceConstants.UrlForSetUserRatingOfPlace;
@@ -21,22 +20,7 @@ export class RatingService {
 
   constructor(private _http: Http,
     private errorService: ErrorHandlingService,
-    private SnackBar: MatSnackBar) {
-
-  }
-
-  public getCityPating(cityId: number): any {
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let searchLine = "CityId=" + cityId;
-
-    return this._http.get(this.urlForGetCityRating, { params: searchLine, headers: headers })
-      .map((res: Response) => {
-        return res.json();
-      })
-      .catch((error: any) => Observable.throw(error));
-  }
-
+    private SnackBar: MatSnackBar) {  }
   public getPlacePating(placeId: number): any {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -97,7 +81,7 @@ export class RatingService {
       }
     );
 
-    return this._http.delete(this.urlForSetUserRatingofPlace, { body: body,
+    return this._http.delete(this.urlForDeleteUserRatingofPlace, { body: body,
       headers: headers })
       .map((res: Response) => {
         return res;
