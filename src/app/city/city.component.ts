@@ -13,7 +13,6 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { SpinnerService } from '../Services/spinner.service';
 import { Constants } from './../constants';
 
-
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
@@ -32,7 +31,7 @@ export class CityComponent implements OnInit {
     private location: Location,
     private spinnerService: SpinnerService,
     public favoritePlace: FavoriteService,
-    public authService: AuthorizationService,
+    public authService: AuthorizationService
   ) { }
 
   ngOnInit() {

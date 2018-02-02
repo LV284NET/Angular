@@ -7,7 +7,7 @@ import { Constants } from '../constants';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent {
-  private firstPage: number = Constants.PaginationConstants.FirstPage;
+  public firstPage: number = Constants.PaginationConstants.FirstPage;
 
   @Input() currentPage: number;
   @Input() countOfElements: number;

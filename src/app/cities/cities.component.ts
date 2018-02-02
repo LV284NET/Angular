@@ -42,7 +42,6 @@ export class CitiesComponent implements OnInit {
     this.getCount();
     this.getPageFromUrl();
     this.getCities();
-    this.getCitiesRating();
 
   }
 
@@ -92,24 +91,6 @@ export class CitiesComponent implements OnInit {
     this.loading=false;
   }
 
-  getCitiesRating(): void{
-    this.cities.forEach( element => 
-      {
-        this.ratingService.getCityPating(element.cityID).subscribe(
-          response => {element.rating = response},
-          error => {element.rating = 0}
-        )
-      }
-    )
-  }
-
-  getCityRating(cityRating: number): any{
-    if(cityRating != 0)
-    { 
-      return cityRating.toString();
-    }
-    return "";
-  }
 
   getCount(){
     //Show Load Animation
@@ -138,21 +119,18 @@ changeRoutes(){
     this.currentPage = n;
     this.changeRoutes();
     this.getCities();
-    this.getCitiesRating();
   }
 
   onNext(): void {
     this.currentPage++;
     this.changeRoutes();
     this.getCities();
-    this.getCitiesRating();
   }
 
   onPrev(): void {
     this.currentPage--;
     this.changeRoutes();
     this.getCities();
-    this.getCitiesRating();
   }
 
 }

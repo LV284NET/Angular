@@ -1,23 +1,11 @@
 h3 {
     margin-bottom: 40px;
 }
+
 h1 {
     margin-bottom: 100px;
 }
 
-.search-bar-background {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width:100%;
-    height:100%;
-    padding:0 0 25%;                           
-    position: relative;
-}
-
-.xs-search {
-    border-radius: 0px
-}
 .carousel-inner img {
   width: 100%; max-height: 1800px; 
   min-height: 400px; min-width: 400px; 
@@ -53,42 +41,6 @@ h1 {
   background-image: none;
 }
 
-/* .carousel .item {
-    width: 100%; 
-    max-height: 600px;  
-}
-
-.carousel .item img {
-    width: 100%;
-  }
-.carousel-caption {
-  background-color: rgba(0,0,0,.5);
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
-  padding: 0 0 10px 25px;
-  color: #fff;
-  text-align: left;
-}
-
-.carousel-indicators {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  z-index: 15;
-  margin: 0;
-  padding: 0 25px 25px 0;
-  text-align: center;
-}
-.carousel-control.left,
-.carousel-control.right {
-  background-image: none;
-}
- */
 .block {
   position: relative;
   top: -20px;

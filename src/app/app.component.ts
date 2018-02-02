@@ -2,11 +2,13 @@ import { Component, OnInit, Input, NgZone, Renderer, ElementRef, ViewChild } fro
 import { AuthorizationService } from './Services/AuthorizationService';
 import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router'
 import { trigger, state, style, animate, transition, query } from '@angular/animations';
-import { SpinnerComponent } from './spinner/spinner.component'
+import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService} from './Services/spinner.service';
 import { error } from 'util';
 import { User } from "./user";
 import { Constants } from './constants';
+import { TokenExpiredService} from './Services/token-expired.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -46,12 +48,13 @@ import { Constants } from './constants';
     ])
   ]
 })
-export class AppComponent {
+
+export class AppComponent{
+  constructor(private tokenService : TokenExpiredService, private authService: AuthorizationService, private snackBar: MatSnackBar) {
+    this.tokenService.checkToken();
+   }
 
   public spinnerName: string = Constants.SpinnerComponentConstants.AnimationName;
-
-  constructor() { }
-
     // change the animation state
     public getRouteAnimation(outlet) {
       return outlet.activatedRouteData.animation;

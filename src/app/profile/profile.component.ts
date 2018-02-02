@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private favoriteService: FavoriteService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
   ) { 
     this.user = new User("", "", "");
   }

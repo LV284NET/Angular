@@ -36,6 +36,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService} from './Services/spinner.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Constants } from './constants';
+import { TokenExpiredService } from './Services/token-expired.service';
+import { SearchCitiesAndPlacesService } from './Services/search-cities-and-places.service';
 import  './getFBSDK';
 
 @NgModule({
@@ -53,9 +55,8 @@ import  './getFBSDK';
     ProfileComponent,
     ChangePasswordComponent,
     PaginationComponent,
-    FooterComponent,
-    SpinnerComponent
-   
+    SpinnerComponent,
+    FooterComponent   
   ],
   entryComponents: [
     LoginComponent,
@@ -89,9 +90,11 @@ import  './getFBSDK';
     WINDOW_PROVIDERS,
     SpinnerService,
     RatingService,
-    Constants
-   
+    Constants,
+    TokenExpiredService,
+    SearchCitiesAndPlacesService   
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

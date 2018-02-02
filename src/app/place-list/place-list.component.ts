@@ -15,7 +15,6 @@ import { Observable } from "rxjs/Observable";
 import { NullAstVisitor } from '@angular/compiler';
 import { FormControl, FormArray, FormGroup, FormBuilder } from '@angular/forms';
 
-
 @Component({
   selector: 'app-place-list',
   templateUrl: './place-list.component.html',
@@ -43,7 +42,7 @@ export class PlaceListComponent implements OnInit {
     public authService: AuthorizationService,
     private spinnerService: SpinnerService,
     private ratingService: RatingService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   )   
   {  
     this.pagesToShow = Constants.PaginationConstants.PagesToShow;

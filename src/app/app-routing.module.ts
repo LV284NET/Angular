@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { PlaceListComponent } from './place-list/place-list.component';
 import { PlaceComponent } from './place/place.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -31,4 +32,4 @@ const routes: Routes = [
   declarations: []
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule{ }

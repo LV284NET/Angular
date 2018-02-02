@@ -70,7 +70,10 @@ export class AuthorizationService {
                     let userName = res.json().userName;
                     let firstName = res.json().firstName;   
                     let Id = res.json().Id;
-                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, token: token }));
+                    var dateNow = Date.now();
+                    let tokenExpired = res.json().expires_in;
+                    var tokenDurating = dateNow + tokenExpired * 1000; 
+                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating : tokenDurating , token: token }));
                     this.FirstName = firstName;
                     this.UserId = Id; 
                     return true;
