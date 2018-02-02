@@ -9,7 +9,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 import { WINDOW } from "../Services/window.service";
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { SpinnerService } from '../Services/spinner.service';
-import { FooterService } from '../Services/footer.service';
+
 
 @Component({
   selector: 'app-footer',
@@ -26,13 +26,12 @@ export class FooterComponent implements OnInit {
     private router: Router, 
     public dialog: MatDialog,
     public spinnerService: SpinnerService,
-    private footerService: FooterService
+   
    
   ) { }
 
   ngOnInit() {
-    this.footerService.Register(this);
-    this.name = "footer";
+   
   }
   suggestions(){
     let dialog = this.dialog.closeAll()
