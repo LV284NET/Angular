@@ -36,8 +36,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService} from './Services/spinner.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Constants } from './constants';
-import  './getFBSDK'
-import { FooterService } from './Services/footer.service';
+import  './getFBSDK';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,8 +89,8 @@ import { FooterService } from './Services/footer.service';
     WINDOW_PROVIDERS,
     SpinnerService,
     RatingService,
-    Constants,
-    FooterService
+    Constants
+   
   ],
   bootstrap: [AppComponent]
 })
