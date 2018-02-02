@@ -1,3 +1,4 @@
+import { forEach } from '@angular/router/src/utils/collection';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from './../constants';
 import { Location } from '@angular/common';
@@ -50,15 +51,16 @@ export class PlaceListComponent implements OnInit {
     this.pagesToShow = Constants.PaginationConstants.PagesToShow;
     this.getFilters();
 
-    this.form = this.fb.group({
-      filters: this.buildFilters()
-    });
   }
 
   ngOnInit() {
     this.getPageFromUrl();
     this.getPageSizeFromUrl();
+    this.getCheckedFiltersFromUrl();
     this.getFilteredPlacesList();
+    this.form = this.fb.group({
+      filters: this.buildFilters()
+    });
     this.getFilteredCount();
     if (this.authService.token != null)
       this.favoritePlace.getFavoritePlaces();
@@ -99,9 +101,7 @@ export class PlaceListComponent implements OnInit {
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
     this.loading = true;
 
-    let checkedFilters = this.filterMechanism.filters.filter((element, index, array) => {
-      return element.selected;
-    });
+    let checkedFilters = this.getCheckedFilters();
 
     this.placesService.getCountFromFilteredPlaces(this.cityID,checkedFilters).subscribe(response => {
       //Hide Load Animation
@@ -113,35 +113,35 @@ export class PlaceListComponent implements OnInit {
     this.loading = false;
   }
 
+  getCheckedFilters(){
+
+    let checkedFilters = this.filterMechanism.filters.filter((element, index, array) => {
+      return element.selected;
+    });
+
+    return checkedFilters;
+  }
+
+
   goToPage(n: number): void {
     this.currentPage = n;
-    const cityID = + this.route.snapshot.paramMap.get('cityId');
-
-    this.router.navigate(['/city/'+ cityID +'/place-list'],  
-    { queryParams: 
-      {pageSize: this.elementsPerPage
-      , pageNumber: this.currentPage} });
+    this.changeRoutes();
+    this.getCheckedFiltersFromUrl();
     this.getFilteredPlacesList();
 
   }
 
   onNext(): void {
     this.currentPage++;
-    const cityID = + this.route.snapshot.paramMap.get('cityId');
-    this.router.navigate(['/city/'+ cityID +'/place-list'],  
-    { queryParams: 
-      {pageSize: this.elementsPerPage
-      , pageNumber: this.currentPage} });
+    this.changeRoutes();
+    this.getCheckedFiltersFromUrl();
     this.getFilteredPlacesList();
   }
 
   onPrev(): void {
     this.currentPage--;
-    const cityID = + this.route.snapshot.paramMap.get('cityId');
-    this.router.navigate(['/city/'+ cityID +'/place-list'],  
-    { queryParams: 
-      {pageSize: this.elementsPerPage
-      , pageNumber: this.currentPage} });
+    this.changeRoutes();
+    this.getCheckedFiltersFromUrl();
     this.getFilteredPlacesList();
   }
 
@@ -156,6 +156,27 @@ export class PlaceListComponent implements OnInit {
     return this.form.get('filters') as FormArray;
   }
 
+  getCheckedFiltersFromUrl(){
+    let selectedFilters: Array<string>;
+
+    this.route.queryParams.subscribe(params =>{
+      selectedFilters = params['filter']
+    });
+
+    if(selectedFilters != null && selectedFilters.length !=0){
+    selectedFilters.forEach(element =>{
+      for(let j=0, lenfilters=this.filterMechanism.filters.length;
+         j<lenfilters; j++ ){
+           if(element == this.filterMechanism.filters[j].name){
+             this.filterMechanism.filters[j].selected=true;
+           }
+      }
+    })
+  }
+      
+
+  }
+
   getFilteredPlacesList() {
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
@@ -163,9 +184,7 @@ export class PlaceListComponent implements OnInit {
     this.cityID = + this.route.snapshot.paramMap.get('cityId');
     this.places = [];
 
-    let checkedFilters = this.filterMechanism.filters.filter((element, index, array) => {
-      return element.selected;
-    });
+    let checkedFilters = this.getCheckedFilters();
 
     this.placesService.getFilteredPlaces(checkedFilters, this.cityID, this.currentPage, this.elementsPerPage).subscribe(response => {
       this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
@@ -180,9 +199,37 @@ export class PlaceListComponent implements OnInit {
     this.loading = false;
   }
 
+  changeRoutes(){
+    const cityID = + this.route.snapshot.paramMap.get('cityId');
+    let filters:string[] = this.filterTostringArray();
+
+    this.router.navigate(['/city/'+ cityID +'/place-list'],  
+    { queryParams: 
+      {pageSize: this.elementsPerPage,
+       pageNumber: this.currentPage,
+       filter: filters
+      }    });
+  }
+
+  filterTostringArray(): string[]{
+    let selectedFilters: string[] = [];
+
+        for(let i=0, lenfilters=this.filterMechanism.filters.length;
+                                          i<lenfilters; i++ ){
+             if(this.filterMechanism.filters[i].selected){
+
+               selectedFilters.push(this.filterMechanism.filters[i].name);
+
+             }
+      }
+      return selectedFilters;
+  }
+
   checkSelectedCheckbox(event) {
     this.filterMechanism.filters[event.source.id - 1].selected = event.checked;
-    this.getFilteredCount();
     this.currentPage=1;
+    this.changeRoutes();
+    this.getFilteredCount();
+    this.getCheckedFiltersFromUrl();
   }
 }
