@@ -36,9 +36,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService} from './Services/spinner.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Constants } from './constants';
-import { FooterService } from './Services/footer.service';
-import  './getFBSDK';
 import { SearchCitiesAndPlacesService } from './Services/search-cities-and-places.service';
+import  './getFBSDK';
 
 @NgModule({
   declarations: [
@@ -92,8 +91,7 @@ import { SearchCitiesAndPlacesService } from './Services/search-cities-and-place
     SpinnerService,
     RatingService,
     Constants,
-    FooterService,
-    SearchCitiesAndPlacesService
+    SearchCitiesAndPlacesService   
   ],
   bootstrap: [AppComponent]
 })
