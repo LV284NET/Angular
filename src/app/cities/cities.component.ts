@@ -108,6 +108,14 @@ export class CitiesComponent implements OnInit {
     this.loading=false;
 }
 
+getCityRating(cityRating: number): any{
+  if(cityRating != 0)
+  { 
+    return cityRating.toString();
+  }
+  return "";
+}
+
 changeRoutes(){
   this.router.navigate(['/cities-list'],
     { queryParams: 
