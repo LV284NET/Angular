@@ -29,7 +29,6 @@ export class MainComponent implements OnInit {
 
   constructor(
     private cityService: CityService,
-    private searchService: SearchCitiesAndPlacesService,
     private router: Router,
     private spinnerService: SpinnerService,
   ) { }
@@ -49,38 +48,6 @@ export class MainComponent implements OnInit {
         this.imageURL.push(element.PicturePath);
         this.names.push(element.Name)
       });
-    });
-
-    this.formInput.valueChanges
-      .debounceTime(500)
-      .subscribe(input => {
-        this.inputLine = input.toString();
-        if (this.inputLine != null && this.inputLine != "") {
-          this.searchResult.length = 0;
-          this.searchService.searchCitiesAndPlaces(this.inputLine)
-            .subscribe(response => {
-              response.forEach(element => {
-                if (element.Type == "City") {
-                  this.searchResult.push(new SearchItem(
-                    element.Id,
-                    null,
-                    element.Name,
-                    element.Type,
-                    this.router));
-                } else {
-                  this.searchResult.push(new SearchItem(
-                    element.CityId,
-                    element.Id,
-                    element.Name,
-                    element.Type,
-                    this.router));
-                }
-              });
-            });
-        }
-        else {
-          this.searchResult.length = 0;
-        }
-      });
+    });    
   }
 }

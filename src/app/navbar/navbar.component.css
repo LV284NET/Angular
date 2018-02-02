@@ -11,8 +11,11 @@
 }
 
 #logo-navbar{
-    height: 32px;
-    margin: 9px; 
+    height: 50px;
+    margin: 0;
+    position: relative;
+    left: -15px;
+    top: -15px;
 }
 
 #logo-link-background{
@@ -21,8 +24,13 @@
     z-index: 9999;
 }
 
+#search{
+   background-color:rgb(240, 240, 240); 
+   z-index: 999;
+}
+
 .place-for-logo{
-    margin-left: 50px;
+    margin-left: 70px;
 }
 
 a:hover {
@@ -34,6 +42,21 @@ a:hover {
     border-radius: 0px;
     /* padding-left: 50px; */
 }
+
 .glyphicon {
-    font-size: 1.5vw;
+    font-size: 15px;
+    /* 0.8vw */
 }
+
+.form {
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .search-option {
+    display:block; 
+    text-decoration: none;
+  }
