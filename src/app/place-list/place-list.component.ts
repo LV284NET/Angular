@@ -27,8 +27,8 @@ export class PlaceListComponent implements OnInit {
   cityName: string;
   loading = false;
   countOfElements = 0;
-  currentPage = 1;
-  elementsPerPage = 3;
+  currentPage;
+  elementsPerPage;
   pagesToShow;
 
   filterMechanism = {filters:[]} 
@@ -45,23 +45,22 @@ export class PlaceListComponent implements OnInit {
     private fb: FormBuilder,
   )   
   {  
-    this.pagesToShow = Constants.PaginationConstants.PagesToShow;
+    this.getStandartParams();
     this.getFilters();
 
   }
 
   ngOnInit() {
-
+    this.getCityIdFromUrl();
+    this.getCheckedFiltersFromUrl();
+    
     this.form = this.fb.group({
       filters: this.buildFilters()
     });
 
-    this.getCityIdFromUrl();
-    this.getCheckedFiltersFromUrl();
     this.getPageSizeFromUrl();
     this.getFilteredCount();
     this.getPageFromUrl();
-
     this.getFilteredPlacesList();
  
     if (this.authService.token != null)
@@ -78,6 +77,10 @@ export class PlaceListComponent implements OnInit {
 
     if(page > 0 )
     { this.currentPage= page;}
+
+    if(page > (this.countOfElements/this.elementsPerPage))
+      {this.currentPage=Constants.PaginationConstants.FirstPage
+      this.changeRoutes();}
 
     else
     { this.changeRoutes();}
@@ -205,6 +208,11 @@ export class PlaceListComponent implements OnInit {
     this.loading = false;
   }
 
+  getStandartParams(){
+    this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
+    this.currentPage = Constants.PaginationConstants.FirstPage;
+    this.pagesToShow = Constants.PaginationConstants.PagesToShow;
+  }
 
   goToPage(n: number): void {
     this.currentPage = n;
@@ -225,6 +233,12 @@ export class PlaceListComponent implements OnInit {
     this.currentPage--;
     this.changeRoutes();
     this.getCheckedFiltersFromUrl();
+    this.getFilteredPlacesList();
+  }
+
+  showAll(): void{
+    this.elementsPerPage = this.countOfElements;
+    this.changeRoutes();
     this.getFilteredPlacesList();
   }
 

@@ -21,8 +21,8 @@ export class CitiesComponent implements OnInit {
   cities: City[] = [];
   loading = false;
   countOfElements = 0;
-  currentPage = 1;
-  elementsPerPage = 3;
+  currentPage;
+  elementsPerPage;
   pagesToShow;
 
   constructor(
@@ -34,7 +34,7 @@ export class CitiesComponent implements OnInit {
   ) 
 
   {
-    this.pagesToShow = Constants.PaginationConstants.PagesToShow;
+    this.getStandartParams();
   }
 
   ngOnInit() {
@@ -53,7 +53,11 @@ export class CitiesComponent implements OnInit {
     });
 
     if(page > 0 )
-      {this.currentPage= page;}
+      {this.currentPage = page;}
+    
+    if(page > (this.countOfElements/this.elementsPerPage))
+      {this.currentPage=Constants.PaginationConstants.FirstPage
+        this.changeRoutes();}
 
     else
       {this.changeRoutes();}
@@ -70,7 +74,7 @@ export class CitiesComponent implements OnInit {
       {this.elementsPerPage= pageSize;}
     
     else
-      {this.changeRoutes();}
+      {  this.changeRoutes();}
   }
 
   getCities(): void{
@@ -123,6 +127,12 @@ changeRoutes(){
       , pageNumber: this.currentPage} });
 }
 
+  getStandartParams(){
+    this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
+    this.currentPage = Constants.PaginationConstants.FirstPage;
+    this.pagesToShow = Constants.PaginationConstants.PagesToShow;
+  }
+
   goToPage(n: number): void {
     this.currentPage = n;
     this.changeRoutes();
@@ -137,6 +147,12 @@ changeRoutes(){
 
   onPrev(): void {
     this.currentPage--;
+    this.changeRoutes();
+    this.getCities();
+  }
+
+  showAll(): void{
+    this.elementsPerPage = this.countOfElements;
     this.changeRoutes();
     this.getCities();
   }

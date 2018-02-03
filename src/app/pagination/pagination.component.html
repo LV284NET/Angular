@@ -1,5 +1,5 @@
 <!-- If elements grater then 0 than show -->
-<div class="container " *ngIf="countOfElements > elementsperPage">
+<div class="container " *ngIf="(countOfElements > elementsperPage) && (currentPage <= totalPages())">
 	<div class="row" align="center">
 
 		<!-- if current page=1 or loading make button hidden. Also calls onPrev() Method-->
@@ -47,6 +47,11 @@
 		(click)="onNext(true)" 
 		[hidden]="lastPage() || loading"
 		[ngClass]="{ 'hidden': lastPage() || loading }"></button>
+
+		<button class="btn btn-primary" 
+		(click)="showAll()" 
+		[hidden]="lastPage() || loading"
+		[ngClass]="{ 'hidden': lastPage() || loading }">Show All</button>
 
 	</div>
 </div>
