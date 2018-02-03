@@ -33,7 +33,7 @@ export class Constants {
 
         static UrlForRegistration: string = Constants.CurrentBackEndHost + 'api/Account/Register';
 
-        static UrlForConfirmEmail: string = Constants.CurrentBackEndHost + 'api/Account/ConfirmUser';
+        static UrlForConfirmEmail: string = Constants.CurrentBackEndHost + 'api/Account/ConfirmEmail';
 
         static UrlForChangePassword: string = Constants.CurrentBackEndHost + 'api/Account/ChangePassword';
     }
