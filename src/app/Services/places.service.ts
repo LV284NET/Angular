@@ -105,6 +105,9 @@ export class PlacesService {
 
     let searchLine = "cityId=" + cityId.toString();
 
+    searchLine += "&numberOfTopPlaces=" +
+       Constants.PlacesServiceConstants.NumberOfTopPlaces.toString();
+
     return this._http
       .get(this.urlForGetTopPlacesByCityId, { params: searchLine })
       .map((res: Response) => {

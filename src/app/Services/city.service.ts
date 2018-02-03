@@ -41,7 +41,10 @@ export class CityService {
 
   public getTopCities():any {
 
-    return this._http.get(this.urlForGetTopCities)
+    let searchLine = "numberOfTopCities=" + 
+        Constants.CityServiceConstants.NumberOfTopCities.toString();
+
+    return this._http.get(this.urlForGetTopCities, { params: searchLine })
     .map((res:Response) => {
       return res.json();
     })

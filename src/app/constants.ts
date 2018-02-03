@@ -21,7 +21,7 @@ export class Constants {
     //Constants for SpinnerComponent
     static SpinnerComponentConstants = class {
 
-        static AnimationUrl: string = '../assets/img/LoadingAnimations/dance.gif';
+        static AnimationUrl: string = '../assets/img/LoadingAnimations/spinner1.gif';
 
         static AnimationName: string = 'LoadingProcess';
     }
@@ -48,6 +48,8 @@ export class Constants {
         static UrlForGetCitiesCount: string = Constants.CurrentBackEndHost + 'api/City/GetCountCity';
 
         static UrlForGetTopCities: string = Constants.CurrentBackEndHost + "api/City/GetTopCities";
+
+        static NumberOfTopCities: number = 4;
 
     }
 
@@ -78,7 +80,7 @@ export class Constants {
 
         static UrlForGetPlaceFilters: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceFilters';
 
-        
+        static NumberOfTopPlaces: number = 4;
     }
 
     //Constants for ProfileService

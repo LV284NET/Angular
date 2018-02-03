@@ -40,8 +40,9 @@ a {
     font-size: 36px;
 }
 
-.no-decoration
-{ text-decoration: none !important}
+.no-decoration{ 
+    text-decoration: none 
+}
 
 .object-fit_contain { 
     position: relative;

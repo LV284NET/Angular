@@ -20,7 +20,8 @@ import { MatSnackBar } from '@angular/material';
 export class PlaceComponent implements OnInit {
   onClickResult:OnClickEvent;
 
-  page= "/city/" +this.route.snapshot.paramMap.get('cityId') + "/place/" + this.route.snapshot.paramMap.get('placeId');
+  page= "/city/" +this.route.snapshot.paramMap.get('cityId') + 
+      "/place/" + this.route.snapshot.paramMap.get('placeId');
 
   place: Place;
   userRating: number = 0;
