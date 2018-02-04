@@ -85,7 +85,15 @@
   </div>
 </div>
 <div>
-  <app-pagination [countOfElements]="countOfElements" [currentPage]="currentPage" [elementsperPage]="elementsPerPage" [pagesToShow]="pagesToShow"
-    [loading]="loading" (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()">
+  <app-pagination 
+  [countOfElements]="countOfElements" 
+  [currentPage]="currentPage" 
+  [elementsperPage]="elementsPerPage" 
+  [pagesToShow]="pagesToShow"
+  [loading]="loading" 
+  (goPage)="goToPage($event)" 
+  (goNext)="onNext()" 
+  (goPrev)="onPrev()"
+  (loadAll)="showAll()">
   </app-pagination>
 </div>
