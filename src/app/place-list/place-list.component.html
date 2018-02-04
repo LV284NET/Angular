@@ -15,7 +15,7 @@
               <form [formGroup]="form">
                 <div *ngFor="let filter of filters.controls; let i = index">
                   <mat-checkbox [id]="filterMechanism.filters[i].id" [formControl]="filter" (checked)="filterMechanism.filters[i].selected==true"
-                    (change)="checkSelectedCheckbox($event);getFilteredPlacesList()" color="warn">
+                    (change)="checkSelectedCheckbox($event)" color="warn">
                     {{filterMechanism.filters[i].name}}
                   </mat-checkbox>
                 </div>

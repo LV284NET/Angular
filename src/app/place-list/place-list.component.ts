@@ -78,9 +78,7 @@ export class PlaceListComponent implements OnInit {
     if(page > 0 )
     { this.currentPage= page;}
 
-    if(page > (this.countOfElements/this.elementsPerPage))
-      {this.currentPage=Constants.PaginationConstants.FirstPage
-      this.changeRoutes();}
+  
 
     else
     { this.changeRoutes();}
@@ -258,10 +256,12 @@ export class PlaceListComponent implements OnInit {
   }
 
   checkSelectedCheckbox(event) {
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
     this.filterMechanism.filters[event.source.id - 1].selected = event.checked;
     this.currentPage=1;
-    this.changeRoutes();
     this.getFilteredCount();
-    this.getCheckedFiltersFromUrl();
+    this.changeRoutes();
+    this.getFilteredPlacesList();
+    this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
   }
 }
