@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { AuthorizationService } from '../Services/AuthorizationService';
+import { FacebookAuthService } from '../Services/SocialAuthorizationService/facebookAuthService';
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ErrorHandlingService } from '../Services/error-handling.service';
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     private errorService: ErrorHandlingService,
     private dialogRef: MatDialogRef<LoginComponent>,
     private snackBar: MatSnackBar,
+    private facebookAuthService: FacebookAuthService,
     private spinnerService: SpinnerService) { }
 
 
@@ -70,16 +72,35 @@ export class LoginComponent implements OnInit {
   };
 
   public onFacebookLogin() {
-    // this.router.navigate(['./home']);
-    FB.getLoginStatus((response) => {
+    FB.login((r) => {
+      FB.getLoginStatus(response => {
       if (response.status === 'connected') {
-        this.router.navigate(['./home']);
-      }
-      else {
-        FB.login((loginResponse) => {
-          this.router.navigate(['./home']);
+        FB.api('/me?fields=email,first_name,last_name', (data)=>{
+          this.facebookAuthService.facebookLogin( data).subscribe(response => {
+            this.snackBar.open("You are logged in", "Got it", {
+              duration: 2000
+            });
+          });
         });
       }
+        else if (response.status === 'not_authorized') {
+
+        } else {
+
+        }
+      });
+    }, {
+      scope :'email'
     });
   }
+
+  statusChangeCallback(response) {
+
+  };
+  // public onFacebookLogin() {
+  //   this.facebookAuthService.facebookLogin().subscribe(response => {
+  //   }, error => {
+  //     this.errorService.handleError(error);
+  //   })
+  // };
 }
