@@ -75,12 +75,12 @@ export class RegisterComponent implements OnInit {
   createFormControls() {
     this.firstName = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є-]{2,40}$")
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'і І є Є-]{2,40}$")
 
     ]);
     this.lastName = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є-]{2,40}$")
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'і І є Є-]{2,40}$")
     ]);
     this.email = new FormControl('', [
       Validators.required,
