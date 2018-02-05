@@ -78,6 +78,10 @@ export class PlaceListComponent implements OnInit {
     if(page > 0 )
     { this.currentPage= page;}
 
+    if(page > this.countOfElements/this.elementsPerPage){
+      this.currentPage = 1;
+      this.changeRoutes();
+    }
   
 
     else
@@ -236,6 +240,7 @@ export class PlaceListComponent implements OnInit {
 
   showAll(): void{
     this.elementsPerPage = this.countOfElements;
+    this.currentPage=1;
     this.changeRoutes();
     this.getFilteredPlacesList();
   }
