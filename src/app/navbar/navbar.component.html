@@ -1,43 +1,130 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a [routerLink]="['/main']">
-        <img class="logo" alt="Brand" src="../assets/img/logo.png">
-      </a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-left">
-        <li>
-          <a routerLink="/cities-list">Cities</a>
-        </li>
-      </ul>
-      <ul *ngIf="authService.token == null;else registered" class="nav navbar-nav navbar-right">
-        <li>
-          <a (click)="signUp()">
-            <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-        </li>
-        <li>
-          <a (click)="signIn()">
-            <span class="glyphicon glyphicon-log-in"></span> Sign In</a>
-        </li>
-      </ul>
-      <ng-template #registered>
-        <ul class="nav navbar-nav navbar-right">
+<div class="hidden-sm hidden-xs">
+  <a id="fixed-link" [routerLink]="['/main']">
+    <img id="logo-link" alt="Brand" src="../assets/img/logo_with_background.png">
+  </a>
+</div>
+
+<div class="nav-container">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" [@navBarState]="this.state" style="border-bottom:0">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand hidden-lg hidden-md" [routerLink]="['/main']">
+          <img id="logo-navbar" alt="Brand" src="../assets/img/logo_with_background.png">
+        </a>
+        
+        <div class="hidden-md hidden-lg" style="display: inline; margin-left: 0px">
+            <a class="navbar-brand" (click)="searchFormToggle()">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </div>
+
+        <div class="place-for-logo hidden-xs hidden-sm">
+          <a class="navbar-brand" (click)="searchFormToggle()">
+            <span class="glyphicon glyphicon-search"></span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="collapse navbar-collapse" id="myNavbar">
+
+        <ul class="nav navbar-nav navbar-left hidden-lg hidden-md ">
           <li>
-            <a href="#">
-              <span class="glyphicon glyphicon-home"></span> Hello, {{authService.mailUser}} !</a>
-          </li>
-          <li>
-            <a [routerLink]="['/main']" (click)="logout()">
-              <span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+            <a routerLink="/cities-list" >Cities</a>
           </li>
         </ul>
-      </ng-template>
+
+        <ul class="nav navbar-nav navbar-left hidden-xs hidden-sm">
+          <li>
+            <a routerLink="/cities-list" >Cities</a>
+          </li>
+        </ul>
+        <ul *ngIf="authService.token == null;else registered" class="nav navbar-nav navbar-right">
+          
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a (click)="signUp()">
+                    <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a (click)="signIn()">
+                    <span class="glyphicon glyphicon-log-in"></span> Sign In</a>
+                </li>
+              </ul>
+            </li>
+          
+        </ul>
+
+        <ng-template #registered>
+          <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Hi, {{authService.FirstName}}! 
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+              </a>
+
+              <ul class="dropdown-menu">
+
+                <li>
+                  <a routerLink="/profile">
+                    <span class="glyphicon glyphicon-home"></span> Your profile</a>
+                </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a routerLink="/main" (click)="logout()"> 
+                    <span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                </li>
+
+              </ul>
+            </li>
+          </ul>
+        </ng-template>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+
+  <div id="search" class="navbar navbar-fixed-top" [@searchState]="this.searchState">
+      <div class="col-xs-12
+                  col-sm-8 col-sm-offset-2
+                  col-md-6 col-md-offset-3
+                  col-lg-4 col-lg-offset-4">
+
+        <form class="form">
+
+          <mat-form-field class="full-width">
+
+            <input type="text" placeholder="Search city or place" aria-label="Number" matInput [formControl]="formInput" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+
+              <mat-option *ngFor="let item of searchResult" [value]="item.name" (onSelectionChange)="item.goToPage()">
+
+                <a *ngIf="item.type == 'City'" routerLink="/city/{{item.cityId}}" class="search-option" data-type="city">
+                  {{item.name}}</a>
+
+                <a *ngIf="item.type == 'Place'" routerLink="/city/{{item.cityId}}/place/{{item.placeId}}" class="search-option" data-type="place">
+                  {{item.name}}</a>
+
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+</div>

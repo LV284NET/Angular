@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 .object-fit_contain { 
     align-content: center;
     width: 100%;
@@ -7,4 +11,13 @@
     object-fit: contain ;
     object-position: center;
     background-color: aliceblue;
+}
+
+.row .col-sm-8{
+    text-align: left;   
+}
+
+.row .col-xs-12
+{
+    text-align: center;
 }

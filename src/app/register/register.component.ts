@@ -12,6 +12,8 @@ import { User } from '../user';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import 'rxjs/add/Observable/throw';
 import { ErrorHandlingService } from '../Services/error-handling.service';
+import { SpinnerService } from '../Services/spinner.service';
+import { Constants } from './../constants';
 
 @Component({
   selector: 'app-register',
@@ -35,24 +37,40 @@ export class RegisterComponent implements OnInit {
 
   errorMessage: string;
 
-  constructor(private authorezeService: AuthorizationService, private errorService: ErrorHandlingService,
-    private dialogRef: MatDialogRef<RegisterComponent>, private snackBar: MatSnackBar) { }
+  constructor(
+    private authorezeService: AuthorizationService, 
+    private errorService: ErrorHandlingService,
+    private dialogRef: MatDialogRef<RegisterComponent>, 
+    private snackBar: MatSnackBar,
+    private spinnerService: SpinnerService
+  ) { }
+
   ngOnInit() {
     this.createFormControls();
     this.createForm();
   }
 
   register(): void {
+    //Show Loading Animation
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
+    
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
       .subscribe(
       response => {
-        this.snackBar.open("You are registered!", "Got it", {
+
+        //Hide Loading Animation
+        this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
+        this.snackBar.open("You are registered! Check your email", "Got it", {
           duration: 2000
         });
         this.dialogRef.close();
       },
       error => {
         this.errorService.handleError(error);
+
+        //Hide Loading Animation
+        this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
       }
       );
   }
@@ -62,16 +80,17 @@ export class RegisterComponent implements OnInit {
   createFormControls() {
     this.firstName = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'ї Ї і І є Є-]{2,40}$")
 
     ]);
     this.lastName = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
+      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'ї Ї і І є Є-]{2,40}$")
     ]);
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$")
+
     ]);
     this.password = new FormControl('', [
       Validators.required,
@@ -79,7 +98,7 @@ export class RegisterComponent implements OnInit {
     ]);
     this.confirmPassword = new FormControl('', [
       Validators.required,
-      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})'),
+      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')
     ])
   }
   passwordMatchValidator(g: FormGroup) {

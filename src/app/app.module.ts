@@ -1,3 +1,4 @@
+import { PaginationComponent } from './pagination/pagination.component';
 import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -18,8 +19,26 @@ import { PlaceComponent } from './place/place.component';
 import { CityService } from './Services/city.service';
 import { CitiesComponent } from './cities/cities.component';
 import { CityComponent } from './city/city.component';
-import { MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { MatDialogModule, MatSnackBarModule, MatCheckbox } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
+import { FavoriteService } from './Services/favorite.service';
+import { MatAutocompleteModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './Services/profile.service';
+import { RatingService } from './Services/rating.service';
+import { WINDOW_PROVIDERS } from "./Services/window.service";
+import { DisqusModule } from 'ngx-disqus';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FooterComponent } from './footer/footer.component';
+import { StarRatingModule } from 'angular-star-rating';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService} from './Services/spinner.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Constants } from './constants';
+import { TokenExpiredService } from './Services/token-expired.service';
+import { SearchCitiesAndPlacesService } from './Services/search-cities-and-places.service';
+import  './getFBSDK';
 
 @NgModule({
   declarations: [
@@ -32,10 +51,18 @@ import { ErrorHandlingService } from './Services/error-handling.service';
     PlaceComponent,
     CityComponent,
     CitiesComponent,
+    FeedbackComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
+    PaginationComponent,
+    SpinnerComponent,
+    FooterComponent   
   ],
   entryComponents: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FeedbackComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -46,14 +73,28 @@ import { ErrorHandlingService } from './Services/error-handling.service';
     AppRoutingModule, 
     ReactiveFormsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    DisqusModule.forRoot('ngx'),
+    StarRatingModule.forRoot(),
+    MatCheckboxModule,
   ],
   providers: [
     AuthorizationService,
     PlacesService,
     CityService,
-    ErrorHandlingService
+    ErrorHandlingService,
+    FavoriteService,
+    ProfileService,
+    WINDOW_PROVIDERS,
+    SpinnerService,
+    RatingService,
+    Constants,
+    TokenExpiredService,
+    SearchCitiesAndPlacesService   
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -4,3 +4,6 @@ input:disabled{
 .help-block {
     color: rgb(221, 71, 71);
 }
+.required {
+    color:red;
+}

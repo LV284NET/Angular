@@ -1,0 +1,21 @@
+ .footer {
+    margin: 5px;
+    padding: 1rem;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-color:black;
+    display: block;
+    
+} 
+.colorF{
+  color:rgb(180, 180, 180)
+}
+
+a:hover {
+  cursor: pointer; 
+  text-decoration: none; 
+  color: white;
+}
+
+

@@ -8,16 +8,19 @@ import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
 import { PlaceListComponent } from './place-list/place-list.component';
 import { PlaceComponent } from './place/place.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: 'main', component: MainComponent },
+  { path: 'main', component: MainComponent, data: { animation: 'main' }  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'cities-list', component: CitiesComponent },
-  { path: 'city/:cityId', component: CityComponent},
-  { path: 'city/:cityId/place-list', component: PlaceListComponent },
-  { path: 'city/:cityId/place/:placeId', component: PlaceComponent }
+  { path: 'cities-list', component: CitiesComponent,   data: { animation: 'cities-list' }},
+  { path: 'city/:cityId', component: CityComponent, data: { animation: 'city/:cityId' }},
+  { path: 'city/:cityId/place-list', component: PlaceListComponent, data: { animation: 'city/:cityId/place-list' } },
+  { path: 'city/:cityId/place/:placeId', component: PlaceComponent, data: { animation: 'city/:cityId/place/:placeId' } },
+  { path: 'profile', component: ProfileComponent, data: { animation: 'profile' } }
 ];
 
 @NgModule({
@@ -29,5 +32,4 @@ const routes: Routes = [
   declarations: []
 })
 
-
-export class AppRoutingModule { }
+export class AppRoutingModule{ }

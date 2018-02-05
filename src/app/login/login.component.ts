@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ErrorHandlingService } from '../Services/error-handling.service';
 import { error } from 'util';
+import { SpinnerService } from '../Services/spinner.service';
+import { TokenExpiredService } from '../Services/token-expired.service';
+import { Constants } from './../constants';
 
 @Component({
   selector: 'login-root',
@@ -20,8 +23,12 @@ export class LoginComponent implements OnInit {
   isRemembered: boolean;
 
   constructor(private router: Router,
-    private authorezeService: AuthorizationService, private errorService: ErrorHandlingService,
-    private dialogRef: MatDialogRef<LoginComponent>, private snackBar: MatSnackBar) { }
+    private authorezeService: AuthorizationService,
+    private errorService: ErrorHandlingService,
+    private dialogRef: MatDialogRef<LoginComponent>,
+    private snackBar: MatSnackBar,
+    private spinnerService: SpinnerService,
+    private tokenService: TokenExpiredService) { }
 
 
   ngOnInit(): void {
@@ -41,19 +48,47 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
+    //Show Loading Animation
+    this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
     this.authorezeService.confirmUserEmail(this.Email).subscribe(response => {
+
+      //Hide Loading Animation
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
+
       this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
         this.dialogRef.close();
+        this.tokenService.checkToken();
         this.snackBar.open("You are logged in", "Got it", {
           duration: 2000
         });
       }, error => {
         this.errorService.handleError(error);
+
+        //Hide Loading Animation
+        this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
       }
 
       );
     }, error => {
       this.errorService.handleError(error);
+
+      //Hide Loading Animation
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
     })
   };
+
+  public onFacebookLogin() {
+    // this.router.navigate(['./home']);
+    FB.getLoginStatus((response) => {
+      if (response.status === 'connected') {
+        this.router.navigate(['./home']);
+      }
+      else {
+        FB.login((loginResponse) => {
+          this.router.navigate(['./home']);
+        });
+      }
+    });
+  }
 }

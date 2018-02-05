@@ -1,3 +1,7 @@
 <app-navbar></app-navbar>
+<app-spinner id="spinner" [name]="this.spinnerName"></app-spinner>
+<div class="footerS" [@routerAnimation]="getRouteAnimation(route)">
+    <router-outlet #route="outlet"></router-outlet>
+</div>
+<app-footer ></app-footer>
 
-<router-outlet></router-outlet>
