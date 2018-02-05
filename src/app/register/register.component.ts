@@ -51,12 +51,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
+    //Show Loading Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
     
     this.authorezeService.register(this.Email, this.Password, this.FirstName, this.LastName, this.ConfirmPassword)
       .subscribe(
       response => {
 
+        //Hide Loading Animation
         this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
         this.snackBar.open("You are registered! Check your email", "Got it", {
@@ -66,6 +68,9 @@ export class RegisterComponent implements OnInit {
       },
       error => {
         this.errorService.handleError(error);
+
+        //Hide Loading Animation
+        this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
       }
       );
   }

@@ -21,7 +21,7 @@ export class Constants {
     //Constants for SpinnerComponent
     static SpinnerComponentConstants = class {
 
-        static AnimationUrl: string = '../assets/img/LoadingAnimations/spinner1.gif';
+        static AnimationUrl: string = '../assets/img/LoadingAnimations/lg.double-ring-spinner.gif';
 
         static AnimationName: string = 'LoadingProcess';
     }

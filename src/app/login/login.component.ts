@@ -48,11 +48,12 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
-
+    //Show Loading Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     this.authorezeService.confirmUserEmail(this.Email).subscribe(response => {
 
+      //Hide Loading Animation
       this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
       this.authorezeService.authorize(this.Email, this.Password).subscribe(response => {
@@ -63,11 +64,17 @@ export class LoginComponent implements OnInit {
         });
       }, error => {
         this.errorService.handleError(error);
+
+        //Hide Loading Animation
+        this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
       }
 
       );
     }, error => {
       this.errorService.handleError(error);
+
+      //Hide Loading Animation
+      this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
     })
   };
 
