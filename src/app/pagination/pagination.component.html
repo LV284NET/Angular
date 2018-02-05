@@ -50,8 +50,8 @@
 
 		<button class="btn btn-primary" 
 		(click)="showAll()" 
-		[hidden]="lastPage() || loading"
-		[ngClass]="{ 'hidden': lastPage() || loading }">Show All</button>
+		[hidden]="showedAll() || loading"
+		[ngClass]="{ 'hidden': showedAll() || loading }">Show All</button>
 
 	</div>
 </div>

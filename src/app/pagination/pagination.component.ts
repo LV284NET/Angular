@@ -59,6 +59,10 @@ export class PaginationComponent {
     return this.elementsperPage * this.currentPage > this.countOfElements;
   }
 
+  showedAll(): boolean {
+    return this.elementsperPage == this.countOfElements;
+  }
+
 
   //Get mass of pages which will be shown in Pagination if pagesToShow = 3
   //There will be  < 1 2 3 > . If current page 5 of 10 there will be < 4 5 6 >
