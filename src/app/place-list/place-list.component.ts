@@ -77,11 +77,6 @@ export class PlaceListComponent implements OnInit {
 
     if(page > 0 )
     { this.currentPage= page;}
-
-    if(page > this.countOfElements/this.elementsPerPage){
-      this.currentPage = 1;
-      this.changeRoutes();
-    }
   
 
     else
@@ -107,22 +102,35 @@ export class PlaceListComponent implements OnInit {
   }
 
   getCheckedFiltersFromUrl(){
-    let selectedFilters: Array<string>;
+    let selectedFilters;
 
     this.route.queryParams.subscribe(params =>{
       selectedFilters = params['filter']
     });
 
-    if(selectedFilters != null && selectedFilters.length !=0){
-    selectedFilters.forEach(element =>{
+    if(typeof selectedFilters === "string"){
       for(let j=0, lenfilters=this.filterMechanism.filters.length;
-         j<lenfilters; j++ ){
-           if(element == this.filterMechanism.filters[j].name){
-             this.filterMechanism.filters[j].selected=true;
-           }
+        j<lenfilters; j++ ){
+          if(selectedFilters == this.filterMechanism.filters[j].name){
+            this.filterMechanism.filters[j].selected=true;
+          }
+       }
+
+    }
+
+    else{
+      if(selectedFilters != null && selectedFilters.length !=0){
+        selectedFilters.forEach(element =>{
+          for(let j=0, lenfilters=this.filterMechanism.filters.length;
+             j<lenfilters; j++ ){
+               if(element == this.filterMechanism.filters[j].name){
+                 this.filterMechanism.filters[j].selected=true;
+               }
+            }
+          })
         }
-      })
-    } 
+    }
+
   }
 
   changeRoutes(){

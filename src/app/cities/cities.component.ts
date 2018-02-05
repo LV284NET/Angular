@@ -55,9 +55,7 @@ export class CitiesComponent implements OnInit {
     if(page > 0 )
       {this.currentPage = page;}
     
-    if(page > (this.countOfElements/this.elementsPerPage))
-      {this.currentPage=Constants.PaginationConstants.FirstPage
-        this.changeRoutes();}
+
 
     else
       {this.changeRoutes();}
