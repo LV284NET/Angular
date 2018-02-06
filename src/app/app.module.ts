@@ -92,7 +92,7 @@ import  './getFBSDK';
     RatingService,
     Constants,
     TokenExpiredService,
-    SearchCitiesAndPlacesService   
+    SearchCitiesAndPlacesService,   
   ],
   bootstrap: [AppComponent]
 })
