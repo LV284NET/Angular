@@ -12,7 +12,8 @@ export class AuthorizationService {
     private urlForAuthorization: string = Constants.AuthorizationServiceConstants.UrlForAuthorization;
     private urlForRegistration: string = Constants.AuthorizationServiceConstants.UrlForRegistration;
     private urlForConfirmEmail: string = Constants.AuthorizationServiceConstants.UrlForConfirmEmail;
-    private urlForChangePassword : string = Constants.AuthorizationServiceConstants.UrlForChangePassword;
+    private urlForChangePassword: string = Constants.AuthorizationServiceConstants.UrlForChangePassword;
+    private urlForSocialAuth: string = Constants.SocialAuthConstants.UrlForSocialAuth;
 
     public token: string;
     public FirstName: string;
@@ -24,19 +25,19 @@ export class AuthorizationService {
             this.token = currentUser.token;
             this.FirstName = currentUser.firstName;
             this.UserId = currentUser.Id;
-        }            
+        }
     }
 
     public changePassword(oldPassword: string, newPassword: string, newPasswordConfirm: string): Observable<boolean> {
         var headers = new Headers();
 
-        var body=
-        {
-            "OldPassword": oldPassword,
-            "NewPassword": newPassword,
-            "ConfirmPassword": newPasswordConfirm
-        }
-            
+        var body =
+            {
+                "OldPassword": oldPassword,
+                "NewPassword": newPassword,
+                "ConfirmPassword": newPasswordConfirm
+            }
+
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + this.token);
         return this._http.post(this.urlForChangePassword, JSON.stringify(body), { headers: headers })
@@ -68,19 +69,45 @@ export class AuthorizationService {
                 if (token) {
                     this.token = token;
                     let userName = res.json().userName;
-                    let firstName = res.json().firstName;   
+                    let firstName = res.json().firstName;
                     let Id = res.json().Id;
                     var dateNow = Date.now();
                     let tokenExpired = res.json().expires_in;
                     var tokenDurating = dateNow + tokenExpired * 1000; 
                     localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating : tokenDurating , token: token }));
                     this.FirstName = firstName;
-                    this.UserId = Id; 
+                    this.UserId = Id;
                     return true;
                 }
                 return false;
             })
             .catch((error: any) => Observable.throw(error));
+    }
+
+    public facebookLogin( data): Observable<boolean> {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        var content = data;
+        return this._http.post(this.urlForSocialAuth, content, { headers: headers })
+            .map((res: Response) => {
+                let token = res.json().access_token;
+                if (token) {
+                    this.token = token;
+                    let userName = res.json().userName;
+                    let firstName = res.json().firstName;
+                    let Id = res.json().id;
+                    var dateNow = Date.now();
+                    let tokenExpired = res.json().expires_in;
+                    var tokenDurating = dateNow + tokenExpired * 1000; 
+                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating : tokenDurating , token: token }));
+                    this.FirstName = firstName;
+                    this.UserId = Id;
+                    return true;
+                }
+                return false;
+            })
+            .catch((error: any) => Observable.throw(error));
+
     }
 
     public register(email: string, password: string, firstName: string, lastName: string,

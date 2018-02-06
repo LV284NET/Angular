@@ -13,7 +13,7 @@ export class Constants {
         //How many pages will be shown in pagination (if 3 will be shown current page
         // -1 and +1 page, if 5 current page +2 and -2)
         static PagesToShow: number = 5;
-        
+
         //The first page of different lists
         static FirstPage: number = 1;
     }
@@ -37,7 +37,12 @@ export class Constants {
 
         static UrlForChangePassword: string = Constants.CurrentBackEndHost + 'api/Account/ChangePassword';
     }
-
+    //Constants for SocialAuthService
+    static SocialAuthConstants = class {
+        
+        static UrlForSocialAuth: string = Constants.CurrentBackEndHost + 'api/Account/AddExternalLogin';
+        static UrlForDemoLogin: string = Constants.CurrentBackEndHost + 'api/Account/Login';
+    }
     //Constants for CityService
     static CityServiceConstants = class {
 
