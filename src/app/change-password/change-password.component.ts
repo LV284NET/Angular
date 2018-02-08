@@ -13,32 +13,50 @@ import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, F
 })
 export class ChangePasswordComponent implements OnInit {
 
+  //#region Inputs
+
   @Input() oldPassword: string;
   @Input() newPassword: string;
   @Input() newPasswordConfirm: string;
 
-  myform: FormGroup;
-  OldPassword: FormControl;
-  NewPassword: FormControl;
-  NewPasswordConfirm: FormControl;
+  //#endregion
 
+  //#region Private Properties
 
-  public errorMessage: string;
-  
+  private OldPassword: FormControl;
+  private NewPassword: FormControl;
+  private NewPasswordConfirm: FormControl;
+  private errorMessage: string;
+
+  //#endregion
+
+  //#region Public Properties
+
+  public myform: FormGroup;
+
+  //#endregion
+
+  //#region Constructor
+
   constructor(private router: Router,
-    private authorizeService: AuthorizationService, private errorService: ErrorHandlingService,
-    private dialogRef: MatDialogRef<ChangePasswordComponent>, private snackBar: MatSnackBar) { }
+    private authorizeService: AuthorizationService,
+    private errorService: ErrorHandlingService,
+    private dialogRef: MatDialogRef<ChangePasswordComponent>,
+    private snackBar: MatSnackBar) { }
+
+  //#endregion
 
   ngOnInit() {
     this.createFormControls();
     this.createForm();
   }
 
-  closeDialog() {
+  //#region Private Methods
+  private closeDialog() {
     this.dialogRef.close();
   }
 
-  createFormControls() {
+  private createFormControls() {
     this.OldPassword = new FormControl('', [
       Validators.required,
       Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')
@@ -54,11 +72,13 @@ export class ChangePasswordComponent implements OnInit {
     ]);
   }
 
-  passwordMatchValidator(g: FormGroup) {
-    return g.get('NewPassword').value === g.get('NewPasswordConfirm').value
+  private passwordMatchValidator(formGroup: FormGroup) {
+    return formGroup.get('NewPassword').value ===
+      formGroup.get('NewPasswordConfirm').value
       ? null : { 'mismatch': true };
   }
-  createForm() {
+
+  private createForm() {
     this.myform = new FormGroup({
       OldPassword: this.OldPassword,
       NewPassword: this.NewPassword,
@@ -66,18 +86,18 @@ export class ChangePasswordComponent implements OnInit {
     }, this.passwordMatchValidator);
   }
 
-  public onSubmit() 
-  {
-       this.authorizeService.changePassword(this.oldPassword, this.newPassword, this.newPasswordConfirm)
-       .subscribe(response => {
-         this.dialogRef.close();
-         this.snackBar.open("Password changed", "Got it", {
-           duration: 2000
-         });
-       }, error => {
-         this.errorService.handleError(error);
-       }
-
-     )
+  private onSubmit() {
+    this.authorizeService.changePassword(this.oldPassword, this.newPassword, this.newPasswordConfirm)
+      .subscribe(response => {
+        this.dialogRef.close();
+        this.snackBar.open("Password changed", "Got it", {
+          duration: 2000
+        });
+      }, error => {
+        this.errorService.handleError(error);
+      }
+      )
   }
+
+  //#endregion
 }

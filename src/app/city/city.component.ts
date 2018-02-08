@@ -21,9 +21,15 @@ import { Constants } from './../constants';
 
 export class CityComponent implements OnInit {
 
-  page= "/city/" +this.route.snapshot.paramMap.get('cityId');
-  city: City;
-  places: Place[] = [];
+  //#region Public Properties
+
+  public page= "/city/" +this.route.snapshot.paramMap.get('cityId');
+  public city: City;
+  public places: Place[] = [];
+
+  //#endregion
+
+  //#region Constructor
 
   constructor(private placeService: PlacesService,
     private cityService: CityService,
@@ -34,6 +40,8 @@ export class CityComponent implements OnInit {
     public authService: AuthorizationService
   ) { }
 
+  //#endregion
+
   ngOnInit() {
     this.getCity();
     this.getPlaces();
@@ -41,11 +49,15 @@ export class CityComponent implements OnInit {
       this.favoritePlace.getFavoritePlaces();
   }
 
+  //#region Private Methods
+
   private checkExist(placeId: number): boolean {
     return this.favoritePlace.favoritesPlaces.some(x => x === placeId);
   }
 
-  getCity() {
+  private getCity() {
+
+    //Show Load Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     const id = +this.route.snapshot.paramMap.get('cityId');
@@ -53,6 +65,7 @@ export class CityComponent implements OnInit {
     this.cityService.getCityById(id)
       .subscribe(response => {
 
+        //Hide Load Animation
         this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
         this.city = new City(response.Id, response.Name,
@@ -60,7 +73,7 @@ export class CityComponent implements OnInit {
       });
   }
 
-  getCityRating(cityRating: number): any{
+  private getCityRating(cityRating: number): any{
     if(cityRating != 0)
     { 
       return cityRating.toString();
@@ -68,7 +81,7 @@ export class CityComponent implements OnInit {
     return "";
   }
   
-  getPlaces() {
+  private getPlaces() {
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
     const id = +this.route.snapshot.paramMap.get('cityId');
@@ -85,4 +98,6 @@ export class CityComponent implements OnInit {
         });
       });
   }
+
+  //#endregion
 }

@@ -21,7 +21,7 @@ export class Constants {
     //Constants for SpinnerComponent
     static SpinnerComponentConstants = class {
 
-        static AnimationUrl: string = '../assets/img/LoadingAnimations/spinner1.gif';
+        static AnimationUrl: string = '../assets/img/LoadingAnimations/dance.gif';
 
         static AnimationName: string = 'LoadingProcess';
     }
@@ -39,8 +39,9 @@ export class Constants {
     }
     //Constants for SocialAuthService
     static SocialAuthConstants = class {
-        
+
         static UrlForSocialAuth: string = Constants.CurrentBackEndHost + 'api/Account/AddExternalLogin';
+
         static UrlForDemoLogin: string = Constants.CurrentBackEndHost + 'api/Account/Login';
     }
     //Constants for CityService
@@ -103,14 +104,31 @@ export class Constants {
 
     }
 
-        //Constants for RatingService
-        static RatingServiceConstants = class {            
-            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
-            
-            static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
-            
-            static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
-            
-            static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
-        }
+    //Constants for RatingService
+    static RatingServiceConstants = class {
+        static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
+
+        static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
+
+        static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
+
+        static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
+    }
+
+    //Constants for FeedbackComponent
+    static FeedbackComponentConstants = class {
+
+        static FormspreeUrl: string = 'https://formspree.io/easytravelsystem284@gmail.com';
+
+    }
+
+    //Constants for data validation
+    static DataValidationConstants = class {
+
+        static NamePattern: string = "^[а-яА-ЯёЁa-zA-Zʼ'ї Ї і І є Є-]{2,40}$";
+
+        static PasswordPattern: string = '((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})';
+
+        static EmailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$';
+    }
 }

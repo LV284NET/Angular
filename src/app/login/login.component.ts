@@ -15,14 +15,23 @@ import { Constants } from './../constants';
 })
 export class LoginComponent implements OnInit {
 
+  //#region Inputs
+
   @Input() Email: string;
   @Input() Password: string;
 
+  //#endregion
+
+  //#region Public Properties
+
   public errorMessage: string;
+  public isRemembered: boolean;
 
-  isRemembered: boolean;
+  //#endregion
 
-  constructor(private router: Router,
+  //#region Constructor
+
+  constructor(
     private authorezeService: AuthorizationService,
     private errorService: ErrorHandlingService,
     private dialogRef: MatDialogRef<LoginComponent>,
@@ -30,15 +39,22 @@ export class LoginComponent implements OnInit {
     private tokenService: TokenExpiredService,
     private spinnerService: SpinnerService) { }
 
+  //#endregion
+
 
   ngOnInit(): void {
     this.Email = localStorage.getItem("userAuth");
     this.isRemembered = this.Email ? true : false;
   }
-  closeDialog() {
+
+
+
+
+  private closeDialog() {
     this.dialogRef.close();
   }
-  rememberMe(event): void {
+
+  private rememberMe(event): void {
     if (event.target.checked && this.Email) {
       localStorage.setItem("userAuth", this.Email);
     }
@@ -47,7 +63,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public onSubmit() {
+
+  //#region Public Methods
+
+  private onSubmit() {
     //Show Loading Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
@@ -78,7 +97,7 @@ export class LoginComponent implements OnInit {
     })
   };
 
-  public onFacebookLogin() {
+  private onFacebookLogin() {
     FB.login((r) => {
       FB.getLoginStatus(response => {
         if (response.status === 'connected') {
@@ -105,13 +124,5 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  statusChangeCallback(response) {
-
-  };
-  // public onFacebookLogin() {
-  //   this.facebookAuthService.facebookLogin().subscribe(response => {
-  //   }, error => {
-  //     this.errorService.handleError(error);
-  //   })
-  // };
+  private statusChangeCallback(response) {};
 }

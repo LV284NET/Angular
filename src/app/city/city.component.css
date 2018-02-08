@@ -1,12 +1,17 @@
+h2 {
+    text-align: center;
+}
+
 .scrollable {
     height:150px;
     overflow-y: scroll;
-  }
+}
+
 button{
     margin: 15px;
 }
 
- .round2 {
+.round2 {
     border: 2px solid rgb(235, 234, 234);
     border-radius: 8px;
     background-color: whitesmoke;
@@ -23,7 +28,7 @@ button{
     z-index: 1;
 }
 
-  .icon {   
+.icon {   
     position: absolute;
     bottom: 18%;
     right: 10%;
@@ -34,10 +39,9 @@ button{
     color: #141313;
     font-size: 120px;
     z-index: 2;
-  }
+}
   
-#favorite.material-icons 
-{
+#favorite.material-icons{
     position: absolute; 
     font-size: 36px;
     cursor: pointer;
@@ -47,6 +51,7 @@ button{
     opacity: 1;
     z-index: 2;
 }
+
 @media only screen and (max-width: 1200px) {
     .object-fit_contain { 
         position: relative;
@@ -71,7 +76,4 @@ button{
             z-index: 1;
         }
     }
-}
-h2 {
-    text-align: center;
 }

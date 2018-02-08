@@ -108,14 +108,6 @@ export class NavbarComponent implements OnInit {
       });  
   }
 
-
-  suggestions(){
-    let dialog = this.dialog.closeAll()
-    let dialogRef = this.dialog.open(FeedbackComponent, {
-      width: "500px"
-    });
-  }
-
   signUp() {
     let dialog = this.dialog.closeAll()
     let dialogRef = this.dialog.open(RegisterComponent, {

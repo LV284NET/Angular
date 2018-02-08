@@ -35,6 +35,10 @@ export class RegisterComponent implements OnInit {
   password: FormControl;
   confirmPassword: FormControl;
 
+  private namePattern: string = Constants.DataValidationConstants.NamePattern;
+  private passwordPattern: string = Constants.DataValidationConstants.PasswordPattern;
+  private emailPattern: string = Constants.DataValidationConstants.EmailPattern;
+
   errorMessage: string;
 
   constructor(
@@ -80,31 +84,33 @@ export class RegisterComponent implements OnInit {
   createFormControls() {
     this.firstName = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'ї Ї і І є Є-]{2,40}$")
+      Validators.pattern(this.namePattern)
 
     ]);
     this.lastName = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'ї Ї і І є Є-]{2,40}$")
+      Validators.pattern(this.namePattern)
     ]);
     this.email = new FormControl('', [
       Validators.required,
-      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$")
+      Validators.pattern(this.emailPattern)
 
     ]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')
+      Validators.pattern(this.passwordPattern)
     ]);
     this.confirmPassword = new FormControl('', [
       Validators.required,
-      Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})')
+      Validators.pattern(this.passwordPattern)
     ])
   }
-  passwordMatchValidator(g: FormGroup) {
-    return g.get('password').value === g.get('confirmPassword').value
+
+  passwordMatchValidator(formGroup: FormGroup) {
+    return formGroup.get('password').value === formGroup.get('confirmPassword').value
       ? null : { 'mismatch': true };
   }
+
   createForm() {
     this.myform = new FormGroup({
       firstName: this.firstName,
