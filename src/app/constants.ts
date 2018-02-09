@@ -131,4 +131,12 @@ export class Constants {
 
         static EmailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$';
     }
+    
+    //Constants for GeolocationService
+    static GeolocationServiceConstants = class {
+
+        static GoogleApiUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json';
+
+        static ApiKey: string = 'AIzaSyBcGmt-Vv3bbUxaYA6y5gga5WTymetm9gY';
+    }
 }

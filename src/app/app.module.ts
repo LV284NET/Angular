@@ -39,6 +39,8 @@ import { Constants } from './constants';
 import { TokenExpiredService } from './Services/token-expired.service';
 import { SearchCitiesAndPlacesService } from './Services/search-cities-and-places.service';
 import  './getFBSDK';
+import { GeolocationComponent } from './geolocation/geolocation.component';
+import { GeolocationService } from './Services/geolocation.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import  './getFBSDK';
     ChangePasswordComponent,
     PaginationComponent,
     SpinnerComponent,
-    FooterComponent   
+    FooterComponent,
+    GeolocationComponent,
+ 
   ],
   entryComponents: [
     LoginComponent,
@@ -92,7 +96,8 @@ import  './getFBSDK';
     RatingService,
     Constants,
     TokenExpiredService,
-    SearchCitiesAndPlacesService,   
+    SearchCitiesAndPlacesService,
+    GeolocationService
   ],
   bootstrap: [AppComponent]
 })

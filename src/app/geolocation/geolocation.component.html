@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10">
+      <b>
+        geolocatuion works!
+      </b>
+      <p>latitude: {{this.latitude || ""}}, longitude: {{this.longitude || ""}}</p>
+
+      <p>{{this.currentGeolocationData.GetCountryName()}}</p>
+      <p>{{this.currentGeolocationData.GetRegionName()}}</p>
+      <p>{{this.currentGeolocationData.GetCityName()}}</p>
+      <p>{{this.currentGeolocationData.GetStreetName()}}</p>
+      <p>{{this.currentGeolocationData.GetStreetNumber()}}</p>
+    </div>
+  </div>
+</div>
