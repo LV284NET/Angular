@@ -1,0 +1,468 @@
+{
+    "results" : [
+       {
+          "address_components" : [
+             {
+                "long_name" : "5",
+                "short_name" : "5",
+                "types" : [ "street_number" ]
+             },
+             {
+                "long_name" : "вулиця Ярослава Пастернака",
+                "short_name" : "вулиця Ярослава Пастернака",
+                "types" : [ "route" ]
+             },
+             {
+                "long_name" : "Франківський район",
+                "short_name" : "Франківський район",
+                "types" : [ "political", "sublocality", "sublocality_level_1" ]
+             },
+             {
+                "long_name" : "Львів",
+                "short_name" : "Львів",
+                "types" : [ "locality", "political" ]
+             },
+             {
+                "long_name" : "Львівська міськрада",
+                "short_name" : "Львівська міськрада",
+                "types" : [ "administrative_area_level_3", "political" ]
+             },
+             {
+                "long_name" : "Львівська область",
+                "short_name" : "Львівська область",
+                "types" : [ "administrative_area_level_1", "political" ]
+             },
+             {
+                "long_name" : "Україна",
+                "short_name" : "UA",
+                "types" : [ "country", "political" ]
+             },
+             {
+                "long_name" : "79000",
+                "short_name" : "79000",
+                "types" : [ "postal_code" ]
+             }
+          ],
+          "formatted_address" : "вулиця Ярослава Пастернака, 5, Львів, Львівська область, Україна, 79000",
+          "geometry" : {
+             "bounds" : {
+                "northeast" : {
+                   "lat" : 49.8328129,
+                   "lng" : 23.999389
+                },
+                "southwest" : {
+                   "lat" : 49.8324769,
+                   "lng" : 23.998807
+                }
+             },
+             "location" : {
+                "lat" : 49.8326207,
+                "lng" : 23.9990768
+             },
+             "location_type" : "ROOFTOP",
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 49.8339938802915,
+                   "lng" : 24.0004469802915
+                },
+                "southwest" : {
+                   "lat" : 49.8312959197085,
+                   "lng" : 23.9977490197085
+                }
+             }
+          },
+          "place_id" : "ChIJkXdSUIDdOkcRHFpsBrBdC6g",
+          "types" : [ "premise" ]
+       },
+       {
+          "address_components" : [
+             {
+                "long_name" : "48-50",
+                "short_name" : "48-50",
+                "types" : [ "street_number" ]
+             },
+             {
+                "long_name" : "вулиця Героїв УПА",
+                "short_name" : "вулиця Героїв УПА",
+                "types" : [ "route" ]
+             },
+             {
+                "long_name" : "Франківський район",
+                "short_name" : "Франківський район",
+                "types" : [ "political", "sublocality", "sublocality_level_1" ]
+             },
+             {
+                "long_name" : "Львів",
+                "short_name" : "Львів",
+                "types" : [ "locality", "political" ]
+             },
+             {
+                "long_name" : "Львівська міськрада",
+                "short_name" : "Львівська міськрада",
+                "types" : [ "administrative_area_level_3", "political" ]
+             },
+             {
+                "long_name" : "Львівська область",
+                "short_name" : "Львівська область",
+                "types" : [ "administrative_area_level_1", "political" ]
+             },
+             {
+                "long_name" : "Україна",
+                "short_name" : "UA",
+                "types" : [ "country", "political" ]
+             },
+             {
+                "long_name" : "79000",
+                "short_name" : "79000",
+                "types" : [ "postal_code" ]
+             }
+          ],
+          "formatted_address" : "вулиця Героїв УПА, 48-50, Львів, Львівська область, Україна, 79000",
+          "geometry" : {
+             "bounds" : {
+                "northeast" : {
+                   "lat" : 49.8325118,
+                   "lng" : 23.9998969
+                },
+                "southwest" : {
+                   "lat" : 49.83107810000001,
+                   "lng" : 23.9967993
+                }
+             },
+             "location" : {
+                "lat" : 49.83253240000001,
+                "lng" : 23.9991389
+             },
+             "location_type" : "RANGE_INTERPOLATED",
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 49.83314393029151,
+                   "lng" : 23.9998969
+                },
+                "southwest" : {
+                   "lat" : 49.83044596970851,
+                   "lng" : 23.9967993
+                }
+             }
+          },
+          "place_id" : "Em3QstGD0LvQuNGG0Y8g0JPQtdGA0L7Rl9CyINCj0J_QkCwgNDgtNTAsINCb0YzQstGW0LIsINCb0YzQstGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjCwg0KPQutGA0LDRl9C90LAsIDc5MDAw",
+          "types" : [ "street_address" ]
+       },
+       {
+          "address_components" : [
+             {
+                "long_name" : "Франківський район",
+                "short_name" : "Франківський район",
+                "types" : [ "political", "sublocality", "sublocality_level_1" ]
+             },
+             {
+                "long_name" : "Львів",
+                "short_name" : "Львів",
+                "types" : [ "locality", "political" ]
+             },
+             {
+                "long_name" : "Львівська міськрада",
+                "short_name" : "Львівська міськрада",
+                "types" : [ "administrative_area_level_3", "political" ]
+             },
+             {
+                "long_name" : "Львівська область",
+                "short_name" : "Львівська область",
+                "types" : [ "administrative_area_level_1", "political" ]
+             },
+             {
+                "long_name" : "Україна",
+                "short_name" : "UA",
+                "types" : [ "country", "political" ]
+             },
+             {
+                "long_name" : "79000",
+                "short_name" : "79000",
+                "types" : [ "postal_code" ]
+             }
+          ],
+          "formatted_address" : "Франківський район, Львів, Львівська область, Україна, 79000",
+          "geometry" : {
+             "bounds" : {
+                "northeast" : {
+                   "lat" : 49.837198,
+                   "lng" : 24.020387
+                },
+                "southwest" : {
+                   "lat" : 49.783677,
+                   "lng" : 23.973007
+                }
+             },
+             "location" : {
+                "lat" : 49.8240831,
+                "lng" : 24.0034114
+             },
+             "location_type" : "APPROXIMATE",
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 49.837198,
+                   "lng" : 24.020387
+                },
+                "southwest" : {
+                   "lat" : 49.783677,
+                   "lng" : 23.973007
+                }
+             }
+          },
+          "place_id" : "ChIJhXL7aJjnOkcR5v8jb4QwIcI",
+          "types" : [ "political", "sublocality", "sublocality_level_1" ]
+       },
+       {
+          "address_components" : [
+             {
+                "long_name" : "Львів",
+                "short_name" : "Львів",
+                "types" : [ "locality", "political" ]
+             },
+             {
+                "long_name" : "Львівська міськрада",
+                "short_name" : "Львівська міськрада",
+                "types" : [ "administrative_area_level_3", "political" ]
+             },
+             {
+                "long_name" : "Львівська область",
+                "short_name" : "Львівська область",
+                "types" : [ "administrative_area_level_1", "political" ]
+             },
+             {
+                "long_name" : "Україна",
+                "short_name" : "UA",
+                "types" : [ "country", "political" ]
+             },
+             {
+                "long_name" : "79000",
+                "short_name" : "79000",
+                "types" : [ "postal_code" ]
+             }
+          ],
+          "formatted_address" : "Львів, Львівська область, Україна, 79000",
+          "geometry" : {
+             "bounds" : {
+                "northeast" : {
+                   "lat" : 49.897471,
+                   "lng" : 24.118191
+                },
+                "southwest" : {
+                   "lat" : 49.7679071,
+                   "lng" : 23.9062801
+                }
+             },
+             "location" : {
+                "lat" : 49.839683,
+                "lng" : 24.029717
+             },
+             "location_type" : "APPROXIMATE",
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 49.897471,
+                   "lng" : 24.118191
+                },
+                "southwest" : {
+                   "lat" : 49.7679071,
+                   "lng" : 23.9062801
+                }
+             }
+          },
+          "place_id" : "ChIJV5oQCXzdOkcR4ngjARfFI0I",
+          "types" : [ "locality", "political" ]
+       },
+       {
+          "address_components" : [
+             {
+                "long_name" : "79000",
+                "short_name" : "79000",
+                "types" : [ "postal_code" ]
+             },
+             {
+                "long_name" : "Львів",
+                "short_name" : "Львів",
+                "types" : [ "locality", "political" ]
+             },
+             {
+                "long_name" : "Львівська міськрада",
+                "short_name" : "Львівська міськрада",
+                "types" : [ "administrative_area_level_3", "political" ]
+             },
+             {
+                "long_name" : "Львівська область",
+                "short_name" : "Львівська область",
+                "types" : [ "administrative_area_level_1", "political" ]
+             },
+             {
+                "long_name" : "Україна",
+                "short_name" : "UA",
+                "types" : [ "country", "political" ]
+             }
+          ],
+          "formatted_address" : "Львів, Львівська область, Україна, 79000",
+          "geometry" : {
+             "bounds" : {
+                "northeast" : {
+                   "lat" : 49.897471,
+                   "lng" : 24.118191
+                },
+                "southwest" : {
+                   "lat" : 49.7679071,
+                   "lng" : 23.9062801
+                }
+             },
+             "location" : {
+                "lat" : 49.839683,
+                "lng" : 24.029717
+             },
+             "location_type" : "APPROXIMATE",
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 49.897471,
+                   "lng" : 24.118191
+                },
+                "southwest" : {
+                   "lat" : 49.7679071,
+                   "lng" : 23.9062801
+                }
+             }
+          },
+          "place_id" : "ChIJk3cDBnzdOkcRrXGzz-xcckY",
+          "types" : [ "postal_code" ]
+       },
+       {
+          "address_components" : [
+             {
+                "long_name" : "Львівська міськрада",
+                "short_name" : "Львівська міськрада",
+                "types" : [ "administrative_area_level_3", "political" ]
+             },
+             {
+                "long_name" : "Львівська область",
+                "short_name" : "Львівська область",
+                "types" : [ "administrative_area_level_1", "political" ]
+             },
+             {
+                "long_name" : "Україна",
+                "short_name" : "UA",
+                "types" : [ "country", "political" ]
+             }
+          ],
+          "formatted_address" : "Львівська міськрада, Львівська область, Україна",
+          "geometry" : {
+             "bounds" : {
+                "northeast" : {
+                   "lat" : 49.92868199999999,
+                   "lng" : 24.159101
+                },
+                "southwest" : {
+                   "lat" : 49.7679071,
+                   "lng" : 23.8572541
+                }
+             },
+             "location" : {
+                "lat" : 49.839683,
+                "lng" : 24.029717
+             },
+             "location_type" : "APPROXIMATE",
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 49.92868199999999,
+                   "lng" : 24.159101
+                },
+                "southwest" : {
+                   "lat" : 49.7679071,
+                   "lng" : 23.8572541
+                }
+             }
+          },
+          "place_id" : "ChIJf36rN5_dOkcRau69DG2ScSA",
+          "types" : [ "administrative_area_level_3", "political" ]
+       },
+       {
+          "address_components" : [
+             {
+                "long_name" : "Львівська область",
+                "short_name" : "Львівська область",
+                "types" : [ "administrative_area_level_1", "political" ]
+             },
+             {
+                "long_name" : "Україна",
+                "short_name" : "UA",
+                "types" : [ "country", "political" ]
+             }
+          ],
+          "formatted_address" : "Львівська область, Україна",
+          "geometry" : {
+             "bounds" : {
+                "northeast" : {
+                   "lat" : 50.6488831,
+                   "lng" : 25.426912
+                },
+                "southwest" : {
+                   "lat" : 48.7189779,
+                   "lng" : 22.6406759
+                }
+             },
+             "location" : {
+                "lat" : 49.839683,
+                "lng" : 24.029717
+             },
+             "location_type" : "APPROXIMATE",
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 50.6488831,
+                   "lng" : 25.426912
+                },
+                "southwest" : {
+                   "lat" : 48.7189779,
+                   "lng" : 22.6406759
+                }
+             }
+          },
+          "place_id" : "ChIJb5xjPmndOkcRYj26h4iMDWM",
+          "types" : [ "administrative_area_level_1", "political" ]
+       },
+       {
+          "address_components" : [
+             {
+                "long_name" : "Україна",
+                "short_name" : "UA",
+                "types" : [ "country", "political" ]
+             }
+          ],
+          "formatted_address" : "Україна",
+          "geometry" : {
+             "bounds" : {
+                "northeast" : {
+                   "lat" : 52.37958099999999,
+                   "lng" : 40.2285809
+                },
+                "southwest" : {
+                   "lat" : 44.2924,
+                   "lng" : 22.137159
+                }
+             },
+             "location" : {
+                "lat" : 48.379433,
+                "lng" : 31.1655799
+             },
+             "location_type" : "APPROXIMATE",
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 52.37958099999999,
+                   "lng" : 40.2285809
+                },
+                "southwest" : {
+                   "lat" : 44.2924,
+                   "lng" : 22.137159
+                }
+             }
+          },
+          "place_id" : "ChIJjw5wVMHZ0UAREED2iIQGAQA",
+          "types" : [ "country", "political" ]
+       }
+    ],
+    "status" : "OK"
+ }
+ 

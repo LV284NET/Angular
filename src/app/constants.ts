@@ -21,7 +21,7 @@ export class Constants {
     //Constants for SpinnerComponent
     static SpinnerComponentConstants = class {
 
-        static AnimationUrl: string = '../assets/img/LoadingAnimations/spinner1.gif';
+        static AnimationUrl: string = '../assets/img/LoadingAnimations/dance.gif';
 
         static AnimationName: string = 'LoadingProcess';
     }
@@ -39,7 +39,7 @@ export class Constants {
     }
     //Constants for SocialAuthService
     static SocialAuthConstants = class {
-        
+
         static UrlForSocialAuth: string = Constants.CurrentBackEndHost + 'api/Account/AddExternalLogin';
         static UrlForDemoLogin: string = Constants.CurrentBackEndHost + 'api/Account/Login';
     }
@@ -103,14 +103,22 @@ export class Constants {
 
     }
 
-        //Constants for RatingService
-        static RatingServiceConstants = class {            
-            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
-            
-            static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
-            
-            static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
-            
-            static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
-        }
+    //Constants for RatingService
+    static RatingServiceConstants = class {
+        static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
+
+        static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
+
+        static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
+
+        static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
+    }
+
+    //Constants for GeolocationService
+    static GeolocationServiceConstants = class {
+
+        static GoogleApiUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json';
+
+        static ApiKey: string = 'AIzaSyBcGmt-Vv3bbUxaYA6y5gga5WTymetm9gY';
+    }
 }
