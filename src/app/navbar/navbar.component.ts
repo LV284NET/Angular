@@ -8,7 +8,6 @@ import { FeedbackComponent } from '../feedback/feedback.component';
 import { DOCUMENT } from "@angular/platform-browser";
 import { WINDOW } from "../Services/window.service";
 import { trigger, state, style, animate, transition } from '@angular/animations';
-
 import { FormControl } from '@angular/forms';
 import { SearchCitiesAndPlacesService } from './../Services/search-cities-and-places.service';
 import { SearchItem } from './../search-item'
@@ -23,7 +22,7 @@ import { SearchItem } from './../search-item'
       state('hidden', style({
         top: '-51px'
       })),
-      state('shown',   style({
+      state('shown', style({
         top: '0'
       })),
       transition('hidden => shown', animate('300ms ease-in')),
@@ -37,35 +36,54 @@ import { SearchItem } from './../search-item'
         width: '100%',
         display: 'none'
       })),
-      state('shown',   style({
+      state('shown', style({
         top: '50px',
         height: '70px',
         width: '100%',
         padding: '10px 0 0',
-        display: 'block'        
+        display: 'block'
       })),
       transition('hidden => shown', animate('300ms ease-in')),
       transition('shown => hidden', animate('500ms ease-out'))
     ]),
   ]
 })
+
 export class NavbarComponent implements OnInit {
 
+  //#region Private Properties
+
   private previousPosition: number = 0;
-  private currentPosition: number = 0;  
+
+  private currentPosition: number = 0;
+
   private inputLine: string;
 
+  //#endregion
+
+  //#region Public Properties
+
   public formInput: FormControl = new FormControl();
+
   public searchResult: SearchItem[] = [];
+
   public registerDialogRef: MatDialog;
+
   public loginDialogRef: MatDialog;
+
   public userName: string;
+
   public state: string = 'shown';
+
   public searchState: string = 'hidden';
 
+  //#endregion
+
+  //#region Constructor
+
   constructor(
-    public authService: AuthorizationService, 
-    private router: Router, 
+    public authService: AuthorizationService,
+    private router: Router,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private searchService: SearchCitiesAndPlacesService,
@@ -73,7 +91,11 @@ export class NavbarComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window) {
   }
+
+  //#endregion
   
+  //#region ngOnInit
+
   ngOnInit() {
     this.formInput.valueChanges
       .debounceTime(500)
@@ -105,25 +127,29 @@ export class NavbarComponent implements OnInit {
         else {
           this.searchResult.length = 0;
         }
-      });  
+      });
   }
 
-  signUp() {
+  //#endregion
+
+  //#region Private Methods
+
+  private signUp() {
     let dialog = this.dialog.closeAll()
     let dialogRef = this.dialog.open(RegisterComponent, {
       width: "500px"
     });
   }
 
-  signIn() {
-     this.authService.UserId;
+  private signIn() {
+    this.authService.UserId;
     let dialog = this.dialog.closeAll();
     let dialogRef = this.dialog.open(LoginComponent, {
       width: "500px"
     });
   }
 
-  logout() {
+  private logout() {
     JSON.parse(localStorage.getItem("currentUser")).Id;
     this.authService.logout();
     this.snackBar.open("You logged out", "Got it", {
@@ -131,32 +157,34 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  profile(){
-      this.router.navigateByUrl("/profile");
+  private profile() {
+    this.router.navigateByUrl("/profile");
   }
 
   @HostListener("window:scroll", [])
-  onWindowScroll() {
-    this.currentPosition = this.window.pageYOffset || 
-    this.document.documentElement.scrollTop || 
-    this.document.body.scrollTop || 0;
-
+  private onWindowScroll() {
+    this.currentPosition = this.window.pageYOffset ||
+      this.document.documentElement.scrollTop ||
+      this.document.body.scrollTop || 0;
+  
     if (this.currentPosition > this.previousPosition) {
       this.state = 'hidden';
       this.searchState = 'hidden';
-    }    
+    }
     else if (this.currentPosition <= this.previousPosition) {
-      this.state = 'shown';      
+      this.state = 'shown';
     }
     this.previousPosition = this.currentPosition;
   }
 
-  searchFormToggle(){
-    if(this.searchState == 'hidden'){
+  private searchFormToggle() {
+    if (this.searchState == 'hidden') {
       this.searchState = 'shown';
     }
-    else{
+    else {
       this.searchState = 'hidden';
     }
   }
+
+  //#endregion
 }

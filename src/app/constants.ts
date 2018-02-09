@@ -139,4 +139,12 @@ export class Constants {
 
         static ApiKey: string = 'AIzaSyBcGmt-Vv3bbUxaYA6y5gga5WTymetm9gY';
     }
+
+    //Constants for using Facebook app
+    static FacebookConstants = class {
+
+        static FacebookAppId: string = '1982326058704428';
+
+        static Src: string = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=1982326058704428&autoLogAppEvents=1';
+    }
 }

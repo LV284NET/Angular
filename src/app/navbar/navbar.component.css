@@ -1,6 +1,5 @@
 #logo-link {
-    height: 50px;
-  
+    height: 50px;  
 }
 
 #fixed-link {
@@ -52,11 +51,11 @@ a:hover {
     width: 100%;
   }
   
-  .full-width {
+.full-width {
     width: 100%;
-  }
+}
   
-  .search-option {
+.search-option {
     display:block; 
     text-decoration: none;
-  }
+}

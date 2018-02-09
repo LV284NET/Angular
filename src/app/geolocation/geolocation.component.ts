@@ -10,35 +10,20 @@ import { GeolocationService } from '../Services/geolocation.service';
 })
 export class GeolocationComponent implements OnInit {
 
-  public latitude: any;
+  //#region Private Properties
 
-  public longitude: any;
+  private latitude: any;
 
-  public currentGeolocationData: GeolocationData = new GeolocationData();
+  private longitude: any;
 
-  constructor(
-    private http: Http,
-    private geolocationService: GeolocationService
-  ) {
-    this.geolocationService = new GeolocationService(this.http)
-  }
+  private currentGeolocationData: GeolocationData;
 
-  ngOnInit() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        this.successCallback,
-        this.errorCallback,
-        this.options)
-    };
-  }
-
-  private successCallback = (position) => {
-    this.latitude = position.coords.latitude;
-    this.longitude = position.coords.longitude;
-    this.currentGeolocationData = this.geolocationService
-      .GetInfoAboutCurrenLocation(this.latitude, this.longitude);
-  }
-
+  private options = {
+    enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0
+  };
+  
   private errorCallback = (error) => {
     let errorMessage = 'Unknown error';
     switch (error.code) {
@@ -55,12 +40,32 @@ export class GeolocationComponent implements OnInit {
     console.log(errorMessage);
   };
 
-  private options = {
-    enableHighAccuracy: true,
-    timeout: 10000,
-    maximumAge: 0
-  };  
+  private successCallback = (position) => {
+    this.latitude = position.coords.latitude;
+    this.longitude = position.coords.longitude;
+    this.currentGeolocationData = this.geolocationService
+      .GetInfoAboutCurrenLocation(this.latitude, this.longitude);
+  }
+
+  //#endregion
+
+  //#region Constructor
+  constructor(
+    private http: Http,
+    private geolocationService: GeolocationService
+  ) {
+    this.geolocationService = new GeolocationService(this.http)
+    this.currentGeolocationData = new GeolocationData();
+  }
+
+  //#endregion
+
+  ngOnInit() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        this.successCallback,
+        this.errorCallback,
+        this.options)
+    };
+  }
 }
-
-
-

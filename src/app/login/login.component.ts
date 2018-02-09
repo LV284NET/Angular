@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   //#region Inputs
 
   @Input() Email: string;
+
   @Input() Password: string;
 
   //#endregion
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   //#region Public Properties
 
   public errorMessage: string;
+
   public isRemembered: boolean;
 
   //#endregion
@@ -41,14 +43,12 @@ export class LoginComponent implements OnInit {
 
   //#endregion
 
-
   ngOnInit(): void {
     this.Email = localStorage.getItem("userAuth");
     this.isRemembered = this.Email ? true : false;
   }
 
-
-
+  //#region Private Methods
 
   private closeDialog() {
     this.dialogRef.close();
@@ -63,8 +63,34 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  private onFacebookLogin() {
+    FB.login((r) => {
+      FB.getLoginStatus(response => {
+        if (response.status === 'connected') {
+          FB.api('/me?fields=email,first_name,last_name', (data) => {
+            this.authorezeService.facebookLogin(data).subscribe(response => {
+              this.dialogRef.close();
+              this.tokenService.checkToken();
+              this.snackBar.open("You are logged in", "Got it", {
+                duration: 2000
+              });
+            });
+          });
+        }
+        else if (response.status === 'not_authorized') {
+          this.snackBar.open("Something went wrong, try again", "Got it", {
+            duration: 2000
+          });
+        } else {
 
-  //#region Public Methods
+        }
+      });
+    }, {
+        scope: 'email'
+      });
+  }
+
+  private statusChangeCallback(response) {};
 
   private onSubmit() {
     //Show Loading Animation
@@ -97,32 +123,5 @@ export class LoginComponent implements OnInit {
     })
   };
 
-  private onFacebookLogin() {
-    FB.login((r) => {
-      FB.getLoginStatus(response => {
-        if (response.status === 'connected') {
-          FB.api('/me?fields=email,first_name,last_name', (data) => {
-            this.authorezeService.facebookLogin(data).subscribe(response => {
-              this.dialogRef.close();
-              this.tokenService.checkToken();
-              this.snackBar.open("You are logged in", "Got it", {
-                duration: 2000
-              });
-            });
-          });
-        }
-        else if (response.status === 'not_authorized') {
-          this.snackBar.open("Something went wrong, try again", "Got it", {
-            duration: 2000
-          });
-        } else {
-
-        }
-      });
-    }, {
-        scope: 'email'
-      });
-  }
-
-  private statusChangeCallback(response) {};
+  //#endregion
 }
