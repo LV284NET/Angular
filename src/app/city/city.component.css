@@ -12,6 +12,14 @@ button{
     background-color: whitesmoke;
 }
 
+
+
+.Date{
+    padding: 0px;
+    margin: 0px;
+}
+
+
 .object-fit_contain { 
     margin: 10px 0px;
     min-height: 200px;
@@ -73,5 +81,41 @@ button{
     }
 }
 h2 {
+    text-align: center;
+}
+
+.blablacar_item{
+    width: 99%;
+    position: relative;
+    line-height: 24px;
+    color: #767676;
+    padding: 15px 10px;
+    margin: 5px;
+    background-color: #ffffff;
+    clear: both;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.blablacar-img{
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+#blablacar-price{
+    text-align: center;
+    font-weight: bold;
+}
+
+#blablacar-suggestion{
+    text-align: right;
+}
+
+#blablacar-p{
     text-align: center;
 }

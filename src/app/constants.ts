@@ -1,9 +1,11 @@
+import { BlaBlaCarService } from "./Services/bla-bla-car.service";
+
 export class Constants {
 
     static CurrentBackEndHost: string = 'https://localhost:44317/';
 
     // 'https://localhost:4200/WebApi/'
-
+    
     //Constants for Pagination
     static PaginationConstants = class {
 
@@ -104,13 +106,17 @@ export class Constants {
     }
 
         //Constants for RatingService
-        static RatingServiceConstants = class {            
-            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
+    static RatingServiceConstants = class {            
+        static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
             
-            static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
+        static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
+        
+        static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
             
-            static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
-            
-            static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
-        }
+        static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
+    }
+
+    static BlaBlaCarService = class {
+        static UrlForApiBlaBlaCar: string = Constants.CurrentBackEndHost + 'api/Services/GetBlaBlaCarRequestResult';
+    }
 }
