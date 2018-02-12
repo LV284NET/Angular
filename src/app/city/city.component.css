@@ -126,3 +126,13 @@ h2 {
 #blablacar-p{
     text-align: center;
 }
+
+#NotFoundSuggestions{
+    text-align: right;
+    font-weight: bold;
+}
+
+#BlaBlaCarErrorMessage{
+    text-align: center;
+    font-weight: bold;
+}

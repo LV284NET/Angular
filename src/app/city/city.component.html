@@ -75,27 +75,42 @@
       <div id="button-div">
         <button class="btn btn-primary pull-right" (click)="getBlaBlaCarInfo()">Search</button>
     </div>
-    <div *ngIf="blablacarInfo" class="row blablacar_item col-xs-12">
+
+    <div *ngIf="getBlaBlaCarResult" class="row blablacar_item">
       <a class ="col-xs-12 col-md-3" href="https://blablacar.com.ua/">
         <img class="img-responsive blablacar-img" src="../assets/img/BlaBlaCar/blablacar.png">
       </a>
-      <div class="col-xs-12 col-sm-4 col-md-3">
-        <p id="blablacar">Time on the road ≈ {{getBlaBlaCarTime(blablacarInfo.TravelTime)}} </p>
-        <img class="img-responsive" src="../assets/img/BlaBlaCar/car-in-road.png">
-      </div>
-      <div class="col-xs-12 col-sm-4 col-md-3">
-        <p id="blablacar-p">Price range:</p>
-        <p id="blablacar-price"> {{blablacarInfo.LowestPrice}}UAH - {{blablacarInfo.HighestPrice}}UAH</p>        
-      </div>
-      <div class = "col-xs-12 col-sm-4 col-md-3">
-
-        <p id="blablacar-suggestion">Suggestions: {{blablacarInfo.CountOfSuggestions}}</p>
-        <div id="button-div">
-          <a href={{blablacarInfo.Link}}>
-            <button class ="btn btn-primary pull-right">Choose</button>
-          </a>
+      <ul *ngIf="blablacarInfo; else error">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <p id="blablacar">Time on the road ≈ {{getBlaBlaCarTime(blablacarInfo.TravelTime)}} </p>
+          <img class="img-responsive" src="../assets/img/BlaBlaCar/car-in-road.png">
         </div>
-      </div>
+        <ul *ngIf="blablacarInfo.CountOfSuggestions!=0; else notFound">
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <p id="blablacar-p">Price range:</p>
+            <p id="blablacar-price"> {{blablacarInfo.LowestPrice}}UAH - {{blablacarInfo.HighestPrice}}UAH</p>        
+          </div>
+          <div class = "col-xs-12 col-sm-4 col-md-3">
+            
+            <p id="blablacar-suggestion">Suggestions: {{blablacarInfo.CountOfSuggestions}}</p>
+            <div id="button-div">
+              <a href={{blablacarInfo.Link}}>
+                <button class ="btn btn-primary pull-right">Choose</button>
+              </a>
+            </div>
+          </div>
+        </ul>
+        <ng-template #notFound>
+          <div class="col-xs-12 col-sm-8 col-md-6">
+            <p id="NotFoundSuggestions"> Sorry, but it looks like there are already reservations or no trips on this route. </p>
+          </div>
+        </ng-template>
+      </ul>
+      <ng-template #error>
+          <div class="col-xs-12 col-md-9">
+              <p id="BlaBlaCarErrorMessage"> {{blablacarErrorMessage}} </p>
+            </div>  
+      </ng-template>
     </div>
   </div>  
 </div>

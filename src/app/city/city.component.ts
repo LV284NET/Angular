@@ -28,8 +28,11 @@ export class CityComponent implements OnInit {
   page= "/city/" +this.route.snapshot.paramMap.get('cityId');
   city: City;
   places: Place[] = [];
+  blablacarErrorMessage: string;
   @Input() currentLocation: string = 'Lviv';
   blablacarInfo: BlaBlaCarInfo;
+  getBlaBlaCarResult: boolean = false;
+
   constructor(private placeService: PlacesService,
     private cityService: CityService,
     private route: ActivatedRoute,
@@ -87,9 +90,15 @@ export class CityComponent implements OnInit {
   getBlaBlaCarInfo(){
     this.blaBlaCarService.getBlaBlaCarInfo(this.currentLocation, this.city.name, this.getDateInString()).subscribe(
       response => {
+        this.getBlaBlaCarResult = true;
         this.blablacarInfo = new BlaBlaCarInfo(response.LowestPrice, response.HighestPrice,
                               response.TravelTime, response.Distance, response.CountOfSuggestions, response.Link );
-        }
+        },
+       error => {
+        this.blablacarInfo = null;
+        this.getBlaBlaCarResult = true;
+        this.blablacarErrorMessage = JSON.parse(error._body).Message;
+      }
     )
   }
 
