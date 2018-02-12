@@ -52,9 +52,67 @@
         <button class="btn btn-primary pull-left down" routerLink="/cities-list">Back</button>
       <button class="btn btn-primary pull-right down" routerLink="place-list">Show More</button>
     </div>
-
   </div>
-  
+
+  <hr>
+  <div class="row round2">
+      <div class="form-group col-xs-12 col-lg-4">
+        <label for="currentLocation">From:</label>
+        <input [(ngModel)]="currentLocation" type="text" name="currentLocation" class="form-control">
+      </div>
+      <div class="form-group col-xs-12 col-lg-4">
+          <label for="endPoint">To:</label>
+          <input [(ngModel)]="city.name" type="text" name="endPoint" class="form-control">
+        </div>
+      <div class="form-group col-xs-12 col-lg-2">
+        <label for ="Date">Date:</label>
+          <mat-form-field class="example-full-width">
+            <input [(ngModel)]="travelDate" class="Date" matInput [min]="minDate" name = "Date" [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>          
+      </div>
+      <div id="button-div">
+        <button class="btn btn-primary pull-right" (click)="getBlaBlaCarInfo()">Search</button>
+    </div>
+
+    <div *ngIf="getBlaBlaCarResult" class="row blablacar_item">
+      <a class ="col-xs-12 col-md-3" href="https://blablacar.com.ua/">
+        <img class="img-responsive blablacar-img" src="../assets/img/BlaBlaCar/blablacar.png">
+      </a>
+      <ul *ngIf="blablacarInfo; else error">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <p id="blablacar">Time on the road ≈ {{getBlaBlaCarTime(blablacarInfo.TravelTime)}} </p>
+          <img class="img-responsive" src="../assets/img/BlaBlaCar/car-in-road.png">
+        </div>
+        <ul *ngIf="blablacarInfo.CountOfSuggestions!=0; else notFound">
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <p id="blablacar-p">Price range:</p>
+            <p id="blablacar-price"> {{blablacarInfo.LowestPrice}}UAH - {{blablacarInfo.HighestPrice}}UAH</p>        
+          </div>
+          <div class = "col-xs-12 col-sm-4 col-md-3">
+            
+            <p id="blablacar-suggestion">Suggestions: {{blablacarInfo.CountOfSuggestions}}</p>
+            <div id="button-div">
+              <a href={{blablacarInfo.Link}}>
+                <button class ="btn btn-primary pull-right">Choose</button>
+              </a>
+            </div>
+          </div>
+        </ul>
+        <ng-template #notFound>
+          <div class="col-xs-12 col-sm-8 col-md-6">
+            <p id="NotFoundSuggestions"> Sorry, but it looks like there are already reservations or no trips on this route. </p>
+          </div>
+        </ng-template>
+      </ul>
+      <ng-template #error>
+          <div class="col-xs-12 col-md-9">
+              <p id="BlaBlaCarErrorMessage"> {{blablacarErrorMessage}} </p>
+            </div>  
+      </ng-template>
+    </div>
+  </div>  
 </div>
 <h2>Leave your comment!</h2>
 <div class="container">

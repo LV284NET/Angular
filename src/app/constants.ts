@@ -3,7 +3,7 @@ export class Constants {
     static CurrentBackEndHost: string = 'https://localhost:44317/';
 
     // 'https://localhost:4200/WebApi/'
-
+    
     //Constants for Pagination
     static PaginationConstants = class {
 
@@ -146,5 +146,10 @@ export class Constants {
         static FacebookAppId: string = '1982326058704428';
 
         static Src: string = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=1982326058704428&autoLogAppEvents=1';
+
+    }
+
+    static BlaBlaCarService = class {
+        static UrlForApiBlaBlaCar: string = Constants.CurrentBackEndHost + 'api/Services/GetBlaBlaCarRequestResult';
     }
 }

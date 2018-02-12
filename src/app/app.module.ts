@@ -22,7 +22,7 @@ import { CityComponent } from './city/city.component';
 import { MatDialogModule, MatSnackBarModule, MatCheckbox } from '@angular/material';
 import { ErrorHandlingService } from './Services/error-handling.service';
 import { FavoriteService } from './Services/favorite.service';
-import { MatAutocompleteModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import { MatAutocompleteModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './Services/profile.service';
@@ -37,6 +37,7 @@ import { SpinnerService} from './Services/spinner.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Constants } from './constants';
 import { TokenExpiredService } from './Services/token-expired.service';
+import { BlaBlaCarService } from './Services/bla-bla-car.service';
 import { SearchCitiesAndPlacesService } from './Services/search-cities-and-places.service';
 import  './getFBSDK';
 import { GeolocationComponent } from './geolocation/geolocation.component';
@@ -83,6 +84,8 @@ import { GeolocationService } from './Services/geolocation.service';
     DisqusModule.forRoot('ngx'),
     StarRatingModule.forRoot(),
     MatCheckboxModule,
+    MatDatepickerModule, 
+    MatNativeDateModule
   ],
   providers: [
     AuthorizationService,
@@ -97,7 +100,8 @@ import { GeolocationService } from './Services/geolocation.service';
     Constants,
     TokenExpiredService,
     SearchCitiesAndPlacesService,
-    GeolocationService
+    GeolocationService,
+    BlaBlaCarService,
   ],
   bootstrap: [AppComponent]
 })
