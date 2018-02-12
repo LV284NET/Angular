@@ -101,6 +101,13 @@ h2 {
     transition: all 0.2s ease-out;
 }
 
+@media only screen and (max-width: 500px){
+
+    .blablacar_item{
+        width: 97%;
+    }
+}
+
 .blablacar-img{
     max-width: 200px;
     display: block;
