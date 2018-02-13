@@ -39,6 +39,8 @@ import { Constants } from './constants';
 import { TokenExpiredService } from './Services/token-expired.service';
 import { SearchCitiesAndPlacesService } from './Services/search-cities-and-places.service';
 import  './getFBSDK';
+import { GoogleMapsComponent } from './google-maps/google-maps.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -56,13 +58,15 @@ import  './getFBSDK';
     ChangePasswordComponent,
     PaginationComponent,
     SpinnerComponent,
-    FooterComponent   
+    FooterComponent,
+    GoogleMapsComponent, 
   ],
   entryComponents: [
     LoginComponent,
     RegisterComponent,
     FeedbackComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    GoogleMapsComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +83,10 @@ import  './getFBSDK';
     DisqusModule.forRoot('ngx'),
     StarRatingModule.forRoot(),
     MatCheckboxModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCmBhgQJgfQCQeClQDDqJKcDvft3_yBOss',
+      libraries: ["places"]
+    })
   ],
   providers: [
     AuthorizationService,

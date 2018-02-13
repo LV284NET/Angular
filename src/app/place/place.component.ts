@@ -10,7 +10,8 @@ import { OnClickEvent } from "angular-star-rating/star-rating-struct";
 import { Constants } from './../constants';
 import { SpinnerService } from '../Services/spinner.service';
 import { RatingService } from '../Services/rating.service';
-import { MatSnackBar } from '@angular/material';
+import { GoogleMapsComponent } from '../google-maps/google-maps.component';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-place',
@@ -36,6 +37,7 @@ export class PlaceComponent implements OnInit {
     private spinnerService: SpinnerService,
     private ratingService: RatingService,
     private snackBar: MatSnackBar,
+    public dialog: MatDialog,
   ) { 
     this.place = new Place(0, "", "", "", "");
   }
@@ -147,5 +149,12 @@ export class PlaceComponent implements OnInit {
       });
 
           })
+  }
+  maps(){
+    let dialog = this.dialog.closeAll()
+    let dialogRef = this.dialog.open(GoogleMapsComponent, {
+      width: "100%",
+      height: "88%"
+    });
   }
 }
