@@ -93,9 +93,9 @@ export class CityComponent implements OnInit {
         this.options)
     };
 
-    if (this.currentCityName != null) {
-      this.isCurrentCityNameLoaded = true;
-    }
+    // if (this.currentCityName != null) {
+    //   this.isCurrentCityNameLoaded = true;
+    // }
   }
 
   //#region Private Methods
@@ -190,8 +190,6 @@ export class CityComponent implements OnInit {
         });
       });
   }
-
-  //#endregion
 
   private errorCallback = (error) => {
     let errorMessage = 'Unknown error';
