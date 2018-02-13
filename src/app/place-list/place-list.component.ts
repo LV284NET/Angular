@@ -31,7 +31,7 @@ export class PlaceListComponent implements OnInit {
   elementsPerPage;
   pagesToShow;
 
-  filterMechanism = {filters:[]} 
+  filterMechanism = { filters: [] }
   form: FormGroup;
 
   constructor(private placesService: PlacesService,
@@ -43,8 +43,7 @@ export class PlaceListComponent implements OnInit {
     private spinnerService: SpinnerService,
     private ratingService: RatingService,
     private fb: FormBuilder,
-  )   
-  {  
+  ) {
     this.getStandartParams();
     this.getFilters();
 
@@ -53,7 +52,7 @@ export class PlaceListComponent implements OnInit {
   ngOnInit() {
     this.getCityIdFromUrl();
     this.getCheckedFiltersFromUrl();
-    
+
     this.form = this.fb.group({
       filters: this.buildFilters()
     });
@@ -62,89 +61,80 @@ export class PlaceListComponent implements OnInit {
     this.getFilteredCount();
     this.getPageFromUrl();
     this.getFilteredPlacesList();
- 
+
     if (this.authService.token != null)
       this.favoritePlace.getFavoritePlaces();
 
   }
 
-  getPageFromUrl(){
+  getPageFromUrl() {
     let page;
 
-    this.route.queryParams.subscribe(params =>{
+    this.route.queryParams.subscribe(params => {
       page = +params['pageNumber']
     });
 
-    if(page > 0 )
-    { this.currentPage= page;}
-  
+    if (page > 0) { this.currentPage = page; }
 
-    else
-    { this.changeRoutes();}
+    if (page > this.countOfElements / this.elementsPerPage) {
+      this.currentPage = 1;
+      this.changeRoutes();
+    }
+
+
+    else { this.changeRoutes(); }
   }
 
-  getPageSizeFromUrl(){
+  getPageSizeFromUrl() {
     let pageSize;
 
-    this.route.queryParams.subscribe(params =>{
+    this.route.queryParams.subscribe(params => {
       pageSize = +params['pageSize']
     });
 
-    if(pageSize > 0)
-    { this.elementsPerPage= pageSize;}
-    
-    else
-    { this.changeRoutes();}
+    if (pageSize > 0) { this.elementsPerPage = pageSize; }
+
+    else { this.changeRoutes(); }
   }
 
-  getCityIdFromUrl(){
+  getCityIdFromUrl() {
     this.cityID = + this.route.snapshot.paramMap.get('cityId');
   }
 
-  getCheckedFiltersFromUrl(){
-    let selectedFilters;
+  getCheckedFiltersFromUrl() {
+    let selectedFilters: Array<string>;
 
-    this.route.queryParams.subscribe(params =>{
+    this.route.queryParams.subscribe(params => {
       selectedFilters = params['filter']
     });
 
-    if(typeof selectedFilters === "string"){
-      for(let j=0, lenfilters=this.filterMechanism.filters.length;
-        j<lenfilters; j++ ){
-          if(selectedFilters == this.filterMechanism.filters[j].name){
-            this.filterMechanism.filters[j].selected=true;
+    if (selectedFilters != null && selectedFilters.length != 0) {
+      selectedFilters.forEach(element => {
+        for (let j = 0, lenfilters = this.filterMechanism.filters.length;
+          j < lenfilters; j++) {
+          if (element == this.filterMechanism.filters[j].name) {
+            this.filterMechanism.filters[j].selected = true;
           }
-       }
-
-    }
-
-    else{
-      if(selectedFilters != null && selectedFilters.length !=0){
-        selectedFilters.forEach(element =>{
-          for(let j=0, lenfilters=this.filterMechanism.filters.length;
-             j<lenfilters; j++ ){
-               if(element == this.filterMechanism.filters[j].name){
-                 this.filterMechanism.filters[j].selected=true;
-               }
-            }
-          })
         }
+      })
     }
-
   }
 
-  changeRoutes(){
-    let filters:string[] = this.filterTostringArray();
+  changeRoutes() {
+    let filters: string[] = this.filterTostringArray();
 
-    this.router.navigate(['/city/'+ this.cityID +'/place-list'],  
-    { queryParams: 
-      {pageSize: this.elementsPerPage,
-       pageNumber: this.currentPage,
-       filter: filters
-      }    });
-  }  
+    this.router.navigate(['/city/' + this.cityID + '/place-list'],
+      {
+        queryParams:
+          {
+            pageSize: this.elementsPerPage,
+            pageNumber: this.currentPage,
+            filter: filters
+          }
+      });
+  }
 
-  getFilters(){
+  getFilters() {
     this.filterMechanism.filters = this.placesService.getFilters()
   }
 
@@ -163,9 +153,9 @@ export class PlaceListComponent implements OnInit {
     return this.favoritePlace.favoritesPlaces.some(x => x === placeId);
   }
 
-  getCheckedFilters(){
+  getCheckedFilters() {
 
-    let checkedFilters= this.filterMechanism.filters.filter((element, index, array) => {
+    let checkedFilters = this.filterMechanism.filters.filter((element, index, array) => {
       return element.selected;
     });
 
@@ -173,9 +163,8 @@ export class PlaceListComponent implements OnInit {
   }
 
 
-  getPlaceRating(placeRating: number): any{
-    if(placeRating != 0)
-    { 
+  getPlaceRating(placeRating: number): any {
+    if (placeRating != 0) {
       return placeRating.toString();
     }
     return "";
@@ -194,7 +183,7 @@ export class PlaceListComponent implements OnInit {
       response.forEach(element => {
         this.places.push(new Place(element.PlaceId,
           element.Name, element.CityName, element.Description,
-          element.PicturePlace,0 , element.PlaceRating)),
+          element.PicturePlace, 0, element.PlaceRating)),
           this.cityName = element.CityName
       });
     });
@@ -208,7 +197,7 @@ export class PlaceListComponent implements OnInit {
 
     let checkedFilters = this.getCheckedFilters();
 
-    this.placesService.getCountFromFilteredPlaces(this.cityID,checkedFilters).subscribe(response => {
+    this.placesService.getCountFromFilteredPlaces(this.cityID, checkedFilters).subscribe(response => {
       //Hide Load Animation
       this.spinnerService.HideSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
@@ -218,7 +207,7 @@ export class PlaceListComponent implements OnInit {
     this.loading = false;
   }
 
-  getStandartParams(){
+  getStandartParams() {
     this.elementsPerPage = Constants.PaginationConstants.ElementsPerPage;
     this.currentPage = Constants.PaginationConstants.FirstPage;
     this.pagesToShow = Constants.PaginationConstants.PagesToShow;
@@ -246,32 +235,32 @@ export class PlaceListComponent implements OnInit {
     this.getFilteredPlacesList();
   }
 
-  showAll(): void{
+  showAll(): void {
     this.elementsPerPage = this.countOfElements;
-    this.currentPage=1;
+    this.currentPage = 1;
     this.changeRoutes();
     this.getFilteredPlacesList();
   }
 
 
-  filterTostringArray(): string[]{
+  filterTostringArray(): string[] {
     let selectedFilters: string[] = [];
 
-        for(let i=0, lenfilters=this.filterMechanism.filters.length;
-                                          i<lenfilters; i++ ){
-             if(this.filterMechanism.filters[i].selected){
+    for (let i = 0, lenfilters = this.filterMechanism.filters.length;
+      i < lenfilters; i++) {
+      if (this.filterMechanism.filters[i].selected) {
 
-               selectedFilters.push(this.filterMechanism.filters[i].name);
+        selectedFilters.push(this.filterMechanism.filters[i].name);
 
-             }
       }
-      return selectedFilters;
+    }
+    return selectedFilters;
   }
 
   checkSelectedCheckbox(event) {
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
     this.filterMechanism.filters[event.source.id - 1].selected = event.checked;
-    this.currentPage=1;
+    this.currentPage = 1;
     this.getFilteredCount();
     this.changeRoutes();
     this.getFilteredPlacesList();

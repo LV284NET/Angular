@@ -15,14 +15,25 @@ import { Constants } from './../constants';
 })
 export class LoginComponent implements OnInit {
 
+  //#region Inputs
+
   @Input() Email: string;
+
   @Input() Password: string;
+
+  //#endregion
+
+  //#region Public Properties
 
   public errorMessage: string;
 
-  isRemembered: boolean;
+  public isRemembered: boolean;
 
-  constructor(private router: Router,
+  //#endregion
+
+  //#region Constructor
+
+  constructor(
     private authorezeService: AuthorizationService,
     private errorService: ErrorHandlingService,
     private dialogRef: MatDialogRef<LoginComponent>,
@@ -30,15 +41,20 @@ export class LoginComponent implements OnInit {
     private tokenService: TokenExpiredService,
     private spinnerService: SpinnerService) { }
 
+  //#endregion
 
   ngOnInit(): void {
     this.Email = localStorage.getItem("userAuth");
     this.isRemembered = this.Email ? true : false;
   }
-  closeDialog() {
+
+  //#region Private Methods
+
+  private closeDialog() {
     this.dialogRef.close();
   }
-  rememberMe(event): void {
+
+  private rememberMe(event): void {
     if (event.target.checked && this.Email) {
       localStorage.setItem("userAuth", this.Email);
     }
@@ -47,7 +63,36 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public onSubmit() {
+  private onFacebookLogin() {
+    FB.login((r) => {
+      FB.getLoginStatus(response => {
+        if (response.status === 'connected') {
+          FB.api('/me?fields=email,first_name,last_name', (data) => {
+            this.authorezeService.facebookLogin(data).subscribe(response => {
+              this.dialogRef.close();
+              this.tokenService.checkToken();
+              this.snackBar.open("You are logged in", "Got it", {
+                duration: 2000
+              });
+            });
+          });
+        }
+        else if (response.status === 'not_authorized') {
+          this.snackBar.open("Something went wrong, try again", "Got it", {
+            duration: 2000
+          });
+        } else {
+
+        }
+      });
+    }, {
+        scope: 'email'
+      });
+  }
+
+  private statusChangeCallback(response) {};
+
+  private onSubmit() {
     //Show Loading Animation
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 
@@ -78,40 +123,5 @@ export class LoginComponent implements OnInit {
     })
   };
 
-  public onFacebookLogin() {
-    FB.login((r) => {
-      FB.getLoginStatus(response => {
-        if (response.status === 'connected') {
-          FB.api('/me?fields=email,first_name,last_name', (data) => {
-            this.authorezeService.facebookLogin(data).subscribe(response => {
-              this.dialogRef.close();
-              this.tokenService.checkToken();
-              this.snackBar.open("You are logged in", "Got it", {
-                duration: 2000
-              });
-            });
-          });
-        }
-        else if (response.status === 'not_authorized') {
-          this.snackBar.open("Something went wrong, try again", "Got it", {
-            duration: 2000
-          });
-        } else {
-
-        }
-      });
-    }, {
-        scope: 'email'
-      });
-  }
-
-  statusChangeCallback(response) {
-
-  };
-  // public onFacebookLogin() {
-  //   this.facebookAuthService.facebookLogin().subscribe(response => {
-  //   }, error => {
-  //     this.errorService.handleError(error);
-  //   })
-  // };
+  //#endregion
 }

@@ -1,6 +1,6 @@
 <a class="close btn" (click)="closeDialog()" role="button" >&times;</a>
 <h3>Suggestion</h3>
-<form ngNoForm novalidate [formGroup]="myform" (submit)="suggestion()" action="https://formspree.io/easytravelsystem284@gmail.com" target="_blank" method="POST" #form>
+<form ngNoForm novalidate [formGroup]="myform" (submit)="submit()" action="https://formspree.io/easytravelsystem284@gmail.com" target="_blank" method="POST" #form>
   <div class="form-group" [ngClass]="{
     'has-error': email.invalid && email.dirty, 
     'has-success': email.valid && email.dirty
@@ -46,3 +46,5 @@
     </div>
   </div>
 </form>
+
+<!--  -->
