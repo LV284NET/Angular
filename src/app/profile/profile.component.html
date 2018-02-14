@@ -12,14 +12,14 @@
 
         <h3 *ngIf="editable.firstName"><input [(ngModel)]="user.FirstName" placeholder="First Name">
           <a class="btn glyphicon glyphicon-ok" (click)="isEditableFirstName();onSubmitFirstName()" role="button"></a>
-          <a class="btn glyphicon glyphicon-remove" (click)="isEditableFirstName()" role="button"></a></h3>
+          <a class="btn glyphicon glyphicon-remove" (click)="isEditableFirstName();getInfo()" role="button"></a></h3>
 
         <h3 *ngIf="!editable.lastName">{{user.LastName}}
           <a class="btn glyphicon glyphicon-pencil" (click)="isEditableLastName()" role="button"></a></h3>
                  
         <h3 *ngIf="editable.lastName"><input [(ngModel)]="user.LastName" placeholder="Last Name">
           <a class="btn glyphicon glyphicon-ok" (click)="isEditableLastName();onSubmitLastName()" role="button"></a>
-          <a class="btn glyphicon glyphicon-remove" (click)="isEditableLastName()" role="button"></a></h3>
+          <a class="btn glyphicon glyphicon-remove" (click)="isEditableLastName();getInfo()" role="button"></a></h3>
         
         <a class="pull-right down" (click)="changePassword()">
           <i class="material-icons">security</i>  Change Password</a>
