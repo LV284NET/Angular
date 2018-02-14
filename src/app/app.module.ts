@@ -42,6 +42,9 @@ import { SearchCitiesAndPlacesService } from './Services/search-cities-and-place
 import  './getFBSDK';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
 import { AgmCoreModule } from '@agm/core';
+import { GeolocationComponent } from './geolocation/geolocation.component';
+import { GeolocationService } from './Services/geolocation.service';
+
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import { AgmCoreModule } from '@agm/core';
     SpinnerComponent,
     FooterComponent,
     GoogleMapsComponent, 
+    GeolocationComponent,
   ],
   entryComponents: [
     LoginComponent,
@@ -85,9 +89,11 @@ import { AgmCoreModule } from '@agm/core';
     StarRatingModule.forRoot(),
     MatCheckboxModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCmBhgQJgfQCQeClQDDqJKcDvft3_yBOss',
+      apiKey: "AIzaSyCmBhgQJgfQCQeClQDDqJKcDvft3_yBOss",
       libraries: ["places"]
-    })
+    }),
+    MatDatepickerModule, 
+    MatNativeDateModule
   ],
   providers: [
     AuthorizationService,
