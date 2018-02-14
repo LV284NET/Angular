@@ -50,10 +50,6 @@ export class CityComponent implements OnInit {
 
     if (localStorage.getItem("currentUser") != null)
       this.favoritePlace.getFavoritePlaces();
-
-    // if (this.currentCityName != null) {
-    //   this.isCurrentCityNameLoaded = true;
-    // }
   }
 
   //#region Private Methods
@@ -77,8 +73,6 @@ export class CityComponent implements OnInit {
 
         this.city = new City(response.Id, response.Name,
           response.Description, response.PicturePath, response.CityRating);
-
-        //this.getBlaBlaCarInfo();
       });
   }
 
@@ -106,5 +100,6 @@ export class CityComponent implements OnInit {
         });
       });
   }
+
   //#endregion
 }

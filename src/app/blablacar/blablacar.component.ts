@@ -34,23 +34,24 @@ export class BlablacarComponent implements OnInit {
     timeout: 10000,
     maximumAge: 0
   }; 
-  blablacarErrorMessage: string;
+  
+  private blablacarErrorMessage: string;
   @Input() currentCityName: string;
-  travelCityName: string;
-  blablacarInfo: BlaBlaCarInfo;
-  getBlaBlaCarResult: boolean = false;
-  isCurrentCityNameLoaded: boolean = false;
+  private destinationCityName: string;
+  private blablacarInfo: BlaBlaCarInfo;
+  private getBlaBlaCarResult: boolean = false;
+  private isCurrentCityNameLoaded: boolean = false;
   @Input() travelDate: Date;
   
 
-  getDateInString(): string {
+  private getDateInString(): string {
     if (this.travelDate) {
       return this.travelDate.toDateString();
     }
   }
 
-  getBlaBlaCarInfo() {
-    this.blaBlaCarService.getBlaBlaCarInfo(this.currentCityName, this.travelCityName, this.getDateInString()).subscribe(
+  private getBlaBlaCarInfo() {
+    this.blaBlaCarService.getBlaBlaCarInfo(this.currentCityName, this.destinationCityName, this.getDateInString()).subscribe(
       response => {
         this.getBlaBlaCarResult = true;
         this.blablacarInfo = new BlaBlaCarInfo(response.LowestPrice, response.HighestPrice,
@@ -64,7 +65,7 @@ export class BlablacarComponent implements OnInit {
     )
   }
 
-  getBlaBlaCarTime(TravelTime: number): any {
+  private getBlaBlaCarTime(TravelTime: number): any {
     let secondInMinute = 60;
 
     let timeInMinute = TravelTime / secondInMinute;
@@ -73,12 +74,19 @@ export class BlablacarComponent implements OnInit {
     }
   }
 
-  blaBlaCarFormToggle(toCity: string){
-    this.currentCityName = this.currentGeolocationData.GetCityName();
-    this.travelCityName = toCity;
-    if (this.currentCityName != null) {
-      this.isCurrentCityNameLoaded = true;
-      this.getBlaBlaCarInfo();
+  public blaBlaCarFormToggle(toCity: string){
+    if (!this.isCurrentCityNameLoaded)
+    {
+      this.currentCityName = this.currentGeolocationData.GetCityName();
+      this.destinationCityName = toCity;
+      if (this.currentCityName != null) {
+        this.isCurrentCityNameLoaded = true;
+        this.getBlaBlaCarInfo();
+      }
+    }
+    else
+    {
+      this.isCurrentCityNameLoaded = false;
     }
   }
 
