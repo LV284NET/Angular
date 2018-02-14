@@ -36,6 +36,10 @@ export class Constants {
         static UrlForConfirmEmail: string = Constants.CurrentBackEndHost + 'api/Account/ConfirmUser';
 
         static UrlForChangePassword: string = Constants.CurrentBackEndHost + 'api/Account/ChangePassword';
+
+        static UrlForChangeFirstName: string = Constants.CurrentBackEndHost + 'api/Account/ChangeFirstName';
+
+        static UrlForChangeLastName: string = Constants.CurrentBackEndHost + 'api/Account/ChangeLastName';
     }
     //Constants for SocialAuthService
     static SocialAuthConstants = class {
