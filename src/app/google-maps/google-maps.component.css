@@ -1,0 +1,15 @@
+ agm-map {
+    height: 88%;
+  } 
+   
+  
+  * {
+    font-family: Lato;
+  }
+  
+  a {
+    color: darkblue;
+  }
+  h1 {
+    text-align: center;
+  }

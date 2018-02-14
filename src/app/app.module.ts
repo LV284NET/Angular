@@ -40,8 +40,11 @@ import { TokenExpiredService } from './Services/token-expired.service';
 import { BlaBlaCarService } from './Services/bla-bla-car.service';
 import { SearchCitiesAndPlacesService } from './Services/search-cities-and-places.service';
 import  './getFBSDK';
+import { GoogleMapsComponent } from './google-maps/google-maps.component';
+import { AgmCoreModule } from '@agm/core';
 import { GeolocationComponent } from './geolocation/geolocation.component';
 import { GeolocationService } from './Services/geolocation.service';
+
 
 @NgModule({
   declarations: [
@@ -60,14 +63,15 @@ import { GeolocationService } from './Services/geolocation.service';
     PaginationComponent,
     SpinnerComponent,
     FooterComponent,
+    GoogleMapsComponent, 
     GeolocationComponent,
- 
   ],
   entryComponents: [
     LoginComponent,
     RegisterComponent,
     FeedbackComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    GoogleMapsComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +88,10 @@ import { GeolocationService } from './Services/geolocation.service';
     DisqusModule.forRoot('ngx'),
     StarRatingModule.forRoot(),
     MatCheckboxModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCmBhgQJgfQCQeClQDDqJKcDvft3_yBOss",
+      libraries: ["places"]
+    }),
     MatDatepickerModule, 
     MatNativeDateModule
   ],
