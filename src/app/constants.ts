@@ -42,7 +42,7 @@ export class Constants {
 
         static UrlForSocialAuth: string = Constants.CurrentBackEndHost + 'api/Account/AddExternalLogin';
 
-        static UrlForDemoLogin: string = Constants.CurrentBackEndHost + 'api/Account/Login';
+        static FacebookProvinerName: string = 'Facebook';
     }
     //Constants for CityService
     static CityServiceConstants = class {

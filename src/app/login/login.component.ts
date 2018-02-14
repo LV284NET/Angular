@@ -67,15 +67,15 @@ export class LoginComponent implements OnInit {
     FB.login((r) => {
       FB.getLoginStatus(response => {
         if (response.status === 'connected') {
-          FB.api('/me?fields=email,first_name,last_name', (data) => {
-            this.authorezeService.facebookLogin(data).subscribe(response => {
+         // FB.api('/me?fields=email,first_name,last_name', (data) => {
+            this.authorezeService.facebookLogin(r.authResponse.accessToken).subscribe(response => {
               this.dialogRef.close();
               this.tokenService.checkToken();
               this.snackBar.open("You are logged in", "Got it", {
                 duration: 2000
               });
             });
-          });
+
         }
         else if (response.status === 'not_authorized') {
           this.snackBar.open("Something went wrong, try again", "Got it", {
@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  private statusChangeCallback(response) {};
+  //private statusChangeCallback(response) {};
 
   private onSubmit() {
     //Show Loading Animation

@@ -14,8 +14,10 @@ export class AuthorizationService {
     private urlForConfirmEmail: string = Constants.AuthorizationServiceConstants.UrlForConfirmEmail;
     private urlForChangePassword: string = Constants.AuthorizationServiceConstants.UrlForChangePassword;
     private urlForSocialAuth: string = Constants.SocialAuthConstants.UrlForSocialAuth;
+    private facebookProviderName: string = Constants.SocialAuthConstants.FacebookProvinerName;
 
     public token: string;
+   // public facebookAccessToken: string;
     public FirstName: string;
     public UserId: any;
 
@@ -73,8 +75,8 @@ export class AuthorizationService {
                     let Id = res.json().Id;
                     var dateNow = Date.now();
                     let tokenExpired = res.json().expires_in;
-                    var tokenDurating = dateNow + tokenExpired * 1000; 
-                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating : tokenDurating , token: token }));
+                    var tokenDurating = dateNow + tokenExpired * 1000;
+                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating: tokenDurating, token: token }));
                     this.FirstName = firstName;
                     this.UserId = Id;
                     return true;
@@ -84,10 +86,10 @@ export class AuthorizationService {
             .catch((error: any) => Observable.throw(error));
     }
 
-    public facebookLogin( data): Observable<boolean> {
+    public facebookLogin(facebookAccessToken): Observable<boolean> {
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        var content = data;
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var content = "accesstoken=" + facebookAccessToken + "&provider=" + this.facebookProviderName;
         return this._http.post(this.urlForSocialAuth, content, { headers: headers })
             .map((res: Response) => {
                 let token = res.json().access_token;
@@ -98,8 +100,8 @@ export class AuthorizationService {
                     let Id = res.json().id;
                     var dateNow = Date.now();
                     let tokenExpired = res.json().expires_in;
-                    var tokenDurating = dateNow + tokenExpired * 1000; 
-                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating : tokenDurating , token: token }));
+                    var tokenDurating = dateNow + tokenExpired * 1000;
+                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating: tokenDurating, token: token }));
                     this.FirstName = firstName;
                     this.UserId = Id;
                     return true;
