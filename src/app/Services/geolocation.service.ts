@@ -10,6 +10,10 @@ export class GeolocationService {
 
   private apiKey = Constants.GeolocationServiceConstants.ApiKey;
 
+  private responseLanguage = Constants.GeolocationServiceConstants.ResponseLanguage;
+
+  private isDeviceSensorUsedArgument = Constants.GeolocationServiceConstants.IsDeviceSensorUsed.toString().toLowerCase();
+
   private currentGeolocationData: GeolocationData = new GeolocationData();
 
   constructor(private http: Http) {
@@ -23,7 +27,8 @@ export class GeolocationService {
   private setInfoAboutCurrenLocation = (latitude, longitude) => {
 
     this.http.get(this.googleApiUrl + '?key=' + this.apiKey + '&latlng=' +
-      latitude + '+' + longitude + '&sensor=true')
+      latitude + '+' + longitude + '&sensor=' + this.isDeviceSensorUsedArgument + 
+      '&language=' + this.responseLanguage)
       .subscribe(
       response => {
         if (response.status == 200) {

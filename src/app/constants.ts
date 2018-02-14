@@ -46,7 +46,7 @@ export class Constants {
 
         static UrlForSocialAuth: string = Constants.CurrentBackEndHost + 'api/Account/AddExternalLogin';
 
-        static UrlForDemoLogin: string = Constants.CurrentBackEndHost + 'api/Account/Login';
+        static FacebookProvinerName: string = 'Facebook';
     }
     //Constants for CityService
     static CityServiceConstants = class {
@@ -142,6 +142,10 @@ export class Constants {
         static GoogleApiUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json';
 
         static ApiKey: string = 'AIzaSyBcGmt-Vv3bbUxaYA6y5gga5WTymetm9gY';
+
+        static ResponseLanguage: string = 'en';
+
+        static IsDeviceSensorUsed: boolean = true;
     }
 
     //Constants for using Facebook app
@@ -154,6 +158,8 @@ export class Constants {
     }
 
     static BlaBlaCarService = class {
+
         static UrlForApiBlaBlaCar: string = Constants.CurrentBackEndHost + 'api/Services/GetBlaBlaCarRequestResult';
+
     }
 }

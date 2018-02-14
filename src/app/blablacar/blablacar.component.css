@@ -1,0 +1,61 @@
+.round2 {
+    border: 2px solid rgb(235, 234, 234);
+    border-radius: 8px;
+    background-color: whitesmoke;
+}
+
+button{
+    margin: 15px;
+}
+.blablacar_item{
+    width: 99%;
+    position: relative;
+    line-height: 24px;
+    color: #767676;
+    padding: 15px 10px;
+    margin: 5px;
+    background-color: #ffffff;
+    clear: both;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+@media only screen and (max-width: 500px){
+
+    .blablacar_item{
+        width: 97%;
+    }
+}
+
+.blablacar-img{
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+#blablacar-price{
+    text-align: center;
+    font-weight: bold;
+}
+
+#blablacar-suggestion{
+    text-align: right;
+}
+
+#blablacar-p{
+    text-align: center;
+}
+
+#NotFoundSuggestions{
+    text-align: right;
+    font-weight: bold;
+}
+
+#BlaBlaCarErrorMessage{
+    text-align: center;
+    font-weight: bold;
+}
