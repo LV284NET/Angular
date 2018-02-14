@@ -42,9 +42,9 @@ import { SearchCitiesAndPlacesService } from './Services/search-cities-and-place
 import  './getFBSDK';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
 import { AgmCoreModule } from '@agm/core';
-import { GeolocationComponent } from './geolocation/geolocation.component';
+import {GeolocationComponent} from './geolocation/geolocation.component';
+import { BlablacarComponent } from './blablacar/blablacar.component';
 import { GeolocationService } from './Services/geolocation.service';
-
 
 @NgModule({
   declarations: [
@@ -63,8 +63,9 @@ import { GeolocationService } from './Services/geolocation.service';
     PaginationComponent,
     SpinnerComponent,
     FooterComponent,
-    GoogleMapsComponent, 
+    GoogleMapsComponent,
     GeolocationComponent,
+    BlablacarComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -85,6 +86,8 @@ import { GeolocationService } from './Services/geolocation.service';
     MatSnackBarModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     DisqusModule.forRoot('ngx'),
     StarRatingModule.forRoot(),
     MatCheckboxModule,
@@ -108,8 +111,8 @@ import { GeolocationService } from './Services/geolocation.service';
     Constants,
     TokenExpiredService,
     SearchCitiesAndPlacesService,
-    GeolocationService,
     BlaBlaCarService,
+    GeolocationService,
   ],
   bootstrap: [AppComponent]
 })

@@ -12,6 +12,7 @@ import { SpinnerService } from '../Services/spinner.service';
 import { RatingService } from '../Services/rating.service';
 import { GoogleMapsComponent } from '../google-maps/google-maps.component';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { BlablacarComponent } from '../blablacar/blablacar.component';
 
 @Component({
   selector: 'app-place',

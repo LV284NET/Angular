@@ -15,6 +15,8 @@ export class AuthorizationService {
     private urlForChangePassword: string = Constants.AuthorizationServiceConstants.UrlForChangePassword;
     private urlForSocialAuth: string = Constants.SocialAuthConstants.UrlForSocialAuth;
     private facebookProviderName: string = Constants.SocialAuthConstants.FacebookProvinerName;
+    private urlForChangeFirstName: string = Constants.AuthorizationServiceConstants.UrlForChangeFirstName;
+    private urlForChangeLastName: string = Constants.AuthorizationServiceConstants.UrlForChangeLastName;
 
     public token: string;
    // public facebookAccessToken: string;
@@ -43,6 +45,40 @@ export class AuthorizationService {
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + this.token);
         return this._http.post(this.urlForChangePassword, JSON.stringify(body), { headers: headers })
+            .map((res: Response) => {
+                return true;
+            })
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    public changeFirstName(newFirstName: string): Observable<boolean> {
+        var headers = new Headers();
+
+        var body =
+            {
+                "newFirstName": newFirstName
+            }
+
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + this.token);
+        return this._http.post(this.urlForChangeFirstName, JSON.stringify(body), { headers: headers })
+            .map((res: Response) => {
+                return true;
+            })
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    public changeLastName(newLastName: string): Observable<boolean> {
+        var headers = new Headers();
+
+        var body =
+            {
+                "newLastName": newLastName
+            }
+
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + this.token);
+        return this._http.post(this.urlForChangeLastName, JSON.stringify(body), { headers: headers })
             .map((res: Response) => {
                 return true;
             })

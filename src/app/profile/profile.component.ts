@@ -1,3 +1,4 @@
+import { AuthorizationService } from './../Services/AuthorizationService';
 import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -10,6 +11,8 @@ import { FavoriteService } from "../Services/favorite.service";
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { Constants } from './../constants';
 import { SpinnerService } from '../Services/spinner.service';
+import { ErrorHandlingService } from '../Services/error-handling.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +23,11 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   favoritePlaces: Place [] = [];
+  editable = {
+    firstName : false,
+    lastName : false
+  };
+  private namePattern: string = Constants.DataValidationConstants.NamePattern;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +38,9 @@ export class ProfileComponent implements OnInit {
     public dialog: MatDialog,
     private favoriteService: FavoriteService,
     private spinnerService: SpinnerService,
+    private authorizationService : AuthorizationService,
+    private errorService: ErrorHandlingService,
+    private snackBar: MatSnackBar,
   ) { 
     this.user = new User("", "", "");
   }
@@ -88,10 +99,54 @@ export class ProfileComponent implements OnInit {
       })})
   }
 
+  private onSubmitFirstName() {
+    this.authorizationService.changeFirstName(this.user.FirstName)
+      .subscribe(response=>{
+        this.snackBar.open("Your first name changed", "Got it", {
+          duration: 2000
+        });
+        }
+        ,error => {
+        this.errorService.handleError(error);
+        this.getInfo();
+      }
+      )
+  }
+
+  private onSubmitLastName() {
+    this.authorizationService.changeLastName(this.user.LastName)
+      .subscribe(response=>{
+        this.snackBar.open("Your last name changed", "Got it", {
+          duration: 2000
+        });
+        }
+        ,error => {
+        this.errorService.handleError(error);
+        this.getInfo();
+      }
+      )
+  }
+
   changePassword() {
     let dialog = this.dialog.closeAll();
     let dialogRef = this.dialog.open(ChangePasswordComponent, {
       width: "500px"
     });
+  }
+
+  isEditableFirstName(){
+    if(this.editable.firstName){
+      this.editable.firstName=false;
+    }
+    else
+    this.editable.firstName=true;
+  }
+
+  isEditableLastName(){
+    if(this.editable.lastName){
+      this.editable.lastName=false;
+    }
+    else
+    this.editable.lastName=true;
   }
 }
