@@ -53,7 +53,6 @@ export class FavoriteService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
-        //var content = "UserId=" + JSON.parse(localStorage.getItem("currentUser")).id + "&PlaceID="+placeId;
         return this._http.post(this.urlForAddFavoritePlace, 
             JSON.stringify({"UserId": JSON.parse(localStorage.getItem("currentUser")).id, "PlaceId" : placeId}), 
             { headers: headers })
@@ -68,8 +67,6 @@ export class FavoriteService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token);
-//      var content = "UserId=" + JSON.parse(localStorage.getItem("currentUser")).id + "&PlaceId="+placeId;
-//        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http.delete(this.urlForDeleteFavoritePlace, 
             {body: JSON.stringify({"UserId": JSON.parse(localStorage.getItem("currentUser")).id, "PlaceId" : placeId}),
             headers: headers} )

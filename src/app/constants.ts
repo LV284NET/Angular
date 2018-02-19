@@ -3,7 +3,7 @@ export class Constants {
     static CurrentBackEndHost: string = 'https://localhost:44317/';
 
     // 'https://localhost:4200/WebApi/'
-
+    
     //Constants for Pagination
     static PaginationConstants = class {
 
@@ -21,7 +21,7 @@ export class Constants {
     //Constants for SpinnerComponent
     static SpinnerComponentConstants = class {
 
-        static AnimationUrl: string = '../assets/img/LoadingAnimations/spinner1.gif';
+        static AnimationUrl: string = '../assets/img/LoadingAnimations/dance.gif';
 
         static AnimationName: string = 'LoadingProcess';
     }
@@ -36,12 +36,17 @@ export class Constants {
         static UrlForConfirmEmail: string = Constants.CurrentBackEndHost + 'api/Account/ConfirmUser';
 
         static UrlForChangePassword: string = Constants.CurrentBackEndHost + 'api/Account/ChangePassword';
+
+        static UrlForChangeFirstName: string = Constants.CurrentBackEndHost + 'api/Account/ChangeFirstName';
+
+        static UrlForChangeLastName: string = Constants.CurrentBackEndHost + 'api/Account/ChangeLastName';
     }
     //Constants for SocialAuthService
     static SocialAuthConstants = class {
 
         static UrlForSocialAuth: string = Constants.CurrentBackEndHost + 'api/Account/AddExternalLogin';
-        static UrlForDemoLogin: string = Constants.CurrentBackEndHost + 'api/Account/Login';
+
+        static FacebookProvinerName: string = 'Facebook';
     }
     //Constants for CityService
     static CityServiceConstants = class {
@@ -125,4 +130,47 @@ export class Constants {
         }
     }
 
+    //Constants for FeedbackComponent
+    static FeedbackComponentConstants = class {
+
+        static FormspreeUrl: string = 'https://formspree.io/easytravelsystem284@gmail.com';
+
+    }
+
+    //Constants for data validation
+    static DataValidationConstants = class {
+
+        static NamePattern: string = "^[а-яА-ЯёЁa-zA-Zʼ'ї Ї і І є Є-]{2,40}$";
+
+        static PasswordPattern: string = '((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})';
+
+        static EmailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$';
+    }
+    
+    //Constants for GeolocationService
+    static GeolocationServiceConstants = class {
+
+        static GoogleApiUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json';
+
+        static ApiKey: string = 'AIzaSyBcGmt-Vv3bbUxaYA6y5gga5WTymetm9gY';
+
+        static ResponseLanguage: string = 'en';
+
+        static IsDeviceSensorUsed: boolean = true;
+    }
+
+    //Constants for using Facebook app
+    static FacebookConstants = class {
+
+        static FacebookAppId: string = '1982326058704428';
+
+        static Src: string = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=1982326058704428&autoLogAppEvents=1';
+
+    }
+
+    static BlaBlaCarService = class {
+
+        static UrlForApiBlaBlaCar: string = Constants.CurrentBackEndHost + 'api/Services/GetBlaBlaCarRequestResult';
+
+    }
 }

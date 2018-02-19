@@ -1,14 +1,13 @@
-
 <div *ngIf="city" class="container">
-  
+
   <div class="row">
     <section class="col-md-12">
-        <app-weather [city]="city"></app-weather>
+      
       <section class="col-md-4">
         <img class="img-responsive img-thumbnail" [src]="city.picture">
       </section>
-      
-      
+
+
       <div class="container-fluid col-md-8 ">
         <section>
           <h2>
@@ -27,7 +26,7 @@
     </section>
   </div>
 
-  <div class="row">  
+  <div class="row">
   </div>
   <hr>
   <div>
@@ -56,16 +55,28 @@
       </h5>
     </div>
     <div>
-        
+
 
     </div>
-   
+
     <div id="button-div">
       <button class="btn btn-primary pull-left down" routerLink="/cities-list">Back</button>
       <button class="btn btn-primary pull-right down" routerLink="place-list">Show More</button>
     </div>
-
   </div>
+
+  <hr>
+
+  <div>
+    <button class="btn btn-primary" (click)="blablacar.blaBlaCarFormToggle(city.name)">How to get there?</button>
+    <app-blablacar #blablacar></app-blablacar>
+    <button class="btn btn-primary" (click)="weather.ShowWeather()">Weather</button>
+    <app-weather #weather [city]="city"></app-weather>
+  </div>
+
+  <br/>
+
+
 
 </div>
 <h2>Leave your comment!</h2>

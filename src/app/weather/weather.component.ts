@@ -15,6 +15,7 @@ export class WeatherComponent implements OnChanges {
   public city: City;
   public myWeather: WeatherService;
   public currentWeather: Weather;
+  showWeather: boolean = false;
   
   constructor(
     public weatherService: WeatherService
@@ -22,9 +23,18 @@ export class WeatherComponent implements OnChanges {
 
   ngOnChanges() {
     this.weatherService.getWeatherByCity(this.city.name)
-      .subscribe(data => this.currentWeather = data); 
+      .subscribe(data => this.currentWeather = data);    
+  }
 
-      
+  ShowWeather(){
+    if (this.showWeather)
+    {
+      this.showWeather = false;
+    }
+    else
+    {
+      this.showWeather = true;
+    }
   }
 
 }

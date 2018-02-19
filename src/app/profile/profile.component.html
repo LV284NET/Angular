@@ -6,11 +6,23 @@
         <img class="img-responsive img-thumbnail object-fit_contain" src="../assets/img/Profile/Default Profile Image.png">
       </section>
       <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-          <h3>{{user.Email}}</h3> 
-          <h3>{{user.FirstName}}</h3>
-          <h3>{{user.LastName}}</h3>
-            <a class="pull-right down" (click)="changePassword()">
-              <i class="material-icons">security</i>  Change Password</a>
+        <h3>{{user.Email}}</h3> 
+        <h3 *ngIf="!editable.firstName">{{user.FirstName}}
+          <a class="btn glyphicon glyphicon-pencil" (click)="isEditableFirstName()" role="button"></a></h3>
+
+        <h3 *ngIf="editable.firstName"><input [(ngModel)]="user.FirstName" placeholder="First Name">
+          <a class="btn glyphicon glyphicon-ok" (click)="isEditableFirstName();onSubmitFirstName()" role="button"></a>
+          <a class="btn glyphicon glyphicon-remove" (click)="isEditableFirstName();getInfo()" role="button"></a></h3>
+
+        <h3 *ngIf="!editable.lastName">{{user.LastName}}
+          <a class="btn glyphicon glyphicon-pencil" (click)="isEditableLastName()" role="button"></a></h3>
+                 
+        <h3 *ngIf="editable.lastName"><input [(ngModel)]="user.LastName" placeholder="Last Name">
+          <a class="btn glyphicon glyphicon-ok" (click)="isEditableLastName();onSubmitLastName()" role="button"></a>
+          <a class="btn glyphicon glyphicon-remove" (click)="isEditableLastName();getInfo()" role="button"></a></h3>
+        
+        <a class="pull-right down" (click)="changePassword()">
+          <i class="material-icons">security</i>  Change Password</a>
         </section>  
       </section>
     </div>

@@ -2,57 +2,86 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Action } from 'rxjs/scheduler/Action';
+import { Constants } from '../constants'
 
 @Component({
-    selector: 'app-feedback',
-    templateUrl: './feedback.component.html',
-    styleUrls: ['./feedback.component.css']
-  })
+  selector: 'app-feedback',
+  templateUrl: './feedback.component.html',
+  styleUrls: ['./feedback.component.css']
+})
 
-  export class FeedbackComponent implements OnInit {
+export class FeedbackComponent implements OnInit {
 
-    @Input() Email: string;
-    @Input() Suggestion: string;
-    @Input() FirstName: string;
-    @Input() LastName: string;
+  //#region Inputs
 
-    myform: FormGroup;
-    firstName: FormControl;
-    lastName: FormControl;
-    email: FormControl;
-    suggestions: FormControl;
-    suggestion: any;
+  @Input() Email: string;
+  @Input() Suggestion: string;
+  @Input() FirstName: string;
+  @Input() LastName: string;
 
-    constructor(private dialogRef: MatDialogRef<FeedbackComponent>, private snackBar: MatSnackBar) { }
+  //#endregion
 
-    ngOnInit() {
-        this.createFormControls();
-        this.createForm();
-      }
-   createFormControls() {
+  //#region Private Properties
+
+  private suggestions: FormControl;
+  private suggestion: any;
+  private namePattern: string = Constants.DataValidationConstants.NamePattern;
+  private emailPattern: string = Constants.DataValidationConstants.EmailPattern;
+
+  //#endregion
+
+  //#region Public Properties
+
+  public myform: FormGroup;
+  public firstName: FormControl;
+  public lastName: FormControl;
+  public email: FormControl;
+  public formspreeUrl: string = Constants.FeedbackComponentConstants.FormspreeUrl;
+
+  //#endregion
+
+  //#region Constructor
+
+  constructor(
+    private dialogRef: MatDialogRef<FeedbackComponent>, 
+    private snackBar: MatSnackBar) { }
+
+  //#endregion
+
+  ngOnInit() {
+    this.createFormControls();
+    this.createForm();
+  }
+
+  //#region Private Methods
+
+  private createFormControls() {
     this.firstName = new FormControl('', [
-        Validators.required,
-        Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
-      ]);
-      this.lastName = new FormControl('', [
-        Validators.required,
-        Validators.pattern("^[а-яА-ЯёЁa-zA-Zʼ'є Є]{2,20}$")
-      ]);
-      this.email = new FormControl('', [
-        Validators.required,
-        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$")
-      ]);
-      this.suggestions = new FormControl()
-   }
-   createForm() {
+      Validators.required,
+      Validators.pattern(this.namePattern)
+    ]);
+    this.lastName = new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.namePattern)
+    ]);
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.emailPattern)
+    ]);
+    this.suggestions = new FormControl()
+  }
+  createForm() {
     this.myform = new FormGroup({
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        suggestions: this.suggestions
-      });
-   }
-   closeDialog() {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      suggestions: this.suggestions
+    });
+  }
+
+  private closeDialog() {
     this.dialogRef.close();
   }
-  }
+
+  //#endregion
+}

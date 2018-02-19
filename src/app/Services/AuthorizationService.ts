@@ -14,8 +14,12 @@ export class AuthorizationService {
     private urlForConfirmEmail: string = Constants.AuthorizationServiceConstants.UrlForConfirmEmail;
     private urlForChangePassword: string = Constants.AuthorizationServiceConstants.UrlForChangePassword;
     private urlForSocialAuth: string = Constants.SocialAuthConstants.UrlForSocialAuth;
+    private facebookProviderName: string = Constants.SocialAuthConstants.FacebookProvinerName;
+    private urlForChangeFirstName: string = Constants.AuthorizationServiceConstants.UrlForChangeFirstName;
+    private urlForChangeLastName: string = Constants.AuthorizationServiceConstants.UrlForChangeLastName;
 
     public token: string;
+   // public facebookAccessToken: string;
     public FirstName: string;
     public UserId: any;
 
@@ -41,6 +45,40 @@ export class AuthorizationService {
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + this.token);
         return this._http.post(this.urlForChangePassword, JSON.stringify(body), { headers: headers })
+            .map((res: Response) => {
+                return true;
+            })
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    public changeFirstName(newFirstName: string): Observable<boolean> {
+        var headers = new Headers();
+
+        var body =
+            {
+                "newFirstName": newFirstName
+            }
+
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + this.token);
+        return this._http.post(this.urlForChangeFirstName, JSON.stringify(body), { headers: headers })
+            .map((res: Response) => {
+                return true;
+            })
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    public changeLastName(newLastName: string): Observable<boolean> {
+        var headers = new Headers();
+
+        var body =
+            {
+                "newLastName": newLastName
+            }
+
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + this.token);
+        return this._http.post(this.urlForChangeLastName, JSON.stringify(body), { headers: headers })
             .map((res: Response) => {
                 return true;
             })
@@ -73,8 +111,8 @@ export class AuthorizationService {
                     let Id = res.json().Id;
                     var dateNow = Date.now();
                     let tokenExpired = res.json().expires_in;
-                    var tokenDurating = dateNow + tokenExpired * 1000; 
-                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating : tokenDurating , token: token }));
+                    var tokenDurating = dateNow + tokenExpired * 1000;
+                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating: tokenDurating, token: token }));
                     this.FirstName = firstName;
                     this.UserId = Id;
                     return true;
@@ -84,10 +122,10 @@ export class AuthorizationService {
             .catch((error: any) => Observable.throw(error));
     }
 
-    public facebookLogin( data): Observable<boolean> {
+    public facebookLogin(facebookAccessToken): Observable<boolean> {
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        var content = data;
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var content = "accesstoken=" + facebookAccessToken + "&provider=" + this.facebookProviderName;
         return this._http.post(this.urlForSocialAuth, content, { headers: headers })
             .map((res: Response) => {
                 let token = res.json().access_token;
@@ -98,8 +136,8 @@ export class AuthorizationService {
                     let Id = res.json().id;
                     var dateNow = Date.now();
                     let tokenExpired = res.json().expires_in;
-                    var tokenDurating = dateNow + tokenExpired * 1000; 
-                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating : tokenDurating , token: token }));
+                    var tokenDurating = dateNow + tokenExpired * 1000;
+                    localStorage.setItem("currentUser", JSON.stringify({ id: Id, username: userName, firstName: firstName, tokenDurating: tokenDurating, token: token }));
                     this.FirstName = firstName;
                     this.UserId = Id;
                     return true;

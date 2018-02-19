@@ -6,46 +6,42 @@
       <section class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
         <img class="img-responsive img-thumbnail" [src]="place.picture">
         <ul *ngIf="authService.token != null">
-            <ul *ngIf="checkExist(place.placeId) == true;else notExist">
-                <a class="icon pull-right" (click)="this.favoritePlace.DeletePlace(place.placeId)">          
-                  <i id="favorite" class="material-icons pull-right down">favorite</i>   
-                </a >
-            </ul>
-            <ng-template #notExist>
-                <a class="icon pull-right" (click)="this.favoritePlace.AddPlace(place.placeId)">          
-                    <i id="favorite" class="material-icons pull-right down">favorite_border</i>   
-                  </a >
-            </ng-template>
+          <ul *ngIf="checkExist(place.placeId) == true;else notExist">
+            <a class="icon pull-right" (click)="this.favoritePlace.DeletePlace(place.placeId)">
+              <i id="favorite" class="material-icons pull-right down">favorite</i>
+            </a>
+          </ul>
+          <ng-template #notExist>
+            <a class="icon pull-right" (click)="this.favoritePlace.AddPlace(place.placeId)">
+              <i id="favorite" class="material-icons pull-right down">favorite_border</i>
+            </a>
+          </ng-template>
         </ul>
       </section>
 
-      
+
       <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
         <div class="row">
-        <section class="col-xs-6">
+          <section class="col-xs-6">
             <h3>{{place.name}}
             </h3>
           </section>
-          <section class="col-xs-6" style="margin-top: 20px">            
+          <section class="col-xs-6" style="margin-top: 20px">
             <ul *ngIf="authService.token != null; else NotAutorize">
-                <star-rating-comp [speed]="'slow'" [starType]="'svg'" 
-                [hoverEnabled]="true"
-                [labelText]="getTextForLabelRating(place.rating)" 
-                [labelPosition]="'bottom'"
-                [rating] = "userRating"
-                (onClick)="setPlaceRating($event)" >                             
-                </star-rating-comp>
+              <star-rating-comp [speed]="'slow'" [starType]="'svg'" [hoverEnabled]="true" [labelText]="getTextForLabelRating(place.rating)"
+                [labelPosition]="'bottom'" [rating]="userRating" (onClick)="setPlaceRating($event)">
+              </star-rating-comp>
             </ul>
             <ng-template #NotAutorize>
-                <i class="material-icons pull-right down" style="color:gold">star</i>
-                <section class ="rating pull-right">
-                  <p style="font-size: 20px">{{getPlaceRating(place.rating)}}
-                  </p>  
-                </section>
+              <i class="material-icons pull-right down" style="color:gold">star</i>
+              <section class="rating pull-right">
+                <p style="font-size: 20px">{{getPlaceRating(place.rating)}}
+                </p>
+              </section>
             </ng-template>
           </section>
         </div>
-          <article>
+        <article>
           <br>
           <p>{{place.description}}</p>
         </article>
@@ -53,11 +49,18 @@
     </section>
   </div>
 
-  <hr/>
- 
-  <br>
+  <hr>
   <button class="btn btn-primary pull-left down" (click)="goBack()">Back</button>
+  <a (click)="maps()">
+    <button class="glyphicon glyphicon-move" class="btn btn-primary pull-right"> Maps</button>
+  </a>
+
+  <button class="btn btn-primary pull-right" (click)="blablacar.blaBlaCarFormToggle(place.cityName)">How to get there?</button>
 </div>
+<div class="container">
+  <app-blablacar #blablacar></app-blablacar>
+</div>
+
 <h2>Leave your comment!</h2>
 <div class="container">
   <disqus [identifier]="page"></disqus>

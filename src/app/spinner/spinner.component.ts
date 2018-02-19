@@ -24,12 +24,4 @@ export class SpinnerComponent implements OnInit {
     this.spinnerService.Register(this);
     this.spinnerName = Constants.SpinnerComponentConstants.AnimationName;
   }
-
-  // public Hide(): void{
-  //   this.spinnerService.HideSpinner(this.spinnerName);   
-  // }
-
-  // public Show(): void{
-  //   this.spinnerService.ShowSpinner(this.spinnerName);
-  // }
 }

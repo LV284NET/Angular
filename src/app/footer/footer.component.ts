@@ -19,20 +19,10 @@ import { SpinnerService } from '../Services/spinner.service';
 })
 export class FooterComponent implements OnInit {
 
-  @Input() visible: boolean = false;
-  @Input() name: string;
+  constructor(public dialog: MatDialog) { }
 
-  constructor( 
-    private router: Router, 
-    public dialog: MatDialog,
-    public spinnerService: SpinnerService,
-   
-   
-  ) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-   
-  }
   suggestions(){
     let dialog = this.dialog.closeAll()
     let dialogRef = this.dialog.open(FeedbackComponent, {
