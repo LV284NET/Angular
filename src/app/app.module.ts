@@ -39,6 +39,8 @@ import { Constants } from './constants';
 import { TokenExpiredService } from './Services/token-expired.service';
 import { SearchCitiesAndPlacesService } from './Services/search-cities-and-places.service';
 import  './getFBSDK';
+import { WeatherComponent } from './weather/weather.component';
+import { WeatherService } from './Services/weather.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import  './getFBSDK';
     ChangePasswordComponent,
     PaginationComponent,
     SpinnerComponent,
-    FooterComponent   
+    FooterComponent,
+    WeatherComponent   
   ],
   entryComponents: [
     LoginComponent,
@@ -93,6 +96,7 @@ import  './getFBSDK';
     Constants,
     TokenExpiredService,
     SearchCitiesAndPlacesService,   
+    WeatherService
   ],
   bootstrap: [AppComponent]
 })

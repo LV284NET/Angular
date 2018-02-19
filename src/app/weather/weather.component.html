@@ -1,0 +1,18 @@
+<div *ngIf="currentWeather">
+
+  <div >
+        <div class="conditions card">
+          <h3>{{currentWeather.name}}</h3>
+          <div class="card-left">
+            <div class="cur-temp">{{currentWeather.main.temp}} °C</div>
+            <div class="flex">
+            <div class="cur-condition">{{currentWeather.weather[0].main}}</div>
+            <img class="icon" src="http://openweathermap.org/img/w/{{currentWeather.weather[0].icon}}.png"  >
+          </div> 
+          </div>
+          
+        </div>
+  </div>
+</div>
+
+

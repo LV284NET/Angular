@@ -1,0 +1,101 @@
+
+  h1, h2, h3 {
+    font-family: Oxygen, sans-serif;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .city {
+    margin: 1em 0 0.5em 0;
+    text-align: left;
+    font-size: 1.25em;
+  }
+  
+  .card-left {
+    float: left;
+  }
+  
+  .card-right {
+    float: right;
+  }
+  
+  .card:before, .card:after {
+    content: "";
+    display: table;
+  }
+  
+  .card:after {
+    clear: both;
+  }
+  
+  .conditions {
+    display: block;
+    width: 25%;
+    padding: 10px;
+    position: relative;
+    border-radius: 10px;
+    background-color: #bcc1c7;
+    color: #152437;
+    box-shadow: 1px 1px 25px;
+    margin-bottom: 25px;
+  }
+  
+  .conditions .card-left .wi {
+    padding-top: 10px;
+    margin: 10px;
+    font-size: 3.75em;
+    float: left;
+  }
+  
+  .conditions .cur-temp {
+
+    padding-top: 4px;
+    font-size: 1.25em;
+  }
+  
+  .unit-switcher a {
+    color: inherit;
+    border: 1px solid black;
+    text-decoration: none;
+    background-color: #152437;
+    color: #bcc1c7;
+    padding: 5px;
+  }
+  
+  .unit-switcher .active {
+    color: #152437;
+    background-color: #94a2af;
+  }
+  
+  .card-right {
+    float: right;
+    margin-top: 1em;
+    font-size: 95%;
+  }
+  
+  .conditions .card-right > div, .card-right > i {
+    padding-left: 5px;
+    line-height: 1.4em;
+  }
+  
+  .conditions .cur-humidity:before {
+    font-family: 'weathericons';
+    font-size: 1.25em;
+    content: '\f04e  ';
+  }
+  
+  .conditions .cur-pressure:before {
+    font-family: 'FontAwesome';
+    font-size: 0.75em;
+    content: '\f066  ';
+  }
+  
+  .cur-wind span {
+    padding-left: 3px;
+  }
+  .icon{
+      width: 70px;
+      color: blue;
+      position: relative;
+  }
+ 

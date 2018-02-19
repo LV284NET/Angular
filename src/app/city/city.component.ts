@@ -12,6 +12,7 @@ import { AuthorizationService } from "../Services/AuthorizationService";
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { SpinnerService } from '../Services/spinner.service';
 import { Constants } from './../constants';
+import { WeatherService } from '../Services/weather.service';
 
 @Component({
   selector: 'app-city',
@@ -21,7 +22,7 @@ import { Constants } from './../constants';
 
 export class CityComponent implements OnInit {
 
-  page= "/city/" +this.route.snapshot.paramMap.get('cityId');
+  page = "/city/" + this.route.snapshot.paramMap.get('cityId');
   city: City;
   places: Place[] = [];
 
@@ -60,14 +61,13 @@ export class CityComponent implements OnInit {
       });
   }
 
-  getCityRating(cityRating: number): any{
-    if(cityRating != 0)
-    { 
+  getCityRating(cityRating: number): any {
+    if (cityRating != 0) {
       return cityRating.toString();
     }
     return "";
   }
-  
+
   getPlaces() {
     this.spinnerService.ShowSpinner(Constants.SpinnerComponentConstants.AnimationName);
 

@@ -39,7 +39,7 @@ export class Constants {
     }
     //Constants for SocialAuthService
     static SocialAuthConstants = class {
-        
+
         static UrlForSocialAuth: string = Constants.CurrentBackEndHost + 'api/Account/AddExternalLogin';
         static UrlForDemoLogin: string = Constants.CurrentBackEndHost + 'api/Account/Login';
     }
@@ -103,14 +103,26 @@ export class Constants {
 
     }
 
-        //Constants for RatingService
-        static RatingServiceConstants = class {            
-            static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
-            
-            static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
-            
-            static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
-            
-            static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
+    //Constants for RatingService
+    static RatingServiceConstants = class {
+        static UrlForGetPlaceRating: string = Constants.CurrentBackEndHost + 'api/Place/GetPlaceRating';
+
+        static UrlForGetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/GetUserRatingOfPlace';
+
+        static UrlForSetUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/SetUserRatingForPlace';
+
+        static UrlForDeleteUserRatingOfPlace: string = Constants.CurrentBackEndHost + 'api/Profile/DeleteUserRatingForPlace';
+    }
+
+
+    //Constants for WeatherApi
+    static WeatherApiConstants = class {
+      static BaseUrl: string = 'https://api.openweathermap.org/data/2.5/weather?q=';
+        static AppId: string = '2b09e670c9096db15cdc7e4c4c736729';
+       
+        static getSearchUrl(cityName: string) {
+          return `${this.BaseUrl}${cityName}&appid=${this.AppId}&units=metric`;
         }
+    }
+
 }
